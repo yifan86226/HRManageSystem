@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="CO_IA.Client.LocationPoint"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Width="18" Height="28" Margin="0,-14,0,0" >
+    <UserControl.Effect>
+        <DropShadowEffect Color="Blue" ShadowDepth="3"/>
+    </UserControl.Effect>
+    
+        <Grid >
+            <Image Source="pack://application:,,,/CO_IA.Themes;component/Images/Area/location_point2.png"></Image>
+        <Border x:Name="showBorder" Width="17" Height=" 17"  HorizontalAlignment="Right"  VerticalAlignment="Bottom" BorderThickness="0" BorderBrush="Red">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="3"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Image Source="pack://application:,,,/CO_IA.Themes;component/Images/Area/location_img2.png" x:Name="imgshow" Width="16" Height="16" Cursor="Hand"                  
+                   MouseLeftButtonUp="Image_MouseLeftButtonUp" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" RenderTransformOrigin="0.5,0.5"  >               
+                <Image.Effect>
+                    <DropShadowEffect Color="Red" ShadowDepth="2"/>
+                </Image.Effect>
+            </Image>
+        </Border>
+    </Grid>
+   
+</UserControl>

@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="CO.IA.UI.TaskManage.TaskType.GroupSelect"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TreeView  Grid.Row="0"  x:Name="tv_PersonPlan" ItemsSource="{Binding }"  SelectedItemChanged="tv_PersonPlan_SelectedItemChanged"  VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" >
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="True"></Setter>
+                </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.ItemTemplate >
+
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}"   >
+
+                    <StackPanel Orientation="Horizontal"  Tag="{Binding GUID}" >
+
+                        <Image VerticalAlignment="Center"  Height="16" Width="16" />
+
+                        <StackPanel Orientation="Vertical">
+
+                            <TextBlock Text="{Binding NAME, Mode=TwoWay}" HorizontalAlignment="Center" Width="Auto"/>
+
+                            <TextBox x:Name="renametextbox" Text="{Binding NAME, Mode=TwoWay}" HorizontalAlignment="Center" Margin="0,-20,0,0"
+
+                             Width="Auto"  Visibility="Collapsed"  />
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </HierarchicalDataTemplate>
+
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <Button x:Name="btnOK" Content="确定" Grid.Row="1"  Width="50" Height="25" Margin="0 10 0 0" Click="btnOK_Click"/>
+    </Grid>
+</UserControl>

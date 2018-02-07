@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="CO.IA.UI.TaskManage.TaskType.MonitorTask"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="650">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" Margin="5">
+            <TextBlock Text="任务标题" />
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1" Margin="5">
+            <TextBox x:Name="MonitorName" />
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0"  Margin="5">
+            <TextBlock Text="任务描述" />
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" Margin="5">
+            <TextBox x:Name="MonitorContent" TextWrapping="NoWrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Height="60"/>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="5">
+            <Button x:Name="MonitorSound" Content="录音" Width="50" />
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="0" Margin="5">
+            <TextBlock Text="监测频段" />
+        </Grid>
+        <StackPanel Grid.Row="3" Grid.Column="1" Margin="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="添加" x:Name="btnMonitorAdd" HorizontalAlignment="Right" Margin="2"/>
+            <Button Content="修改" x:Name="btnMonitorUpdate" HorizontalAlignment="Right" Margin="2"/>
+            <Button Content="删除" x:Name="btnMonitorDetel"   HorizontalAlignment="Right" Margin="2"/>
+        </StackPanel>
+        <ScrollViewer Grid.Row="4" Grid.ColumnSpan="2" x:Name="scrolls"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+            <ScrollViewer.Content>
+                <DataGrid x:Name="dgList" ItemsSource="{Binding }"  Margin="0" Background="White" SelectionChanged="DgQuestion_SelectionChanged" CanUserAddRows="False" AutoGenerateColumns="False"  HorizontalGridLinesBrush="#FFD1CFCF" VerticalGridLinesBrush="#FFD1CFCF">
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#DBEDF8"/>
+                                    <Setter Property="BorderBrush" Value="#DBEDF8"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.Header>
+                                <CheckBox Content="全 选" x:Name="cBox_All" Click="cBox_All_Click"></CheckBox>
+                            </DataGridTemplateColumn.Header>
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path=Listdate.IsChecked}"  Width="80"></CheckBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="频段起/频点" Binding="{Binding Path=Listdate.Name}" IsReadOnly="True" Width="120"/>
+                        <DataGridTextColumn Header="频段止" Binding="{Binding Path=Listdate.Formt}" IsReadOnly="True"  Width="120"/>
+                        <DataGridTextColumn Header="带宽" Binding="{Binding Path=Listdate.Size}" IsReadOnly="True"  Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </ScrollViewer.Content>
+        </ScrollViewer>
+      
+        <GroupBox Header="执行结果" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Margin="5"   BorderBrush="Black" BorderThickness="1" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="监测结果" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                <TextBox x:Name="explain" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Height="60" Margin="5"/>
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button x:Name="addFile" Content="文件上传" Margin="5 5 15 5"/>
+                    <Button x:Name="Sound" Content="录音" Margin="5 5 15 5"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Button x:Name="btnOK" Content="确定"/>
+            <Button x:Name="btnCancel" Content="取消" ></Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

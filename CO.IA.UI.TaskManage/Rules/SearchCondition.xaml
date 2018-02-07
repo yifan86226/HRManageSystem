@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="CO.IA.UI.TaskManage.Rules.SearchCondition"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid x:Name="Tab1" Margin="0,10,0,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Direction="0"/>
+        </Grid.Effect>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240" x:Name="gridTab2"/>
+            <ColumnDefinition Width="32" x:Name="gridTab1" />
+        </Grid.ColumnDefinitions>
+        <Grid  Grid.Column="1"   Margin="0" HorizontalAlignment="Right"  Width="32" Height="196" MouseLeftButtonDown="gridTab1_MouseLeftButtonDown" MouseLeftButtonUp="gridTab1_MouseLeftButtonUp" VerticalAlignment="Top">
+            <Path Data="M14.499997,0.5 L30.5,0.5 L30.5,195.5092 C22.749666,179.34477 21.416317,172.5116 12.74966,165.34474 C10.101785,163.15511 0.50000095,159.98717 0.5,153.17583 L0.5,12.833001 C0.50000095,6.0216737 6.0216732,0.50000131 12.833001,0.50000149 z" Margin="0,0,1,-67.164" Stretch="Fill" Stroke="#FF97B0CB" UseLayoutRounding="False">
+                <Path.Fill>
+                    <LinearGradientBrush EndPoint="0.904,0.386" StartPoint="0.114,0.385">
+                        <GradientStop Color="#FFD7DCE1" Offset="0.383"/>
+                        <GradientStop Color="#FFFDFDFE" Offset="1"/>
+                        <GradientStop Color="#FFDFE3E7"/>
+                    </LinearGradientBrush>
+                </Path.Fill>
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <TranslateTransform X="-32"></TranslateTransform>
+                        <ScaleTransform ScaleY="1" ScaleX="-1"></ScaleTransform>
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            <Rectangle StrokeThickness="0.5" RadiusY="3" RadiusX="3" Stroke="#FF319CE1" Height="20" Margin="7,13,5,0" VerticalAlignment="Top" Fill="#FFFBFDFC">
+                <Rectangle.OpacityMask>
+                    <ImageBrush Stretch="Fill"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <Rectangle StrokeThickness="0.5" Margin="6,13,3,0" Height="23" VerticalAlignment="Top">
+                <Rectangle.Fill>
+                    <ImageBrush />
+                </Rectangle.Fill>
+      
+                <Rectangle.OpacityMask>
+                    <ImageBrush Stretch="Fill"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <TextBlock Margin="1,40,0,0" TextWrapping="Wrap" TextAlignment="Center" FontSize="16" LineHeight="23" Text="任务管理查询" VerticalAlignment="Top"/>
+            <TextBlock x:Name="tbTip1" Margin="1,0,0,38" TextWrapping="Wrap" TextAlignment="Center" FontSize="16" VerticalAlignment="Bottom"    Foreground="#FF0033FF"/>
+        </Grid>
+        <Grid Grid.Column="0"  Margin="0" Width="240" Height="270" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Rectangle Margin="0,25,0,-39" Fill="White" Stroke="#FF97B0CB" HorizontalAlignment="Right" Width="240"/>
+            <Rectangle Height="35" VerticalAlignment="Top">
+                <Rectangle.Stroke>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFD6DEEA"/>
+                        <GradientStop Color="#FF97B0CB" Offset="0.526"/>
+                    </LinearGradientBrush>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF3F6FB" Offset="0"/>
+                        <GradientStop Color="#FFACC8E7" Offset="1"/>
+                        <GradientStop Color="#FFC3D6ED" Offset="0.513"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+                
+            </Rectangle>
+            <StackPanel Margin="0,36,7,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="230">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                     
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="任务标题：" Margin="5 15 5 10"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="taskName" Margin="5 15 5 10"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="任务状态" Margin="5 15 5 10"/>
+                    <StackPanel Grid.Row="1" Grid.Column="1"  x:Name="taskState" Margin="5" Orientation="Horizontal">
+                        <RadioButton x:Name="starting" Content="进行中" Margin="5 10 10 0" GroupName="stategroup"/>
+                        <RadioButton x:Name="finished" Content="已完成" Margin="5 10 10 0" GroupName="stategroup"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="执行小组：" Margin="5 15 5 10"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="executeUnit" Margin="5 15 5 10"/>
+                  
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="任务类型" Margin="5 15 5 10"/>
+                    <StackPanel Grid.Row="3" Grid.Column="1" Margin="5 15 5 10">
+                        <ComboBox Grid.Row="3" Grid.Column="1" x:Name="taskType" >
+                            <ComboBoxItem IsSelected="True">一般任务</ComboBoxItem>
+                            <ComboBoxItem>临时监测</ComboBoxItem>
+                            <ComboBoxItem>干扰任务</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                   
+                    <Button x:Name="btnSearch" Grid.Row="5" Grid.ColumnSpan="2" Width="65" Content="查询" Margin="5 15 5 10" HorizontalAlignment="Center"/>
+                </Grid>
+            </StackPanel>
+            <TextBlock Margin="30,0,37,234" TextWrapping="Wrap"  FontSize="16" TextAlignment="Center" Text="查询条件"/>
+        </Grid>
+    </Grid>
+</UserControl>
