@@ -1,0 +1,138 @@
+﻿<Window x:Class="CO_IA.RIAS.PortalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+        xmlns:client="clr-namespace:CO_IA.Client;assembly=CO_IA.Client"
+        
+         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        
+        
+        Title="{x:Static client:Utility.RiasSystemName}"
+        Height="400"
+        Width="600"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="false"
+        ResizeMode="NoResize"
+        Icon="Images/TaskbarIcon.png">
+
+    <Grid Margin="2">
+        <Rectangle Fill="{DynamicResource PageBackgroudBrush}"
+                   Margin="0,1,0,0">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="15"
+                                  ShadowDepth="0" />
+            </Rectangle.Effect>
+        </Rectangle>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+           
+            </Grid.RowDefinitions>
+            <Rectangle Fill="{DynamicResource BackgroudBrush}"
+                       x:Name="rectangleTitle"
+                       Margin="-1"
+                      
+                       Grid.RowSpan="2" />
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="4,0">
+                <Button Click="buttonMinimize_Click"
+                        Style="{StaticResource controlButton}"
+                        Margin="2">
+                    <Image Source="{DynamicResource {x:Static client:ControlButtonImageKeys.Min}}"
+                           VerticalAlignment="Center"
+                           Height="12"
+                           Width="12" />
+                </Button>
+                <Button Click="buttonClose_Click"
+                        Style="{StaticResource controlButton}"
+                        Margin="2">
+                    <Image Source="{DynamicResource {x:Static client:ControlButtonImageKeys.Close}}"
+                           VerticalAlignment="Center"
+                           Height="12"
+                           Width="12" />
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left">
+                <Image Source="{StaticResource defaultActivity}"
+                       Margin="15,0,10,0"
+                       Width="48"
+                       Height="48"
+                       Stretch="Uniform"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
+                 <TextBlock VerticalAlignment="Center"
+                           Text="{x:Static client:Utility.RiasSystemName}"
+                           FontSize="24"
+                           FontWeight="Black"
+                           Foreground="{DynamicResource ForegroundBrush}" />
+            </StackPanel>
+            <Border Grid.Row="2"
+                    Margin="10"
+                    BorderBrush="{DynamicResource ModuleToolBar.BorderBrush}"
+                    BorderThickness="1">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="用户名:" HorizontalAlignment="Right" Margin="0,0,6,8" VerticalAlignment="Center" />
+                    <dxe:TextEdit x:Name="username" Grid.Column="1" Width="300" HorizontalAlignment="Left" Grid.Row="0" NullText="请输入登录名称..."   InvalidValueBehavior="AllowLeaveEditor" ShowError="False" ShowErrorToolTip="False" Margin="0,0,0,8" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Right" Text="密码:" Margin="0,3,6,0" VerticalAlignment="Top" />
+              
+                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,0,0,4">
+                        <dxe:PasswordBoxEdit x:Name="password"
+                        InvalidValueBehavior="AllowLeaveEditor"
+                        ShowError="False"
+                      Width="300" HorizontalAlignment="Left"
+                        ShowErrorToolTip="False"
+                        NullText="请输入密码..."
+                        PasswordChar="*"
+                        >
+
+                            <dxe:PasswordBoxEdit.EditValue>
+                                <Binding Path="Password" Mode="TwoWay" ValidatesOnDataErrors="True" NotifyOnValidationError="True">
+                                    <Binding.UpdateSourceTrigger>PropertyChanged</Binding.UpdateSourceTrigger>
+                                </Binding>
+                            </dxe:PasswordBoxEdit.EditValue>
+                        </dxe:PasswordBoxEdit>
+           
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2"  Grid.ColumnSpan="2"  Margin="5,10"
+                    Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Button Name="btnSave" Content="登陆" Click="btnSave_Click" Margin="5"  Height="40" Width="70"/>
+                        <Button Name="btnCancel" Content="取消" Click="buttonClose_Click"  Margin="5" Height="40" Width="70"/>
+                    </StackPanel>
+
+
+                    <TextBlock Grid.Row="3" Grid.Column="1" x:Name="tb_SM" />
+                </Grid>
+                
+            </Border>
+       
+        
+            
+        </Grid>
+    </Grid>
+</Window>

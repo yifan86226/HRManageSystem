@@ -1,0 +1,14 @@
+﻿<Application x:Class="CO_IA.RIAS.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AT_BC.Common;component/Themes/DefaultStyle.xaml" />
+                <ResourceDictionary Source="/CO_IA.Themes;component/Style.xaml"/>
+       
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
