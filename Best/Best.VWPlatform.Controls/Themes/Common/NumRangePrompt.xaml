@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:best="clr-namespace:Best.VWPlatform.Controls.Common">
+    
+    <Style TargetType="best:NumRangePrompt">
+        <Setter Property="MaxValueHistoryVisibility" Value="Collapsed"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="best:NumRangePrompt">
+                    <Border x:Name="x_rect" Background="#aa000000" BorderBrush="Black" BorderThickness="1">
+                        <Grid x:Name="x_test">
+                            <Rectangle x:Name="x_rectValue" Fill="#4280ff" HorizontalAlignment="Left" />
+                            <Canvas HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Rectangle x:Name="x_rectMaxValueHistory" Width="2" Height="{Binding ActualHeight,RelativeSource={RelativeSource FindAncestor, AncestorType=Grid,AncestorLevel=1}}" Fill="Red" Canvas.Left="0" HorizontalAlignment="Left" Visibility="{TemplateBinding MaxValueHistoryVisibility}"/>
+                            </Canvas>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

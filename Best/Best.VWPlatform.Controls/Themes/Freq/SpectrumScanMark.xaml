@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    mc:Ignorable="d"
+                    xmlns:local="clr-namespace:Best.VWPlatform.Controls.Freq">
+    <!-- 频谱扫描点 Mark -->
+    <Style TargetType="local:SpectrumScanMark">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:SpectrumScanMark">
+                    <Grid x:Name="xScanMark" HorizontalAlignment="Left">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="xScanMarkFreq" Grid.RowSpan="2" IsHitTestVisible="False">
+                             <Canvas>
+                                 <Grid Width="101" Canvas.Top="{TemplateBinding MarkOffset}" Visibility="{TemplateBinding MarkVisibility}">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Height="23" x:Name="xMarkFreqValue" TextWrapping="NoWrap" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" />
+                                        <Ellipse Width="5" Height="5" Fill="{TemplateBinding Color}" HorizontalAlignment="Center" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Grid>
+                             </Canvas>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

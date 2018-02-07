@@ -1,0 +1,283 @@
+﻿<UserControl x:Class="Best.VWPlatform.Controls.Container.CDateTimePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style x:Key="LeftToggleButton" TargetType="{x:Type ToggleButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="ClickMode" Value="Press"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid>
+                            <Border Background="#6B000000" CornerRadius="10,0,0,10"/>
+                            <Border x:Name="borderChecked" Background="Black" BorderBrush="#FF14B1FB" BorderThickness="1" CornerRadius="10,0,0,10" Visibility="Collapsed"/>
+                            <Border x:Name="borderFocused" Background="Black" BorderBrush="#7F14B1FB" BorderThickness="1" CornerRadius="10,0,0,10" Visibility="Collapsed"/>
+                            <TextBlock x:Name="XCon" Text="{TemplateBinding Content}" FontSize="15" FontWeight="Bold" Foreground="#FFFFA400" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                            <Border x:Name="borderDisabled" Background="#3FFFFFFF" BorderThickness="1" BorderBrush="#3FFFFFFF" CornerRadius="10,0,0,10" Visibility="Collapsed" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Visibility" TargetName="borderFocused" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Visibility" TargetName="borderChecked" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Visibility" TargetName="borderChecked" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="FontSize" TargetName="XCon" Value="17"></Setter>
+                                <Setter Property="Visibility" TargetName="borderChecked" Value="Visible"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RightToggleButton" TargetType="{x:Type ToggleButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="ClickMode" Value="Press"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid>
+                            <Border Background="#6B000000" CornerRadius="0,10,10,0"/>
+                            <Border x:Name="borderChecked" Background="Black" BorderBrush="#FF14B1FB" BorderThickness="1" CornerRadius="0,10,10,0" Visibility="Collapsed"/>
+                            <Border x:Name="borderFocused" Background="Black" BorderBrush="#7F14B1FB" BorderThickness="1" CornerRadius="0,10,10,0" Visibility="Collapsed"/>
+                            <TextBlock x:Name="XCon" Text="{TemplateBinding Content}" FontSize="15" FontWeight="Bold" Foreground="#FFFFA400" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                            <Border x:Name="borderDisabled" Background="#3FFFFFFF" BorderThickness="1" BorderBrush="#3FFFFFFF" CornerRadius="0,10,10,0" Visibility="Collapsed" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Visibility" TargetName="borderFocused" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Visibility" TargetName="borderChecked" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Visibility" TargetName="borderChecked" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="FontSize" TargetName="XCon" Value="17"></Setter>
+                                <Setter Property="Visibility" TargetName="borderChecked" Value="Visible"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="MaxDropDownHeight" Value="200"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid MinHeight="24" Name="x_grid" SnapsToDevicePixels="True">
+                            <Grid.Resources>
+                                <Style x:Key="comboToggleStyle" TargetType="ToggleButton">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Grid Background="Transparent">
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal"/>
+                                                            <VisualState x:Name="MouseOver">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="BtnArrowChecked">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                <Visibility>Visible</Visibility>
+                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                        </DiscreteObjectKeyFrame>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Pressed">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="BtnArrowChecked">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                <Visibility>Visible</Visibility>
+                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                        </DiscreteObjectKeyFrame>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Disabled" >
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="BackgroundDisable">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                <Visibility>Visible</Visibility>
+                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                        </DiscreteObjectKeyFrame>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                        <VisualStateGroup x:Name="CheckStates">
+                                                            <VisualState x:Name="Checked">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="BtnArrowChecked">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                <Visibility>Visible</Visibility>
+                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                        </DiscreteObjectKeyFrame>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Unchecked"/>
+                                                            <VisualState x:Name="Indeterminate"/>
+                                                        </VisualStateGroup>
+                                                        <VisualStateGroup x:Name="FocusStates">
+                                                            <VisualState x:Name="Focused">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="BtnArrowFocused">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                <Visibility>Visible</Visibility>
+                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                        </DiscreteObjectKeyFrame>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Unfocused" />
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,2,0" Grid.RowSpan="2" Width="14" Height="14">
+                                                        <Path x:Name="BtnArrow" Height="10" Width="8" Stretch="Uniform" Data="M 0 0 L 3.5 4 L 7 0 Z" Fill="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                        <Path x:Name="BtnArrowFocused" Height="10" Width="8" Stretch="Uniform" Data="M 0 0 L 3.5 4 L 7 0 Z" Fill="#7F14B1FB" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                                                        <Path x:Name="BtnArrowChecked" Height="10" Width="8" Stretch="Uniform" Data="M 0 0 L 3.5 4 L 7 0 Z" Fill="#FF14B1FB" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                                                    </Grid>
+                                                    <Rectangle x:Name="BackgroundDisable" Fill="#5BFFFFFF" StrokeThickness="0" Visibility="Collapsed" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Grid.Resources>
+                            <Border x:Name="ContentPresenterBorder" Canvas.ZIndex="1">
+                                <Grid>
+                                    <ToggleButton x:Name="DropDownToggle" Style="{StaticResource comboToggleStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                              IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                               Focusable="False" ClickMode="Press">
+                                    </ToggleButton>
+                                    <ContentPresenter x:Name="ContentPresenter"
+                                              IsHitTestVisible="False" 
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+    						                  Margin="{TemplateBinding Padding}"  
+    						                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+    						                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              TextBlock.Foreground="White">
+                                    </ContentPresenter>
+                                </Grid>
+                            </Border>
+
+                            <Popup x:Name="Popup" AllowsTransparency="True" IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" VerticalOffset="-3" HorizontalOffset="-6" Width="{Binding Path=ActualWidth, ElementName=x_grid}" PopupAnimation="Slide">
+                                <Grid>
+                                    <Border x:Name="PopupBorder" HorizontalAlignment="Stretch" Background="Black" BorderBrush="#FF14B1FB" BorderThickness="1">
+                                        <ScrollViewer x:Name="ScrollViewer" BorderThickness="0" Padding="0" Foreground="White" Margin="0,3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                            <ItemsPresenter/>
+                                        </ScrollViewer>
+                                    </Border>
+                                    <!--<Rectangle Fill="Black" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Top"></Rectangle>-->
+                                </Grid>
+
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="ComboBoxItem.ItemsviewHover.Background" Color="#FF61D7FF"/>
+        <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelected.Background" Color="#FF14B1FB"/>
+        <SolidColorBrush x:Key="ComboBoxItem.ItemsviewSelectedHover.Background" Color="#FF61D7FF"/>
+        <Style TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="6"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="False"/>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource ComboBoxItem.ItemsviewHover.Background}"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                    <Condition Property="IsMouseOver" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource ComboBoxItem.ItemsviewSelected.Background}"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource ComboBoxItem.ItemsviewSelectedHover.Background}"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="2"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ToggleButton x:Name="XtBtnDate" Grid.Column="0" Style="{StaticResource LeftToggleButton}" Content="{Binding DateString}" Click="XtBtnDate_OnClick"></ToggleButton>
+        <ToggleButton x:Name="XtBtnTime" Grid.Column="2" Style="{StaticResource RightToggleButton}" Content="{Binding TimeString}" Click="XtBtnTime_OnClick"></ToggleButton>
+        <Border x:Name="XBdDate" Grid.Column="0" Background="Black" CornerRadius="10,0,0,10" Visibility="Collapsed"></Border>
+        <Border x:Name="XBdTime" Grid.Column="2" Background="Black" CornerRadius="0,10,10,0" Visibility="Collapsed"></Border>
+
+        <Popup AllowsTransparency="True" Placement="Bottom" HorizontalOffset="0" VerticalOffset="5" PlacementTarget="{Binding ElementName=XtBtnDate}" StaysOpen="False" IsOpen="{Binding ElementName=XtBtnDate, Mode=TwoWay, Path=IsChecked}" PopupAnimation="Slide">
+            <Border Background="Black" BorderBrush="#FF14B1FB" BorderThickness="1">
+                <StackPanel Orientation="Horizontal" Margin="10,0" Height="40">
+                    <ComboBox x:Name="YearPicker" Width="90" SelectionChanged="YearPicker_SelectionChanged"/>
+                    <ComboBox x:Name="MonthPicker" Width="70" SelectionChanged="MonthPicker_SelectionChanged" />
+                    <ComboBox x:Name="DayPicker" Width="70" SelectionChanged="DayPicker_OnSelectionChanged"/>
+                </StackPanel>    
+            </Border>
+        </Popup>
+
+        <Popup AllowsTransparency="True" Placement="Bottom" VerticalOffset="5" PlacementTarget="{Binding ElementName=XtBtnTime}" StaysOpen="False" IsOpen="{Binding ElementName=XtBtnTime, Mode=TwoWay, Path=IsChecked}" PopupAnimation="Slide">
+            <Border Background="Black" BorderBrush="#FF14B1FB" BorderThickness="1">
+                <StackPanel Orientation="Horizontal" Margin="10,0" Height="40">
+                    <ComboBox x:Name="HourPicker" Width="80" SelectionChanged="HourPicker_OnSelectionChanged"/>
+                    <ComboBox x:Name="MinutePicker" Width="80" SelectionChanged="MinutePicker_OnSelectionChanged"/>
+                </StackPanel>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

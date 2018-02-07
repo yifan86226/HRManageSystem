@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{577A4876-850A-444D-B66D-CE61C37CA9DE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Best.VWPlatform.Resources</RootNamespace>
+    <AssemblyName>Best.VWPlatform.Resources</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\MainWnd\close_highlight.png" />
+    <Resource Include="Images\MainWnd\close_normal.png" />
+    <Resource Include="Images\MainWnd\close_press.png" />
+    <Resource Include="Images\MainWnd\max_highlight.png" />
+    <Resource Include="Images\MainWnd\max_normal.png" />
+    <Resource Include="Images\MainWnd\max_press.png" />
+    <Resource Include="Images\MainWnd\min_highlight.png" />
+    <Resource Include="Images\MainWnd\min_normal.png" />
+    <Resource Include="Images\MainWnd\min_press.png" />
+    <Resource Include="Images\MainWnd\restore_highlight.png" />
+    <Resource Include="Images\MainWnd\restore_normal.png" />
+    <Resource Include="Images\MainWnd\restore_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MainWnd\AppLogo.png" />
+    <Resource Include="Images\MainWnd\Config_normal.png" />
+    <Resource Include="Images\MainWnd\Config_pressed.png" />
+    <Resource Include="Images\MainWnd\History.png" />
+    <Resource Include="Images\MainWnd\Net_normal.png" />
+    <Resource Include="Images\MainWnd\Net_pressed.png" />
+    <Resource Include="Images\MainWnd\QDWWLogo.png" />
+    <Resource Include="Images\MainWnd\SpecSec.png" />
+    <Resource Include="Images\MainWnd\StaMag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Map\Position.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Business\StationTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ControlTemplate\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ControlTemplate\Checkbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ControlTemplate\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ControlTemplate\DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ControlTemplate\RadioButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ControlTemplate\ScrollBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ControlTemplate\Slider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ControlTemplate\Textbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ControlTemplate\Thumb.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Default.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\DefaultTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Other.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\User\female.png" />
+    <Resource Include="Images\User\male.png" />
+    <Resource Include="Images\User\root.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MainWnd\arrow_left-red.png" />
+    <Resource Include="Images\MainWnd\arrow_left.png" />
+    <Resource Include="Images\SpeMon\peakmax_left.png" />
+    <Resource Include="Images\SpeMon\peakmax_right.png" />
+    <Resource Include="Images\SpeMon\peak_left.png" />
+    <Resource Include="Images\SpeMon\peak_mid.png" />
+    <Resource Include="Images\SpeMon\peak_right.png" />
+    <Resource Include="Images\SpeMon\camera.png" />
+    <Resource Include="Images\SpeMon\dbuv_auto.png" />
+    <Resource Include="Images\SpeMon\dbuv_down.png" />
+    <Resource Include="Images\SpeMon\dbuv_up.png" />
+    <Resource Include="Images\SpeMon\defaultCursor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Map\S5_0_12.png" />
+    <Resource Include="Images\SpeMon\refresh.png" />
+    <Resource Include="Images\SpeMon\peakmax_left_right.png" />
+    <Resource Include="Images\SignalNature\filter.png" />
+    <Resource Include="Images\SignalNature\filter_default.png" />
+    <Resource Include="Images\History\FolderOpen.png" />
+    <Resource Include="Images\History\ItemSelected.png" />
+    <Resource Include="Images\SpeMon\w_iffq16.png" />
+    <Content Include="ParamConfig\FreqRangeChoice.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UsersInfo\UsersInfo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UsersInfo\默认管理员.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\SignalNature\signal_filter1_small.png" />
+    <Resource Include="Images\SignalNature\signal_filter_small.png" />
+    <Resource Include="Images\StaManage\delete.png" />
+    <Resource Include="Images\SignalNature\signalcommit.png" />
+    <Resource Include="Images\SpeMon\report_hover.png" />
+    <Resource Include="Images\SpeMon\report_normal.png" />
+    <Resource Include="Images\SpeMon\report_unenable.png" />
+    <Resource Include="Images\SpeMon\close.png" />
+    <Resource Include="Images\SpeMon\closeRed.png" />
+    <Resource Include="Images\User\UserIcon.jpg" />
+    <Resource Include="Images\Map\MeasureCursor.png" />
+    <Resource Include="Images\Map\MeasurePoint.png" />
+    <Resource Include="Images\User\UserIcon.png" />
+    <Resource Include="Images\User\WIcon.png" />
+    <Content Include="ParamConfig\StationImage.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\SpeMon\w_iffq.png" />
+    <Resource Include="Images\SpeMon\w_wbfq.png" />
+    <Resource Include="Images\SpeMon\export_hover.png" />
+    <Resource Include="Images\SpeMon\export_normal.png" />
+    <Resource Include="Images\SpeMon\export_unenable.png" />
+    <Resource Include="Images\SpeMon\w_discretescan.png" />
+    <Resource Include="Images\SpeMon\w_fixfq.png" />
+    <Resource Include="Images\SpeMon\w_frequencyRange.png" />
+    <Resource Include="Images\SpeMon\freqGraphChange.png" />
+    <Resource Include="Images\SpeMon\freqGridChange.png" />
+    <Resource Include="Images\SpeMon\freqDelete.png" />
+    <Resource Include="Images\SpeMon\freqDelete_hover.png" />
+    <Resource Include="Images\SpeMon\freqNew.png" />
+    <Resource Include="Images\SpeMon\freqNew_hover.png" />
+    <Resource Include="Images\SignalNature\signal_illegality.png" />
+    <Resource Include="Images\SignalNature\signal_legal.png" />
+    <Resource Include="Images\SignalNature\signal_new.png" />
+    <Resource Include="Images\SignalNature\signal_unknown.png" />
+    <Resource Include="Images\Map\S5_0_1.png" />
+    <Resource Include="Images\Map\stationDefaultImg.png" />
+    <Resource Include="Images\Map\S5_0_0.png" />
+    <Resource Include="Images\Map\S5_0_10.png" />
+    <Resource Include="Images\Map\S5_0_11.png" />
+    <Resource Include="Images\Map\S5_0_2.png" />
+    <Resource Include="Images\Map\S5_0_3.png" />
+    <Resource Include="Images\Map\S5_0_4.png" />
+    <Resource Include="Images\Map\S5_0_5.png" />
+    <Resource Include="Images\Map\S5_0_6.png" />
+    <Resource Include="Images\Map\S5_0_7.png" />
+    <Resource Include="Images\Map\S5_0_8.png" />
+    <Resource Include="Images\Map\S5_0_9.png" />
+    <Content Include="ParamConfig\DeviceAbilityInfo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

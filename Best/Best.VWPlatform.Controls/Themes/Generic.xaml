@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Common/TouchScreenKeyboard.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Common/NumericSlider.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Common/NumericTextBox.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Common/NumericDataGridTextEdit.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Common/ScaleLinePrompt.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Common/CScaleLinePrompt.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Freq/SpectrumMark.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Freq/SpectrumDiagram.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Common/LineSeparate.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Common/ImageButton.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Common/NumRangePrompt.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Common/NumericEditDX.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/MessageTip/BackgroundPanelEx.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Common/TextEditWithUnit.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Player/CustomSlider.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Player/Marker.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Player/Player.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Player/Spinner.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.COntrols;component/Themes/Common/CheckReportPopupwindow.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Controls;component/Themes/Freq/SpectrumScanMark.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

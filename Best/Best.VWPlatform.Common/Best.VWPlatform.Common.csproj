@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CA79C979-55F5-4CC6-A453-2148E2E78DF3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Best.VWPlatform.Common</RootNamespace>
+    <AssemblyName>Best.VWPlatform.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Best.SLClient.Core, Version=1.0.5501.18999, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\FreqCollect\Best.SLClient.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Client">
+      <HintPath>..\..\ExtendLib\Best\ESRI.ArcGIS.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.2.0.37223, Culture=neutral, PublicKeyToken=0e453835af4ee6ce, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\FreqCollect\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.2.0.37224, Culture=neutral, PublicKeyToken=f46ff315b1088208, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\FreqCollect\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.0.2.32241, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\FreqCollect\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\FreqCollect\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="mapabc-coord-offset-net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\FreqCollect\mapabc-coord-offset-net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Output\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonEnums.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\FreqValueConverter.cs" />
+    <Compile Include="Converters\IntToSignalImageConverter.cs" />
+    <Compile Include="Converters\PolarizationModeConverter.cs" />
+    <Compile Include="Converters\TextEditDoubleToStringConverter.cs" />
+    <Compile Include="Core\DelegateCommand.cs" />
+    <Compile Include="Core\GlobalTimer.cs" />
+    <Compile Include="Core\ICalculateObjectLength.cs" />
+    <Compile Include="Core\ISocketReceive.cs" />
+    <Compile Include="Core\ISocketSend.cs" />
+    <Compile Include="Core\ModuleManage.cs" />
+    <Compile Include="Core\NotificationObject.cs" />
+    <Compile Include="Core\Rpc\RpcManager.cs" />
+    <Compile Include="Core\Rpc\RpcMethod.cs" />
+    <Compile Include="Core\Rpc\RpcResult.cs" />
+    <Compile Include="Core\Rpc\RpcState.cs" />
+    <Compile Include="ExportWord\AsposeExportWord.cs" />
+    <Compile Include="Helper\TimeCalculateHelper.cs" />
+    <Compile Include="Interfaces\IReceiveDataFrame.cs" />
+    <Compile Include="Interfaces\IRmtpNotification.cs" />
+    <Compile Include="Map\ILodInfo.cs" />
+    <Compile Include="Map\IMap.cs" />
+    <Compile Include="Map\IMapGeneralStation.cs" />
+    <Compile Include="Map\IMapServerInfo.cs" />
+    <Compile Include="Map\IMapStation.cs" />
+    <Compile Include="Map\LayerInfo.cs" />
+    <Compile Include="Map\LodInfo.cs" />
+    <Compile Include="Map\MapConfig.cs" />
+    <Compile Include="Map\MapFactory.cs" />
+    <Compile Include="Map\MapServerInfo.cs" />
+    <Compile Include="Map\MapTileInfo.cs" />
+    <Compile Include="Map\MapUtile.cs" />
+    <Compile Include="Map\Navigator.cs" />
+    <Compile Include="Map\SymbolElement.cs" />
+    <Compile Include="NavigationHelper.cs" />
+    <Compile Include="Net\SocketController.cs" />
+    <Compile Include="Net\SocketErrorMessage.cs" />
+    <Compile Include="Net\TCPServiceController.cs" />
+    <Compile Include="Net\UDPServiceController.cs" />
+    <Compile Include="Portal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RMTables\RMBT_STATION.cs" />
+    <Compile Include="Rmtp\Commands\RmtpCmdAudio.cs" />
+    <Compile Include="Rmtp\Commands\RmtpCmdChannel.cs" />
+    <Compile Include="Rmtp\Commands\RmtpCmdFscan.cs" />
+    <Compile Include="Rmtp\Commands\RmtpCmdIffqex.cs" />
+    <Compile Include="Rmtp\Commands\RmtpCmdMscan.cs" />
+    <Compile Include="Rmtp\Commands\RmtpCmdParam.cs" />
+    <Compile Include="Rmtp\Commands\RmtpCmdStop.cs" />
+    <Compile Include="Rmtp\Commands\RmtpCmdVerify.cs" />
+    <Compile Include="Rmtp\Commands\RmtpCmdWbfqex.cs" />
+    <Compile Include="Rmtp\Commands\RmtpCommandAttribute.cs" />
+    <Compile Include="Rmtp\DataFrames\CommandMessageFrame.cs" />
+    <Compile Include="Rmtp\DataFrames\DeviceAbilityInfoFrame.cs" />
+    <Compile Include="Rmtp\DataFrames\DeviceAbility_DataFrame.cs" />
+    <Compile Include="Rmtp\DataFrames\FIXFQEX_DescribeHeader.cs" />
+    <Compile Include="Rmtp\DataFrames\Fscan_DataFrame.cs" />
+    <Compile Include="Rmtp\DataFrames\Fscan_DescribeHeader.cs" />
+    <Compile Include="Rmtp\DataFrames\IFFQ_DataFrame.cs" />
+    <Compile Include="Rmtp\DataFrames\IFFQ_DescribeHeader.cs" />
+    <Compile Include="Rmtp\DataFrames\MScan_DataFrame.cs" />
+    <Compile Include="Rmtp\DataFrames\Mscan_DescribeHeader.cs" />
+    <Compile Include="Rmtp\DataFrames\TDOA_DataFrame.cs" />
+    <Compile Include="Rmtp\DataFrames\WBFQ_DataFrame.cs" />
+    <Compile Include="Rmtp\DataFrames\WBFQ_DescribeHeader.cs" />
+    <Compile Include="Rmtp\MeasureHandler\DiscreteMeasureHandler.cs" />
+    <Compile Include="Rmtp\MeasureHandler\FreqRangeMeasureHandler.cs" />
+    <Compile Include="Rmtp\MeasureHandler\Frequency.cs" />
+    <Compile Include="Rmtp\MeasureHandler\FScanParameter.cs" />
+    <Compile Include="Rmtp\MeasureHandler\IfqParameter.cs" />
+    <Compile Include="Rmtp\MeasureHandler\IMonitorMeasureHandler.cs" />
+    <Compile Include="Rmtp\MeasureHandler\IntermediateFreqMeasureHandler.cs" />
+    <Compile Include="Rmtp\MeasureHandler\MeasureEventArgs.cs" />
+    <Compile Include="Rmtp\MeasureHandler\MscanParameter.cs" />
+    <Compile Include="Rmtp\MeasureHandler\NewFscanParameter.cs" />
+    <Compile Include="Rmtp\MeasureHandler\ReceiveRmtpDataFrameBase.cs" />
+    <Compile Include="Rmtp\MeasureHandler\SignalSampleModel.cs" />
+    <Compile Include="Rmtp\MeasureHandler\SignalStatisticsItem.cs" />
+    <Compile Include="Rmtp\MeasureHandler\SmartCollection.cs" />
+    <Compile Include="Rmtp\MeasureHandler\UserVerifyHandler.cs" />
+    <Compile Include="Rmtp\MeasureHandler\WbfqParameter.cs" />
+    <Compile Include="Rmtp\MeasureHandler\WidebandFreqMeasureHandler.cs" />
+    <Compile Include="Rmtp\RmtpDataFrame.cs" />
+    <Compile Include="Rmtp\RmtpDataFrameBuffer.cs" />
+    <Compile Include="Rmtp\RmtpDataFrameCache.cs" />
+    <Compile Include="Rmtp\RmtpDataFrameCacheValue.cs" />
+    <Compile Include="Rmtp\RmtpDataFrameEnd.cs" />
+    <Compile Include="Rmtp\RmtpDataFrameHeader.cs" />
+    <Compile Include="Rmtp\RmtpExecuteResult.cs" />
+    <Compile Include="Rmtp\RmtpManager.cs" />
+    <Compile Include="Rmtp\RmtpTypes.cs" />
+    <Compile Include="DataAnalysis\FreqPointStandard.cs" />
+    <Compile Include="Rpc\RpcObject.cs" />
+    <Compile Include="StationManagement\AntennaModel.cs" />
+    <Compile Include="StationManagement\DicModel.cs" />
+    <Compile Include="StationManagement\EquipmentModel.cs" />
+    <Compile Include="StationManagement\FreqModel.cs" />
+    <Compile Include="StationManagement\StationDetailsModel.cs" />
+    <Compile Include="StationManagement\StationQueryCondition.cs" />
+    <Compile Include="Types\ClearStationOperate.cs" />
+    <Compile Include="Types\ClustererItem.cs" />
+    <Compile Include="Types\DeviceType.cs" />
+    <Compile Include="Types\EventDelegate.cs" />
+    <Compile Include="Types\MapEnums.cs" />
+    <Compile Include="Types\MapExtent.cs" />
+    <Compile Include="Types\MapExtentEventArgs.cs" />
+    <Compile Include="Types\MapGeometry.cs" />
+    <Compile Include="Types\MapGeometryTrackedArgs.cs" />
+    <Compile Include="Types\MapMouseEventArgs.cs" />
+    <Compile Include="Types\MapPointEx.cs" />
+    <Compile Include="Types\MapStationMouseEventArgs.cs" />
+    <Compile Include="Types\PlatformParameterConstant.cs" />
+    <Compile Include="Types\PropertyValueTypeConverter.cs" />
+    <Compile Include="Types\SignalDescribe.cs" />
+    <Compile Include="Types\Station.cs" />
+    <Compile Include="Types\StationInfo.cs" />
+    <Compile Include="Types\StationItem.cs" />
+    <Compile Include="User\UserInfo.cs" />
+    <Compile Include="Utility\AssistTool.cs" />
+    <Compile Include="Utility\LogTool.cs" />
+    <Compile Include="Utility\PackTool.cs" />
+    <Compile Include="Utility\Utile.cs" />
+    <Compile Include="Utility\WMonitorUtile.cs" />
+    <Compile Include="VWPlatformConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\Outputs\" />
+    <Folder Include="Interops\" />
+    <Folder Include="Parameters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BeiLiNu.Ui.Controls\BeiLiNu.Ui.Controls.csproj">
+      <Project>{0208bc3a-2f98-40f7-8d42-dd44e87d9180}</Project>
+      <Name>BeiLiNu.Ui.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Best.VWPlatform.Assist\Best.VWPlatform.Assist.csproj">
+      <Project>{ed0f6b9b-d472-4744-b126-1ee128e5d73e}</Project>
+      <Name>Best.VWPlatform.Assist</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Best.VWPlatform.Resources\Best.VWPlatform.Resources.csproj">
+      <Project>{577a4876-850a-444d-b66d-ce61c37ca9de}</Project>
+      <Name>Best.VWPlatform.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

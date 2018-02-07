@@ -1,0 +1,18 @@
+﻿<WPF:XWindowBase x:Class="Best.VWPlatform.Controls.MessageBox.CustomAlertDialog" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:BeiLiNu.Ui.Controls.WPF.Controls;assembly=BeiLiNu.Ui.Controls" xmlns:WPF="clr-namespace:BeiLiNu.Ui.Controls.WPF.Windows;assembly=BeiLiNu.Ui.Controls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Width="320" Height="190" AllowsTransparency="True" Background="#333333" ResizeMode="NoResize" ShadowSize="11" Topmost="True" WindowStartupLocation="CenterOwner">
+    <WPF:XWindowBase.Effect>
+        <DropShadowEffect BlurRadius="10" Opacity="1" ShadowDepth="0" Color="White" />
+    </WPF:XWindowBase.Effect>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Controls:XButton x:Name="xCloseButton" Width="39" Height="20" Margin="0,-3,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0" Click="xCloseButton_Click" MouseOverImage="/Best.VWPlatform.Resources;component/Images/MainWnd/close_highlight.png" NormalImgae="/Best.VWPlatform.Resources;component/Images/MainWnd/close_normal.png" PressedImage="/Best.VWPlatform.Resources;component/Images/MainWnd/close_press.png" />
+        <TextBlock Grid.Row="1" Margin="10,-15,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="17" FontWeight="Bold" Foreground="#F78A09" Text="提示" />
+        <TextBlock x:Name="xAlertMsg" Grid.Row="1" Margin="10,20" VerticalAlignment="Center" FontSize="17" Foreground="White" Text="Msg!" TextWrapping="Wrap" />
+        <Grid Grid.Row="2">
+            <Button x:Name="xOK" Click="xOK_Click" Content="确    定" FontSize="17" Style="{StaticResource BlackWhiteBtnStyle}" />
+        </Grid>
+    </Grid>
+</WPF:XWindowBase>

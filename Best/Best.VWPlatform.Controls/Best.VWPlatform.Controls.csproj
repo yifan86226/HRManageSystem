@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7D01F156-55C0-4601-9CFC-9A123CA1FE15}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Best.VWPlatform.Controls</RootNamespace>
+    <AssemblyName>Best.VWPlatform.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VWPlatformReference\DevExpress.Data.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VWPlatformReference\DevExpress.Xpf.Core.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Mvvm.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VWPlatformReference\DevExpress.Xpf.Mvvm.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\VWPlatformReference\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio, Version=1.7.2.19, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\FreqCollect\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\VWPlatformReference\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WpfSendKeys, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\FreqCollect\WpfSendKeys.dll</HintPath>
+    </Reference>
+    <Reference Include="WriteableBitmapEx.Wpf, Version=1.0.13.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Output\FreqCollect\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\AudioPlayer.cs" />
+    <Compile Include="Audio\BufferedData.cs" />
+    <Compile Include="Audio\CAcmMp3FrameDecompressor.cs" />
+    <Compile Include="Audio\CMp3Frame.cs" />
+    <Compile Include="Behaviors\FreqValueBehavior.cs" />
+    <Compile Include="Common\CScaleLinePrompt.cs" />
+    <Compile Include="Common\CursorPanel.xaml.cs">
+      <DependentUpon>CursorPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\DataPager.xaml.cs">
+      <DependentUpon>DataPager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ImageButton.cs" />
+    <Compile Include="Common\LineSeparate.cs" />
+    <Compile Include="Common\NumericDataGridTextEdit.cs" />
+    <Compile Include="Common\NumericEditDX.cs" />
+    <Compile Include="Common\NumericSlider.cs" />
+    <Compile Include="Common\NumericTextBox.cs" />
+    <Compile Include="Common\NumericTextBoxBase.cs" />
+    <Compile Include="Common\NumRangePrompt.cs" />
+    <Compile Include="Common\ScaleLinePrompt.cs" />
+    <Compile Include="Common\SpectrumDataCacheManage.cs" />
+    <Compile Include="Common\TextEditWithUnit.cs" />
+    <Compile Include="Common\TouchScreenKeyboard.cs" />
+    <Compile Include="Container\CDateTimePicker.xaml.cs">
+      <DependentUpon>CDateTimePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Container\DataPoint.cs" />
+    <Compile Include="Container\DateTimeControl.xaml.cs">
+      <DependentUpon>DateTimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Container\DiscreteScanGraph.xaml.cs">
+      <DependentUpon>DiscreteScanGraph.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Container\DiscreteSpectrumContainer.xaml.cs">
+      <DependentUpon>DiscreteSpectrumContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Container\DiscreteWaterfall.xaml.cs">
+      <DependentUpon>DiscreteWaterfall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Container\FreqRangeChoiceWnd.xaml.cs">
+      <DependentUpon>FreqRangeChoiceWnd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Container\PopupWindow.cs" />
+    <Compile Include="Container\SpectrumContainerEx.xaml.cs">
+      <DependentUpon>SpectrumContainerEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Container\WaterfallContainer.xaml.cs">
+      <DependentUpon>WaterfallContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\MultibandSpectrumData.cs" />
+    <Compile Include="ExportWord\ExportReport.xaml.cs">
+      <DependentUpon>ExportReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExportWord\ReportList.xaml.cs">
+      <DependentUpon>ReportList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Freq\SpectrumDiagramEx.cs" />
+    <Compile Include="Freq\SpectrumMark.cs" />
+    <Compile Include="Freq\SpectrumScanMark.cs" />
+    <Compile Include="GeneralStationTooltipWindow.xaml.cs">
+      <DependentUpon>GeneralStationTooltipWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GifImage\GifAnimation.cs" />
+    <Compile Include="GifImage\GifImage.cs" />
+    <Compile Include="HisSearchController.cs" />
+    <Compile Include="Interfaces\IUserControlWindow.cs" />
+    <Compile Include="MessageBox\CMessageBox.cs" />
+    <Compile Include="MessageBox\CustomAlertDialog.xaml.cs">
+      <DependentUpon>CustomAlertDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBox\CustomConfirmDialog.xaml.cs">
+      <DependentUpon>CustomConfirmDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageTip\BackgroundPanelEx.cs" />
+    <Compile Include="MessageTip\MsgTip.xaml.cs">
+      <DependentUpon>MsgTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageTip\MessageTip.cs" />
+    <Compile Include="MessageTip\WaitIndicatorEx.cs" />
+    <Compile Include="Player\CustomSlider.cs" />
+    <Compile Include="Player\Marker.cs" />
+    <Compile Include="Player\Player.cs" />
+    <Compile Include="Player\PlayerVm.cs" />
+    <Compile Include="Player\Spinner.cs" />
+    <Compile Include="ProcessingCtl.xaml.cs">
+      <DependentUpon>ProcessingCtl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stations\ConditionTextEditor.xaml.cs">
+      <DependentUpon>ConditionTextEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLine.xaml.cs">
+      <DependentUpon>TimeLine.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Common\CursorPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\DataPager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Container\CDateTimePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Container\DateTimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Container\DiscreteScanGraph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Container\DiscreteSpectrumContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Container\DiscreteWaterfall.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Container\FreqRangeChoiceWnd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Container\SpectrumContainerEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Container\WaterfallContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExportWord\ExportReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExportWord\ReportList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GeneralStationTooltipWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageBox\CustomAlertDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageBox\CustomConfirmDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageTip\MsgTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProcessingCtl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Stations\ConditionTextEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\CheckReportPopupwindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\CScaleLinePrompt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\ImageButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\LineSeparate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\NumericDataGridTextEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\NumericEditDX.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\NumericSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\NumericTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\NumRangePrompt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\ScaleLinePrompt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\TextEditWithUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common\TouchScreenKeyboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Freq\SpectrumDiagram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Freq\SpectrumMark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Freq\SpectrumScanMark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MessageTip\BackgroundPanelEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Player\CustomSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Player\Marker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Player\Player.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Player\Spinner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BeiLiNu.Ui.Controls\BeiLiNu.Ui.Controls.csproj">
+      <Project>{0208bc3a-2f98-40f7-8d42-dd44e87d9180}</Project>
+      <Name>BeiLiNu.Ui.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Best.VWPlatform.Common\Best.VWPlatform.Common.csproj">
+      <Project>{ca79c979-55f5-4cc6-a453-2148e2e78df3}</Project>
+      <Name>Best.VWPlatform.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Best.VWPlatform.Resources\Best.VWPlatform.Resources.csproj">
+      <Project>{577a4876-850a-444d-b66d-ce61c37ca9de}</Project>
+      <Name>Best.VWPlatform.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

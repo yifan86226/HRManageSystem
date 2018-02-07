@@ -1,0 +1,323 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Custom="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:best="clr-namespace:Best.VWPlatform.Controls.Common" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Best.VWPlatform.Resources;component/Themes/Default.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--  Region  TextEditWithUnit 带单位的DX的TextEdit控件  -->
+    <!--
+        <Style x:Key="dxe:BaseEdit" TargetType="dxe:BaseEdit">
+        <Setter Property="ErrorToolTipContentTemplate">
+        <Setter.Value>
+        <DataTemplate>
+        <TextBlock Text="{Binding ErrorContent}" />
+        </DataTemplate>
+        </Setter.Value>
+        </Setter>
+        <Setter Property="TrimmedTextToolTipContentTemplate">
+        <Setter.Value>
+        <DataTemplate>
+        <TextBlock Text="{Binding Content}" />
+        </DataTemplate>
+        </Setter.Value>
+        </Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="UseLayoutRounding" Value="true" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        </Style>
+        
+        <ControlTemplate x:Key="TextEditThemeKey_BorderTemplate" TargetType="ContentControl">
+        <Grid x:Name="RootElement">
+        <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="EditorFocusStates">
+        <VisualState x:Name="EditorFocused" />
+        <VisualState x:Name="EditorUnfocused" />
+        </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid>
+        <Border Grid.RowSpan="2" Background="{StaticResource x_BlackBackBrush}" BorderThickness="0" CornerRadius="10" />
+        <ContentPresenter />
+        </Grid>
+        </Grid>
+        </ControlTemplate>
+        
+        
+        <Style x:Key="BaseTextBlockInplaceStyle" TargetType="TextBlock" />
+        <Style x:Key="TextEditThemeKey_TextBlockInplaceStyle" BasedOn="{StaticResource BaseTextBlockInplaceStyle}" TargetType="TextBlock">
+        <Setter Property="Custom:EditorMarginHelper.Margin" Value="0,0,0,0,0,0,0,0" />
+        </Style>
+        <ControlTemplate x:Key="TextEditThemeKey_DisplayInplaceTemplate">
+        <TextBlock x:Name="PART_Editor" Style="{StaticResource TextEditThemeKey_TextBlockInplaceStyle}" dx:FocusHelper2.Focusable="False" />
+        </ControlTemplate>
+        
+        <Style x:Key="ScrollBarThemeKey_ScrollingCornerStyle" TargetType="Border">
+        <Setter Property="Background" Value="#FFE9E9E9" />
+        </Style>
+        <ControlTemplate x:Key="EditorListBoxThemeKey_ScrollViewerTemplate" TargetType="ScrollViewer">
+        <Grid x:Name="Grid" Background="{TemplateBinding Background}" UseLayoutRounding="True">
+        <Grid.Resources>
+        <Custom:ScrollContentPresenterMarginCorrector x:Key="ScrollContentPresenterMarginCorrector" />
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollContentPresenter x:Name="ScrollContentPresenter" Grid.Row="0" Grid.Column="0" Margin="{Binding Padding, Converter={StaticResource ScrollContentPresenterMarginCorrector}, RelativeSource={RelativeSource TemplatedParent}}" CanHorizontallyScroll="False" CanVerticallyScroll="False" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+        <ScrollBar x:Name="VerticalScrollBar" Grid.Row="0" Grid.Column="1" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+        <ScrollBar x:Name="HorizontalScrollBar" Grid.Row="1" Grid.Column="0" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Border x:Name="Corner" Grid.Row="1" Grid.Column="1" Style="{StaticResource ScrollBarThemeKey_ScrollingCornerStyle}" />
+        </Grid>
+        </ControlTemplate>
+        
+        <Custom:TextBoxPaddingConverter x:Key="TextEditTextBoxPaddingConverter" />
+        <Style x:Key="BaseTextStyle" TargetType="TextBox">
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="best:TextBoxHelper.AutoSelectAll" Value="True" />
+        <Setter Property="Template">
+        <Setter.Value>
+        <ControlTemplate TargetType="TextBox">
+        <Border Background="{TemplateBinding Background}">
+        <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="FocusStates">
+        <VisualState x:Name="Unfocused" />
+        <VisualState x:Name="Focused">
+        <Storyboard>
+        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border1" Storyboard.TargetProperty="(UIElement.Visibility)">
+        <DiscreteObjectKeyFrame KeyTime="0">
+        <DiscreteObjectKeyFrame.Value>
+        <Visibility>Visible</Visibility>
+        </DiscreteObjectKeyFrame.Value>
+        </DiscreteObjectKeyFrame>
+        </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="CommonStates">
+        <VisualState x:Name="ReadOnly" />
+        <VisualState x:Name="Disabled" />
+        <VisualState x:Name="MouseOver">
+        <Storyboard>
+        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(UIElement.Visibility)">
+        <DiscreteObjectKeyFrame KeyTime="0">
+        <DiscreteObjectKeyFrame.Value>
+        <Visibility>Visible</Visibility>
+        </DiscreteObjectKeyFrame.Value>
+        </DiscreteObjectKeyFrame>
+        </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        </VisualState>
+        <VisualState x:Name="Normal" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ValidationStates">
+        <VisualState x:Name="Valid" />
+        <VisualState x:Name="InvalidUnfocused" />
+        <VisualState x:Name="InvalidFocused" />
+        </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid>
+        <Border x:Name="border1" Background="Black" BorderBrush="#7F14B1FB" BorderThickness="1" CornerRadius="10,0,0,10" Visibility="Collapsed" />
+        <Border x:Name="border" Background="Black" BorderBrush="#FF14B1FB" BorderThickness="1" CornerRadius="10,0,0,10" Visibility="Collapsed" />
+        <ScrollViewer x:Name="PART_ContentHost" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="{Binding Padding, Converter={StaticResource TextEditTextBoxPaddingConverter}, RelativeSource={RelativeSource TemplatedParent}}" Template="{StaticResource EditorListBoxThemeKey_ScrollViewerTemplate}" UseLayoutRounding="True" />
+        </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+        <Trigger Property="IsEnabled" Value="False">
+        <Setter TargetName="PART_ContentHost" Property="Background" Value="#00000000" />
+        </Trigger>
+        </ControlTemplate.Triggers>
+        </ControlTemplate>
+        </Setter.Value>
+        </Setter>
+        </Style>
+        <Style x:Key="TextEditThemeKey_TextStyle" BasedOn="{StaticResource BaseTextStyle}" TargetType="TextBox">
+        <Setter Property="BorderThickness" Value="0,0,0,0" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="#FFFFA400" />
+        </Style>
+        <ControlTemplate x:Key="TextEditThemeKey_EditTemplate">
+        <TextBox x:Name="PART_Editor" Margin="0" Background="#00000000" CaretBrush="White" Foreground="#FFFFA801" Padding="6,0,0,0" Style="{StaticResource TextEditThemeKey_TextStyle}" />
+        </ControlTemplate>
+        
+        
+        <ControlTemplate x:Key="TextEditThemeKey_Template" TargetType="best:TextEditWithUnit">
+        <ContentControl x:Name="PART_Root" Template="{TemplateBinding ActualBorderTemplate}" dx:FocusHelper2.Focusable="False">
+        <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="EnabledStates">
+        <VisualState x:Name="Enabled" />
+        <VisualState x:Name="Disabled">
+        <Storyboard>
+        <DoubleAnimationUsingKeyFrames BeginTime="0" Duration="0" Storyboard.TargetName="PART_Content" Storyboard.TargetProperty="(UIElement.Opacity)">
+        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+        </DoubleAnimationUsingKeyFrames>
+        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(UIElement.Visibility)">
+        <DiscreteObjectKeyFrame KeyTime="0">
+        <DiscreteObjectKeyFrame.Value>
+        <Visibility>Visible</Visibility>
+        </DiscreteObjectKeyFrame.Value>
+        </DiscreteObjectKeyFrame>
+        </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        </VisualState>
+        </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid MinHeight="24" UseLayoutRounding="True">
+        <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <dxe:ErrorControl x:Name="PART_ErrorPresenter" />
+        <dxe:EditorControl x:Name="PART_Content" Grid.Column="1" Template="{TemplateBinding ActualEditorControlTemplate}" />
+        <TextBlock x:Name="x_tbUint" Grid.Column="2" Margin="3,0,6,0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" Foreground="White" Text="Unit" TextWrapping="Wrap" d:LayoutOverrides="Width, Height" />
+        <Rectangle x:Name="rectangle" Grid.ColumnSpan="3" Fill="#3FFFFFFF" RadiusX="10" RadiusY="10" StrokeThickness="0" Visibility="Collapsed" />
+        </Grid>
+        </ContentControl>
+        </ControlTemplate>
+        
+        
+        <Style BasedOn="{StaticResource dxe:BaseEdit}" TargetType="best:TextEditWithUnit">
+        <Setter Property="BorderTemplate" Value="{StaticResource TextEditThemeKey_BorderTemplate}" />
+        <Setter Property="DisplayTemplate" Value="{StaticResource TextEditThemeKey_DisplayInplaceTemplate}" />
+        <Setter Property="EditTemplate" Value="{StaticResource TextEditThemeKey_EditTemplate}" />
+        <Setter Property="Template" Value="{StaticResource TextEditThemeKey_Template}" />
+        </Style>
+        EndRegion  TextEditWithUnit 带单位的DX的TextEdit控件
+    -->
+
+    <Style x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
+        <Setter Property="BorderBrush" Value="#FFABADB3" />
+        <Setter Property="Foreground" Value="Red" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="AllowDrop" Value="True" />
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="best:TextBoxHelper.AutoSelectAll" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid x:Name="Gd">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border1" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="ReadOnly" />
+                                <VisualState x:Name="Disabled" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ValidationStates">
+                                <VisualState x:Name="Valid" />
+                                <VisualState x:Name="InvalidUnfocused" />
+                                <VisualState x:Name="InvalidFocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="border1" Background="Black" BorderBrush="#7F14B1FB" BorderThickness="1" CornerRadius="10,0,0,10" Visibility="Collapsed" />
+                        <Border x:Name="border" Background="Black" BorderBrush="#FF14B1FB" BorderThickness="1" CornerRadius="10,0,0,10" Visibility="Collapsed" />
+                        <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition  Value="True" />
+                    <Condition  Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="SelectionBrush" Value="Beige"/>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate x:Key="TextEditControlTemplate1" TargetType="{x:Type dxe:TextEdit}">
+        <ContentControl x:Name="PART_Root" Custom:ControlHelper.ShowFocusedState="{Binding IsKeyboardFocusWithin, RelativeSource={RelativeSource TemplatedParent}}" Focusable="False" Template="{TemplateBinding ActualBorderTemplate}" dx:FocusHelper2.Focusable="False">
+            <Grid MinHeight="24" SnapsToDevicePixels="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <dxe:ErrorControl x:Name="PART_ErrorPresenter" />
+                <dxe:EditorControl x:Name="PART_Content" Grid.Column="1" Focusable="False" Template="{TemplateBinding ActualEditorControlTemplate}" />
+                <TextBlock x:Name="x_tbUint" Grid.Column="2" Margin="3,0,6,0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" Foreground="White" Text="Unit" TextWrapping="Wrap" />
+                <Rectangle x:Name="rectangle" Grid.ColumnSpan="3" Fill="#3FFFFFFF" RadiusX="10" RadiusY="10" StrokeThickness="0" Visibility="Collapsed" />
+            </Grid>
+        </ContentControl>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="rectangle" Property="Visibility" Value="Visible" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="BorderTemplate1" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Border Background="Black" BorderThickness="0" CornerRadius="10" />
+            <ContentPresenter Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="DisplayTemplate1">
+        <TextBlock x:Name="PART_Editor" Margin="4,2" Focusable="False" Foreground="White" dx:FocusHelper2.Focusable="False">
+            <Custom:EditorMarginCorrector.Corrector>
+                <Custom:EditorMarginCorrector Margin="4,2" ErrorMargin="2,2,4,2" />
+            </Custom:EditorMarginCorrector.Corrector>
+        </TextBlock>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="EditNonEditableTemplate1">
+        <TextBlock x:Name="PART_Editor" Foreground="White" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="EditTemplate1">
+        <TextBox x:Name="PART_Editor" Margin="0" Background="#00000000" CaretBrush="White" Foreground="#FFFFA801" Padding="6,0,0,0" Style="{StaticResource TextBoxStyle1}" />
+    </ControlTemplate>
+
+    <DataTemplate x:Key="ErrorTooltipContentTemplate1">
+        <TextBlock Foreground="Red" Text="{Binding ErrorContent}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="TrimmedTextToolTipContentTemplate1">
+        <TextBlock Text="{Binding Content}" />
+    </DataTemplate>
+
+    <Style TargetType="{x:Type best:TextEditWithUnit}">
+        <Setter Property="Template" Value="{StaticResource TextEditControlTemplate1}" />
+        <Setter Property="BorderTemplate" Value="{StaticResource BorderTemplate1}" />
+        <Setter Property="DisplayTemplate" Value="{StaticResource DisplayTemplate1}" />
+        <Setter Property="EditNonEditableTemplate" Value="{StaticResource EditNonEditableTemplate1}" />
+        <Setter Property="EditTemplate" Value="{StaticResource EditTemplate1}" />
+        <Setter Property="ErrorToolTipContentTemplate" Value="{StaticResource ErrorTooltipContentTemplate1}" />
+        <Setter Property="TrimmedTextToolTipContentTemplate" Value="{StaticResource TrimmedTextToolTipContentTemplate1}" />
+    </Style>
+
+</ResourceDictionary>

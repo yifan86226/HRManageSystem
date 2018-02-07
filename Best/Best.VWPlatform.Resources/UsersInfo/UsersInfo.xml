@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UsersInfo>
+  <Depts>
+    <Dept ID="37ff6163-9f7d-4695-8923-8ca848334b0f" Name="青岛市无委">
+      <Dept ID="669d0691-255a-492f-a924-a9295b5b5405" Name="综合处"></Dept>
+      <Dept ID="6f86e1f6-242c-4398-92fb-465f83ab3809" Name="监测站"></Dept>
+      <Dept ID="556c334e-db97-41d1-a056-5d9264ec564b" Name="开发区"></Dept>
+      <Dept ID="3620e868-4b11-48f7-8e2a-a14b0565d40e" Name="城阳"></Dept>
+      <Dept ID="863aacee-ad91-445c-82a1-cde025fcae32" Name="崂山"></Dept>
+      <Dept ID="df503d4b-39cc-4e41-adcb-2434cae5d122" Name="即墨"></Dept>
+      <Dept ID="8e5a2f34-1805-46cf-94e6-12bd69948efc" Name="胶南"></Dept>
+      <Dept ID="d07dbf6a-6e7e-452d-836c-4d3a3690dc4d" Name="胶州"></Dept>
+      <Dept ID="bf8c5751-1af9-427c-834a-f665d5c8585b" Name="莱西"></Dept>
+      <Dept ID="e3974a4e-c27d-49a7-9a95-81d6484068fe" Name="平度"></Dept>
+      <Dept ID="ea82cee0-2ddd-444a-8369-fbb888198083" Name="系统维护"></Dept>
+    </Dept>
+  </Depts>
+  <Users>
+    <User ID="584035ea-8e67-45ee-86ce-8e3bb0ea323f" Name="默认管理员" Sex="1" Password="1"></User>
+    <User ID="3397ca5b-0bab-4c28-9f69-784efbf38d67" Name="曹军兴" Sex="1" Password="1"></User>
+    <User ID="487693a9-5191-4409-8d5d-8e1652628e6f" Name="崔宏" Sex="1" Password="1"></User>
+    <User ID="a41c0d01-df1a-4397-b7ab-15208ff3380f" Name="王敬元" Sex="1" Password="1"></User>
+    <User ID="15c5c12c-7f76-4385-a9d8-eb8327f27f42" Name="韩效灵" Sex="1" Password="1"></User>
+    <User ID="df207f05-158e-4e20-9c85-90f0eecf4af3" Name="陈玉胜" Sex="1" Password="1"></User>
+    <User ID="4ab4c865-72ff-4e59-b98d-b0e44b1772b3" Name="王志霞" Sex="0" Password="1"></User>
+    <User ID="7c449691-6b0c-4e42-8d2f-f21d4cadfc20" Name="王振波" Sex="1" Password="1"></User>
+    <User ID="0b6e5ffa-0a72-442f-a426-bd1667250539" Name="冷传冰" Sex="1" Password="1"></User>
+    <User ID="1dbedddb-124b-4fa5-9f31-0a4d1589afba" Name="魏兆强" Sex="1" Password="1"></User>
+    <User ID="a6791db7-aa55-4745-8003-f208b2050dd1" Name="刘金照" Sex="1" Password="1"></User>
+    <User ID="dff92ae3-73af-4f6e-abf6-a4fac399419d" Name="刘光忠" Sex="1" Password="1"></User>
+    <User ID="cb11c46c-b552-40c2-b844-6acce2ddbbdd" Name="薛新东" Sex="1" Password="1"></User>
+    <User ID="6af1f110-6bb7-407f-b371-41ffd863e24d" Name="李少旭" Sex="1" Password="1"></User>
+    <User ID="8b1c6329-cf83-4089-b4e0-e5356521829c" Name="刘萌" Sex="1" Password="1"></User>
+    <User ID="c7b5b9aa-b4c9-4739-9479-c96c50c5cc8f" Name="马杰" Sex="1" Password="1"></User>
+    <User ID="86d4e43a-6118-450f-9d5b-dd517600f8d6" Name="王锟" Sex="1" Password="1"></User>
+    <User ID="2ec2b970-6a0c-40ad-b6db-cdf909575314" Name="仇云飞" Sex="1" Password="1"></User>
+    <User ID="fa9d985e-2827-42f5-b784-28f3df3e9faa" Name="管明科" Sex="1" Password="1"></User>
+    <User ID="a73f649e-4fdd-4948-afce-285f16e65e23" Name="贾可勇" Sex="1" Password="1"></User>
+    <User ID="3a2ba433-9514-462c-b858-bccf7f25542c" Name="冯涛" Sex="1" Password="1"></User>
+    <User ID="e3f65b68-d1db-404e-9679-9da6135d507d" Name="李克" Sex="1" Password="1"></User>
+    <User ID="ba260335-24be-4f51-a2a0-cc547052495d" Name="张宁" Sex="1" Password="1"></User>
+    <User ID="4c1030b4-d1a3-4703-bf9e-651a12ea3eb1" Name="王海红" Sex="1" Password="1"></User>
+    <User ID="ee785007-80e7-4008-9fe1-af3b3ae2d958" Name="尚新强" Sex="1" Password="1"></User>
+    <User ID="f0f5238f-9474-4c99-a9d2-9847d9d63514" Name="朱光文" Sex="1" Password="1"></User>
+    <User ID="93ed98f3-1d04-47f5-8ab2-e81ede5cd824" Name="陈延杰" Sex="1" Password="1"></User>
+    <User ID="d94d16f8-83e5-4cd9-ada7-5205ead6b28b" Name="宋爱军" Sex="1" Password="1"></User>
+    <User ID="dc493865-9d26-4808-8f84-2125325d0f5c" Name="王方元" Sex="1" Password="1"></User>
+    <User ID="996ed9c6-9e17-4d9b-88b7-37021c067762" Name="程志华" Sex="1" Password="1"></User>
+    <User ID="4d5b0943-ae5e-4e51-a309-975f9e158ead" Name="邱法才" Sex="1" Password="1"></User>
+    <User ID="80cb4871-36e1-480e-963c-1355d2917d85" Name="李春林" Sex="1" Password="1"></User>
+    <User ID="4bb51da6-bb75-4239-8495-aed74bac41fd" Name="李小本" Sex="1" Password="1"></User>
+    <User ID="763b7e80-8f1d-488f-9a9d-58eed98493b0" Name="刘顺涛" Sex="1" Password="1"></User>
+    <User ID="93c66aeb-a6b1-40c9-a136-69a33d0e17b0" Name="雒宗强" Sex="1" Password="1"></User>
+    <User ID="e23ebe20-6dee-4d88-9928-0f13fa088f7e" Name="杨峰" Sex="1" Password="1"></User>
+    <User ID="e2429f68-56b4-447d-897f-247194ac6fe2" Name="单晓龙" Sex="1" Password="1"></User>
+    <User ID="c55958c8-7919-4209-8acf-08e0f6914b45" Name="屈雳" Sex="1" Password="1"></User>
+    <User ID="4bfb20c6-6029-4721-bff4-8100cf02cb15" Name="王峄岷" Sex="1" Password="1"></User>
+    <User ID="f3f14f81-9867-473b-a5a3-077fb327ce33" Name="韩传云" Sex="1" Password="1"></User>
+  </Users>
+  <DeptUsers>
+    <DeptUser DeptID="ea82cee0-2ddd-444a-8369-fbb888198083" UserID="3f2b9130-cbb6-4348-aaf2-77efdce9c9ed"></DeptUser>
+    <DeptUser DeptID="669d0691-255a-492f-a924-a9295b5b5405" UserID="7c449691-6b0c-4e42-8d2f-f21d4cadfc20"></DeptUser>
+    <DeptUser DeptID="669d0691-255a-492f-a924-a9295b5b5405" UserID="0b6e5ffa-0a72-442f-a426-bd1667250539"></DeptUser>
+    <DeptUser DeptID="669d0691-255a-492f-a924-a9295b5b5405" UserID="2ec2b970-6a0c-40ad-b6db-cdf909575314"></DeptUser>
+    <DeptUser DeptID="669d0691-255a-492f-a924-a9295b5b5405" UserID="a6791db7-aa55-4745-8003-f208b2050dd1"></DeptUser>
+    <DeptUser DeptID="6f86e1f6-242c-4398-92fb-465f83ab3809" UserID="e2429f68-56b4-447d-897f-247194ac6fe2"></DeptUser>
+    <DeptUser DeptID="6f86e1f6-242c-4398-92fb-465f83ab3809" UserID="e23ebe20-6dee-4d88-9928-0f13fa088f7e"></DeptUser>
+    <DeptUser DeptID="6f86e1f6-242c-4398-92fb-465f83ab3809" UserID="487693a9-5191-4409-8d5d-8e1652628e6f"></DeptUser>
+    <DeptUser DeptID="ea82cee0-2ddd-444a-8369-fbb888198083" UserID="584035ea-8e67-45ee-86ce-8e3bb0ea323f"></DeptUser>
+    <DeptUser DeptID="6f86e1f6-242c-4398-92fb-465f83ab3809" UserID="c55958c8-7919-4209-8acf-08e0f6914b45"></DeptUser>
+    <DeptUser DeptID="6f86e1f6-242c-4398-92fb-465f83ab3809" UserID="3397ca5b-0bab-4c28-9f69-784efbf38d67"></DeptUser>
+    <DeptUser DeptID="37ff6163-9f7d-4695-8923-8ca848334b0f" UserID="a41c0d01-df1a-4397-b7ab-15208ff3380f"></DeptUser>
+    <DeptUser DeptID="ea82cee0-2ddd-444a-8369-fbb888198083" UserID="4028e5df-359d-4efb-8e29-5136851b7a55"></DeptUser>
+    <DeptUser DeptID="669d0691-255a-492f-a924-a9295b5b5405" UserID="4ab4c865-72ff-4e59-b98d-b0e44b1772b3"></DeptUser>
+    <DeptUser DeptID="6f86e1f6-242c-4398-92fb-465f83ab3809" UserID="c7b5b9aa-b4c9-4739-9479-c96c50c5cc8f"></DeptUser>
+    <DeptUser DeptID="6f86e1f6-242c-4398-92fb-465f83ab3809" UserID="86d4e43a-6118-450f-9d5b-dd517600f8d6"></DeptUser>
+    <DeptUser DeptID="669d0691-255a-492f-a924-a9295b5b5405" UserID="6af1f110-6bb7-407f-b371-41ffd863e24d"></DeptUser>
+    <DeptUser DeptID="6f86e1f6-242c-4398-92fb-465f83ab3809" UserID="a73f649e-4fdd-4948-afce-285f16e65e23"></DeptUser>
+    <DeptUser DeptID="ea82cee0-2ddd-444a-8369-fbb888198083" UserID="704ecc73-1200-4c96-8348-5ea05bc060a0"></DeptUser>
+    <DeptUser DeptID="d07dbf6a-6e7e-452d-836c-4d3a3690dc4d" UserID="93c66aeb-a6b1-40c9-a136-69a33d0e17b0"></DeptUser>
+    <DeptUser DeptID="6f86e1f6-242c-4398-92fb-465f83ab3809" UserID="4bfb20c6-6029-4721-bff4-8100cf02cb15"></DeptUser>
+    <DeptUser DeptID="ea82cee0-2ddd-444a-8369-fbb888198083" UserID="76b64a9c-0edc-4d65-b681-f701ad484cf4"></DeptUser>
+    <DeptUser DeptID="6f86e1f6-242c-4398-92fb-465f83ab3809" UserID="f3f14f81-9867-473b-a5a3-077fb327ce33"></DeptUser>
+    <DeptUser DeptID="556c334e-db97-41d1-a056-5d9264ec564b" UserID="dff92ae3-73af-4f6e-abf6-a4fac399419d"></DeptUser>
+    <DeptUser DeptID="556c334e-db97-41d1-a056-5d9264ec564b" UserID="cb11c46c-b552-40c2-b844-6acce2ddbbdd"></DeptUser>
+    <DeptUser DeptID="556c334e-db97-41d1-a056-5d9264ec564b" UserID="8b1c6329-cf83-4089-b4e0-e5356521829c"></DeptUser>
+    <DeptUser DeptID="556c334e-db97-41d1-a056-5d9264ec564b" UserID="fa9d985e-2827-42f5-b784-28f3df3e9faa"></DeptUser>
+    <DeptUser DeptID="3620e868-4b11-48f7-8e2a-a14b0565d40e" UserID="3a2ba433-9514-462c-b858-bccf7f25542c"></DeptUser>
+    <DeptUser DeptID="3620e868-4b11-48f7-8e2a-a14b0565d40e" UserID="e3f65b68-d1db-404e-9679-9da6135d507d"></DeptUser>
+    <DeptUser DeptID="863aacee-ad91-445c-82a1-cde025fcae32" UserID="ba260335-24be-4f51-a2a0-cc547052495d"></DeptUser>
+    <DeptUser DeptID="863aacee-ad91-445c-82a1-cde025fcae32" UserID="4c1030b4-d1a3-4703-bf9e-651a12ea3eb1"></DeptUser>
+    <DeptUser DeptID="863aacee-ad91-445c-82a1-cde025fcae32" UserID="ee785007-80e7-4008-9fe1-af3b3ae2d958"></DeptUser>
+    <DeptUser DeptID="df503d4b-39cc-4e41-adcb-2434cae5d122" UserID="f0f5238f-9474-4c99-a9d2-9847d9d63514"></DeptUser>
+    <DeptUser DeptID="df503d4b-39cc-4e41-adcb-2434cae5d122" UserID="93ed98f3-1d04-47f5-8ab2-e81ede5cd824"></DeptUser>
+    <DeptUser DeptID="df503d4b-39cc-4e41-adcb-2434cae5d122" UserID="d94d16f8-83e5-4cd9-ada7-5205ead6b28b"></DeptUser>
+    <DeptUser DeptID="8e5a2f34-1805-46cf-94e6-12bd69948efc" UserID="dc493865-9d26-4808-8f84-2125325d0f5c"></DeptUser>
+    <DeptUser DeptID="8e5a2f34-1805-46cf-94e6-12bd69948efc" UserID="996ed9c6-9e17-4d9b-88b7-37021c067762"></DeptUser>
+    <DeptUser DeptID="d07dbf6a-6e7e-452d-836c-4d3a3690dc4d" UserID="4d5b0943-ae5e-4e51-a309-975f9e158ead"></DeptUser>
+    <DeptUser DeptID="bf8c5751-1af9-427c-834a-f665d5c8585b" UserID="80cb4871-36e1-480e-963c-1355d2917d85"></DeptUser>
+    <DeptUser DeptID="e3974a4e-c27d-49a7-9a95-81d6484068fe" UserID="763b7e80-8f1d-488f-9a9d-58eed98493b0"></DeptUser>
+
+   </DeptUsers>
+</UsersInfo>

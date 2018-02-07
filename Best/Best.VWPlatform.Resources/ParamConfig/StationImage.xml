@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StationImages>
+		<Images ImageID="0" >
+			<CommSystem>GD0501</CommSystem>
+			<CommSystem>GD0502</CommSystem>
+			<CommSystem>GD0503</CommSystem>
+			<CommSystem>SY0301</CommSystem>
+			<CommSystem>SY0100</CommSystem>
+			<CommSystem>SY0200</CommSystem>
+			<CommSystem>SY0300</CommSystem>
+			<CommSystem>SY0400</CommSystem>
+      <CommSystem>SY0500</CommSystem>
+			<CommSystem>LY0301</CommSystem>
+			<CommSystem>LY0302</CommSystem>		
+		</Images>
+		<Images ImageID="1" >
+			<CommSystem>LY0510</CommSystem>
+			<CommSystem>LY0520</CommSystem>
+		</Images>
+		<Images ImageID="2" >
+			<CommSystem>LY0600</CommSystem>
+			<CommSystem>GB0101</CommSystem>
+			<CommSystem>GB0102</CommSystem>
+			<CommSystem>GB0201</CommSystem>
+			<CommSystem>GB0202</CommSystem>
+			<CommSystem>GB0301</CommSystem>
+			<CommSystem>GB0302</CommSystem>
+			<CommSystem>GB0400</CommSystem>
+			<CommSystem>GB0601</CommSystem>
+			<CommSystem>GB0602</CommSystem>
+			<CommSystem>GB0700</CommSystem>
+		</Images>
+		<Images ImageID="3" >
+			<CommSystem>LY0101</CommSystem>
+			<CommSystem>LY0102</CommSystem>
+			<CommSystem>LY0103</CommSystem>
+			<CommSystem>LY0104</CommSystem>
+			<CommSystem>LY0105</CommSystem>
+			<CommSystem>LY0106</CommSystem>
+		</Images>
+		<Images ImageID="4" >
+			<CommSystem>LY0201</CommSystem>
+			<CommSystem>LY0202</CommSystem>
+			<CommSystem>LY0203</CommSystem>
+			<CommSystem>LY0204</CommSystem>
+			<CommSystem>LY0205</CommSystem>
+			<CommSystem>LY0206</CommSystem>
+		</Images>
+		<Images ImageID="5" >
+			<CommSystem>LY0701</CommSystem>
+			<CommSystem>LY0702</CommSystem>
+		</Images>
+		<Images ImageID="6" >
+			<CommSystem>LY0401</CommSystem>
+		</Images>
+		<Images ImageID="7" >
+			<CommSystem>GD0101</CommSystem>
+			<CommSystem>GD0102</CommSystem>
+			<CommSystem>GD0103</CommSystem>
+			<CommSystem>GD0104</CommSystem>
+			<CommSystem>GD0300</CommSystem>
+		</Images>
+		<Images ImageID="8" >
+			<CommSystem>GD0201</CommSystem>
+			<CommSystem>GD0202</CommSystem>
+			<CommSystem>GD0401</CommSystem>
+			<CommSystem>GD0402</CommSystem>
+			<CommSystem>GD0403</CommSystem>
+			<CommSystem>GD0404</CommSystem>
+			<CommSystem>GD0410</CommSystem>
+			<CommSystem>GD0411</CommSystem>
+			<CommSystem>GD0420</CommSystem>
+			<CommSystem>GD0421</CommSystem>
+      <CommSystem>GD0422</CommSystem>
+			<CommSystem>GD0423</CommSystem>
+			<CommSystem>GD0431</CommSystem>
+		</Images>
+		<Images ImageID="9" >
+			<CommSystem>SF01</CommSystem>
+			<CommSystem>SF04</CommSystem>
+			<CommSystem>SF05</CommSystem>
+			<CommSystem>SF06</CommSystem>
+			<CommSystem>SF08</CommSystem>
+			<CommSystem>SF09</CommSystem>
+			<CommSystem>SF12</CommSystem>
+			<CommSystem>SF15</CommSystem>
+			<CommSystem>SF17</CommSystem>
+			<CommSystem>SF18</CommSystem>
+      <CommSystem>SF19</CommSystem>
+			<CommSystem>SF20</CommSystem>
+			<CommSystem>SF21</CommSystem>
+			<CommSystem>SF22</CommSystem>
+			<CommSystem>SF23</CommSystem>
+			<CommSystem>SF24</CommSystem>
+			<CommSystem>SF25</CommSystem>
+			<CommSystem>SF98</CommSystem>
+      <CommSystem>SM01</CommSystem>
+			<CommSystem>SM04</CommSystem>
+			<CommSystem>SM05</CommSystem>
+			<CommSystem>SM98</CommSystem>
+			<CommSystem>SM99</CommSystem>
+			<CommSystem>SDSN01</CommSystem>
+			<CommSystem>SDSN02</CommSystem>
+			<CommSystem>SDSN03</CommSystem>
+			<CommSystem>SDSN04</CommSystem>
+      <CommSystem>SB01</CommSystem>
+			<CommSystem>SB02</CommSystem>
+			<CommSystem>SB03</CommSystem>
+			<CommSystem>SE04</CommSystem>
+			<CommSystem>SE07</CommSystem>
+      <CommSystem>SE08</CommSystem>
+			<CommSystem>SE09</CommSystem>
+			<CommSystem>SE10</CommSystem>
+			<CommSystem>SE12</CommSystem>
+			<CommSystem>SE15</CommSystem>
+			<CommSystem>SE16</CommSystem>
+      <CommSystem>SE17</CommSystem>
+			<CommSystem>SE18</CommSystem>
+			<CommSystem>SE19</CommSystem>
+			<CommSystem>SE20</CommSystem>
+			<CommSystem>SE21</CommSystem>
+      <CommSystem>SE22</CommSystem>
+			<CommSystem>SE98</CommSystem>
+			<CommSystem>SE99</CommSystem>
+			<CommSystem>SR00</CommSystem>
+			<CommSystem>SO00</CommSystem>
+			<CommSystem>SI00</CommSystem>
+		</Images>
+		<Images ImageID="10" >
+			<CommSystem>SY0100</CommSystem>
+		</Images>
+    <Images ImageID="11" >
+      <CommSystem>HD0000</CommSystem>
+      <CommSystem>WW0000</CommSystem>
+      <CommSystem>SW0000</CommSystem>
+      <CommSystem>QF0000</CommSystem>
+    </Images>
+    <Images ImageID="12" >
+      <CommSystem>HY01</CommSystem>
+      <CommSystem>HY02</CommSystem>
+      <CommSystem>HD01</CommSystem>
+      <CommSystem>HD02</CommSystem>
+      <CommSystem>HD03</CommSystem>
+    </Images>
+</StationImages>

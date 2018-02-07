@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<route xmlns="http://jabberd.jabberstudio.org/ns/component/1.0">
+	<iq xmlns="jabber:client" type="result">
+		<query xmlns="jabber:iq:measurement-capability">
+      <driver name="equ713">
+			<item name="max span" unit="Hz">20000000</item>
+			<item name="max sample rate" unit="Hz">20000000</item>
+			<item name="max frequency" unit="Hz">3600000000</item>
+			<item name="min frequency" unit="Hz">20000000</item>
+			<item name="min energy" unit="dBm">-130</item>
+			<item name="max energy" unit="dBm">10</item>
+			<item name="min am">0</item>
+			<item name="max am">300</item>
+			<item name="min fm" unit="Hz">0</item>
+			<item name="max fm" unit="Hz">180000</item>
+			<item name="min pm" unit="rad">0</item>
+			<item name="max pm" unit="rad">10000</item>
+			<item name="polarization">
+				<off/>
+				<peak>
+					<val>1</val>
+					<val>2</val>
+					<val>4</val>
+					<val>8</val>
+					<val>16</val>
+					<val>32</val>
+					<val>64</val>
+					<val>128</val>
+				</peak>
+				<rms>
+					<val>1</val>
+					<val>2</val>
+					<val>4</val>
+					<val>8</val>
+					<val>16</val>
+					<val>32</val>
+					<val>64</val>
+					<val>128</val>
+				</rms>
+			</item>
+			<item name="window">
+				<hanning>
+					<rbw>100000</rbw>
+					<rbw>50000</rbw>
+					<rbw>25000</rbw>
+					<rbw>12500</rbw>
+					<rbw>6250</rbw>
+					<rbw>3125</rbw>
+				</hanning>
+				<gaussian>
+					<rbw>969070</rbw>
+					<rbw>484540</rbw>
+					<rbw>242270</rbw>
+					<rbw>121140</rbw>
+					<rbw>60570</rbw>
+					<rbw>30290</rbw>
+					<rbw>15150</rbw>
+					<rbw>7580</rbw>
+					<rbw>3790</rbw>
+					<rbw>1900</rbw>
+					<rbw>950</rbw>
+					<rbw>480</rbw>
+					<rbw>240</rbw>
+					<rbw>120</rbw>
+					<rbw>60</rbw>
+					<rbw>30</rbw>
+				</gaussian>
+				<flattop>
+					<rbw>1670000</rbw>
+					<rbw>835410</rbw>
+					<rbw>417710</rbw>
+					<rbw>208860</rbw>
+					<rbw>104430</rbw>
+					<rbw>52220</rbw>
+					<rbw>26110</rbw>
+					<rbw>13080</rbw>
+					<rbw>6530</rbw>
+					<rbw>3270</rbw>
+					<rbw>1640</rbw>
+					<rbw>820</rbw>
+					<rbw>410</rbw>
+					<rbw>210</rbw>
+					<rbw>110</rbw>
+					<rbw>60</rbw>
+				</flattop>
+			</item>
+      <item name="gainmode">
+          <manual>
+            <val>110</val>
+            <val>100</val>
+            <val>90</val>
+            <val>80</val>
+            <val>70</val>
+            <val>60</val>
+            <val>50</val>
+            <val>40</val>
+            <val>30</val>
+            <val>20</val>
+            <val>10</val>
+            <val>0</val>
+            <val>-10</val>
+            <val>-20</val>
+            <val>-30</val>
+          </manual>
+        </item>
+      <item name="ifbw">
+          <fscanifbw>
+            <val>150000</val>
+            <val>120000</val>
+            <val>50000</val>
+            <val>30000</val>
+            <val>15000</val>
+            <val>9000</val>
+            <val>6000</val>
+            <val>2400</val>
+            <val>1500</val>
+            <val>600</val>
+            <val>300</val>
+            <val>150</val>
+          </fscanifbw>
+          <ifqexifbw>
+            <val>150000</val>
+            <val>120000</val>
+            <val>50000</val>
+            <val>30000</val>
+            <val>15000</val>
+            <val>9000</val>
+            <val>6000</val>
+            <val>2400</val>
+            <val>1500</val>
+            <val>600</val>
+            <val>300</val>
+            <val>150</val>
+          </ifqexifbw>
+        </item>
+      <item name="span">
+          <ifqexspan>
+            <val>10000000</val>
+            <val>5000000</val>
+            <val>2000000</val>
+            <val>1000000</val>
+            <val>500000</val>
+            <val>200000</val>
+            <val>100000</val>
+            <val>50000</val>
+            <val>20000</val>
+            <val>10000</val>
+            <val>5000</val>
+            <val>2000</val>
+            <val>1000</val>
+          </ifqexspan>
+        </item>
+			<meter type="receiver" man="同方电子" model="5plus1"/>
+      </driver>
+      <driver name="agilent">
+        <item name="max span" unit="Hz">20000000</item>
+        <item name="max sample rate" unit="Hz">20000000</item>
+        <item name="max frequency" unit="Hz">6000000000</item>
+        <item name="min frequency" unit="Hz">20000000</item>
+        <item name="min energy" unit="dBm">-130</item>
+        <item name="max energy" unit="dBm">10</item>
+        <item name="min am">0</item>
+        <item name="max am">300</item>
+        <item name="min fm" unit="Hz">0</item>
+        <item name="max fm" unit="Hz">180000</item>
+        <item name="min pm" unit="rad">0</item>
+        <item name="max pm" unit="rad">10000</item>
+        <item name="polarization">
+          <off/>
+          <peak>
+            <val>1</val>
+            <val>2</val>
+            <val>4</val>
+            <val>8</val>
+            <val>16</val>
+            <val>32</val>
+            <val>64</val>
+            <val>128</val>
+          </peak>
+          <rms>
+            <val>1</val>
+            <val>2</val>
+            <val>4</val>
+            <val>8</val>
+            <val>16</val>
+            <val>32</val>
+            <val>64</val>
+            <val>128</val>
+          </rms>
+        </item>
+        <item name="window">
+          <hanning>
+            <!--<rbw>656250</rbw>
+            <rbw>328130</rbw>
+            <rbw>164070</rbw>
+            <rbw>62040</rbw>
+            <rbw>41020</rbw>
+            <rbw>20510</rbw>
+            <rbw>10260</rbw>
+            <rbw>5130</rbw>
+            <rbw>2570</rbw>
+            <rbw>1290</rbw>
+            <rbw>650</rbw>
+            <rbw>330</rbw>
+            <rbw>170</rbw>
+            <rbw>90</rbw>
+            <rbw>40</rbw>
+            <rbw>20</rbw>-->
+            <rbw>218750</rbw>
+            <rbw>109375</rbw>
+            <rbw>54687</rbw>
+            <rbw>27343</rbw>
+            <rbw>13671</rbw>
+            <rbw>6835</rbw>
+            <rbw>3417</rbw>
+            <rbw>1708</rbw>
+            <rbw>854</rbw>
+            <rbw>427</rbw>
+            <rbw>213</rbw>
+            <rbw>106</rbw>
+            <rbw>53</rbw>
+            <rbw>26</rbw>
+            <rbw>13</rbw>
+          </hanning>
+          <gaussian>
+            <rbw>969070</rbw>
+            <rbw>484540</rbw>
+            <rbw>242270</rbw>
+            <rbw>121140</rbw>
+            <rbw>60570</rbw>
+            <rbw>30290</rbw>
+            <rbw>15150</rbw>
+            <rbw>7580</rbw>
+            <rbw>3790</rbw>
+            <rbw>1900</rbw>
+            <rbw>950</rbw>
+            <rbw>480</rbw>
+            <rbw>240</rbw>
+            <rbw>120</rbw>
+            <rbw>60</rbw>
+            <rbw>30</rbw>
+          </gaussian>
+          <flattop>
+            <rbw>1670000</rbw>
+            <rbw>835410</rbw>
+            <rbw>417710</rbw>
+            <rbw>208860</rbw>
+            <rbw>104430</rbw>
+            <rbw>52220</rbw>
+            <rbw>26110</rbw>
+            <rbw>13080</rbw>
+            <rbw>6530</rbw>
+            <rbw>3270</rbw>
+            <rbw>1640</rbw>
+            <rbw>820</rbw>
+            <rbw>410</rbw>
+            <rbw>210</rbw>
+            <rbw>110</rbw>
+            <rbw>60</rbw>
+          </flattop>
+        </item>
+        <item name="gainmode">
+          <manual>
+            <val>110</val>
+            <val>100</val>
+            <val>90</val>
+            <val>80</val>
+            <val>70</val>
+            <val>60</val>
+            <val>50</val>
+            <val>40</val>
+            <val>30</val>
+            <val>20</val>
+            <val>10</val>
+            <val>0</val>
+            <val>-10</val>
+            <val>-20</val>
+            <val>-30</val>
+          </manual>
+        </item>
+        <item name="ifbw">
+          <fscanifbw>
+            <val>150000</val>
+            <val>120000</val>
+            <val>50000</val>
+            <val>30000</val>
+            <val>15000</val>
+            <val>9000</val>
+            <val>6000</val>
+            <val>2400</val>
+            <val>1500</val>
+            <val>600</val>
+            <val>300</val>
+            <val>150</val>
+          </fscanifbw>
+          <ifqexifbw>
+            <val>150000</val>
+            <val>120000</val>
+            <val>50000</val>
+            <val>30000</val>
+            <val>15000</val>
+            <val>9000</val>
+            <val>6000</val>
+            <val>2400</val>
+            <val>1500</val>
+            <val>600</val>
+            <val>300</val>
+            <val>150</val>
+          </ifqexifbw>
+        </item>
+        <item name="span">
+          <ifqexspan>
+            <val>10000000</val>
+            <val>5000000</val>
+            <val>2000000</val>
+            <val>1000000</val>
+            <val>500000</val>
+            <val>200000</val>
+            <val>100000</val>
+            <val>50000</val>
+            <val>20000</val>
+            <val>10000</val>
+            <val>5000</val>
+            <val>2000</val>
+            <val>1000</val>
+          </ifqexspan>
+        </item>
+        <meter type="receiver" man="agilent" model="N6841A"/>
+      </driver>
+      <driver name="PR100">
+        <item name="max span" unit="Hz">9600000</item>
+        <item name="max sample rate" unit="Hz">10000000</item>
+        <item name="max frequency" unit="Hz">7500000000</item>
+        <item name="min frequency" unit="Hz">20000000</item>
+        <item name="min energy" unit="dBm">-130</item>
+        <item name="max energy" unit="dBm">10</item>
+        <item name="min am">0</item>
+        <item name="max am">300</item>
+        <item name="min fm" unit="Hz">0</item>
+        <item name="max fm" unit="Hz">180000</item>
+        <item name="min pm" unit="rad">0</item>
+        <item name="max pm" unit="rad">10000</item>
+        <item name="polarization">
+          <off/>
+          <peak>
+            <val>1</val>
+            <val>2</val>
+            <val>4</val>
+            <val>8</val>
+            <val>16</val>
+            <val>32</val>
+            <val>64</val>
+            <val>128</val>
+          </peak>
+          <rms>
+            <val>1</val>
+            <val>2</val>
+            <val>4</val>
+            <val>8</val>
+            <val>16</val>
+            <val>32</val>
+            <val>64</val>
+            <val>128</val>
+          </rms>
+        </item>
+        <item name="window">
+          <hanning>
+            <rbw>100000</rbw>
+            <rbw>50000</rbw>
+            <rbw>25000</rbw>
+            <rbw>12500</rbw>
+            <rbw>6250</rbw>
+            <rbw>3125</rbw>
+            <rbw>2500</rbw>
+            <rbw>1250</rbw>
+            <rbw>625</rbw>
+            <rbw>500</rbw>
+            <rbw>250</rbw>
+            <rbw>125</rbw>
+          </hanning>
+          <gaussian>
+            <rbw>969070</rbw>
+            <rbw>484540</rbw>
+            <rbw>242270</rbw>
+            <rbw>121140</rbw>
+            <rbw>60570</rbw>
+            <rbw>30290</rbw>
+            <rbw>15150</rbw>
+            <rbw>7580</rbw>
+            <rbw>3790</rbw>
+            <rbw>1900</rbw>
+            <rbw>950</rbw>
+            <rbw>480</rbw>
+            <rbw>240</rbw>
+            <rbw>120</rbw>
+            <rbw>60</rbw>
+            <rbw>30</rbw>
+          </gaussian>
+          <flattop>
+            <rbw>1670000</rbw>
+            <rbw>835410</rbw>
+            <rbw>417710</rbw>
+            <rbw>208860</rbw>
+            <rbw>104430</rbw>
+            <rbw>52220</rbw>
+            <rbw>26110</rbw>
+            <rbw>13080</rbw>
+            <rbw>6530</rbw>
+            <rbw>3270</rbw>
+            <rbw>1640</rbw>
+            <rbw>820</rbw>
+            <rbw>410</rbw>
+            <rbw>210</rbw>
+            <rbw>110</rbw>
+            <rbw>60</rbw>
+          </flattop>
+        </item>
+        <item name="gainmode">
+          <manual>
+            <val>110</val>
+            <val>100</val>
+            <val>90</val>
+            <val>80</val>
+            <val>70</val>
+            <val>60</val>
+            <val>50</val>
+            <val>40</val>
+            <val>30</val>
+            <val>20</val>
+            <val>10</val>
+            <val>0</val>
+            <val>-10</val>
+            <val>-20</val>
+            <val>-30</val>
+          </manual>
+        </item>
+        <item name="ifbw">
+          <fscanifbw>
+            <val>500000</val>
+            <val>300000</val>
+            <val>250000</val>
+            <val>150000</val>
+            <val>120000</val>
+            <val>50000</val>
+            <val>30000</val>
+            <val>15000</val>
+            <val>12000</val>
+            <val>9000</val>
+            <val>6000</val>
+            <val>2400</val>
+            <val>1500</val>
+            <val>600</val>
+            <val>300</val>
+            <val>150</val>
+          </fscanifbw>
+          <ifqexifbw>
+            <val>500000</val>
+            <val>300000</val>
+            <val>250000</val>
+            <val>150000</val>
+            <val>120000</val>
+            <val>50000</val>
+            <val>30000</val>
+            <val>15000</val>
+            <val>12000</val>
+            <val>9000</val>
+            <val>6000</val>
+            <val>2400</val>
+            <val>1500</val>
+            <val>600</val>
+            <val>300</val>
+            <val>150</val>
+          </ifqexifbw>
+        </item>
+        <item name="span">
+          <ifqexspan>
+            <val>10000000</val>
+            <val>5000000</val>
+            <val>2000000</val>
+            <val>1000000</val>
+            <val>500000</val>
+            <val>200000</val>
+            <val>100000</val>
+            <val>50000</val>
+            <val>20000</val>
+            <val>10000</val>
+            <val>5000</val>
+            <val>2000</val>
+            <val>1000</val>
+          </ifqexspan>
+        </item>
+        <meter type="receiver" man="pr100" model="EM100"/>
+      </driver>
+      <driver name="EB200">
+        <item name="max span" unit="Hz">9600000</item>
+        <item name="max sample rate" unit="Hz">10000000</item>
+        <item name="max frequency" unit="Hz">3000000000</item>
+        <item name="min frequency" unit="Hz">20000000</item>
+        <item name="min energy" unit="dBm">-130</item>
+        <item name="max energy" unit="dBm">10</item>
+        <item name="min am">0</item>
+        <item name="max am">300</item>
+        <item name="min fm" unit="Hz">0</item>
+        <item name="max fm" unit="Hz">180000</item>
+        <item name="min pm" unit="rad">0</item>
+        <item name="max pm" unit="rad">10000</item>
+        <item name="polarization">
+          <off/>
+          <peak>
+            <val>1</val>
+            <val>2</val>
+            <val>4</val>
+            <val>8</val>
+            <val>16</val>
+            <val>32</val>
+            <val>64</val>
+            <val>128</val>
+          </peak>
+          <rms>
+            <val>1</val>
+            <val>2</val>
+            <val>4</val>
+            <val>8</val>
+            <val>16</val>
+            <val>32</val>
+            <val>64</val>
+            <val>128</val>
+          </rms>
+        </item>
+        <item name="window">
+          <hanning>
+            <rbw>100000</rbw>
+            <rbw>50000</rbw>
+            <rbw>25000</rbw>
+            <rbw>12500</rbw>
+            <rbw>6250</rbw>
+            <rbw>3125</rbw>
+            <rbw>2500</rbw>
+            <rbw>1250</rbw>
+            <rbw>625</rbw>
+            <rbw>500</rbw>
+            <rbw>250</rbw>
+            <rbw>125</rbw>
+          </hanning>
+          <gaussian>
+            <rbw>969070</rbw>
+            <rbw>484540</rbw>
+            <rbw>242270</rbw>
+            <rbw>121140</rbw>
+            <rbw>60570</rbw>
+            <rbw>30290</rbw>
+            <rbw>15150</rbw>
+            <rbw>7580</rbw>
+            <rbw>3790</rbw>
+            <rbw>1900</rbw>
+            <rbw>950</rbw>
+            <rbw>480</rbw>
+            <rbw>240</rbw>
+            <rbw>120</rbw>
+            <rbw>60</rbw>
+            <rbw>30</rbw>
+          </gaussian>
+          <flattop>
+            <rbw>1670000</rbw>
+            <rbw>835410</rbw>
+            <rbw>417710</rbw>
+            <rbw>208860</rbw>
+            <rbw>104430</rbw>
+            <rbw>52220</rbw>
+            <rbw>26110</rbw>
+            <rbw>13080</rbw>
+            <rbw>6530</rbw>
+            <rbw>3270</rbw>
+            <rbw>1640</rbw>
+            <rbw>820</rbw>
+            <rbw>410</rbw>
+            <rbw>210</rbw>
+            <rbw>110</rbw>
+            <rbw>60</rbw>
+          </flattop>
+        </item>
+        <item name="gainmode">
+          <manual>
+            <val>110</val>
+            <val>100</val>
+            <val>90</val>
+            <val>80</val>
+            <val>70</val>
+            <val>60</val>
+            <val>50</val>
+            <val>40</val>
+            <val>30</val>
+            <val>20</val>
+            <val>10</val>
+            <val>0</val>
+            <val>-10</val>
+            <val>-20</val>
+            <val>-30</val>
+          </manual>
+        </item>
+        <item name="ifbw">
+          <fscanifbw>
+            <val>150000</val>
+            <val>120000</val>
+            <val>50000</val>
+            <val>30000</val>
+            <val>15000</val>
+            <val>9000</val>
+            <val>6000</val>
+            <val>2400</val>
+            <val>1500</val>
+            <val>600</val>
+            <val>300</val>
+            <val>150</val>
+          </fscanifbw>
+          <ifqexifbw>
+            <val>150000</val>
+            <val>120000</val>
+            <val>50000</val>
+            <val>30000</val>
+            <val>15000</val>
+            <val>9000</val>
+            <val>6000</val>
+            <val>2400</val>
+            <val>1500</val>
+            <val>600</val>
+            <val>300</val>
+            <val>150</val>
+          </ifqexifbw>
+        </item>
+        <item name="span">
+          <ifqexspan>
+            <val>1000000</val>
+            <val>500000</val>
+            <val>200000</val>
+            <val>150000</val>
+            <val>120000</val>
+            <val>100000</val>
+            <val>50000</val>
+            <val>30000</val>
+            <val>25000</val>
+            <val>15000</val>
+            <val>9000</val>
+            <val>6000</val>
+            <val>2400</val>
+            <val>1500</val>
+            <val>600</val>
+            <val>300</val>
+            <val>150</val>
+          </ifqexspan>
+        </item>
+        <meter type="receiver" man="eb200" model="EM100"/>
+      </driver>
+		</query>
+	</iq>
+</route>

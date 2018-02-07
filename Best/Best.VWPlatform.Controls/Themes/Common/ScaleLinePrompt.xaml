@@ -1,0 +1,19 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:best="clr-namespace:Best.VWPlatform.Controls.Common">
+
+    <Style TargetType="best:ScaleLinePrompt">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="best:ScaleLinePrompt">
+                    <Grid x:Name="x_rangePanel">
+                        <ContentPresenter x:Name="x_content" Content="{TemplateBinding Content}"/>
+                        <Canvas x:Name="xScaleCanvas" UseLayoutRounding="True" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

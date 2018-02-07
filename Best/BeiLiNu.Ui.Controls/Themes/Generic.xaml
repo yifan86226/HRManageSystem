@@ -1,0 +1,612 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:local="clr-namespace:BeiLiNu.Ui.Controls.WPF.Controls"
+    xmlns:locals="clr-namespace:BeiLiNu.Ui.Controls.WPF.Windows">
+    <!--XButton-->
+    <Style TargetType="{x:Type local:XButton}">
+        <Setter Property="NormalImgae" Value="/BeiLiNu.Ui.Controls;component/Resource/Button/button_normal.png"/>
+        <Setter Property="MouseOverImage" Value="/BeiLiNu.Ui.Controls;component/Resource/Button/button_hover.png"/>
+        <Setter Property="PressedImage" Value="/BeiLiNu.Ui.Controls;component/Resource/Button/button_pushed.png"/>
+        <Setter Property="NineGrid" Value="2"/>
+        <Setter Property="Width" Value="72"/>
+        <Setter Property="Height"  Value="28"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:XButton}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.15" To="Normal"/>
+                                    <VisualTransition From="Normal" GeneratedDuration="0:0:0.15" To="MouseOver"/>
+                                    <VisualTransition From="Pressed" GeneratedDuration="0:0:0.15" To="MouseOver"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PART_Normal">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PART_MouseOver">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PART_Pressed">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PART_Normal">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PART_MouseOver">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PART_Pressed">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PART_Normal">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PART_MouseOver">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PART_Pressed">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <local:NineImage x:Name="PART_Pressed" Source="{TemplateBinding PressedImage}" NineGrid="{TemplateBinding NineGrid}" Stretch="Fill" />
+                        <local:NineImage x:Name="PART_MouseOver" Source="{TemplateBinding MouseOverImage}" NineGrid="{TemplateBinding NineGrid}" Stretch="Fill" />
+                        <local:NineImage x:Name="PART_Normal" Source="{TemplateBinding NormalImgae}" NineGrid="{TemplateBinding NineGrid}" Stretch="Fill" />
+                        <ContentPresenter RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                          Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--XTabContro-->
+    <Style TargetType="{x:Type local:XTabControl}">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Padding" Value="4,4,4,4"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#8C8E94"/>
+        <Setter Property="Background" Value="#F9F9F9"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:XTabControl}">
+                    <Grid  x:Name="templateRoot" KeyboardNavigation.TabNavigation="Local">
+                        <DockPanel HorizontalAlignment="Stretch" Height="Auto" LastChildFill="True" Margin="0" Grid.Row="0" VerticalAlignment="Stretch" Width="Auto" Grid.RowSpan="1">
+                            <StackPanel x:Name="HeaderPanel" DockPanel.Dock="Top" Height="Auto" VerticalAlignment="Top" Width="Auto" IsItemsHost="True" Orientation="Horizontal" CanHorizontallyScroll="True" Panel.ZIndex="1" Background="{x:Null}" />
+                            <Border x:Name="ContentPanel" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Width="Auto" DockPanel.Dock="Bottom" Margin="0" Background="{TemplateBinding Background}">
+                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Height="Auto"/>
+                            </Border>
+                        </DockPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TabStripPlacement" Value="Bottom">
+                            <Setter Property="DockPanel.Dock" TargetName="HeaderPanel" Value="Bottom"/>
+                            <Setter Property="DockPanel.Dock" TargetName="ContentPanel" Value="Top"/>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Left">
+                            <Setter Property="Orientation" TargetName="HeaderPanel" Value="Vertical"/>
+                            <Setter Property="DockPanel.Dock" TargetName="HeaderPanel" Value="Left"/>
+                            <Setter Property="DockPanel.Dock" TargetName="ContentPanel" Value="Right"/>
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Right">
+                            <Setter Property="DockPanel.Dock" TargetName="HeaderPanel" Value="Right"/>
+                            <Setter Property="Orientation" TargetName="HeaderPanel" Value="Vertical"/>
+                            <Setter Property="DockPanel.Dock" TargetName="ContentPanel" Value="Left"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--XTabItem-->
+    <Style TargetType="{x:Type local:XTabItem}">
+        <Setter Property="Control.HorizontalContentAlignment" Setter.Value="Stretch" />
+        <Setter Property="Control.VerticalContentAlignment" Setter.Value="Stretch" />
+        <Setter Property ="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BeiLiNu.Ui.Controls;component/Resource/Table/tab_normal.PNG"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="#FFACACAC"/>
+        <Setter Property="MouseOverBrush">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BeiLiNu.Ui.Controls;component/Resource/Table/tab_hover.PNG"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="SelectedBrush">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BeiLiNu.Ui.Controls;component/Resource/Table/tab_pushed.PNG"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Width" Value="86"/>
+        <Setter Property="Height"  Value="26"/>
+        <Setter Property="Header"  Value="TabItem"/>
+        <Setter Property="Foreground"  Value="Black"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:XTabItem}">
+                    <Grid>
+                        <Border x:Name="mainBorder" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        </Border>
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" Focusable="False" RecognizesAccessKey="True"  HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="{TemplateBinding Foreground}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Selector.IsSelected" Value="True">
+                            <Setter Property="Background" TargetName="mainBorder" Value="{Binding SelectedBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="Selector.IsSelected" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" TargetName="mainBorder" Value="{Binding MouseOverBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--XWindowShadow-->
+    <Style TargetType="{x:Type locals:XWindowBase}">
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="NineImage" Value="/BeiLiNu.Ui.Controls;component/Resource/window_shadow_rect.png"/>
+        <Setter Property="NineGrid" Value="11"/>
+        <Setter Property="ShadowSize" Value="11"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type locals:XWindowBase}">
+                    <Grid >
+                        <!--阴影层-->
+                        <local:NineImage x:Name="PART_NinePanl" Stretch="Fill" Source="{TemplateBinding NineImage}" 
+                                         NineGrid="{TemplateBinding NineGrid}" />
+                        <!--<local:NinePanel x:Name="PART_NinePanl" NineGrid="{TemplateBinding NineGrid}" NineImage="{TemplateBinding NineImage}"/>-->
+                        <!--背景层-->
+                        <Border x:Name="PART_Back" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                OpacityMask="{TemplateBinding OpacityMask}" Opacity="{TemplateBinding BackOpacity}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}"
+                                Margin="{Binding ShadowSize, RelativeSource={RelativeSource TemplatedParent}}"></Border>
+                        <!--控件层-->
+                        <Border x:Name="PART_Content" Margin="{Binding ShadowSize, RelativeSource={RelativeSource TemplatedParent}}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" >
+                            <ContentPresenter/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="NineImage" Value="{x:Null}">
+                            <Setter Property="Visibility" TargetName="PART_NinePanl" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter Property="Visibility" TargetName="PART_NinePanl" Value="Collapsed"/>
+                            <Setter Property="Margin" TargetName="PART_Back" Value="0"/>
+                            <Setter Property="Margin" TargetName="PART_Content" Value="0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--XTextBox-->
+    <Style TargetType="{x:Type local:XTextBox}">
+        <Setter Property="NormalImgae" Value="/BeiLiNu.Ui.Controls;component/Resource/TextBox/text_normal.png"/>
+        <Setter Property="MouseOverImage" Value="/BeiLiNu.Ui.Controls;component/Resource/TextBox/text_hover.png"/>
+        <Setter Property="PressedImage" Value="/BeiLiNu.Ui.Controls;component/Resource/TextBox/text_hover.png"/>
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Height"  Value="26"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="NineGrid" Value="5"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="TextMargin" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:XTextBox}">
+                    <Grid x:Name="border">
+                        <local:NineImage  x:Name="PART_Back" Stretch="Fill" Source="{TemplateBinding NormalImgae}" NineGrid="{TemplateBinding NineGrid}"/>
+                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" 
+                                      VerticalAlignment="Top" Margin="{TemplateBinding TextMargin}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Source" TargetName="PART_Back" Value="{Binding MouseOverImage, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="true"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Source" TargetName="PART_Back" Value="{Binding PressedImage, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--RotatePanel-->
+    <Style TargetType="{x:Type local:RotatePanel}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:RotatePanel}">
+                    <Grid>
+                        <Viewport3D x:Name="PART_Viewport" Visibility="Hidden" RenderOptions.EdgeMode="Aliased">
+                            <Viewport3D.Camera>
+                                <PerspectiveCamera x:Name="PART_Camera" Position="{Binding CameraPosition,RelativeSource={RelativeSource TemplatedParent}}" FieldOfView="90"></PerspectiveCamera>
+                            </Viewport3D.Camera>
+                            <ModelVisual3D>
+                                <ModelVisual3D.Content>
+                                    <Model3DGroup>
+                                        <AmbientLight/>
+                                        <DirectionalLight/>
+                                    </Model3DGroup>
+                                </ModelVisual3D.Content>
+                            </ModelVisual3D>
+                            <ModelVisual3D>
+                                <ModelVisual3D.Content>
+                                    <GeometryModel3D x:Name="PART_GeometryModel3D">
+                                        <GeometryModel3D.Geometry>
+                                            <MeshGeometry3D TriangleIndices="0,1,2 2,3,0" TextureCoordinates="0,1 1,1 1,0 0,0" Positions="-0.5,-0.5,0 0.5,-0.5,0 0.5,0.5,0 -0.5,0.5,0"/>
+                                        </GeometryModel3D.Geometry>
+                                        <GeometryModel3D.Transform>
+                                            <Transform3DGroup>
+                                                <RotateTransform3D>
+                                                    <RotateTransform3D.Rotation>
+                                                        <AxisAngleRotation3D x:Name="PART_Rotate"  Axis="{Binding Axis,RelativeSource={RelativeSource TemplatedParent}}" Angle="{Binding Angle,RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                    </RotateTransform3D.Rotation>
+                                                </RotateTransform3D>
+                                            </Transform3DGroup>
+                                        </GeometryModel3D.Transform>
+                                    </GeometryModel3D>
+                                </ModelVisual3D.Content>
+                            </ModelVisual3D>
+                        </Viewport3D>
+                        <Border x:Name="PART_BackWarpper" Background="Transparent" Visibility="Hidden" Opacity="0" />
+                        <Border x:Name="PART_FrontWarpper" Background="Transparent"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--XTabItemImage-->
+    <Style TargetType="{x:Type local:XTabItemImage}">
+        <Setter Property ="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BeiLiNu.Ui.Controls;component/Resource/Table/TabItemImage.Back.png"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MouseOverBrush">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BeiLiNu.Ui.Controls;component/Resource/Table/TabItemImage.Mover.png"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="SelectedBrush">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BeiLiNu.Ui.Controls;component/Resource/Table/TabItemImage.Selected.png"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Height"  Value="75"/>
+        <Setter Property="Header"  Value="TabItem"/>
+        <Setter Property="Foreground"  Value="White"/>
+        <Setter Setter.Property="Control.HorizontalContentAlignment" Setter.Value="Stretch" />
+        <Setter Setter.Property="Control.VerticalContentAlignment" Setter.Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:XTabItemImage}">
+                    <Grid x:Name="templateRoot"  Background="Transparent" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="20"/>
+                        </Grid.RowDefinitions>
+                        <Border x:Name="mainBorder" Grid.RowSpan="1" Background="{TemplateBinding Background}" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" Focusable="False" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" TextElement.Foreground="{TemplateBinding Foreground}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Selector.IsSelected" Value="True">
+                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding SelectedBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="Selector.IsSelected" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding MouseOverBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--XProgressBar-->
+    <Style TargetType="{x:Type local:XProgressBar}">
+        <Setter Property="BackImage" Value="/BeiLiNu.Ui.Controls;component/Resource/Progress/ProgressBkg.png"/>
+        <Setter Property="FrontImgae" Value="/BeiLiNu.Ui.Controls;component/Resource/Progress/ProgressFore.png"/>
+        <Setter Property="NineGrid" Value="2,5,2,5"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="13"/>
+        <Setter Property="FrontMargin" Value="0,0,0,1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:XProgressBar}">
+                    <Grid>
+                        <local:NineImage x:Name="PART_Track" Stretch="Fill" NineGrid="{TemplateBinding NineGrid}" Source="{TemplateBinding BackImage}"/>
+                        <local:NineImage x:Name="PART_Indicator" Stretch="Fill" Source="{TemplateBinding FrontImgae}" NineGrid="{TemplateBinding NineGrid}" HorizontalAlignment="Left" Margin="{TemplateBinding FrontMargin}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--XCheckBox-->
+    <Style TargetType="{x:Type local:XCheckBox}">
+        <Setter Property="ImageHeight" Value="15"/>
+        <Setter Property="ImageWidth" Value="15"/>
+        <Setter Property="NormalImgae" Value="/BeiLiNu.Ui.Controls;component/Resource/CheckBox/checkbox_normal.png"/>
+        <Setter Property="MouseOverImage" Value="/BeiLiNu.Ui.Controls;component/Resource/CheckBox/checkbox_hightlight.png"/>
+        <Setter Property="PressedImage" Value="/BeiLiNu.Ui.Controls;component/Resource/CheckBox/checkbox_pushed.png"/>
+        <Setter Property="CheckImage" Value="/BeiLiNu.Ui.Controls;component/Resource/CheckBox/checkbox_tick_normal.png"/>
+        <Setter Property="CheckMouseOver" Value="/BeiLiNu.Ui.Controls;component/Resource/CheckBox/checkbox_tick_highlight.png"/>
+        <Setter Property="CheckPressed" Value="/BeiLiNu.Ui.Controls;component/Resource/CheckBox/checkbox_tick_highlight.png"/>
+        <Setter Property="ThreeState" Value="/BeiLiNu.Ui.Controls;component/Resource/CheckBox/halfcheckbox_tick_normal.png"/>
+        <Setter Property="ThreeMouseOver" Value="/BeiLiNu.Ui.Controls;component/Resource/CheckBox/halfcheckbox_tick_highlight.png"/>
+        <Setter Property="ThreePressed" Value="/BeiLiNu.Ui.Controls;component/Resource/CheckBox/halfcheckbox_tick_pushed.png"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:XCheckBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="{Binding ImageWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image x:Name="image" Width="{TemplateBinding ImageWidth}" Height="{TemplateBinding ImageHeight}" Source="{TemplateBinding NormalImgae}" Stretch="Fill" VerticalAlignment="Top"/>
+                        <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Grid.Column="1" Margin="4,0,0,0"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Content" Value="{x:Null}"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Margin" TargetName="contentPresenter" Value="0"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Source" TargetName="image" Value="{Binding MouseOverImage, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Source" TargetName="image" Value="{Binding PressedImage, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Source" TargetName="image" Value="{Binding CheckImage, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Source" TargetName="image" Value="{Binding CheckMouseOver, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True"/>
+                                <Condition Property="IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Source" TargetName="image" Value="{Binding CheckPressed, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsThreeState" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Source" TargetName="image" Value="{Binding ThreeState, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsThreeState" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Source" TargetName="image" Value="{Binding ThreeMouseOver, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsThreeState" Value="True"/>
+                                <Condition Property="IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Source" TargetName="image" Value="{Binding ThreePressed, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--XComboBox-->
+    <Style x:Key="ComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="MinHeight" Value="0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <ScrollViewer x:Name="PART_ContentHost" Background="Transparent" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type local:XComboBox}">
+        <Setter Property="NormalImgae" Value="/BeiLiNu.Ui.Controls;component/Resource/TextBox/text_normal.png"/>
+        <Setter Property="MouseOverImage" Value="/BeiLiNu.Ui.Controls;component/Resource/TextBox/text_hover.png"/>
+        <Setter Property="NineGrid" Value="5"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:XComboBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <local:NineImage x:Name="PART_Back" Grid.ColumnSpan="2" Source="{TemplateBinding NormalImgae}" Stretch="Fill" NineGrid="{TemplateBinding NineGrid}" />
+                        <Popup x:Name="PART_Popup" Grid.ColumnSpan="2" IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" Focusable="False" AllowsTransparency="True" PopupAnimation="Fade">
+                            <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}" x:Name="DropDown" Width="{TemplateBinding ActualWidth}">
+                                <local:NineImage Stretch="Fill" Source="/BeiLiNu.Ui.Controls;component/Resource/ComboBox/ComboBoxList_bkg.png" NineGrid="5" />
+                                <ScrollViewer CanContentScroll="True" Margin="2">
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                        <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Hidden"/>
+                        <ContentPresenter HorizontalAlignment="Left" Margin="3,3,23,3" x:Name="ContentSite" VerticalAlignment="Center" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" IsHitTestVisible="False"/>
+                        <local:XCheckBox HorizontalAlignment="Right" VerticalAlignment="Top" ImageHeight="24" ImageWidth="22" NormalImgae="/BeiLiNu.Ui.Controls;component/Resource/ComboBox/ComboBox_normal.png" PressedImage="/BeiLiNu.Ui.Controls;component/Resource/ComboBox/ComboBox_down.png" Grid.Column="1" CheckImage="/BeiLiNu.Ui.Controls;component/Resource/ComboBox/ComboBox_down.png" CheckMouseOver="/BeiLiNu.Ui.Controls;component/Resource/ComboBox/ComboBox_down.png" CheckPressed="/BeiLiNu.Ui.Controls;component/Resource/ComboBox/ComboBox_down.png" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="0,2,2,0" MouseOverImage="/BeiLiNu.Ui.Controls;component/Resource/ComboBox/ComboBox_highlight.png" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Source" TargetName="PART_Back" Value="{Binding MouseOverImage, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter Property="Height" TargetName="DropDown" Value="95"/>
+                        </Trigger>
+                        <Trigger Property="IsEditable" Value="true">
+                            <Setter Property="IsTabStop" Value="false"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="PART_EditableTextBox"/>
+                            <Setter Property="Visibility" Value="Hidden" TargetName="ContentSite"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--XScrollBar-->
+    <Style TargetType="{x:Type local:XScrollBar}">
+        <Setter Property="Width" Value="10"/>
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:XScrollBar}">
+                    <Grid x:Name="GridRoot">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="18"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="18"/>
+                        </Grid.RowDefinitions>
+                        <local:NineImage NineGrid="0,5" Grid.Row="1" Grid.RowSpan="1" Stretch="Fill">
+                            <local:NineImage.Source>
+                                <ImageSource>/BeiLiNu.Ui.Controls;component/Resource/ScrollBar/scrollbar_bar_normal.png</ImageSource>
+                            </local:NineImage.Source>
+                        </local:NineImage>
+                        <RepeatButton x:Name="DecreaseRepeat" Command="ScrollBar.LineUpCommand"/>
+                        <Track x:Name="PART_Track" IsDirectionReversed="True" Orientation="Vertical" Grid.Row="1">
+                            <Track.Resources>
+                                <System:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">42</System:Double>
+                            </Track.Resources>
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton x:Name="PageDown" Background="Transparent" Command="ScrollBar.PageUpCommand">
+                                    <RepeatButton.Style>
+                                        <Style TargetType="{x:Type RepeatButton}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="IsTabStop" Value="False"/>
+                                            <Setter Property="Focusable" Value="False"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                                        <Grid Background="{TemplateBinding Background}"/>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </RepeatButton.Style>
+                                </RepeatButton>
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton x:Name="PageUp" Background="Transparent" Command="ScrollBar.PageDownCommand">
+                                    <RepeatButton.Style>
+                                        <Style TargetType="{x:Type RepeatButton}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="IsTabStop" Value="False"/>
+                                            <Setter Property="Focusable" Value="False"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                                        <Grid Background="{TemplateBinding Background}"/>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </RepeatButton.Style>
+                                </RepeatButton>
+                            </Track.IncreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Height="42">
+                                    <Thumb.Style>
+                                        <Style TargetType="{x:Type Thumb}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Thumb}">
+                                                            <local:NineImage NineGrid="0,5" Stretch="Fill" Source="/BeiLiNu.Ui.Controls;component/Resource/ScrollBar/scrollbar_bar_down.png"/>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Thumb.Style>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                        <RepeatButton x:Name="IncreaseRepeat" Command="ScrollBar.LineDownCommand" Grid.Row="2"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

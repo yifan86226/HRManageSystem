@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Best.VWPlatform.Resources;component/Themes/ControlTemplate/ComboBox.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Resources;component/Themes/ControlTemplate/DataGrid.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Resources;component/Themes/ControlTemplate/Thumb.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Resources;component/Themes/ControlTemplate/ScrollBar.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Resources;component/Themes/ControlTemplate/Checkbox.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Resources;component/Themes/ControlTemplate/RadioButton.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Resources;component/Themes/ControlTemplate/Button.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Resources;component/Themes/ControlTemplate/Slider.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Resources;component/Themes/ControlTemplate/Textbox.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Best.VWPlatform.Resources;component/Themes/Business/StationTemplate.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
