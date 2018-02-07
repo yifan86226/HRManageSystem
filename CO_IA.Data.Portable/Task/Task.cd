@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="CO_IA.Data.Task">
+    <Position X="3" Y="0.5" Width="2.75" />
+    <Members>
+      <Property Name="Content" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="FormState" Type="AT_BC.Data.FormState" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.562" Y="3.131" />
+        <Point X="5.562" Y="4.375" />
+        <Point X="7.75" Y="4.375" />
+        <Point X="7.75" Y="4.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAgEgEAUAYBAFACCAAAEwgBAAEAIAAAACCAA=</HashCode>
+      <FileName>Task\Task.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DisturbInfo" />
+      <Property Name="Urgency" />
+      <Property Name="TaskType" />
+      <Property Name="FormState" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Executors" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CO_IA.Data.TaskDisturbInfo">
+    <Position X="9.75" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAAACAAAAECAIACAgAAAgAAAAEgAIgAIAAIAAAAAA=</HashCode>
+      <FileName>Task\TaskDisturbInfo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DisturbLevel" />
+      <Property Name="DisturbType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CO_IA.Data.ExecutorCompleteState">
+    <Position X="7" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAAAQAAAAEA=</HashCode>
+      <FileName>Task\ExecutorCompleteState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CO_IA.Data.TaskExecuteConclusion">
+    <Position X="13" Y="0.75" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>TAAAAAwgAIAAIAQAQAAAACAAQAAgABAAAAAAQAIACAA=</HashCode>
+      <FileName>Task\TaskExecuteConclusion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DisposeType" />
+      <Property Name="CompleteState" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="StuffList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CO_IA.Data.TaskStuff">
+    <Position X="19.25" Y="0.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAAIQAAAAAQARAAAAjAAAAAAAIAgAAA=</HashCode>
+      <FileName>Task\TaskStuff.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="CO_IA.Types.TaskUrgency">
+    <Position X="2.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAACAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Types\TaskUrgency.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CO_IA.Types.TaskType">
+    <Position X="4.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAACAAAAAAAAAAAAAAAAIAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Types\TaskType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AT_BC.Data.FormState">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="CO_IA.Types.DisturbLevel">
+    <Position X="9" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAIAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Types\DisturbLevel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CO_IA.Types.DisturbType">
+    <Position X="10.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAg=</HashCode>
+      <FileName>Types\DisturbType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CO_IA.Types.DisturbDisposeType">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAABIAAAAAAAAAAAAAAAAAAAAAAAAGAAAA=</HashCode>
+      <FileName>Types\DisturbDisposeType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CO_IA.Types.TaskCompleteState">
+    <Position X="17" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAACAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Types\TaskCompleteState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

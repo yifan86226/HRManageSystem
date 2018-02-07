@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="CO_IA.Client.Orgs.OrgToMapStyle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:convert ="clr-namespace:CO_IA.Client.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="72" Margin="0,-40,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Tag="">
+    <UserControl.Resources>
+        <convert:GroupStateConverter x:Key="dutyConverter"></convert:GroupStateConverter>
+    </UserControl.Resources>
+    <UserControl.Effect>
+        <DropShadowEffect Color="#AA118F11"  ShadowDepth="2"/>
+    </UserControl.Effect>
+    <Border x:Name="checkBorder"
+            CornerRadius="0" 
+            BorderThickness="0"
+            BorderBrush="#7733A6A1">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="8"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="0,0,0,0" BorderBrush="#7733A6A1">
+                <Image x:Name="img" Margin="0"
+                   AllowDrop="True"
+                   Width="32"
+                   Height="32"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"  > 
+                    <Image.Source>
+                        <MultiBinding Converter="{StaticResource dutyConverter}">
+                            <Binding  Path="DUTY"/>
+                            <Binding Path="OnLine"/>
+                        </MultiBinding>
+                    </Image.Source>
+                </Image>
+                <!--Source="{Binding Converter={StaticResource dutyConverter}}"-->
+            </Border>
+            <TextBlock x:Name="txtGroupname" Grid.Column="1" Text="{Binding NAME}" FontSize="{DynamicResource DefaultFontSizeMap2}"
+                       AllowDrop="True" 
+                       Margin="2,0,0,0"
+                       VerticalAlignment="Center" />
+            <Path Data="M308.75,173.875 L306.5,180.125 314.625,173.875 z" Fill="#AA33A6A1"   Stretch="Fill"  Width="20" Grid.Row="1" HorizontalAlignment="Left" Margin="0,-1,0,0"/>
+            <!--<Image Source="/CO_IA.UI.PersonSchedule;component/Images/delete.png"
+                   Grid.Column="2" 
+                   Width="16" 
+                   Height="16" 
+                   VerticalAlignment="Top"
+                   MouseLeftButtonDown="Image_MouseLeftButtonDown" Visibility="Collapsed"/>-->
+        </Grid>
+    </Border>
+</UserControl>

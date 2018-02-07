@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D52A57D6-99B0-4BCF-9998-68099E2EDC78}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CO_IA.Data</RootNamespace>
+    <AssemblyName>CO_IA.Data.Portable</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile14</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Activity.cs" />
+    <Compile Include="ActivityPlaceLocationImage.cs" />
+    <Compile Include="ActivitySummarize\ActivityGuaranteeType.cs" />
+    <Compile Include="ActivitySummarize\GuaranteeProcess.cs" />
+    <Compile Include="ActivitySummarize\STTemplate.cs" />
+    <Compile Include="ActivitySummarize\SummarizeChart.cs" />
+    <Compile Include="ActivitySummarize\SummarizeDoc.cs" />
+    <Compile Include="ActivitySummarize\SummarizeTotalData.cs" />
+    <Compile Include="ActivityTypeDef.cs" />
+    <Compile Include="Collection\FreqLineDataItem.cs" />
+    <Compile Include="Collection\OperateLog.cs" />
+    <Compile Include="EquipmentClass.cs" />
+    <Compile Include="EquipmentClassFreqRange.cs" />
+    <Compile Include="ExtentProgramConfig.cs" />
+    <Compile Include="FileManage\CatalogInfo.cs" />
+    <Compile Include="FileManage\FileAttachment.cs" />
+    <Compile Include="FileManage\FileInfo.cs" />
+    <Compile Include="FileManage\RegulationsTreeInfo.cs" />
+    <Compile Include="FreqPlanningProgress.cs" />
+    <Compile Include="FreqPlanningStepState.cs" />
+    <Compile Include="FreqPlan\ActivityEquipmentLoadStrategy.cs" />
+    <Compile Include="FreqStation\ActivityEquipment.cs" />
+    <Compile Include="FreqPlan\EmeClearState.cs" />
+    <Compile Include="FreqStation\ActivityOrganization.cs" />
+    <Compile Include="FreqStation\EquInspectionQueryCondition.cs" />
+    <Compile Include="FreqStation\EquipmentInspection.cs" />
+    <Compile Include="FreqStation\LicenseTemplete.cs" />
+    <Compile Include="FreqStation\PlaceFreqPlan.cs" />
+    <Compile Include="FreqStation\SurroundStationInfo.cs" />
+    <Compile Include="Gps\GpsDataAnalyseConfig.cs" />
+    <Compile Include="Gps\GpsOrbitValidator.cs" />
+    <Compile Include="Gps\IGpsDataValidationParam.cs" />
+    <Compile Include="IGpsOrbitReceiver.cs" />
+    <Compile Include="LicenseItem.cs" />
+    <Compile Include="ActivityRight.cs" />
+    <Compile Include="Monitor\MonitorPlan.cs" />
+    <Compile Include="PersonPlan\PP_PersonLeaveInfo.cs" />
+    <Compile Include="PersonPlan\ScheduleOrg.cs" />
+    <Compile Include="PlanDatabase\MonitorStation\MobileStationQueryCondition.cs" />
+    <Compile Include="PlanDatabase\OrgQueryCondition.cs" />
+    <Compile Include="PlanDatabase\Persons\CodeDicItem.cs" />
+    <Compile Include="PlanDatabase\Persons\PersonRewardPunishInfo.cs" />
+    <Compile Include="PlanDatabase\Persons\PersonOutInfo.cs" />
+    <Compile Include="PlanDatabase\Persons\PersonBasicInfo.cs" />
+    <Compile Include="Setting\StationClass.cs" />
+    <Compile Include="Statistic\EquinspectionStatStatisticData.cs" />
+    <Compile Include="Statistic\PersonPlanStatisticData.cs" />
+    <Compile Include="Statistic\PersonQuantitativeStatisticData.cs" />
+    <Compile Include="Statistic\StringPair.cs" />
+    <Compile Include="Statistic\StringPairList.cs" />
+    <Compile Include="Task\ExecutorCompleteState.cs" />
+    <Compile Include="Types\DisturbLevel.cs" />
+    <Compile Include="Types\TaskCompleteState.cs" />
+    <Compile Include="Types\TaskFormat.cs" />
+    <Compile Include="Task\Task.cs" />
+    <Compile Include="Task\TaskDisturbInfo.cs" />
+    <Compile Include="Task\TaskExecuteConclusion.cs" />
+    <Compile Include="Task\TaskStuff.cs" />
+    <Compile Include="Template\TemplatePlace.cs" />
+    <Compile Include="Types\DataLoggingMode.cs" />
+    <Compile Include="Types\DataStateEnum.cs" />
+    <Compile Include="PersonPlan\PP_DepartmentInfo.cs" />
+    <Compile Include="PP_Duty.cs" />
+    <Compile Include="PersonPlan\Schedule.cs" />
+    <Compile Include="PersonPlan\ScheduleDetail.cs" />
+    <Compile Include="PlanDatabase\Equipment.cs" />
+    <Compile Include="PlanDatabase\EquipmentLoadStrategy.cs" />
+    <Compile Include="PlanDatabase\ExamCondition.cs" />
+    <Compile Include="PlanDatabase\Organization.cs" />
+    <Compile Include="Setting\BusinessType.cs" />
+    <Compile Include="Collection\EnTryModeEnum.cs" />
+    <Compile Include="FreqPlan\ClearEunm.cs" />
+    <Compile Include="FreqPlan\EmeClearInfo.cs" />
+    <Compile Include="FreqPlan\EmeClearQueryCondition.cs" />
+    <Compile Include="FreqPlan\ActivityEquipmentInfo.cs" />
+    <Compile Include="FreqPlan\CustomPoint .cs" />
+    <Compile Include="FreqPlan\FreqEmitInfo.cs" />
+    <Compile Include="FreqPlan\FreqPlanActivity.cs" />
+    <Compile Include="FreqPlan\FreqPlanSegment.cs" />
+    <Compile Include="Freq\FreqUse.cs" />
+    <Compile Include="ActivityMessage.cs" />
+    <Compile Include="FreqPlan\ActivityORGInfo.cs" />
+    <Compile Include="ActivityPlace.cs" />
+    <Compile Include="Collection\AnalysisResult.cs" />
+    <Compile Include="Collection\EmitInfo.cs" />
+    <Compile Include="Collection\PolarEnum.cs" />
+    <Compile Include="Collection\SignalTypeEnum.cs" />
+    <Compile Include="Collection\StationBase.cs" />
+    <Compile Include="PlanDatabase\ExamPlace.cs" />
+    <Compile Include="Setting\JHCondition.cs" />
+    <Compile Include="Setting\SecretFreq.cs" />
+    <Compile Include="Gps\GpsOrbit.cs" />
+    <Compile Include="Gps\GpsOrbitFilter.cs" />
+    <Compile Include="MapConfig.cs" />
+    <Compile Include="Freq\AssignFreq.cs" />
+    <Compile Include="Freq\CrossFreqResult.cs" />
+    <Compile Include="Freq\EMEEnvironment.cs" />
+    <Compile Include="MonitorPlan\DetailMonitorPlanQuery.cs" />
+    <Compile Include="MonitorPlan\FrequencyRange.cs" />
+    <Compile Include="MonitorPlan\OrgDetail.cs" />
+    <Compile Include="PlanDatabase\SecurityGrade.cs" />
+    <Compile Include="PlanDatabase\Vehicle\VehicleQueryCondition.cs" />
+    <Compile Include="StationPlan\EquipmentAssignFreq.cs" />
+    <Compile Include="Freq\FreqPlanInfo.cs" />
+    <Compile Include="PlanDatabase\MonitorStation\FixedStationQueryCondition.cs" />
+    <Compile Include="Types\AntTypeEnum.cs" />
+    <Compile Include="Types\DisturbType.cs" />
+    <Compile Include="Types\FixedStationTypeEnums.cs" />
+    <Compile Include="FreqStation\IMInterfereInfo.cs" />
+    <Compile Include="FreqStation\InterfereInfo.cs" />
+    <Compile Include="FreqStation\InterfereObject.cs" />
+    <Compile Include="FreqStation\InterfereEnums.cs" />
+    <Compile Include="MonitorPlan\DetailMonitorPlan.cs" />
+    <Compile Include="MonitorPlan\Sealed_PP_OrgInfo.cs" />
+    <Compile Include="PersonPlan\PP_EqupInfo.cs" />
+    <Compile Include="PersonPlan\PP_OrgInfo.cs" />
+    <Compile Include="PersonPlan\PP_PersonInfo.cs" />
+    <Compile Include="PersonPlan\PP_VehicleInfo.cs" />
+    <Compile Include="FreqStation\CheckStateEnum.cs" />
+    <Compile Include="FreqStation\EquipmentCheck.cs" />
+    <Compile Include="StationPlan\EquipmentCheckQueryCondition.cs" />
+    <Compile Include="StationPlan\LicenseTempleteInfo.cs" />
+    <Compile Include="StationPlan\MonitorStatEnums.cs" />
+    <Compile Include="Setting\EquipmentQueryCondition.cs" />
+    <Compile Include="FileManage\RegulationsInfo.cs" />
+    <Compile Include="Setting\ReceiveQueryCondition.cs" />
+    <Compile Include="FreqPlan\SecurityClassGrade.cs" />
+    <Compile Include="Setting\SendQueryCondition.cs" />
+    <Compile Include="TaskManage\TaskListInfo.cs" />
+    <Compile Include="TaskManage\TaskQueryList.cs" />
+    <Compile Include="Template\ActivityTemplate.cs" />
+    <Compile Include="Template\OrganizationTemplate.cs" />
+    <Compile Include="Template\StaffInfo.cs" />
+    <Compile Include="Types\ActivityStep.cs" />
+    <Compile Include="Types\ActivityType.cs" />
+    <Compile Include="ActivityPlaceLocation.cs" />
+    <Compile Include="Statistic\EmeClearStatisticData.cs" />
+    <Compile Include="Statistic\FreqAssignStatisticData.cs" />
+    <Compile Include="Statistic\RoundStatStatisticData.cs" />
+    <Compile Include="Types\ActivityStage.cs" />
+    <Compile Include="Types\EquipmentOrigin.cs" />
+    <Compile Include="CommunicationSystem.cs" />
+    <Compile Include="PlanDatabase\Vehicle\VehicleInfo.cs" />
+    <Compile Include="FileManage\FileManageInfo.cs" />
+    <Compile Include="IdentifiableData.cs" />
+    <Compile Include="Monitor\MonitorTask.cs" />
+    <Compile Include="Monitor\MonitorTaskTypeEnum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityClass.cs" />
+    <Compile Include="Setting\Antenna.cs" />
+    <Compile Include="PlanDatabase\ORGInfo.cs" />
+    <Compile Include="StationPlan\MobileEquipmentInfo.cs" />
+    <Compile Include="StationPlan\MobileStationInfo.cs" />
+    <Compile Include="PlanDatabase\MonitorStation\FixedStationInfo.cs" />
+    <Compile Include="PlanDatabase\MonitorStation\MonitorStationAntInfo.cs" />
+    <Compile Include="PlanDatabase\MonitorStation\MonitorStationEquInfo.cs" />
+    <Compile Include="StationPlan\ProtectLevelData.cs" />
+    <Compile Include="Setting\ReceiveParameter.cs" />
+    <Compile Include="Setting\SendParameter.cs" />
+    <Compile Include="Setting\EquipmentInfo.cs" />
+    <Compile Include="StationPlan\StationBaseInfo.cs" />
+    <Compile Include="Statistic\StatisticData.cs" />
+    <Compile Include="Statistic\FreqPartPlanStatisticData.cs" />
+    <Compile Include="Statistic\EquStatisticData.cs" />
+    <Compile Include="Statistic\StatisticDataSource.cs" />
+    <Compile Include="Statistic\StatisticEnums.cs" />
+    <Compile Include="TaskManage\DisturbTaskInfo.cs" />
+    <Compile Include="TaskManage\FrequencyrangeInfo.cs" />
+    <Compile Include="TaskManage\InterimmonitorInfo.cs" />
+    <Compile Include="FileManage\RuleFile.cs" />
+    <Compile Include="TaskManage\TaskInfo.cs" />
+    <Compile Include="Types\FreqPlanningStep.cs" />
+    <Compile Include="Types\PolarizationEnum.cs" />
+    <Compile Include="Types\SecurityGroupDuty.cs" />
+    <Compile Include="Types\DisturbDisposeType.cs" />
+    <Compile Include="Types\TaskType.cs" />
+    <Compile Include="Types\TaskUrgency.cs" />
+    <Compile Include="VideoSetting.cs" />
+    <Compile Include="WorkLog\WorkLog.cs" />
+    <Compile Include="WorkLog\WorkLogQueryCondition.cs" />
+    <Compile Include="WorkLog\WorkLogStuff.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AT_BC.Data.Portable">
+      <HintPath>..\Output\AT_BC.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="EMCS.Types">
+      <HintPath>..\Output\EMCS.Types.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Template\Template.cd" />
+    <None Include="Task\Task.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
