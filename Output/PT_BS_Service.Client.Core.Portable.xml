@@ -1,0 +1,559 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PT_BS_Service.Client.Core.Portable</name>
+    </assembly>
+    <members>
+        <member name="T:PT_BS_Service.Client.Core.ChannelAddressType">
+            <summary>
+            信道地址类型枚举
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ChannelAddressType.None">
+            <summary>
+            不存在的值
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ChannelAddressType.Final">
+            <summary>
+            最终值,通过目录服务获取地址创建的信道
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ChannelAddressType.Cache">
+            <summary>
+            缓存,通过缓存地址创建的信道
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ChannelAddressType.Debug">
+            <summary>
+            调试,通过本地调试服务地址创建的信道
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ChannelAddressType.LoadBalancing">
+            <summary>
+            负载均衡,该类型信道需要重新查找地址才能使用
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.ChannelWrapper`1">
+            <summary>
+            信道包装类,通过标识标记信道类型(从目录服务获取、本地缓存或者调试地址)，为重新获取地址提供依据
+            </summary>
+            <typeparam name="TChannel">包装的信道类型</typeparam>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ChannelWrapper`1.#ctor(`0,PT_BS_Service.Client.Core.ChannelAddressType,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="channel">包装的信道</param>
+            <param name="addressType">信道类型</param>
+            <param name="address">信道地址</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ChannelWrapper`1.Wrapper(`0,PT_BS_Service.Client.Core.ChannelAddressType,System.String)">
+            <summary>
+            创建信道包装对象
+            </summary>
+            <param name="channel">要包装的信道</param>
+            <param name="addressType">信道类型</param>
+            <param name="address">信道地址</param>
+            <returns>信道包装对象</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ChannelWrapper`1.CreateChannelWrapper(PT_BS_Service.Client.Core.ServiceAddressWrapper,System.Func{PT_BS_Service.Client.Core.ServiceAddressWrapper,`0})">
+            <summary>
+            创建信道包装类型
+            </summary>
+            <param name="addressWrapper">服务地址包装对象</param>
+            <param name="CreateChannel">创建信道的方法引用</param>
+            <returns>创建的信道</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ChannelWrapper`1.CreateLoadBalancingExistsChannel">
+            <summary>
+            创建负载均衡信道的包装对象
+            </summary>
+            <returns>信道包装对象</returns>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ChannelWrapper`1.Channel">
+            <summary>
+            获取包装的信道
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ChannelWrapper`1.AddressType">
+            <summary>
+            获取信道类型
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ChannelWrapper`1.ChannelAddress">
+            <summary>
+            获取信道地址
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.ClientFrameworkHelper">
+            <summary>
+            客户端框架辅助类
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ClientFrameworkHelper.GetClientContractName``1">
+            <summary>
+            获取生成客户端封装结构的接口名称
+            </summary>
+            <typeparam name="TClient">要分析的客户端类型</typeparam>
+            <returns>客户端封装的接口名称</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ClientFrameworkHelper.GetChannelFactoryContractName``1">
+            <summary>
+            获取信道工厂对应的接口名称
+            </summary>
+            <returns>客户端封装的接口名称</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ClientFrameworkHelper.GetServiceAddress(System.String,System.Int32)">
+            <summary>
+            获取指定ip和port表示的服务地址
+            </summary>
+            <param name="ipAddress">ip地址</param>
+            <param name="port">端口号</param>
+            <returns>服务地址</returns>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.DebugServiceManager">
+            <summary>
+            本地调试服务管理器
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.DebugServiceManager.dicDebugServices">
+            <summary>
+            调试服务字典,key为服务名称,value为服务地址
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.DebugServiceManager.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="dicDebugServices">初始化调试服务信息表</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.DebugServiceManager.AddDebugService(System.String,System.String)">
+            <summary>
+            手动添加调试信息-add by qinwei
+            </summary>
+            <param name="interfaceName"></param>
+            <param name="address"></param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.DebugServiceManager.TryGetServiceAddress``1(System.String@)">
+            <summary>
+            获取服务地址
+            </summary>
+            <typeparam name="T">要查找地址的类型</typeparam>
+            <param name="address">服务地址，如果未找到返回string类型缺省值</param>
+            <returns>成功找到服务地址返回true，否则返回false</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.DebugServiceManager.TryGetServiceAddress(System.String,System.String@)">
+            <summary>
+            从调试配置中获取参数指定协议地址
+            </summary>
+            <param name="contractName">要获取服务地址的协议名称</param>
+            <param name="address">协议服务地址,如果在配置中找到协议,该值为有效地址,否则该值为字符串默认值</param>
+            <returns>获取协议地址结果 true:成功获取协议地址;false:未找到协议地址</returns>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.ClientFrameworkNotInitException">
+            <summary>
+            客户端框架未初始化异常
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ClientFrameworkNotInitException.Message">
+            <summary>
+            重写基类属性,获取描述当前异常的消息
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.IBeRestInvoker">
+            <summary>
+            Rest服务调用封装接口定义
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.IBeRestInvoker.WebGetAsync``1(System.String,System.String,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``0}})">
+            <summary>
+            调用GET方法
+            </summary>
+            <typeparam name="T">结果的类型</typeparam>
+            <param name="contractName">Rest对应的接口名称</param>
+            <param name="operationRequest">请求的操作</param>
+            <param name="callback">对结果的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.IBeRestInvoker.WebPutAsync``2(System.String,System.String,``0,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``1}})">
+            <summary>
+            调用PUT方法
+            </summary>
+            <typeparam name="TData">请求数据的类型</typeparam>
+            <typeparam name="TResult">结果的类型</typeparam>
+            <param name="contractName">Rest对应的接口名称</param>
+            <param name="operationRequest">请求的操作</param>
+            <param name="data">请求的数据</param>
+            <param name="callback">对结果的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.IBeRestInvoker.WebPostAsync``2(System.String,System.String,``0,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``1}})">
+            <summary>
+            调用POST方法
+            </summary>
+            <typeparam name="TData">请求数据的类型</typeparam>
+            <typeparam name="TResult">结果的类型</typeparam>
+            <param name="contractName">Rest对应的接口名称</param>
+            <param name="operationRequest">请求的操作</param>
+            <param name="data">请求的数据</param>
+            <param name="callback">对结果的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.IBeRestInvoker.WebDeleteAsync``2(System.String,System.String,``0,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``1}})">
+            <summary>
+            调用DELETE方法
+            </summary>
+            <typeparam name="TData">请求数据的类型</typeparam>
+            <typeparam name="TResult">结果的类型</typeparam>
+            <param name="contractName">Rest对应的接口名称</param>
+            <param name="operationRequest">请求的操作</param>
+            <param name="data">请求的数据</param>
+            <param name="callback">对结果的操作</param>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.IBeRestOperationProxy">
+            <summary>
+            Rest服务调用代理接口定义
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.IBeRestOperationProxy.WebGetAsync``1(System.String,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``0}})">
+            <summary>
+            调用GET方法
+            </summary>
+            <typeparam name="T">结果的类型</typeparam>
+            <param name="operationRequest">请求的地址</param>
+            <param name="callback">对结果的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.IBeRestOperationProxy.WebInvokeAsync``2(System.String,PT_BS_Service.Client.Core.BeRestInvokeType,``0,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``1}})">
+            <summary>
+            调用操作方法
+            </summary>
+            <typeparam name="TData">请求数据的类型</typeparam>
+            <typeparam name="TResult">结果的类型</typeparam>
+            <param name="operationRequest">请求的地址</param>
+            <param name="operationType">操作类型,应该为PUT、POST\DELETE其中之一</param>
+            <param name="data">请求的数据</param>
+            <param name="callback">对结果的操作</param>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.BeRestInvokeType">
+            <summary>
+            操作类型,包括(POST,PUT,DELETE)
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.BeRestInvokeType.POST">
+            <summary>
+            提交数据
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.BeRestInvokeType.PUT">
+            <summary>
+            新增数据
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.BeRestInvokeType.DELETE">
+            <summary>
+            删除数据
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.RestFaultException">
+            <summary>
+            Rest服务WebException包装类,负责接收ExceptionDetail内容
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.RestFaultException.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">异常消息</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.RestFaultException.#ctor(System.String,System.ServiceModel.ExceptionDetail)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">异常消息</param>
+            <param name="detail">异常明细信息</param>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.RestFaultException.Detail">
+            <summary>
+            获取或设置异常详细信息
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.RestFaultException.StackTrace">
+            <summary>
+            获取异常堆栈信息
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.ServiceAddressManager">
+            <summary>
+            服务地址管理器,负责处理服务地址缓存及读取
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressManager.reLoadCacheErrorCount">
+            <summary>
+            最大接口地址错误次数,当接口地址错误次数达到此值,将向目录服务重新申请缓存
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressManager.timer">
+            <summary>
+            定时器,负责刷新
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressManager.channelFactories">
+            <summary>
+            信道地址字典
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressManager.counter">
+            <summary>
+            当前错误计数,该计数标记当前地址管理器提供的地址错误次数
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressManager.LoadService">
+            <summary>
+            加载服务代理
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressManager.syncObjForServiceDic">
+            <summary>
+            读写服务缓存同步对象
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressManager.syncLoadObj">
+            <summary>
+            加载服务缓存同步对象
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressManager.isInit">
+            <summary>
+            初始化标识
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressManager.isLoading">
+            <summary>
+            加载标识,true:当前对象正在加载服务缓存地址
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressManager.#ctor(System.Action{System.Action{System.Collections.Generic.Dictionary{System.String,System.String}},System.Action{System.Object}})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="reloadService">重新加载服务方法</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressManager.TryGetChannelFactory(System.String,PT_BS_Service.Client.Core.ChannelFactoryAddress@)">
+            <summary>
+            从当前服务地址管理器中获取信道工厂
+            </summary>
+            <param name="contractName">要获取信道工厂的协议名称</param>
+            <param name="factoryAddress">服务地址,如果找到则为实际地址,否则为null</param>
+            <returns>如果成功找到,返回true,否则返回false</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressManager.GetServiceAddress(System.String)">
+            <summary>
+            获取参数指定服务接口名称的地址
+            </summary>
+            <param name="contractName">要查找的服务接口名称</param>
+            <returns>服务地址包装类,提供实际的地址和该地址的类型</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressManager.ResetCache(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            重置服务器地址缓存
+            </summary>
+            <param name="serviceDic">新的服务器地址字典</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressManager.ReleaseManager">
+            <summary>
+            释放当前管理器,主要服务释放定时器
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressManager.CacheServiceAsync(System.Action{System.Object})">
+            <summary>
+            缓存服务地址
+            </summary>
+            <param name="callback">缓存服务地址后回调方法</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressManager.CacheService(System.Action{System.Object})">
+            <summary>
+            缓存服务地址
+            </summary>
+            <param name="callback">缓存服务地址后回调方法</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressManager.SetServiceAddress``1(System.String,System.ServiceModel.Channels.IChannelFactory)">
+            <summary>
+            设置参数指定接口服务地址
+            </summary>
+            <typeparam name="TChannel">接口类型</typeparam>
+            <param name="address">服务地址</param>
+            <param name="factory">信道工厂类</param>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ServiceAddressManager.IsInit">
+            <summary>
+            获取初始化参数值,该值为true,说明至少缓存过一次服务地址
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.ChannelFactoryAddress">
+            <summary>
+            信道工厂地址类,服务提供服务地址及使用过的ChannelFactory缓存
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ChannelFactoryAddress.ChannelFactoryList">
+            <summary>
+            获取或限制设置信道工厂
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ChannelFactoryAddress.ServiceAddress">
+            <summary>
+            获取或限制设置服务地址
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.ServiceAddressNotFoundException">
+            <summary>
+            未找到服务地址异常
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressNotFoundException.#ctor(System.Type)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="type">引发异常的服务协议类型</param>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ServiceAddressNotFoundException.ContractType">
+            <summary>
+            发生异常的服务协议类型
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ServiceAddressNotFoundException.Message">
+            <summary>
+            异常提示信息
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.ServiceAddressWrapper">
+            <summary>
+            服务地址包装类型
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressWrapper.NonExistServiceWrapper">
+            <summary>
+            对不存在的地址包装
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressWrapper.LoadBalancingServiceWrapper">
+            <summary>
+            对负载均衡类型的服务地址的包装
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressWrapper.#ctor(PT_BS_Service.Client.Core.ChannelAddressType)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="addressType">地址类型</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressWrapper.#ctor(PT_BS_Service.Client.Core.ChannelAddressType,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="addressType">地址类型</param>
+            <param name="address">服务地址(格式为IP:Port)</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceAddressWrapper.CreateAddressWrapper(PT_BS_Service.Client.Core.ChannelAddressType,System.String)">
+            <summary>
+            创建地址包装类对象
+            </summary>
+            <param name="addressType">要创建的地址包装类型</param>
+            <param name="address">要包装的地址</param>
+            <returns>服务地址包装结构</returns>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressWrapper.address">
+            <summary>
+            服务地址
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceAddressWrapper.addressType">
+            <summary>
+            地址类型
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ServiceAddressWrapper.Address">
+            <summary>
+            获取服务地址
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ServiceAddressWrapper.AddressType">
+            <summary>
+            获取地址类型
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.ServiceCacheAddressType">
+            <summary>
+            服务缓存地址类型枚举
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceCacheAddressType.NonExistent">
+            <summary>
+            不存在地址
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceCacheAddressType.Existent">
+            <summary>
+            缓存中存在地址
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceCacheAddressType.LoadBalancing">
+            <summary>
+            需要负载平衡
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceCacheAddressType.Debug">
+            <summary>
+            调试配置中存在地址
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Core.ServiceOperationResult`1">
+            <summary>
+            服务操作结果包装类
+            </summary>
+            <typeparam name="T">结果类型</typeparam>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceOperationResult`1.exception">
+            <summary>
+            异常信息,如果该成员不为空说明调用服务出错
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Core.ServiceOperationResult`1.result">
+            <summary>
+            服务调用结果,如果没有异常发生,该字段有效
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceOperationResult`1.#ctor(`0)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="result">有效的服务返回结果</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceOperationResult`1.#ctor(System.Exception,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="exception">服务调用发生异常</param>
+            <param name="tarAddress">tarAddress</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Core.ServiceOperationResult`1.op_Implicit(`0)~PT_BS_Service.Client.Core.ServiceOperationResult{`0}">
+            <summary>
+            隐式将T类型数据转换为当前类型数据
+            </summary>
+            <param name="value">要转换的结果数据</param>
+            <returns>对参数指定数据的包装结果</returns>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ServiceOperationResult`1.Result">
+            <summary>
+            获取服务调用结果,如果服务调用发生异常,访问该字段将重新抛出异常
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ServiceOperationResult`1.Exception">
+            <summary>
+            获取服务调用异常引用
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Core.ServiceOperationResult`1.IsValid">
+            <summary>
+            获取当前结果有效标识,true:结果有效;false:结果无效,有异常发生
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1073 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PT_BS_Service.Base</name>
+    </assembly>
+    <members>
+        <member name="T:PT_BS_Service.Core.BePluginService">
+            <summary>
+            插件服务
+            </summary>
+            <summary>
+            插件服务-运行时管理相关函数
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceBase">
+            <summary>
+            WCF服务基类,除了继承基类对客户端使用的封装外,还提供了对数据库使用的封装
+            </summary>
+            <summary>
+            WCF服务基类-运行时管理扩展
+            </summary>
+            <summary>
+            WCF服务基类-运行时管理扩展
+            </summary>
+            <summary>
+            WCF服务基类,除了继承基类对客户端使用的封装外,还提供了对数据库使用的封装
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeBasicServiceBase">
+            <summary>
+            WCF服务基类,封装对客户端的使用
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeBasicServiceBase.InvokeService``1(System.Action{``0})">
+            <summary>
+            执行参数指定方法
+            </summary>
+            <typeparam name="TChannel">信道类型</typeparam>
+            <param name="serviceInvocation">要执行的方法代理</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeBasicServiceBase.InvokeService``2(System.Func{``0,``1})">
+            <summary>
+            执行参数指定的方法
+            </summary>
+            <typeparam name="TChannel">信道类型</typeparam>
+            <typeparam name="TResult">执行结果类型</typeparam>
+            <param name="serviceInvocation">要执行的方法代理</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeBasicServiceBase.Dispose">
+            <summary>
+            IDisposable接口实现,应该在这里释放非托管资源
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.Invoke(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Action{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper})">
+            <summary>
+            利用数据库配置参数执行制定的操作
+            </summary>
+            <param name="paramSetting">要在其上执行操作的配置参数,系统将根据该组参数生成操作接口</param>
+            <param name="dbInvocation">要执行的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.Invoke``1(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Func{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper,``0})">
+            <summary>
+            利用数据库配置参数执行制定的操作
+            </summary>
+            <typeparam name="TResult">数据库执行操作结果类型</typeparam>
+            <param name="paramSetting">要在其上执行操作的配置参数,系统将根据该组参数生成操作接口</param>
+            <param name="dbInvocation">要执行的操作</param>
+            <returns>操作执行结果</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.CreateWrapper(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,PT_BS_Service.Core.BeServiceBase)">
+            <summary>
+            创建操作包装类
+            </summary>
+            <param name="paramSetting">要包装的操作参数配置</param>
+            <param name="childInstance">调用此函数BeServiceBase的派生类，静态调用时可传null</param>
+            <returns>操作包装类</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.GetConnectParameter(PT_BS_Service.Core.BeServiceBase.DatabaseConfigure)">
+            <summary>
+            获取数据库连接参数,派生类可以根据自己的实际配置重写该方法,如果不重写,将向ISubsystem接口按照参数指定子系统和分类名称获取连接参数
+            </summary>
+            <param name="config">数据库配置</param>
+            <returns>数据库连接参数</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.StaticGetConnectParameter(PT_BS_Service.Core.BeServiceBase.DatabaseConfigure)">
+            <summary>
+            获取数据库连接参数,派生类可以根据自己的实际配置重写该方法,如果不重写,将向ISubsystem接口按照参数指定子系统和分类名称获取连接参数
+            </summary>
+            <param name="config">数据库配置</param>
+            <returns>数据库连接参数</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.StaticCreateDBOperator(PT_BS_Service.Core.BeServiceBase.DatabaseConfigure,PT_BS_Service.Core.BeServiceBase)">
+            <summary>
+            创建数据库操作接口
+            </summary>
+            <param name="config">数据库配置</param>
+            <param name="childInstance">当前调用的服务基类实例</param>
+            <returns>数据库操作接口</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.StaticGetServerRuntimeVariable(System.String,System.String)">
+            <summary>
+            根据参数名称和索引快速获取所在应用程序服务器的运行时变量值
+            </summary>
+            <param name="varClassName">分类名称</param>
+            <param name="variableName">参数名称</param>
+            <returns>参数值</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.StaticUpdateRuntimeMethodParams(PT.Toolkit.Portable.Runtime.RuntimeMethodParamsUpdateContext)">
+            <summary>
+            更改运行时函数参数定义模型的初始值
+            </summary>
+            <param name="updateContext">更新信息</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.StaticGetLogOutputOptionVariableValue(System.String,System.String)">
+            <summary>
+            获取日志开关类变量值
+            </summary>
+            <param name="className">分类名</param>
+            <param name="varName">变量名</param>
+            <returns>变量值</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.RegisterLog(PT.Profile.Types.LogContent)">
+            <summary>
+            记录日志
+            </summary>
+            <param name="log">要写入日志的内容</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.StaticRegisterLogAsync(PT.Profile.Types.LogContent)">
+            <summary>
+            记录日志-异步静态函数
+            </summary>
+            <param name="log"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.StaticWriteLogUsingRuntimeSwitchVariable(System.String,System.String,PT.Profile.Types.LogContent)">
+            <summary>
+            使用运行时开关变量条件写日志,应用服务器自动查找该开关变量,并根据开关变量的设置确定是否写日志,
+            如果不存在则创建该变量,这种动态添加的变量只有在第一次访问后才会产生
+            </summary>
+            <param name="varClassName">开关变量分类名</param>
+            <param name="varName">开关变量名</param>
+            <param name="lc">日志内容</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.StaticWriteLog(PT.Profile.Types.LogContent,PT.Toolkit.Portable.Runtime.LogOutputOptionEnum)">
+            <summary>
+            输出日志
+            </summary>
+            <param name="lc">日志信息</param>
+            <param name="logOutputOption">输出方式</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.StaticInvoke(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Action{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper})">
+            <summary>
+            (静态)利用数据库配置参数执行制定的操作
+            </summary>
+            <param name="paramSetting">要在其上执行操作的配置参数,系统将根据该组参数生成操作接口</param>
+            <param name="dbInvocation">要执行的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.StaticInvoke``1(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Func{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper,``0})">
+            <summary>
+            (静态)利用数据库配置参数执行制定的操作
+            </summary>
+            <typeparam name="TResult">数据库执行操作结果类型</typeparam>
+            <param name="paramSetting">要在其上执行操作的配置参数,系统将根据该组参数生成操作接口</param>
+            <param name="dbInvocation">要执行的操作</param>
+            <returns>操作执行结果</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceBase.IOperationWrapper">
+            <summary>
+            操作接口,负责提供对数据的实际操作
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.IOperationWrapper.Invoke(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Action{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper})">
+            <summary>
+            服务操作封装,支持无返回值的操作
+            </summary>
+            <param name="paramSetting">操作参数配置表</param>
+            <param name="invocation">执行的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.IOperationWrapper.Invoke``1(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Func{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper,``0})">
+            <summary>
+            服务操作封装,支持有返回值的操作
+            </summary>
+            <typeparam name="TResult">返回值类型</typeparam>
+            <param name="paramSetting">操作参数配置列表</param>
+            <param name="invocation">封装的操作</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceBase.OperationParamWrapper">
+            <summary>
+            操作参数包装类,提供数据库操作事务提交回滚管理等参数管理
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceBase.OperationParamWrapper.operators">
+            <summary>
+            管理的所有数据库操作接口
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceBase.OperationParamWrapper.commitTransaction">
+            <summary>
+            提交事务标记,如果为true将提交事务,否则不提交事务
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.OperationParamWrapper.#ctor(PT.DB.DBOperator[])">
+            <summary>
+            构造函数
+            </summary>
+            <param name="operators">该管理器管理的所有数据库操作接口</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.OperationParamWrapper.GetDBOperator(System.Int32)">
+            <summary>
+            获取参数指定索引的数据库操作接口
+            </summary>
+            <param name="index">要获取的数据库操作接口索引</param>
+            <returns>数据库操作接口</returns>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceBase.OperationParamWrapper.CommitTransaction">
+            <summary>
+            提交事务标记,如果为true将提交事务,否则不提交事务,在完成相应操作并且在未发生异常的情况下将次标记设置为false,将不提交本次操作
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceBase.OperationParamWrapper.DBOperatorCount">
+            <summary>
+            管理器当前管理的数据库操作接口数量
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceBase.OperationParamSetting">
+            <summary>
+            操作参数配置类,提供封装参数管理功能
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceBase.OperationParamSetting.databaseConfigList">
+            <summary>
+            数据库连接配置列表,提供多个数据库连接配置
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceBase.OperationParamSetting.logSetting">
+            <summary>
+            日志配置
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceBase.OperationParamSetting.DatabaseConfigList">
+            <summary>
+            获取数据库连接配置列表,该列表提供多个数据库连接配置
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceBase.OperationParamSetting.LogSetting">
+            <summary>
+            获取日志配置
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceBase.DatabaseHandler">
+            <summary>
+            抽象私有类,负责提供对数据库的实际操作
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.DatabaseHandler.#ctor(PT_BS_Service.Core.BeServiceBase)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="FuncCreateDBOperator">创建数据库操作接口的方法引用</param>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceBase.DatabaseHandler.ServiceBaseInstance">
+            <summary>
+            创建数据库操作接口的方法
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.DatabaseHandler.Invoke(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Action{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper})">
+            <summary>
+            服务操作封装,支持无返回值的数据库操作
+            </summary>
+            <param name="paramSetting">操作参数配置表</param>
+            <param name="invocation">执行的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.DatabaseHandler.Invoke``1(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Func{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper,``0})">
+            <summary>
+            数据库操作封装,支持有返回值的数据库操作
+            </summary>
+            <typeparam name="TResult">返回值类型</typeparam>
+            <param name="paramSetting">操作参数配置列表</param>
+            <param name="invocation">封装的操作</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.DatabaseHandler.GetDBOperatorsSnapshot(PT.DB.DBOperator[])">
+            <summary>
+            数据库操作类快照
+            </summary>
+            <param name="operators"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.DatabaseHandler.PrepareDatabaseOperators(PT_BS_Service.Core.BeServiceBase.DatabaseConfigureList)">
+            <summary>
+            准备数据库操作入口
+            </summary>
+            <param name="configList">数据库配置列表</param>
+            <returns>数据库操作入口</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.DatabaseHandler.ReleaseDBOperators(System.Collections.Generic.IEnumerable{PT.DB.DBOperator},PT_BS_Service.Core.BeServiceBase.DatabaseConfigureList)">
+            <summary>
+            释放数据库操作接口
+            </summary>
+            <param name="l">原始数据库请求列表，释放时候需要对会话进行操作</param>
+            <param name="operators">待释放的接口列表</param>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceBase.TransactionDatabaseHandler">
+            <summary>
+            开启事务的数据的实际操作
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.TransactionDatabaseHandler.#ctor(PT_BS_Service.Core.BeServiceBase)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="childInstance">调用此函数的服务基类实例</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.TransactionDatabaseHandler.Invoke(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Action{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper})">
+            <summary>
+            数据库操作封装,支持无返回值的数据库操作
+            </summary>
+            <param name="paramSetting">操作参数配置列表</param>
+            <param name="invocation">封装的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.TransactionDatabaseHandler.Invoke``1(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Func{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper,``0})">
+            <summary>
+            数据库操作封装,支持有返回值的数据库操作
+            </summary>
+            <typeparam name="TResult">返回值类型</typeparam>
+            <param name="paramSetting">操作参数配置列表</param>
+            <param name="invocation">封装的操作</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceBase.SimpleDatabaseHandler">
+            <summary>
+            无事务数据库操作
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.SimpleDatabaseHandler.#ctor(PT_BS_Service.Core.BeServiceBase)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="childInstance">当前调用的服务基类实例</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.SimpleDatabaseHandler.Invoke(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Action{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper})">
+            <summary>
+            数据库操作封装,支持无返回值的数据库操作
+            </summary>
+            <param name="paramSetting">操作参数配置列表</param>
+            <param name="invocation">封装的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.SimpleDatabaseHandler.Invoke``1(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Func{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper,``0})">
+            <summary>
+            数据库操作封装,支持有返回值的数据库操作
+            </summary>
+            <typeparam name="TResult">返回值类型</typeparam>
+            <param name="paramSetting">操作参数配置列表</param>
+            <param name="invocation">封装的操作</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceBase.DatabaseConfigureList">
+            <summary>
+            数据库配置参数列表
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.DatabaseConfigureList.Add(System.String,System.String)">
+            <summary>
+            向数据库配置参数列表中增加配置参数
+            </summary>
+            <param name="subSystemID">子系统名称</param>
+            <param name="dBClassName">数据库分类名称</param>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceBase.DatabaseConfigureList.UseTransaction">
+            <summary>
+            获取或设置该组数据库使用事务标识,true:使用事务;false:不使用事务
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceBase.DatabaseConfigure">
+            <summary>
+            数据库连接请求信息配置,主要包括参数所属子系统及参数分类名称
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceBase.DatabaseConfigure.IsRenewSessionAtStart">
+            <summary>
+            是否需要为数据连接准备新的会话,可能用于确保会话级临时表数据有效性,默认为false
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceBase.DatabaseConfigure.IsCloseSessionAtEnd">
+            <summary>
+            结束后是否关闭会话会话,可能用于确保会话级临时表数据有效性,默认为false
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.DatabaseConfigure.#ctor(System.String,System.String)">
+            <summary>
+            构造
+            </summary>
+            <param name="subSystemID">子系统名称</param>
+            <param name="dBClassName">数据库分类名称</param>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceBase.DatabaseConfigure.SubSystemID">
+            <summary>
+            获取子系统id
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceBase.DatabaseConfigure.DBClassName">
+            <summary>
+            获取数据库参数分类名称,可带路径.对应平台参数管理对应系统的对应数据库参数分类，数据库参数分类必须提供5个参数IP Port ServiceName UserName Password
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceBase.LogHandler">
+            <summary>
+            操作日志记录包装类,负责将服务操作异常记录到日志中
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceBase.LogHandler.operationWrapper">
+            <summary>
+            要对其进行异常捕获的操作包装
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.LogHandler.#ctor(PT_BS_Service.Core.BeServiceBase.IOperationWrapper)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="operationWrapper">要监视的操作包装</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.LogHandler.Invoke(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Action{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper})">
+            <summary>
+            操作封装,支持无返回值的操作
+            </summary>
+            <param name="paramSetting">操作参数配置列表</param>
+            <param name="invocation">封装的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceBase.LogHandler.Invoke``1(PT_BS_Service.Core.BeServiceBase.OperationParamSetting,System.Func{PT_BS_Service.Core.BeServiceBase.OperationParamWrapper,``0})">
+            <summary>
+            服务操作封装,支持有返回值的操作
+            </summary>
+            <typeparam name="TResult">返回值类型</typeparam>
+            <param name="paramSetting">操作参数配置列表</param>
+            <param name="invocation">封装的操作</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceBase.LogSetting">
+            <summary>
+            日志配置类,提供记录日志标记及日志分类管理功能
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceBase.LogSetting.requireWriteLog">
+            <summary>
+            需要记录日志标记,该标记为true,需要服务捕获异常并记录,否则不会记录日志
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceBase.LogSetting.businessType">
+            <summary>
+            日志业务类型,可以操作者自己定义
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceBase.LogSetting.RequireWriteLog">
+            <summary>
+            获取或设置需要记录日志标记,该标记为true,需要服务捕获异常并记录,否则不会记录日志
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceBase.LogSetting.BusinessType">
+            <summary>
+            获取或设置日志业务类型,可以操作者自己定义
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.GetPluginServiceConfig">
+            <summary>
+            实现此函数来为插件引擎提供运行参数配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.Start">
+            <summary>
+            重写此函数实现初始化插件操作
+            自定义插件必须重写此函数实现插件启动功能,自动循环插件可以不重写此函数
+            </summary>
+            <returns>成功返回true,否则返回false</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.Stop">
+            <summary>
+            重写此函数实现对停止插件功能的响应
+            </summary>
+            <returns>成功放回true,否则返回false</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.RunOnce(System.Object)">
+            <summary>
+            重写此函数实现插件循环一次功能
+            当服务器插件运行模式为PluginServiceRunTypeEnum.Loop时，服务器会自动定时调用此函数
+            </summary>
+            <param name="args">执行任务参数</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.GetPluginServiceConfigFromPlatform(System.String,System.String)">
+            <summary>
+            按平台参数访问规范来获取插件参数配置
+            </summary>
+            <param name="subsystemID">子系统ID</param>
+            <param name="configParamClassPathName">参数分类路径名称</param>
+            <returns>参数配置数据集合</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.InternalGetPluginServiceConfigRecurrence(PT.Profile.Interface.ISubsystem,PT.Profile.Types.SysParamClass,PT.Profile.Types.SysParamClassEx)">
+            <summary>
+            第归获取插件参数
+            </summary>
+            <param name="iSubsystem"></param>
+            <param name="paramClass"></param>
+            <param name="sysParamClassEx"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.RunOnceAsyn(System.Object)">
+            <summary>
+            异步运行一次循环函数，当通过服务访问，期望调用一次循环处理函数时，使用此函数可以进行异步调用，避免同步费时操作
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.PauseLoop">
+            <summary>
+            暂停循环函数RunOnce的自动调用
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.TerminateLoop">
+            <summary>
+            停止循环函数RunOnce的自动调用
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.ResumeLoop">
+            <summary>
+            恢复循环函数RunOnce的自动调用
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.ServerRuntimeMethod_ResumePluginService(PT.Toolkit.Portable.Runtime.RuntimeMethodInvokeContext)">
+            <summary>
+            运行时函数-恢复定时服务
+            </summary>
+            <param name="invokeContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.ServerRuntimeMethod_ResumePluginService_CustomParams(PT.Toolkit.Portable.Runtime.ServerRuntimeMethodParamList)">
+            <summary>
+            运行时管理函数参数定制-恢复定时服务函数-参数定制
+            </summary>
+            <param name="methodParams">参数</param>
+            <returns>ServerRuntimeMethodResult</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.ServerRuntimeMethod_PausePluginService(PT.Toolkit.Portable.Runtime.RuntimeMethodInvokeContext)">
+            <summary>
+            日志过滤表达式测试
+            </summary>
+            <param name="invokeContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.ServerRuntimeMethod_PausePluginService_CustomParams(PT.Toolkit.Portable.Runtime.ServerRuntimeMethodParamList)">
+            <summary>
+            运行时管理函数参数定制-暂停定时服务函数-参数定制
+            </summary>
+            <param name="methodParams">参数</param>
+            <returns>ServerRuntimeMethodResult</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.BePluginService.PluginServiceRunModeEnum">
+            <summary>
+            插件运行模式枚举
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BePluginService.PluginServiceRunModeEnum.Manual">
+            <summary>
+            自定义代码实现插件功能
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BePluginService.PluginServiceRunModeEnum.Loop">
+            <summary>
+            自动循环插件，指定条件下调用RunOnce函数
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BePluginService.PluginServiceRunModeEnum.Cron">
+            <summary>
+            Cron表达式定时
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.BePluginService.BePluginServiceRunConfig">
+            <summary>
+            插件运行配置
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BePluginService.BePluginServiceRunConfig.RunMode">
+            <summary>
+            运行模式
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BePluginService.BePluginServiceRunConfig.CronExpression">
+            <summary>
+            Cron表达式
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BePluginService.BePluginServiceRunConfig.LoopCountLimit">
+            <summary>
+            循环上限次数,自动循环插件的循环上限次数,-1为无限
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BePluginService.BePluginServiceRunConfig.LoopInterval">
+            <summary>
+            循环时间间隔,自动循环插件的循环时间间隔,单位：秒 默认值 900
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BePluginService.BePluginServiceRunConfig.IsEnabled">
+            <summary>
+            插件有效状态开关，插件有效状态开关,初始化时作为是否启动插件的判定依据,运行时控制可以使用this.TerminateLoop或this.PauseLoop
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BePluginService.BePluginServiceRunConfig.DelayStartInterval">
+            <summary>
+            延迟启动秒数，在指定秒数后启动插件功能，避免访问的其他服务资源未初始化,单位：秒
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BePluginService.BePluginServiceRunConfig.StopAfterExceptionCountLimit">
+            <summary>
+            自动循环插件在出现指定次数异常后停止调用，-1为无限
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BePluginService.BePluginServiceRunConfig.Tag">
+            <summary>
+            用户自定义数据,在函数委托回调时候传递
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.BePluginServiceRunConfig.CopyToTaskEngineConfig(PT.Toolkit.Task.TaskEngineConfig)">
+            <summary>
+            拷贝配置信息到任务引擎参数
+            </summary>
+            <param name="tec"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BePluginService.BePluginServiceRunConfig.CopyFromPlatformParams(PT.Profile.Types.SysParamClassEx)">
+            <summary>
+            从平台参数集合里拷贝数据
+            </summary>
+            <param name="pluginParamClassEx"></param>
+        </member>
+        <member name="T:PT_BS_Service.Core.IBeTask">
+            <summary>
+            任务接口定义
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.IBeTask.Start">
+            <summary>
+            启动任务
+            </summary>
+            <returns>成功返回true,否则返回false</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.IBeTask.Stop">
+            <summary>
+            停止任务
+            </summary>
+            <returns>成功放回true,否则返回false</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.IBeTask.RunOnce(System.Object)">
+            <summary>
+            立即执行一次任务
+            </summary>
+            <param name="args">执行任务参数</param>
+            <returns>执行结果,true:执行成功,false:执行失败</returns>
+        </member>
+        <member name="P:PT_BS_Service.Core.IBeTask.State">
+            <summary>
+            获取任务当前状态
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.TaskStateEnum">
+            <summary>
+            任务状态枚举
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.TaskStateEnum.Start">
+            <summary>
+            启动
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.TaskStateEnum.Stop">
+            <summary>
+            停止
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.TaskStateEnum.Run">
+            <summary>
+            正在执行状态,ITask接口Run函数正在运行
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.TaskStateEnum.Error">
+            <summary>
+            执行错误
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.PluginServiceScene">
+            <summary>
+            记录插件服务及运行状态的场景信息
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.PluginServiceScene.PluginClassType">
+            <summary>
+            插件实现类对应的类型,必须是从BePluginService派生的
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.PluginServiceScene.PluginClassInstance">
+            <summary>
+            插件实例
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.PluginServiceScene.IsStarted">
+            <summary>
+            插件管理类是否已启动该插件(不保证引擎是正常运行状态)
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.PluginServiceScene.PluginServiceRunConfig">
+            <summary>
+            插件运行参数
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.PluginServiceScene.PluginTaskEngine">
+            <summary>
+            自动任务引擎
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.PluginServiceSceneList">
+            <summary>
+            用户信息列表,提供扩展访问
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.PluginServiceSceneList.FindItemByType(System.Type)">
+            <summary>
+            根据Typeid查找项目
+            </summary>
+            <param name="tp">类型</param>
+        </member>
+        <member name="T:PT_BS_Service.Core.PluginServiceManager">
+            <summary>
+            服务插件管理器,负责插件的注册启动控制
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.PluginServiceManager.PluginScenes">
+            <summary>
+            插件场景信息集合
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.PluginServiceManager.PluginTrace(PT.Toolkit.Portable.Message.MessageContent)">
+            <summary>
+            插件跟踪信息回调入口
+            </summary>
+            <param name="mc"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.PluginServiceManager.TerminateLoop(System.Type)">
+            <summary>
+            停止循环函数RunOnce的自动调用
+            </summary>
+            <param name="pluginService">插件实现类类型</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.PluginServiceManager.InvokeEngine(System.Type,System.Action{PT.Toolkit.Task.TaskEngine})">
+            <summary>
+            运行代码并在异常时候显示提示信息
+            </summary>
+            <param name="pluginService">插件类型</param>
+            <param name="act">动作</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.PluginServiceManager.PauseLoop(System.Type)">
+            <summary>
+            暂停循环函数RunOnce的自动调用
+            </summary>
+            <param name="pluginService">插件实现类类型</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.PluginServiceManager.ResumeLoop(System.Type)">
+            <summary>
+            恢复循环函数RunOnce的自动调用
+            </summary>
+            <param name="pluginService">插件实现类类型</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.PluginServiceManager.RunOnceAsyn(System.Type,System.Object)">
+            <summary>
+            异步调用一次循环函数
+            </summary>
+            <param name="pluginService"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.PluginServiceManager.StopPluginService">
+            <summary>
+            停止插件服务
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.PluginServiceManager.StartPluginService">
+            <summary>
+            启动已创建并承载的所有插件类服务
+            插件类服务从派生 自BePluginService : BeServiceBase
+            启动过程的调用顺序为
+            1-Constructor();构造函数
+            2-GetPluginServiceConfig();获取插件运行配置
+            3-Start();插件启动函数
+            4-如果以自动循环模式运行 将定时调用RunOnce();
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.PluginServiceManager.RegisterPlugin(System.Type)">
+            <summary>
+            向系统注册任务
+            </summary>
+            <param name="serviceType"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.PluginServiceManager.CreateTask(System.Type)">
+            <summary>
+            创建参数指定类型对象,要求参数指定类型必须实现IBeTask接口
+            </summary>
+            <param name="type">要创建的任务类型</param>
+            <returns>创建的任务对象</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.ConsoleLogManager">
+            <summary>
+            控制台日志管理类
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ConsoleLogManager._CurrentId">
+            <summary>
+            当前TextId
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ConsoleLogManager.Texts">
+            <summary>
+            内容列表
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ConsoleLogManager.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ConsoleLogManager.UnsafeClearExceedItems">
+            <summary>
+            清理超过容量的项
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ConsoleLogManager.ClearConsoleLog">
+            <summary>
+            清理所有控制台信息
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ConsoleLogManager.AppendConsoleLog(PT.Profile.Types.LogContent)">
+            <summary>
+            向控制台增加一项文本内容
+            </summary>
+            <param name="logContent">日志内容</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ConsoleLogManager.QueryConsoleLogs(PT.Profile.Types.ConsoleLogQueryCondition)">
+            <summary>
+            获取指定范围的LogDetail列表
+            </summary>
+            <param name="clqc">查询条件</param>
+            <returns>查询结果</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.ServerContextData">
+            <summary>
+            用于存放服务和管理类间需要交互的数据
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerContextData.RequestTraceLockObject">
+            <summary>
+            调用跟踪
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerContextData.CloseWinFormApp">
+            <summary>
+            关闭窗体应用动作
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerContextData.ConsoleLogs">
+            <summary>
+            控制台日志管理类
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerContextData.ServerDebugSection">
+            <summary>
+            调试信息段,管理类放置控制信息于此类中,为了方便调试和改变某些运行行为,如数据库名称重定向
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.ClientRequestTraceDetail">
+            <summary>
+            每次调用详细信息
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ClientRequestTraceDetail.ClientIp">
+            <summary>
+            客户端Ip
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ClientRequestTraceDetail.RequestTime">
+            <summary>
+            请求时间
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ClientRequestTraceDetail.ResponseTime">
+            <summary>
+            请求完成时间
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ClientRequestTraceDetail.InputParams">
+            <summary>
+            输入参数信息
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ClientRequestTraceDetail.OutputResult">
+            <summary>
+            返回结果信息
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ClientRequestTraceDetail.SealedMessageBegin">
+            <summary>
+            服务封装调用前消息
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ClientRequestTraceDetail.SealedMessageAfter">
+            <summary>
+            服务封装调用后消息
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.ClientRequestTraceDetailList">
+            <summary>
+            ClientRequestTraceDetailList
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ClientRequestTraceDetailList.LastItem">
+            <summary>
+            最后一个元素
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.SingleMethodTraceInfo">
+            <summary>
+            服务调用跟踪信息
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SingleMethodTraceInfo.MaxTraceItems">
+            <summary>
+            运行时变量 跟踪函数名称
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SingleMethodTraceInfo.TraceInput">
+            <summary>
+            是否记录输入参数
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SingleMethodTraceInfo.TraceInputDataLevel">
+            <summary>
+            跟踪输入数据时的层次深度
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SingleMethodTraceInfo.TraceOutput">
+            <summary>
+            是否记录输出结果
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SingleMethodTraceInfo.TraceOutputDataLevel">
+            <summary>
+            跟踪输出数据时的层次深度
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SingleMethodTraceInfo.TraceDBRequest">
+            <summary>
+            是否记录输出结果
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SingleMethodTraceInfo.RequestDetails">
+            <summary>
+            被跟踪的函数请求响应时间统计列表
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SingleMethodTraceInfo.TotalRequestCount">
+            <summary>
+            从跟踪开始总计调用次数
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SingleMethodTraceInfo.TraceBeginTime">
+            <summary>
+            跟踪开始时间
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.SingleMethodTraceInfo.TraceInfoToString(System.Boolean)">
+            <summary>
+            重写ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:PT_BS_Service.Core.SingleMethodTraceInfo.SingleMethodTraceEnabled">
+            <summary>
+            运行时变量 开关 - 是否允许跟踪函数
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.SingleMethodTraceInfo.TraceMethodName">
+            <summary>
+            运行时变量 跟踪函数名称
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.ServerMessageHub">
+            <summary>
+            应用程序服务器消息枢纽及日志消息处理
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerMessageHub.DebugOutputSwitch">
+            <summary>
+            运行时变量 开关 - 调试日志消息输出方式
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerMessageHub.FilingOutputSwitch">
+            <summary>
+            运行时变量 开关 - 备案日志消息输出方式
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerMessageHub.WarnOutputSwitch">
+            <summary>
+            运行时变量 开关 - 警告日志消息输出方式
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerMessageHub.ErrorOutputSwitch">
+            <summary>
+            运行时变量 开关 - 错误日志消息输出方式
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerMessageHub.FatalOutputSwitch">
+            <summary>
+            运行时变量 开关 - 异常日志消息输出方式
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerMessageHub.InstallMessageHandler">
+            <summary>
+            安装消息枢纽委托
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerMessageHub.UnInstallMessageHandler(System.Action{PT.Toolkit.Portable.Message.MessageContent})">
+            <summary>
+            卸载消息处理引擎
+            </summary>
+            <param name="disp"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerMessageHub.Dispose">
+            <summary>
+            释放委托资源
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerMessageHub.PostAppServerExceptionLogMessage(System.String,System.Exception)">
+            <summary>
+            发送异常日志消息
+            </summary>
+            <param name="categoryName">分类名称</param>
+            <param name="ex">异常消息</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerMessageHub.PostAppServerWarnningLogMessage(System.String,System.String)">
+            <summary>
+            发送警告日志消息
+            </summary>
+            <param name="categoryName"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerMessageHub.PostAppServerDebugLogMessage(System.String,System.String)">
+            <summary>
+            发送调试日志消息
+            </summary>
+            <param name="categoryName"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerMessageHub.PostMessage(PT.Toolkit.Portable.Message.MessageContent)">
+            <summary>
+            异步发送消息
+            </summary>
+            <param name="mc">信息</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerMessageHub.PostMessage(System.String,System.String,System.Int32,System.String,System.Object)">
+            <summary>
+            异步发送消息
+            </summary>
+            <param name="msgFlag">消息标识类型，用于多播消息引擎自己处理，自定义</param>
+            <param name="categoryPath">消息分类，自定义</param>
+            <param name="msgType">信息类型，自定义</param>
+            <param name="msg">信息内容</param>
+            <param name="msgState">消息相关数据对象，自定义</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PT_SV.Public</name>
+    </assembly>
+    <members>
+        <member name="T:PT.Public.AppServerUpdatePackage">
+            <summary>
+            服务器升级包定义
+            </summary>
+        </member>
+        <member name="F:PT.Public.AppServerUpdatePackage.PackageName">
+            <summary>
+            包名称,存放原始文件路径
+            </summary>
+        </member>
+        <member name="F:PT.Public.AppServerUpdatePackage.PackageVersion">
+            <summary>
+            版本号,默认为打包时间
+            </summary>
+        </member>
+        <member name="F:PT.Public.AppServerUpdatePackage.Descriptions">
+            <summary>
+            本次升级描述
+            </summary>
+        </member>
+        <member name="F:PT.Public.AppServerUpdatePackage.UpdateFiles">
+            <summary>
+            选中的升级文件
+            </summary>
+        </member>
+        <member name="M:PT.Public.AppServerUpdatePackage.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.Public.AppServerUpdatePackage.LoadFromDataSection(PT.Toolkit.Portable.DataSection)">
+            <summary>
+            从数据段读信息
+            </summary>
+            <param name="dsPackage"></param>
+        </member>
+        <member name="M:PT.Public.AppServerUpdatePackage.SaveToDataSection(PT.Toolkit.Portable.DataSection)">
+            <summary>
+            向数据段写信息
+            </summary>
+            <param name="dsPackage"></param>
+        </member>
+        <member name="T:PT.Public.AppServerUpdatePackageList">
+            <summary>
+            升级包信息集合
+            </summary>
+        </member>
+        <member name="M:PT.Public.AppServerUpdatePackageList.FindItemByName(System.String)">
+            <summary>
+            根据包名称检索项目
+            </summary>
+            <param name="packageName">包名称</param>
+            <returns>包信息</returns>
+        </member>
+        <member name="M:PT.Public.AppServerUpdatePackageList.LoadFromFile(System.String)">
+            <summary>
+            从文件装载 
+            </summary>
+            <param name="file"></param>
+        </member>
+        <member name="M:PT.Public.AppServerUpdatePackageList.SaveToFile(System.String)">
+            <summary>
+            保存到文件
+            </summary>
+            <param name="file"></param>
+        </member>
+        <member name="T:PT.Public.RoleExHelper">
+            <summary>
+            角色信息扩展 haha
+            </summary>
+        </member>
+        <member name="M:PT.Public.RoleExHelper.LoadFromXmlNode(PT.Profile.Types.RoleEx,System.Xml.XmlNode,System.String,System.String,System.Int32)">
+            <summary>
+            从xml节点读数据
+            </summary>
+            <param name="roleEx">角色扩展</param>
+            <param name="nodeRole">数据节点</param>
+            <param name="subsystemID">注册系统id</param>
+            <param name="parentRoleID">父分类id</param>
+            <param name="seqNumber">序号</param>
+        </member>
+        <member name="M:PT.Public.RoleExHelper.SaveToXmlNode(PT.Profile.Types.RoleEx,System.Xml.XmlNode)">
+            <summary>
+            将类数据保存到xml节点
+            </summary>
+            <param name="roleEx">角色扩展</param>
+            <param name="parentNode"></param>
+        </member>
+        <member name="T:PT.Public.SubsystemExHelper">
+            <summary>
+            提供对整个注册信息（子系统、服务、参数、权限）的数据集合，导入导出及基于xml架构的校验
+            </summary>
+        </member>
+        <member name="M:PT.Public.SubsystemExHelper.LoadFromString(PT.Profile.Types.SubsystemEx,System.String,System.Boolean)">
+            <summary>
+            从字符串装载
+            </summary>
+            <param name="p">子系统扩展</param>
+            <param name="sXml">包含要加载的XML文档的字符串</param>
+            <param name="isLoadImage">是否装载图片信息</param>
+            <returns>根节点</returns>
+        </member>
+        <member name="M:PT.Public.SubsystemExHelper.LoadFromXml(PT.Profile.Types.SubsystemEx,System.String,System.Boolean)">
+            <summary>
+            从文件装载
+            </summary>
+            <param name="p">子系统扩展</param>
+            <param name="sFile">文件路径</param>
+            <param name="isLoadImage">是否装载图片信息</param>
+            <returns>根节点</returns>
+        </member>
+        <member name="M:PT.Public.SubsystemExHelper.SaveToXml(PT.Profile.Types.SubsystemEx,System.String)">
+            <summary>
+            保存到xml文件
+            </summary>
+            <param name="p">子系统扩展</param>
+            <param name="sFile">文件名</param>
+        </member>
+        <member name="M:PT.Public.SubsystemExHelper.GetXmlFormatContent(PT.Profile.Types.SubsystemEx)">
+            <summary>
+            获取注册信息的xml格式的内容
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:PT.Public.SysParamClassExHelper">
+            <summary>
+            子系统参数类信息扩展
+            </summary>
+        </member>
+        <member name="M:PT.Public.SysParamClassExHelper.LoadFromXmlNode(PT.Profile.Types.SysParamClassEx,System.Xml.XmlNode,System.String,System.String,System.Int32)">
+            <summary>
+            从xml节点读数据
+            </summary>
+            <param name="sysParamClassEx">数据节点准备回填的参数分类扩展类</param>
+            <param name="nodeClass">数据节点</param>
+            <param name="registryID">注册系统id</param>
+            <param name="parentParamClassID">父分类id</param>
+            <param name="seqNumber">序号</param>
+        </member>
+        <member name="M:PT.Public.SysParamClassExHelper.SaveToXmlNode(PT.Profile.Types.SysParamClassEx,System.Xml.XmlNode)">
+            <summary>
+            将参数分类数据保存到xml节点
+            </summary>
+            <param name="sysParamClassEx">参数分类扩展</param>
+            <param name="parentNode">父节点</param>
+        </member>
+    </members>
+</doc>

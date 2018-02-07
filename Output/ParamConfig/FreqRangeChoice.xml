@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FreqRangeChoice>
+  <FreqRangeType Name="航空导航">
+    <FreqRange Range="108.0-117.9"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="航空移动">
+    <FreqRange Range="117.9-137.0"></FreqRange>
+    <FreqRange Range="235.0-279.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="民用对讲150M">
+    <FreqRange Range="137.0-144.0"></FreqRange>
+    <FreqRange Range="146.0-167.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="移动GSM1800">
+    <FreqRange Range="1710.0-1735.0"></FreqRange>
+    <FreqRange Range="1805.0-1830.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="联通GSM1800">
+    <FreqRange Range="1735.0-1755.0"></FreqRange>
+    <FreqRange Range="1830.0-1850.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="3G-FDD补充频段">
+    <FreqRange Range="1755.0-1785.0"></FreqRange>
+    <FreqRange Range="1850.0-1880.0"></FreqRange>
+  </FreqRangeType>  
+  <FreqRangeType Name="移动无线视频">
+    <FreqRange Range="1785.0-1805.0"></FreqRange>
+  </FreqRangeType> 
+  <FreqRangeType Name="移动3G-TDD">
+    <FreqRange Range="1880.0-1900.0"></FreqRange>
+    <FreqRange Range="2010.0-2025.0"></FreqRange>
+    <FreqRange Range="2320.0-2370.0"></FreqRange>
+  </FreqRangeType> 
+  <FreqRangeType Name="电信3G-FDD">
+    <FreqRange Range="1920.0-1935.0"></FreqRange>
+    <FreqRange Range="2110.0-2125.0"></FreqRange>
+  </FreqRangeType> 
+  <FreqRangeType Name="联通3G-FDD">
+    <FreqRange Range="1940.0-1955.0"></FreqRange>
+    <FreqRange Range="2130.0-2145.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="自定义频段">
+    <FreqRange Range="74.5-77.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="230M数传">
+    <FreqRange Range="223.0-228.0"></FreqRange>
+    <FreqRange Range="228.0-230.0"></FreqRange>
+    <FreqRange Range="230.0-235.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="联通4G-TD">
+    <FreqRange Range="2300.0-2320.0"></FreqRange>
+    <FreqRange Range="2555.0-2575.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="移动4G-TD">
+    <FreqRange Range="2575.0-2635.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="电信4G-TD">
+    <FreqRange Range="2370.0-2390.0"></FreqRange>
+    <FreqRange Range="2635.0-2655.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="2.4G短距离通信">
+    <FreqRange Range="2400.0-2483.5"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="民用对讲机A段">
+    <FreqRange Range="27.0-38.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="350M数字集群">
+    <FreqRange Range="351.0-358.0"></FreqRange>
+    <FreqRange Range="358.0-361.0"></FreqRange>
+    <FreqRange Range="361.0-368.0"></FreqRange>
+    <FreqRange Range="372.0-379.0"></FreqRange>
+    <FreqRange Range="379.0-382.0"></FreqRange>
+    <FreqRange Range="382.0-389.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="民用对讲机B段">
+    <FreqRange Range="40.0-48.5"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="民用对讲400M">
+    <FreqRange Range="403.0-409.7"></FreqRange>
+    <FreqRange Range="410.0-426.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="公众对讲机">
+    <FreqRange Range="409.7-410.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="430M无中心通信">
+    <FreqRange Range="430.0-432.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="450M频段通信">
+    <FreqRange Range="450.0-470.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="电视广播">
+    <FreqRange Range="48.5-72.5"></FreqRange>
+    <FreqRange Range="76.0-84.0"></FreqRange>
+    <FreqRange Range="167.0-223.0"></FreqRange>
+    <FreqRange Range="470.0-566.0"></FreqRange>
+    <FreqRange Range="606.0-798.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="民用对讲C.校园广播">
+    <FreqRange Range="72.5-74.5"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="800M数字集群">
+    <FreqRange Range="806.0-821.0"></FreqRange>
+    <FreqRange Range="851.0-866.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="800M数传">
+    <FreqRange Range="821.0-824.0"></FreqRange>
+    <FreqRange Range="824.0-825.0"></FreqRange>
+    <FreqRange Range="866.0-869.0"></FreqRange>
+    <FreqRange Range="869.0-870.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="CDMA800">
+    <FreqRange Range="825.0-835.0"></FreqRange>
+    <FreqRange Range="870.0-880.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="FM声音广播">
+    <FreqRange Range="87.0-108.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="GSM-R">
+    <FreqRange Range="885.0-889.0"></FreqRange>
+    <FreqRange Range="930.0-934.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="移动GSM">
+    <FreqRange Range="889.0-909.0"></FreqRange>
+    <FreqRange Range="934.0-954.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="联通GSM">
+    <FreqRange Range="909.0-915.0"></FreqRange>
+    <FreqRange Range="954.0-960.0"></FreqRange>
+  </FreqRangeType>
+  <FreqRangeType Name="900M无中心通信">
+    <FreqRange Range="915.0-917.0"></FreqRange>
+  </FreqRangeType>
+</FreqRangeChoice>

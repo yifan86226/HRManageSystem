@@ -1,0 +1,1215 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AT_BC.Common</name>
+    </assembly>
+    <members>
+        <member name="T:AT_BC.Common.Converters.BoolReverseConverter">
+            <summary>
+            Bool变量取反转换器
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.BoolReverseConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换方法,对参数value指定的bool值进行取反
+            </summary>
+            <param name="value">当前值</param>
+            <param name="targetType">目标类型</param>
+            <param name="parameter">参数</param>
+            <param name="culture">文化特性</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.BoolReverseConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            向回转换方法,对参数值取反
+            </summary>
+            <param name="value">当前值</param>
+            <param name="targetType">目标类型</param>
+            <param name="parameter">参数</param>
+            <param name="culture">文化特性</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="T:AT_BC.Common.Converters.FileSizeConverter">
+            <summary>
+            文件尺寸转换器,将字节文件长度转换为KB、MB、GB为单位的尺寸，单位按照数值小于1000判断
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.FileSizeConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换方法
+            </summary>
+            <param name="value">当前值</param>
+            <param name="targetType">目标类型</param>
+            <param name="parameter">参数</param>
+            <param name="culture">文化特性</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.FileSizeConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            向回转换方法
+            </summary>
+            <param name="value">当前值</param>
+            <param name="targetType">目标类型</param>
+            <param name="parameter">参数</param>
+            <param name="culture">文化特性</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="T:AT_BC.Common.CommonCommand">
+            <summary>
+            通用命令定义
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.CommonCommand.checkAll">
+            <summary>
+            全选命令,用于全选或者取消全选可选数据
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.CommonCommand.#cctor">
+            <summary>
+            静态构造函数
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.CommonCommand.checkableDataChecked">
+            <summary>
+            可选数据选择命令
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.CommonCommand.fileDescriptionSaveAsCommand">
+            <summary>
+            保存文件命令
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.CommonCommand.fileDescriptionOpenCommand">
+            <summary>
+            打开文件命令
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.CommonCommand.CheckableDataCheckedAllCommand">
+            <summary>
+            可选数据全选命令
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.CommonCommand.CheckableDataCheckedCommand">
+            <summary>
+            可选数据选择命令
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.CommonCommand.FileDescriptionSaveAsCommand">
+            <summary>
+            保存文件命令
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.CommonCommand.FileDescriptionOpenCommand">
+            <summary>
+            打开文件命令
+            </summary>
+        </member>
+        <member name="T:AT_BC.Common.CheckableCheckBoxHelper">
+            <summary>
+            可选数据选择框辅助类
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.CheckableCheckBoxHelper.CheckAll(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            全选操作
+            </summary>
+            <param name="sender">触发事件的对象(复选框)</param>
+            <param name="e">命令参数</param>
+        </member>
+        <member name="M:AT_BC.Common.CheckableCheckBoxHelper.Checked(System.Object,System.Windows.Input.ExecutedRoutedEventArgs,System.Windows.Controls.CheckBox)">
+            <summary>
+            选择操作,根据该操作结果,计算参数指定列表数据,并确定整个列表数据状态(全选中、全未选中、部分选中)
+            </summary>
+            <param name="sender">触发该选择操作的控件(复选框)</param>
+            <param name="e">命令参数</param>
+            <param name="destCheckBox">目标复选框</param>
+        </member>
+        <member name="T:AT_BC.Common.FileDescriptionHelper">
+            <summary>
+            文件描述辅助类,提供保存文件操作
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.FileDescriptionHelper.SaveAs(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            保存文件
+            </summary>
+            <param name="sender">触发事件对象</param>
+            <param name="e">命令参数</param>
+        </member>
+        <member name="T:AT_BC.Common.Controls.MultipleBoolenCheckBox">
+            <summary>
+            可复选布尔值编辑框
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.MultipleBoolenCheckBox.#cctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.MultipleBoolenCheckBox.trueCheckBox">
+            <summary>
+            肯定值选择框
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.MultipleBoolenCheckBox.falseCheckBox">
+            <summary>
+            否定之选择框
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.MultipleBoolenCheckBox.OnApplyTemplate">
+            <summary>
+            应用模板触发事件,从模板中读取编辑控件并赋予其点击事件
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.MultipleBoolenCheckBox.ValueProperty">
+            <summary>
+            获取或设置控件值
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.MultipleBoolenCheckBox.TrueValueTextProperty">
+            <summary>
+            肯定值文本显示内容
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.MultipleBoolenCheckBox.FalseValueTextProperty">
+            <summary>
+            否定值文本显示内容附加属性
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.MultipleBoolenCheckBox.Value">
+            <summary>
+            获取或设置控件值
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.MultipleBoolenCheckBox.TrueValueText">
+            <summary>
+            获取或设置肯定值文本显示内容,
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.MultipleBoolenCheckBox.FalseValueText">
+            <summary>
+            获取或设置否定值文本显示内容
+            </summary>
+        </member>
+        <member name="T:System.ExceptionHelper">
+            <summary>
+            异常辅助类,提供对异常类型处理功能,当为服务端异常时,只提供异常提示信息,剔除堆栈信息显示
+            </summary>
+        </member>
+        <member name="M:System.ExceptionHelper.GetExceptionMessage(System.Exception)">
+            <summary>
+            获取异常提示信息
+            </summary>
+            <param name="ex">要从中获取提示的异常</param>
+            <returns>异常提示信息</returns>
+        </member>
+        <member name="T:AT_BC.Common.HttpServiceHost">
+            <summary>
+            Http绑定服务承载基类
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.HttpServiceHost.baseAddress">
+            <summary>
+            服务基地址
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.HttpServiceHost.contractInterface">
+            <summary>
+            要发布的该服务的实现的接口类型
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.HttpServiceHost.#ctor(System.Type,System.Type,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="serviceType">服务类型</param>
+            <param name="contractInterface">要发布的该服务的实现的某一接口类型</param>
+            <param name="address">服务基地址</param>
+        </member>
+        <member name="M:AT_BC.Common.HttpServiceHost.OnOpening">
+            <summary>
+            重写打开方法,该方法中会按照规则配置终结点并发布服务,服务打开后其配置无法修改,该方法为服务承载类的核心
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.HttpServiceHost.InitializeServiceBehavior">
+            <summary>
+            初始化服务行为-主要包括默认行为、异常捕捉行为、元数据发布行文
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.HttpServiceHost.CreateBinding">
+            <summary>
+            抽象方法,派生类必须重写该方法,按照实际的binding协议类型,创建绑定
+            </summary>
+            <returns>创建的Binding</returns>
+        </member>
+        <member name="M:AT_BC.Common.HttpServiceHost.AddMetadataEnpoint">
+            <summary>
+            向服务添加元数据终结点
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.HttpServiceHost.contractAttribute">
+            <summary>
+            ServiceContractAttribute类型引用
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.HttpServiceHost.CreateServiceHosts(System.Type,System.Int32)">
+            <summary>
+            创建服务承载类
+            </summary>
+            <param name="serviceType">要加载的服务类型</param>
+            <param name="servicePort">服务发布端口号</param>
+            <returns>创建的服务承载类</returns>
+        </member>
+        <member name="P:AT_BC.Common.HttpServiceHost.ServicePort">
+            <summary>
+            获取服务发布端口
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.HttpServiceHost.MetadataUri">
+            <summary>
+            获取元数据发布终结点地址：格式为：schema://host:port/服务类型完全限定名
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.HttpServiceHost.RealMetadataUri">
+            <summary>
+            获取真正的元数据发布终结点地址
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.HttpServiceHost.HttpGetUri">
+            <summary>
+            Http-Get方式获取元数据地址,当使用非http协议是默认将其发布到80端口
+            </summary>
+        </member>
+        <member name="T:AT_BC.Common.ServiceFaultBehavior">
+            <summary>
+            Silverlight错误处理类
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.ServiceFaultBehavior.errorWriter">
+            <summary>
+            错误编写器,负责错误的记录
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            用于向绑定元素传递自定义数据，以支持协定实现
+            </summary>
+            <param name="serviceDescription">服务的服务说明</param>
+            <param name="serviceHostBase">服务的宿主</param>
+            <param name="endpoints">服务终结点</param>
+            <param name="bindingParameters">绑定元素可访问的自定义对象</param>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+            <summary>
+            用于更改运行时属性值或插入自定义扩展对象(例如错误处理程序、消息或参数拦截器、安全扩展以及其他自定义扩展对象)
+            </summary>
+            <param name="serviceDescription">服务的服务说明</param>
+            <param name="serviceHostBase">当前正在生成的宿主</param>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+            <summary>
+            用于检查服务宿主和服务说明，从而确定服务是否可成功运行
+            </summary>
+            <param name="serviceDescription">服务说明</param>
+            <param name="serviceHostBase">当前正在生成的宿主</param>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.ProvideFault(System.Exception,System.ServiceModel.Channels.MessageVersion,System.ServiceModel.Channels.Message@)">
+            <summary>
+            启用创建从服务方法过程中的异常返回的自定义 System.ServiceModel.FaultException[TDetail]
+            </summary>
+            <param name="error">服务操作过程中引发的 System.Exception 对象</param>
+            <param name="version">消息的 SOAP 版本</param>
+            <param name="fault">双工情况下，返回到客户端或服务的 System.ServiceModel.Channels.Message 对象</param>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.HandleError(System.Exception)">
+            <summary>
+            启用错误相关处理并返回一个值，该值指示调度程序在某些情况下是否中止会话和实例上下文
+            </summary>
+            <param name="ex">处理过程中引发的异常</param>
+            <returns>不应中止会话（如果有一个）和实例上下文（如果实例上下文不是 System.ServiceModel.InstanceContextMode.Single）,该方法永远返回为true</returns>
+        </member>
+        <member name="T:AT_BC.Common.ServiceFaultBehavior.SilverlightFaultEndpointBehavior">
+            <summary>
+            错误处理端点行为定义
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.SilverlightFaultEndpointBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            添加参数绑定,可以将数据传递给绑定
+            </summary>
+            <param name="endpoint">要修改的终结点</param>
+            <param name="bindingParameters">绑定元素支持该行为所需的对象</param>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.SilverlightFaultEndpointBehavior.ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+            <summary>
+            在终结点范围内实现客户端的修改或扩展
+            </summary>
+            <param name="endpoint">要自定义的终结点</param>
+            <param name="clientRuntime">要自定义的客户端运行时</param>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.SilverlightFaultEndpointBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)">
+            <summary>
+            在终结点范围内实现客户端的修改或扩展
+            </summary>
+            <param name="endpoint">公开协定的终结点</param>
+            <param name="endpointDispatcher">要修改或扩展的终结点调度程序</param>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.SilverlightFaultEndpointBehavior.Validate(System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            确认终结点是否满足某些设定条件
+            </summary>
+            <param name="endpoint">要验证的终结点</param>
+        </member>
+        <member name="T:AT_BC.Common.ServiceFaultBehavior.SilverlightFaultEndpointBehavior.SilverlightFaultMessageInspector">
+            <summary>
+            在服务应用程序中对入站和出站应用程序消息进行自定义检查或修改
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.SilverlightFaultEndpointBehavior.SilverlightFaultMessageInspector.AfterReceiveRequest(System.ServiceModel.Channels.Message@,System.ServiceModel.IClientChannel,System.ServiceModel.InstanceContext)">
+            <summary>
+            在已接收入站消息后将消息调度到应发送到的操作之前调用
+            </summary>
+            <param name="request">请求消息</param>
+            <param name="channel">传入通道</param>
+            <param name="instanceContext">当前服务实例</param>
+            <returns>用于关联状态的对象。该对象将在 System.ServiceModel.Dispatcher.IDispatchMessageInspector.BeforeSendReply(System.ServiceModel.Channels.Message@,System.Object)方法中传回</returns>
+        </member>
+        <member name="M:AT_BC.Common.ServiceFaultBehavior.SilverlightFaultEndpointBehavior.SilverlightFaultMessageInspector.BeforeSendReply(System.ServiceModel.Channels.Message@,System.Object)">
+            <summary>
+            在操作已返回后发送回复消息之前调用
+            </summary>
+            <param name="reply">回复消息。如果操作是单向的，则此值为 null</param>
+            <param name="correlationState">从 System.ServiceModel.Dispatcher.IDispatchMessageInspector.AfterReceiveRequest(System.ServiceModel.Channels.Message@,System.ServiceModel.IClientChannel,System.ServiceModel.InstanceContext)方法返回的关联对象</param>
+        </member>
+        <member name="T:AT_BC.Common.TreeNode`1">
+            <summary>
+            属性节点定义,泛型类
+            </summary>
+            <typeparam name="T">节点包含的数据类型</typeparam>
+        </member>
+        <member name="F:AT_BC.Common.TreeNode`1.subTreeNodes">
+            <summary>
+            子节点列表
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.TreeNode`1.CreateTreeNodes(System.Collections.Generic.IList{`0},System.Func{`0,System.Boolean},System.Func{`0,AT_BC.Common.TreeNode{`0},System.Boolean})">
+            <summary>
+            创建属性节点
+            </summary>
+            <param name="listDataSource">数据列表</param>
+            <param name="rootPredicate">获取根节点数据的函数,该函数返回true则为根节点数据</param>
+            <param name="subNodePredicate">获取下级子节点数据的函数</param>
+            <returns>根节点列表</returns>
+        </member>
+        <member name="M:AT_BC.Common.TreeNode`1.SetupSubTreeNode(System.Collections.Generic.IList{`0},AT_BC.Common.TreeNode{`0},System.Func{`0,AT_BC.Common.TreeNode{`0},System.Boolean})">
+            <summary>
+            向参数指定节点安装子节点
+            </summary>
+            <param name="listDataSource">包含所有节点数据的数据列表</param>
+            <param name="treeNode">要增加下级节点的属性节点</param>
+            <param name="subNodePredicate">获取下级节点的方法</param>
+        </member>
+        <member name="M:AT_BC.Common.TreeNode`1.GetNodeDataList">
+            <summary>
+            获取节点数据列表
+            </summary>
+            <returns>节点包含的数据列表</returns>
+        </member>
+        <member name="P:AT_BC.Common.TreeNode`1.SubTreeNodes">
+            <summary>
+            获取子节点列表
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.TreeNode`1.Value">
+            <summary>
+            获取或设置节点自身的数据值
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.TreeNode`1.Level">
+            <summary>
+            获取或设置当前节点层级(层级从0开始)
+            </summary>
+        </member>
+        <member name="T:AT_BC.Common.VideoPlayer">
+            <summary>
+            Video.xaml 的交互逻辑
+            </summary>
+            <summary>
+            VideoPlayer
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.VideoPlayer.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:System.Windows.WindowHelper">
+            <summary>
+            窗口操作辅助类,主要提供统一的窗口限制参数
+            </summary>
+        </member>
+        <member name="M:System.Windows.WindowHelper.ShowDialog(System.Windows.Window,System.Windows.FrameworkElement)">
+            <summary>
+            以模态方式显示窗口
+            </summary>
+            <param name="wnd">要显示的窗口</param>
+            <param name="owner">包含该窗口的控件,系统会依据该控件查找父窗口作为打开窗口的所有者</param>
+            <returns></returns>
+        </member>
+        <member name="T:AT_BC.Common.BigObject`1">
+            <summary>
+            大对象包装类
+            </summary>
+            <typeparam name="T">大对象描述类型</typeparam>
+        </member>
+        <member name="F:AT_BC.Common.BigObject`1.content">
+            <summary>
+            大对象内容
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.BigObject`1.description">
+            <summary>
+            大对象描述
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.BigObject`1.WrapperDescription(System.Collections.Generic.IList{`0})">
+            <summary>
+            包装大对象列表
+            </summary>
+            <param name="descriptionList">要包装的大对象描述列表</param>
+            <returns>包装后的大对象列表,返回结果中大对象内容均为空</returns>
+        </member>
+        <member name="P:AT_BC.Common.BigObject`1.Content">
+            <summary>
+            获取或设置大对象内容
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.BigObject`1.Description">
+            <summary>
+            获取或设置大对象描述
+            </summary>
+        </member>
+        <member name="T:AT_BC.Common.VisualTreeHelperExtension">
+            <summary>
+            可视树辅助类扩展,提供按照类型遍历父控件、子控件等功能
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.VisualTreeHelperExtension.GetParentObject``1(System.Windows.DependencyObject,System.String)">
+            <summary>
+            获取父控件
+            </summary>
+            <typeparam name="T">要获取的父控件类型</typeparam>
+            <param name="obj">当前对象</param>
+            <param name="name">父控件名称</param>
+            <returns>T类型父控件,如果未找到返回null</returns>
+        </member>
+        <member name="M:AT_BC.Common.VisualTreeHelperExtension.GetChildObject``1(System.Windows.DependencyObject,System.String)">
+            <summary>
+            获取子控件
+            </summary>
+            <typeparam name="T">子控件类型</typeparam>
+            <param name="obj">当前控件</param>
+            <param name="name">子控件名称</param>
+            <returns>T类型子控件,如果未找到则返回null</returns>
+        </member>
+        <member name="M:AT_BC.Common.VisualTreeHelperExtension.GetChildObjects``1(System.Windows.DependencyObject,System.String)">
+            <summary>
+            获取所有子控件
+            </summary>
+            <typeparam name="T">子控件类型</typeparam>
+            <param name="obj">当前控件</param>
+            <param name="name">子控件名称</param>
+            <returns>T类型子控件列表</returns>
+        </member>
+        <member name="T:AT_BC.Common.Controls.CanGobackContainer">
+            <summary>
+            可返回容器定义,控件提供安装下级页面和从当前页面返回上级功能
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.CanGobackContainer.ContentCheckerProperty">
+            <summary>
+            内容控件检查器,当安装下级控件时会通过该检查器检查控件是否符合要求
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.CanGobackContainer.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.CanGobackContainer.OnContentChanged(System.Object,System.Object)">
+            <summary>
+            内容改变事件,可以被派生类重写
+            </summary>
+            <param name="oldContent">原控件</param>
+            <param name="newContent">新控件</param>
+        </member>
+        <member name="M:AT_BC.Common.Controls.CanGobackContainer.GoBack">
+            <summary>
+            返回上层,如果当前为最底层则擦出当前控件并隐藏容器控件本身
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.CanGobackContainer.SetupSubControl(System.Object)">
+            <summary>
+            安装子控件
+            </summary>
+            <param name="content"></param>
+        </member>
+        <member name="M:AT_BC.Common.Controls.CanGobackContainer.GoHome">
+            <summary>
+            返回首页,将当前容器内容清空并隐藏自身
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.CanGobackContainer.InActive">
+            <summary>
+            控件从激活状态转换为非激活状态执行方法
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.CanGobackContainer.ContentChecker">
+            <summary>
+            获取或设置内容控件检查器,当安装下级控件时会通过该检查器检查控件是否符合要求
+            </summary>
+        </member>
+        <member name="E:AT_BC.Common.Controls.CanGobackContainer.ContentChanged">
+            <summary>
+            内容改变事件
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.CanGobackContainer.CanGoback">
+            <summary>
+            获取是否能够返回,如果当前控件内容不为空则可返回
+            </summary>
+        </member>
+        <member name="E:AT_BC.Common.Controls.CanGobackContainer.PropertyChanged">
+            <summary>
+            属性变更通知事件
+            </summary>
+        </member>
+        <member name="T:AT_BC.Common.Controls.ModuleControlContainer">
+            <summary>
+            模块控件容器类定义,该类提供激活、打开窗体、返回上层、忙条等操作
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.ModuleControlContainer.#cctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.ModuleControlContainer.OnSubControlChanged">
+            <summary>
+            子控件发生改变时出发该事件
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.ModuleControlContainer.GoBack">
+            <summary>
+            返回上一层
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.ModuleControlContainer.GoHome">
+            <summary>
+            返回首页
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.ModuleControlContainer.Active">
+            <summary>
+            激活当前控件
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.ModuleControlContainer.OnApplyTemplate">
+            <summary>
+            应用模版
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.ModuleControlContainer.canGobackContainer">
+            <summary>
+            能返回控件容器
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.ModuleControlContainer.SetupSubControl(System.Object)">
+            <summary>
+            安装子控件
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:AT_BC.Common.Controls.ModuleControlContainer.InActive">
+            <summary>
+            控件失去激活状态
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.ModuleControlContainer.Dispose">
+            <summary>
+            释放相关资源方法(地图等相关控件清理)
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.ModuleControlContainer.CanGoback">
+            <summary>
+            获取控件可返回状态,true:可返回,false:不可返回
+            </summary>
+        </member>
+        <member name="E:AT_BC.Common.Controls.ModuleControlContainer.PropertyChanged">
+            <summary>
+            属性变更通知处理事件
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.ModuleControlContainer.ContentType">
+            <summary>
+            获取内容控件类型
+            </summary>
+        </member>
+        <member name="T:AT_BC.Common.Converters.BoolToVisibilityConverter">
+            <summary>
+            bool类型到Visibility转换器
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.BoolToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            将参数化提供值转换为目标表示形式
+            </summary>
+            <param name="value">要转换的值</param>
+            <param name="targetType">目标依赖项属性需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到目标依赖项属性的值</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.BoolToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            在将目标数据传递到源对象之前，对目标数据进行修改。此方法仅在 System.Windows.Data.BindingMode.TwoWay 绑定中进行调用。
+            </summary>
+            <param name="value">正传递到源的目标数据</param>
+            <param name="targetType">源对象需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到源对象的值</returns>
+        </member>
+        <member name="T:AT_BC.Common.Converters.BoolToVisibilityReverseConverter">
+            <summary>
+            Bool类型和Visibility类型转换器
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.BoolToVisibilityReverseConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            从Bool类型到Visibility的转换
+            </summary>
+            <param name="value">待转换的值</param>
+            <param name="targetType">目标依赖项属性需要的数据类型 Visibility</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数,未处理该参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>转换后的值,value为true时该值为Collapsed false时为Visible</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.BoolToVisibilityReverseConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            从Bool类型到Visibility的转换
+            </summary>
+            <param name="value">待转换的值</param>
+            <param name="targetType">源对象需要的数据类型 bool</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数,未处理该参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到源对象的值,value为Visible时该值为true Collapsed时为false</returns>
+        </member>
+        <member name="T:AT_BC.Common.Converters.DegreeConverter">
+            <summary>
+            度转换器基类,提供double到度分秒表现形式的实质转换方法
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.DegreeConverter.Convert(System.Object,System.Char,System.Char)">
+            <summary>
+            将参数指定值转换为度分秒表性形式,并根据参数指定字符描述正负属性
+            </summary>
+            <param name="value">要转换的数值</param>
+            <param name="positive">正值的前缀描述</param>
+            <param name="negative">负值的前缀描述</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="T:AT_BC.Common.Converters.LongitudeConverter">
+            <summary>
+            经度数据转换器,将double格式的经度表现形式转换为度分秒表现形式
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.LongitudeConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            将参数化提供值转换为目标表示形式
+            </summary>
+            <param name="value">要转换的值</param>
+            <param name="targetType">目标依赖项属性需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到目标依赖项属性的值</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.LongitudeConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            在将目标数据传递到源对象之前，对目标数据进行修改。此方法仅在 System.Windows.Data.BindingMode.TwoWay 绑定中进行调用。
+            </summary>
+            <param name="value">正传递到源的目标数据</param>
+            <param name="targetType">源对象需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到源对象的值</returns>
+        </member>
+        <member name="T:AT_BC.Common.Converters.LatitudeConverter">
+            <summary>
+            纬度数据转换器,将double格式的纬度表现形式转换为度分秒表现形式
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.LatitudeConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            将参数化提供值转换为目标表示形式
+            </summary>
+            <param name="value">要转换的值</param>
+            <param name="targetType">目标依赖项属性需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到目标依赖项属性的值</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.LatitudeConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            在将目标数据传递到源对象之前，对目标数据进行修改。此方法仅在 System.Windows.Data.BindingMode.TwoWay 绑定中进行调用。
+            </summary>
+            <param name="value">正传递到源的目标数据</param>
+            <param name="targetType">源对象需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到源对象的值</returns>
+        </member>
+        <member name="T:AT_BC.Common.Converters.DoubleConverter">
+            <summary>
+            双精度浮点数转换器,提供将职位double.NaN的数据转换为空串表示
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.DoubleConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            将参数化提供值转换为目标表示形式
+            </summary>
+            <param name="value">要转换的值</param>
+            <param name="targetType">目标依赖项属性需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到目标依赖项属性的值</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.DoubleConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            在将目标数据传递到源对象之前，对目标数据进行修改。此方法仅在 System.Windows.Data.BindingMode.TwoWay 绑定中进行调用。
+            </summary>
+            <param name="value">正传递到源的目标数据</param>
+            <param name="targetType">源对象需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到源对象的值</returns>
+        </member>
+        <member name="T:AT_BC.Common.Converters.EnumDefaultConverter">
+            <summary>
+            枚举默认转换器,提供将枚举值转换为使用EnumDisplayNameAttribute自定义属性描述的值功能
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.EnumDefaultConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            将参数化提供值转换为目标表示形式
+            </summary>
+            <param name="value">要转换的值</param>
+            <param name="targetType">目标依赖项属性需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到目标依赖项属性的值</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.EnumDefaultConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            在将目标数据传递到源对象之前，对目标数据进行修改。此方法仅在 System.Windows.Data.BindingMode.TwoWay 绑定中进行调用。
+            </summary>
+            <param name="value">正传递到源的目标数据</param>
+            <param name="targetType">源对象需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到源对象的值</returns>
+        </member>
+        <member name="T:AT_BC.Common.Converters.IndexToSequenceConverter">
+            <summary>
+            索引序列转换器，将从0开始的索引转换为从1开始的序列
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.MinDateTimeToEmptyConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AT_BC.Common.Converters.MultipleBoolenTrueToBoolConverter">
+            <summary>
+            支持多选bool值真值计算器，根据参数值判断包含真值情况
+            </summary>
+        </member>
+        <member name="T:AT_BC.Common.Converters.MultipleBoolenFalseToBoolConverter">
+            <summary>
+                /// <summary>
+            支持多选bool假真值计算器，根据参数值判断包含假值情况
+            </summary>
+            </summary>
+        </member>
+        <member name="T:AT_BC.Common.Converters.NullableBoolConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AT_BC.Common.Converters.NullableBoolToVisibilityConverter">
+            <summary>
+            可控bool值到元素可见性转换器,true:转换为为Visible,否则转换为Collapsed
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.NullableBoolToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            从Bool?类型到Visibility的转换
+            </summary>
+            <param name="value">待转换的值</param>
+            <param name="targetType">目标依赖项属性需要的数据类型 Visibility</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数,未处理该参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>转换后的值,value为true时该值为Visible 否则为Collapsed</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.NullableBoolToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            从Bool类型到Visibility的转换
+            </summary>
+            <param name="value">待转换的值</param>
+            <param name="targetType">源对象需要的数据类型 bool</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数,未处理该参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到源对象的值,value为Visible时该值为true 否则为false</returns>
+        </member>
+        <member name="T:AT_BC.Common.Converters.NullToFalseConverter">
+            <summary>
+            空对象分析器,将null转换为true,否则转换为false
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.NullToFalseConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            将参数化提供值转换为目标表示形式
+            </summary>
+            <param name="value">要转换的值</param>
+            <param name="targetType">目标依赖项属性需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到目标依赖项属性的值</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.NullToFalseConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            在将目标数据传递到源对象之前，对目标数据进行修改。此方法仅在 System.Windows.Data.BindingMode.TwoWay 绑定中进行调用。
+            </summary>
+            <param name="value">正传递到源的目标数据</param>
+            <param name="targetType">源对象需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到源对象的值</returns>
+        </member>
+        <member name="T:AT_BC.Common.Converters.VisibilityToBoolConverter">
+            <summary>
+            Visibility到bool类型转换器
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.VisibilityToBoolConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            将参数化提供值转换为目标表示形式
+            </summary>
+            <param name="value">要转换的值</param>
+            <param name="targetType">目标依赖项属性需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到目标依赖项属性的值</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.VisibilityToBoolConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            在将目标数据传递到源对象之前，对目标数据进行修改。此方法仅在 System.Windows.Data.BindingMode.TwoWay 绑定中进行调用。
+            </summary>
+            <param name="value">正传递到源的目标数据</param>
+            <param name="targetType">源对象需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到源对象的值</returns>
+        </member>
+        <member name="T:AT_BC.Common.FtpOperator">
+            <summary>
+            FTP操作实现类，提供上传下载功能
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.FtpOperator.bufferSize">
+            <summary>
+            缓冲区大小2k
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.FtpOperator.ftpBaseUri">
+            <summary>
+            ftp基地址,格式ftp://ip:port,可以使用默认端口号
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.FtpOperator.networkCredential">
+            <summary>
+            身份验证凭据
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.FtpOperator.latestUploadRelativePath">
+            <summary>
+            最后使用的有效上传路径
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.#ctor">
+            <summary>
+            构造函数(私有),该类只能通过静态方法构造
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.CreateFtpOperator(System.String,System.String,System.String)">
+            <summary>
+            基于用户名、密码验证创建ftp操作
+            </summary>
+            <param name="ftpHost">基地址</param>
+            <param name="userName">用户名，空则为不需要验证</param>
+            <param name="password">密码</param>
+            <returns>创建的FTP操作类</returns>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.CreateFtpOperator(System.String,System.String,System.String,System.String)">
+            <summary>
+            基于用户名、密码验证创建ftp操作
+            </summary>
+            <param name="ftpHost">基地址</param>
+            <param name="userName">用户名，空则为不需要验证</param>
+            <param name="password">密码</param>
+            <param name="domain">域名,该字段为空或者用户名为空均不进行身份验证</param>
+            <returns>创建的FTP操作类</returns>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.DownloadFile(System.String,System.String)">
+            <summary>
+            下载文件
+            </summary>
+            <param name="relativePath">FTP相对地址,该地址同服务器基地址拼接成下载文件地址</param>
+            <param name="filePath">下载文件的写入路径</param>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.DownloadFile(System.String,System.IO.Stream)">
+            <summary>
+            下载文件
+            </summary>
+            <param name="relativePath">FTP相对地址,该地址同服务器基地址拼接成下载文件地址</param>
+            <param name="outputStream">下载文件的写入流</param>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.GetDownloadStream(System.String)">
+            <summary>
+            获取下载文件流(读取流)
+            </summary>
+            <param name="relativePath">文件FTP相对路径</param>
+            <returns>下载文件流</returns>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.UploadFile(System.String,System.String)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="relativePath">FTP相对地址,该地址同服务器基地址拼接成上传文件写入地址</param>
+            <param name="filePath">上传文件的读取路径</param>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.UploadFile(System.String,System.IO.Stream)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="relativePath">FTP相对地址,该地址同服务器基地址拼接成上传文件写入地址</param>
+            <param name="stream">上传文件流</param>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.GetUploadStream(System.String)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="relativePath">FTP相对地址,该地址同服务器基地址拼接成上传文件写入地址</param>
+            <param name="stream">上传文件流</param>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.MakePath(System.String)">
+            <summary>
+            在FTP服务器上创建相对路径
+            </summary>
+            <param name="relativePath">要创建的路径</param>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.MakeUri(System.Uri)">
+            <summary>
+            创建路径
+            </summary>
+            <param name="uri">要创建的网络地址</param>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.CheckDirectory(System.Uri,System.String)">
+            <summary>
+            检查路径有效性,存在返回true,否则返回false
+            </summary>
+            <param name="knownUri">基地址,系统认为该地址有效,并在该地址下查找dirName指定文件夹</param>
+            <param name="dirName">要查找的文件夹</param>
+            <returns>存在返回true,否则返回false</returns>
+        </member>
+        <member name="M:AT_BC.Common.FtpOperator.GetSubPaths(System.Uri)">
+            <summary>
+            获取参数指定地址下的所有文件夹列表
+            </summary>
+            <param name="knownUri">要在其下查找文件夹的路径</param>
+            <returns>参数knownUri下所有文件夹列表</returns>
+        </member>
+        <member name="P:AT_BC.Common.FtpOperator.LatestUploadRelativePath">
+            <summary>
+            获取或设置最后使用的有效上传路径
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.PortDetector.TryGetFirstAvailablePort(System.Int32,System.Int32@)">
+            <summary> 
+            获取第一个可用的端口号 
+            </summary> 
+            <returns></returns> 
+        </member>
+        <member name="M:AT_BC.Common.PortDetector.GetUsedPorts">
+            <summary> 
+            获取操作系统已用的端口号 
+            </summary> 
+            <returns></returns> 
+        </member>
+        <member name="M:AT_BC.Common.PortDetector.PortIsAvailable(System.Int32)">
+            <summary> 
+            检查指定端口是否已用
+            </summary> 
+            <param name="port"></param> 
+            <returns></returns> 
+        </member>
+        <member name="T:AT_BC.Common.Controls.AppImageButton">
+            <summary>
+            图片按钮,内容为图片并含有文本标题的按钮定义
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.AppImageButton.#cctor">
+            <summary>
+            静态构造函数,设置按钮默认的样式
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.AppImageButton.HeaderProperty">
+            <summary>
+            定义依赖属性-按钮标题
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.AppImageButton.ImageSourceProperty">
+            <summary>
+            定义依赖属性-按钮显示图片
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.AppImageButton.Header">
+            <summary>
+            获取或设置显示标题
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.AppImageButton.ImageSource">
+            <summary>
+            获取或设置显示图片
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.ListBoxImageItem.HeaderProperty">
+            <summary>
+            定义依赖属性-按钮标题
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.ListBoxImageItem.ImageSourceProperty">
+            <summary>
+            定义依赖属性-按钮显示图片
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.ListBoxImageItem.Header">
+            <summary>
+            获取或设置显示标题
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.ListBoxImageItem.ImageSource">
+            <summary>
+            获取或设置显示图片
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.ModuleToolbar.ToolBarProperty">
+            <summary>
+            定义依赖属性-按钮标题
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.ModuleToolbar.NavigateBarProperty">
+            <summary>
+            定义依赖属性-按钮标题
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.ModuleToolbar.ToolBar">
+            <summary>
+            获取或设置显示标题
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.ModuleToolbar.NavigateBar">
+            <summary>
+            获取或设置显示标题
+            </summary>
+        </member>
+        <member name="F:AT_BC.Common.Controls.SyncStateControl.StateProperty">
+            <summary>
+            定义依赖属性-按钮标题
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Controls.SyncStateControl.State">
+            <summary>
+            获取或设置显示标题
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Controls.TranslucentContentControl.OnMouseEnter(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            鼠标进入事件
+            </summary>
+            <param name="e">鼠标参数</param>
+        </member>
+        <member name="M:AT_BC.Common.Controls.TranslucentContentControl.OnMouseLeave(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            鼠标离开事件
+            </summary>
+            <param name="e">鼠标参数</param>
+        </member>
+        <member name="T:AT_BC.Common.Converters.ReverseVisibilityConverter">
+            <summary>
+            控件可见性取反转换器,将值为提供Visibility 的值Collapsed和Visible之间的转换
+            </summary>
+        </member>
+        <member name="M:AT_BC.Common.Converters.ReverseVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            将参数化提供值转换为目标表示形式
+            </summary>
+            <param name="value">要转换的值</param>
+            <param name="targetType">目标依赖项属性需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到目标依赖项属性的值</returns>
+        </member>
+        <member name="M:AT_BC.Common.Converters.ReverseVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            在将目标数据传递到源对象之前，对目标数据进行修改。此方法仅在 System.Windows.Data.BindingMode.TwoWay 绑定中进行调用。
+            </summary>
+            <param name="value">正传递到源的目标数据</param>
+            <param name="targetType">源对象需要的数据的 System.Type</param>
+            <param name="parameter">要在转换器逻辑中使用的可选参数</param>
+            <param name="culture">转换的区域性</param>
+            <returns>要传递到源对象的值</returns>
+        </member>
+        <member name="P:AT_BC.Common.Controls.DataGridVerticalCenterTextColumn.TextHorizontalAlignment">
+            <summary>
+            获取或设置显示标题
+            </summary>
+        </member>
+        <member name="T:AT_BC.Common.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:AT_BC.Common.Properties.Resources.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+    </members>
+</doc>

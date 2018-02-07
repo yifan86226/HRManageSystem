@@ -1,0 +1,527 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PT_BS_Service.Client.Framework</name>
+    </assembly>
+    <members>
+        <member name="T:PT_BS_Service.Client.Framework.BeOperationInvoker">
+            <summary>
+            客户端操作封装类,负责封装客户端对服务的调用
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.InvokeServiceAsync``2(System.Func{``0,``1},System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``1}},System.Threading.SynchronizationContext)">
+            <summary>
+            执行参数指定的方法
+            </summary>
+            <typeparam name="TChannel">信道类型</typeparam>
+            <typeparam name="TResult">执行结果类型</typeparam>
+            <param name="serviceInvocation">要执行的方法代理</param>
+            <param name="callback">回调方法</param>
+            <param name="context">同步上下文</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.InvokeAsync``2(System.Func{``0,``1},System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``1}},System.Threading.SynchronizationContext)">
+            <summary>
+            执行参数指定的方法
+            </summary>
+            <typeparam name="TChannel">信道类型</typeparam>
+            <typeparam name="TResult">执行结果类型</typeparam>
+            <param name="serviceInvocation">要执行的方法代理</param>
+            <param name="callback">回调方法</param>
+            <param name="context">同步上下文</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.InvokeServiceAsync``1(System.Action{``0},System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{System.Boolean}},System.Threading.SynchronizationContext)">
+            <summary>
+            异步执行指定的操作
+            </summary>
+            <typeparam name="TChannel">要执行操作的信道类型</typeparam>
+            <param name="serviceInvocation">要执行的操作</param>
+            <param name="callback">执行后的回调方法</param>
+            <param name="context">执行回调的上下文</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.InvokeAsync``1(System.Action{``0},System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{System.Boolean}},System.Threading.SynchronizationContext)">
+            <summary>
+            异步执行指定的操作
+            </summary>
+            <typeparam name="TChannel">要执行操作的信道类型</typeparam>
+            <param name="serviceInvocation">要执行的操作</param>
+            <param name="callback">执行后的回调方法</param>
+            <param name="context">执行回调的上下文</param>
+        </member>
+        <member name="F:PT_BS_Service.Client.Framework.BeOperationInvoker.invokerList">
+            <summary>
+            操作封装列表,包含所有使用过的操作封装
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Framework.BeOperationInvoker.Current">
+            <summary>
+            当前默认的操作封装,静态方法调用该对象的方法
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Framework.BeOperationInvoker.serviceAddressManager">
+            <summary>
+            服务地址管理器
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Framework.BeOperationInvoker.debugAddressManager">
+            <summary>
+            调试地址管理器,通过该管理器可以实现服务地址定向到配置位置
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.GetOperationInvoker(System.String,System.Int32)">
+            <summary>
+            根据参数获取客户端操作类
+            </summary>
+            <param name="catalogIP">目录服务地址</param>
+            <param name="catalogPort">目录服务端口号</param>
+            <returns>客户端操作类引用,存在IP和端口一致的操作类将使用已有操作类，否则将创建新的操作类</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.#cctor">
+            <summary>
+            静态构造函数,初始化服务地址和调试地址
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.AddDebugService(System.String,System.String,System.Int32)">
+            <summary>
+            手动添加调试信息-add by qinwei
+            </summary>
+            <param name="interfaceName"></param>
+            <param name="ip"></param>
+            <param name="port"></param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.LoadDebugConfig">
+            <summary>
+            加载服务调试地址
+            </summary>
+            <returns>调试服务管理器</returns>
+        </member>
+        <member name="F:PT_BS_Service.Client.Framework.BeOperationInvoker.catalogAddress">
+            <summary>
+            目录服务地址
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Framework.BeOperationInvoker.isInit">
+            <summary>
+            初始化标识,true:表示客户端框架经过初始化,可以正常使用,false:在调用服务操作的时候会抛出异常
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.Invoke``1(System.Action{``0},``0)">
+            <summary>
+            在参数指定信道上执行指定方法
+            </summary>
+            <typeparam name="TChannel">信道接口类型</typeparam>
+            <param name="serviceInvocation">要执行的方法</param>
+            <param name="channel">要在其上执行方法的信道</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.Invoke``2(System.Func{``0,``1},``0)">
+            <summary>
+            在参数指定信道上执行指定方法
+            </summary>
+            <typeparam name="TChannel">信道接口类型</typeparam>
+            <typeparam name="TResult">方法返回值类型</typeparam>
+            <param name="serviceInvocation">要执行的方法</param>
+            <param name="channel">要在其上执行方法的信道</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.HandleException(System.Exception,System.ServiceModel.ICommunicationObject)">
+            <summary>
+            异常处理
+            </summary>
+            <param name="ex">捕捉到的异常</param>
+            <param name="channel">发生异常的信道</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.InitFrameworkOperationInvoker(System.String,System.Int32,System.Boolean,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{System.Boolean}})">
+            <summary>
+            初始化客户端操作框架
+            </summary>
+            <param name="catalogIpAddress">目录服务IP地址</param>
+            <param name="catalogPort">目录服务端口号</param>
+            <param name="immediateInit">是否立即进行服务地址缓存操作，或者异步进行</param>
+            <param name="InitCompleted">执行后回调方法</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.InitOperationInvoker(System.String,System.Int32,System.Boolean,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{System.Boolean}})">
+            <summary>
+            初始化默认客户端操作框架
+            </summary>
+            <param name="catalogIpAddress">目录服务IP地址</param>
+            <param name="catalogPort">目录服务端口号</param>
+            <param name="immediateInit">是否立即进行服务地址缓存操作，或者异步进行</param>
+            <param name="InitCompleted">执行后回调方法</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.LoadServices(System.Action{System.Collections.Generic.Dictionary{System.String,System.String}},System.Action{System.Object})">
+            <summary>
+            从目录服务加载服务地址
+            </summary>
+            <param name="updateServiceAddress">更新服务地址代理,该方法应该由是服务地址管理器提供</param>
+            <param name="callback">更新服务地址后的本地动作</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.InvokeService``1(System.Action{``0})">
+            <summary>
+            执行参数指定方法
+            </summary>
+            <typeparam name="TChannel">信道类型</typeparam>
+            <param name="serviceInvocation">要执行的方法代理</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.Invoke``1(System.Action{``0})">
+            <summary>
+            执行参数指定方法
+            </summary>
+            <typeparam name="TChannel">信道类型</typeparam>
+            <param name="serviceInvocation">要执行的方法代理</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.InvokeService``2(System.Func{``0,``1})">
+            <summary>
+            执行参数指定的方法
+            </summary>
+            <typeparam name="TChannel">信道类型</typeparam>
+            <typeparam name="TResult">执行结果类型</typeparam>
+            <param name="serviceInvocation">要执行的方法代理</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.Invoke``2(System.Func{``0,``1})">
+            <summary>
+            执行参数指定的方法
+            </summary>
+            <typeparam name="TChannel">信道类型</typeparam>
+            <typeparam name="TResult">执行结果类型</typeparam>
+            <param name="serviceInvocation">要执行的方法代理</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.CreateChannel``1">
+            <summary>
+            创建信道
+            </summary>
+            <typeparam name="TChannel">要创建的信道类型</typeparam>
+            <returns>信道包装类,包含信道引用和服务地址类型</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.CreateChannel``1(System.String)">
+            <summary>
+            按照参数指定地址,创建指定协议信道
+            </summary>
+            <typeparam name="TChannel">要创建的信道类型</typeparam>
+            <param name="address">终结点地址(IP:Port)</param>
+            <returns>创建的信道</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.GetServiceInterface``1">
+            <summary>
+            获取参数指定接口
+            </summary>
+            <typeparam name="TChannel">要获取的接口类型</typeparam>
+            <returns>获取的接口</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.GetInterface``1">
+            <summary>
+            获取参数指定接口
+            </summary>
+            <typeparam name="TChannel">要获取的接口类型</typeparam>
+            <returns>获取的接口</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.ReleaseInterface(System.Object)">
+            <summary>
+            释放由静态成员函数GetInterface或成员函数GetServiceInterface创建的接口对象
+            </summary>
+            <param name="t"></param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.CreateChannelFromCatalog``1">
+            <summary>
+            直接从目录服务获取待创建接口地址,并用地址创建信道
+            </summary>
+            <typeparam name="TChannel">要创建的信道类型</typeparam>
+            <returns>创建的信道</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.CreateRestServiceInvoker">
+            <summary>
+            创建Rest服务调用接口
+            </summary>
+            <returns>Rest服务调用接口</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.CreateRestInvoker">
+            <summary>
+            创建Rest服务调用接口
+            </summary>
+            <returns>Rest服务调用接口</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.CreateRestOperationProxy">
+            <summary>
+            创建Rest服务调用代理接口,创建出的代理类可以直接根据已知地址调用Rest服务,而不依赖于目录服务
+            </summary>
+            <returns>Rest服务代理接口</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.CreateServiceClient``1">
+            <summary>
+            创建客户端操作类,该类派生自ClientBase,通常有添加服务引用生成
+            </summary>
+            <typeparam name="TClient">要创建的客户端操作类</typeparam>
+            <returns>客户端操作类</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.CreateClient``1">
+            <summary>
+            创建客户端操作类,该类派生自ClientBase,通常有添加服务引用生成
+            </summary>
+            <typeparam name="TClient">要创建的客户端操作类</typeparam>
+            <returns>客户端操作类</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.GetServiceClientWrapperAsync``1">
+            <summary>
+            异步获得客户端操作包装对象(ClientBase派生类),执行该操作将不使用本地缓存地址,直接向目录服务申请服务地址
+            </summary>
+            <typeparam name="TClient">要包装的操作对象</typeparam>
+            <returns>操作对象包装类</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.GetClientWrapperAsync``1">
+            <summary>
+            异步获得客户端操作包装对象(ClientBase派生类),执行该操作将不使用本地缓存地址,直接向目录服务申请服务地址
+            </summary>
+            <typeparam name="TClient">要包装的操作对象</typeparam>
+            <returns>操作对象包装类</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.BeOperationWrapperBase`2.HandleException(PT_BS_Service.Client.Core.ChannelWrapper{`0},System.Exception)">
+            <summary>
+            处理调用服务异常,如果是通信异常并且信道是通过缓存地址创建的,将从目录服务重新获取地址并执行操作,否则将异常结果提交给回调函数
+            </summary>
+            <param name="wrapper">信道包装类,提供操作接口及信道地址类型</param>
+            <param name="ex">要处理的异常</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.BeOperationWrapperBase`2.ThrowException(System.Exception,System.String)">
+            <summary>
+            向客户端提交异常
+            </summary>
+            <param name="ex">要提交的异常</param>
+            <param name="tarAddress">tarAddress</param>
+        </member>
+        <member name="T:PT_BS_Service.Client.Framework.BeOperationInvoker.WCFClientWrapper`1">
+            <summary>
+            内部私有类,WCFClient包装类
+            </summary>
+            <typeparam name="TClient">要包装的WCF客户端类型</typeparam>
+        </member>
+        <member name="T:PT_BS_Service.Client.Framework.IWCFClientWrapper`1">
+            <summary>
+            WCF客户端包装接口
+            </summary>
+            <typeparam name="TClient">要包装的客户端类型</typeparam>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.IWCFClientWrapper`1.CreateClient">
+            <summary>
+            使用参数指定协议名称创建客户端对象
+            </summary>
+        </member>
+        <member name="E:PT_BS_Service.Client.Framework.IWCFClientWrapper`1.ClientCreateCompleted">
+            <summary>
+            客户端创建完成事件
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Framework.BeOperationInvoker.BeRestInvoker">
+            <summary>
+            Rest服务调用封装
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Client.Framework.BeOperationInvoker.BeRestInvoker.GetRestAddress">
+            <summary>
+            Rest服务地址查找方法
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.BeRestInvoker.#ctor(System.Func{System.String,System.String})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="funcGetAddress">Rest服务地址查找方法</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.BeRestInvoker.WebGetAsync``1(System.String,System.String,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``0}})">
+            <summary>
+            调用GET方法
+            </summary>
+            <typeparam name="T">结果的类型</typeparam>
+            <param name="contractName">Rest对应的接口名称</param>
+            <param name="operationRequest">请求的操作</param>
+            <param name="callback">对结果的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.BeRestInvoker.WebPutAsync``2(System.String,System.String,``0,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``1}})">
+            <summary>
+            调用PUT方法
+            </summary>
+            <typeparam name="TData">请求数据的类型</typeparam>
+            <typeparam name="TResult">结果的类型</typeparam>
+            <param name="contractName">Rest对应的接口名称</param>
+            <param name="operationRequest">请求的操作</param>
+            <param name="data">请求的数据</param>
+            <param name="callback">对结果的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.BeRestInvoker.WebPostAsync``2(System.String,System.String,``0,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``1}})">
+            <summary>
+            调用POST方法
+            </summary>
+            <typeparam name="TData">请求数据的类型</typeparam>
+            <typeparam name="TResult">结果的类型</typeparam>
+            <param name="contractName">Rest对应的接口名称</param>
+            <param name="operationRequest">请求的操作</param>
+            <param name="data">请求的数据</param>
+            <param name="callback">对结果的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.BeRestInvoker.WebDeleteAsync``2(System.String,System.String,``0,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``1}})">
+            <summary>
+            调用DELETE方法
+            </summary>
+            <typeparam name="TData">请求数据的类型</typeparam>
+            <typeparam name="TResult">结果的类型</typeparam>
+            <param name="contractName">Rest对应的接口名称</param>
+            <param name="operationRequest">请求的操作</param>
+            <param name="data">请求的数据</param>
+            <param name="callback">对结果的操作</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeOperationInvoker.BeRestInvoker.WebInvoke``2(System.String,System.String,``0,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``1}},PT_BS_Service.Client.Core.BeRestInvokeType)">
+            <summary>
+            调用PUT/POST/DELETE方法
+            </summary>
+            <typeparam name="TData">请求数据的类型</typeparam>
+            <typeparam name="TResult">结果的类型</typeparam>
+            <param name="contractName">Rest服务接口名称</param>
+            <param name="operationRequest">请求的操作</param>
+            <param name="data">请求的数据</param>
+            <param name="callback">对结果的操作</param>
+            <param name="httpMethod">请求的具体方法，PUT/POST/DELETE</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeRestInvokeProxy.GetWebRequest(System.String,System.String,System.String)">
+            <summary>
+            获取WebRequest对象
+            </summary>
+            <param name="operationRequest">请求服务操作字符串描述</param>
+            <param name="httpMethod">请求的方法：GET,PUT,POST,DELETE</param>
+            <param name="contentType">请求的类型，json:"application/xml"</param>
+            <returns>WebRequest对象</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeRestInvokeProxy.HandleWebResponse``1(System.Net.WebResponse,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``0}},System.Threading.SynchronizationContext)">
+            <summary>
+            处理WebResponse
+            </summary>
+            <typeparam name="T">WebResponse返回结果的类型</typeparam>
+            <param name="webResponse">webResponse对象</param>
+            <param name="callback">对结果的操作</param>
+            <param name="syncContext">执行回调的同步上下文</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeRestInvokeProxy.HandleCallback``1(System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``0}},System.Exception,System.String,System.Threading.SynchronizationContext)">
+            <summary>
+            处理回调方法
+            </summary>
+            <typeparam name="T">处理的数据类型</typeparam>
+            <param name="callback">回调方法</param>
+            <param name="exception">回调异常</param>
+            <param name="tarAddress">tarAddress</param>
+            <param name="syncContext">同步上下文,实际的回调会在该上下文中执行</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeRestInvokeProxy.HandleCallback``1(System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``0}},PT_BS_Service.Client.Core.ServiceOperationResult{``0},System.Threading.SynchronizationContext)">
+            <summary>
+            处理回调方法
+            </summary>
+            <typeparam name="T">处理的数据类型</typeparam>
+            <param name="callback">回调方法</param>
+            <param name="result">回调结果</param>
+            <param name="syncContext">同步上下文,实际的回调会在该上下文中执行</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeRestInvokeProxy.WebInvokeAsync``2(System.String,PT_BS_Service.Client.Core.BeRestInvokeType,``0,System.Action{PT_BS_Service.Client.Core.ServiceOperationResult{``1}})">
+            <summary>
+            异步执行Web操作
+            </summary>
+            <typeparam name="TData">要提交的数据类型</typeparam>
+            <typeparam name="TResult">执行后返回的结果类型</typeparam>
+            <param name="operationRequest">请求地址</param>
+            <param name="operationType">操作类型</param>
+            <param name="data">要提交的数据</param>
+            <param name="callback">回调方法</param>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeRestInvokeProxy.WrapperWebException(System.Exception)">
+            <summary>
+            包装异常,如果异常是WebException,将根据其内容反序列化为RestFaultException异常
+            </summary>
+            <param name="ex">要包装的异常</param>
+            <returns>包装结果</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.BeRestInvokeProxy.CopyStream(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            复制流
+            </summary>
+            <param name="input">输入流</param>
+            <param name="output">输出流</param>
+        </member>
+        <member name="T:PT_BS_Service.Client.Framework.DebugServiceSection">
+            <summary>
+            调试远程服务配置段处理程序
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Framework.DebugServiceSection.ServiceCollection">
+            <summary>
+            获取服务列表
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Framework.RemotingServiceElementCollection">
+            <summary>
+            远程服务配置元素集合,记录配置的服务列表
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.RemotingServiceElementCollection.CreateNewElement">
+            <summary>
+            创建一个新的配置元素
+            </summary>
+            <returns>配置元素</returns>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.RemotingServiceElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            获取指定配置元素的元素键
+            </summary>
+            <param name="element">要为其返回键的配置元素</param>
+            <returns>参数指定元素的键值</returns>
+        </member>
+        <member name="P:PT_BS_Service.Client.Framework.RemotingServiceElementCollection.CollectionType">
+            <summary>
+            获取配置元素集合的类型
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Framework.RemotingServiceElementCollection.ElementName">
+            <summary>
+            获取标识配置文件中此元素集合的名称
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Framework.RemotingServiceElement">
+            <summary>
+            调试服务元素类定义
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Framework.RemotingServiceElement.Name">
+            <summary>
+            获取或设置要调试的服务名称
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Framework.RemotingServiceElement.Debug">
+            <summary>
+            获取或设置调试标识,true:需要调试,false:不需要调试
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Framework.RemotingServiceElement.IP">
+            <summary>
+            获取或设置所调试服务所在IP地址
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Client.Framework.RemotingServiceElement.Port">
+            <summary>
+            获取或设置所调试服务监听端口号
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Client.Framework.ExceptionHelper">
+            <summary>
+            Exception处理辅助类,封装默认的异常提示窗口(MessageBox)
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Client.Framework.ExceptionHelper.ShowDialog(System.Exception)">
+            <summary>
+            显示参数指定异常的提示信息
+            </summary>
+            <param name="exception">要显示的异常</param>
+        </member>
+    </members>
+</doc>

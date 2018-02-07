@@ -1,0 +1,5132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PT_TK</name>
+    </assembly>
+    <members>
+        <member name="T:PT.DB.DBObjectBuffer">
+            <summary>
+            缓冲数据集合管理类
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBObjectBuffer.UseCacheMode">
+            <summary>
+            是否使用缓冲模式
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBObjectBuffer.objectBuffer">
+            <summary>
+            缓冲池
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBObjectBuffer.GetCachedDBObject``1(PT.DB.DBOperator,PT.DB.DBObjectBuffer.GetObjectFromDBDelegate{``0})">
+            <summary>
+            获取缓冲的类型数据，如果为null则使用代理函数获取
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dbo"></param>
+            <param name="dbGet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBObjectBuffer.SetObjectToCache(System.Type,System.Object)">
+            <summary>
+            设置缓冲类型对应的数据
+            </summary>
+            <param name="tp">缓冲类型</param>
+            <param name="o">缓冲数据对象</param>
+        </member>
+        <member name="M:PT.DB.DBObjectBuffer.ClearAllCache">
+            <summary>
+            清理掉所有缓冲
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBObjectBuffer.GetSnapshot">
+            <summary>
+            获得快照信息
+            </summary>
+        </member>
+        <member name="T:PT.DB.DBObjectBuffer.GetObjectFromDBDelegate`1">
+            <summary>
+            代理函数实现将某类型数据从数据库获取来的泛型
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="dbo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.DBMapper">
+            <summary>
+            类及成员与数据库字段映射管理类，可实现基础的数据更新操作
+            </summary>
+            <summary>
+            使用DataSection实现轻量级表数据IO
+            </summary>
+            <summary>
+            类及成员与数据库字段映射管理类，可实现基础的数据更新操作
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBMapper.TIO_IListToTablesSection``1(System.Collections.Generic.IList{``0},PT.DB.InsertParam,PT.Toolkit.Portable.DataSection)">
+            <summary>
+            映射类列表作为整表数据导出到DataSection
+            </summary>
+            <typeparam name="T">映射类的泛型</typeparam>
+            <param name="dataProviders">数据列表</param>
+            <param name="isp">策略</param>
+            <param name="tablesSection">上级数据段(root)</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.InsertToSectionRows``1(System.Object,PT.DB.InsertParam,PT.Toolkit.Portable.DataSection)">
+            <summary>
+            将数据类作为一行写入DataSection
+            </summary>
+            <typeparam name="T">映射类的泛型</typeparam>
+            <param name="dataObject">数据类</param>
+            <param name="isp">策略</param>
+            <param name="tableSection"></param>
+        </member>
+        <member name="M:PT.DB.DBMapper.InsertToSectionRows(PT.DB.DBMapperTable,System.Object,PT.DB.InsertParam,PT.Toolkit.Portable.DataSection)">
+            <summary>
+            将数据类作为一行写入DataSection
+            </summary>
+            <param name="mapperTable">映射模型</param>
+            <param name="dataObject">数据类必须与映射模型所映射的类对应</param>
+            <param name="isp">策略</param>
+            <param name="tableSection"></param>
+        </member>
+        <member name="M:PT.DB.DBMapper.ConvertMemberValueToStringValue(System.Object,PT.DB.Portable.DBFieldTypeEnum)">
+            <summary>
+            变量值生成sql语句中的值表达串
+            </summary>
+            <param name="o">变量值</param>
+            <param name="fieldType">数据类型</param>
+            <returns>值表达串</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.ReceiveFromSectionRow(System.Object,PT.Toolkit.Portable.DataSection,PT.DB.ReceiveParam)">
+            <summary>
+            从数据行获取数据填写到类成员
+            </summary>
+            <param name="objDataReceiver">数据接收类</param>
+            <param name="rowSection">包含一行数据的DataSection</param>
+            <param name="rp">接收数据参数，可以为null</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.FindTableSectionByType(PT.Toolkit.Portable.DataSection,PT.DB.SelectParam,PT.DB.DBMapperTable)">
+            <summary>
+            在多表数据段中找到类型对应的表数据段
+            </summary>
+            <param name="tablesSection"></param>
+            <param name="sp">SelectParam提供表名称转义</param>
+            <param name="mapperTable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.TIO_IListFromTablesSection``1(System.Collections.Generic.IList{``0},PT.Toolkit.Portable.DataSection,PT.DB.SelectParam)">
+            <summary>
+            从表对应的DataSection中获取数据
+            </summary>
+            <typeparam name="T">映射类的泛型</typeparam>
+            <param name="dataProviders">上级数据段(root)</param>
+            <param name="tablesSection">tablesSection</param>
+            <param name="sp">策略</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.TIO_DBTableToTablesSection``1(PT.DB.DBOperator,PT.Toolkit.Portable.DataSection,PT.DB.SelectParam)">
+            <summary>
+            从库中读取指定表填写到tablesSection
+            </summary>
+            <typeparam name="T">映射类的泛型</typeparam>
+            <param name="dbo">数据库操作类</param>
+            <param name="tablesSection"></param>
+            <param name="sp">策略</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.TIO_DeleteDBTableByTablesSection(PT.DB.DBOperator,PT.Toolkit.Portable.DataSection)">
+            <summary>
+            用于更新前，将TablesSection段所有表数据进行删除
+            </summary>
+            <param name="dbo"></param>
+            <param name="tablesSection"></param>
+        </member>
+        <member name="M:PT.DB.DBMapper.TIO_DBTableFromTablesSection(PT.DB.DBOperator,PT.Toolkit.Portable.DataSection)">
+            <summary>
+            从tablesSection里的所有表数据写入数据库
+            </summary>
+            <param name="dbo">数据库操作类</param>
+            <param name="tablesSection"></param>
+        </member>
+        <member name="M:PT.DB.DBMapper.TIO_DBTablesCopy(PT.DB.DBOperator,PT.DB.DBOperator,System.Collections.Generic.List{System.Type},System.Collections.Generic.List{System.String},System.Boolean,System.Boolean)">
+            <summary>
+            将影射类对应的表数据从一个库拷贝到另一个库
+            </summary>
+            <param name="dboFrom">源</param>
+            <param name="dboTo">目标连接</param>
+            <param name="mappedTableTypes">已映射过的需要拷贝数据的类型列表</param>
+            <param name="tableNames">实际表名列表,如果非null,则元素数量必须和类型列表元素数量一致,此参数为解决同一映射表同时映射有着相同表结构而只有表名称不同的情况,可以加空串或null来控制使用默认表名</param>
+            <param name="isClearTargetTable">拷贝前是否清除目标表里的数据</param>
+            <param name="isShowProgress">是否显示进度</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.InsertBatch``1(PT.DB.DBOperator,System.Collections.Generic.IList{``0},PT.DB.InsertParam)">
+            <summary>
+            将泛型列表中的每个对象插入到数据库
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="dbo">数据库操作类</param>
+            <param name="dataProviders">泛型列表</param>
+            <param name="isp">Insert操作策略,可为null</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.Insert(PT.DB.DBOperator,System.Object,PT.DB.InsertParam)">
+            <summary>
+            对拥有映射字段的类执行Insert操作。
+            </summary>
+            <param name="dbo">数据库操作类</param>
+            <param name="objDataProvider">数据对象</param>
+            <param name="isp">Insert操作策略,可为null</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.InsertSimple(PT.DB.DBOperator,System.Object,PT.DB.InsertParam)">
+            <summary>
+            对拥有映射字段的类并且只包含简单数据类型字段（涉及的列不包含BLOB字段）的表执行Insert操作。
+            </summary>
+            <param name="dbo">数据库操作类</param>
+            <param name="objDataProvider">数据对象</param>
+            <param name="isp">Insert操作参数,可为null</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.Update(PT.DB.DBOperator,System.Object,PT.DB.UpdateParam)">
+            <summary>
+            对拥有映射字段的类执行Update操作
+            </summary>
+            <param name="dbo">数据库操作类</param>
+            <param name="objDataProvider">数据对象</param>
+            <param name="up">Update操作参数,可为null</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.InsertOrUpdate(PT.DB.DBOperator,System.Object,System.String)">
+            <summary>
+            根据传入类及其映射属性，根据主键定义判断数据库中是否有记录，如果有则Update，如果没有则Insert
+            </summary>
+            <param name="dbo">数据库操作类</param>
+            <param name="objDataProvider">数据对象</param>
+            <param name="priorTableName">优先指定的表明称，是用户通过SelectParam等运行参数指定的表名称，如果非空则优先使用</param>
+            <returns>受影响的行数</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.GenerateDeleteSql(System.Type,PT.DB.DeleteParam)">
+            <summary>
+            生成删除类对应的数据库记录sql语句
+            </summary>
+            <param name="dataObjectType">数据提供类的类型</param>
+            <param name="dp">删除参数</param>
+            <returns>sql语句</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.GenerateWhereClause(PT.DB.DBMapperTable,PT.DB.WhereDictionary)">
+            <summary>
+            根据映射表定义和where字典生成where语句
+            </summary>
+            <param name="mapperTable"></param>
+            <param name="wd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.GenerateDeleteSql(System.Object,PT.DB.DeleteParam)">
+            <summary>
+            生成删除类对应的数据库记录sql语句
+            </summary>
+            <param name="objDataProvider">数据对象</param>
+            <param name="dp">操作参数，可为null</param>
+            <returns>sql语句</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.Delete(PT.DB.DBOperator,System.Object,PT.DB.DeleteParam)">
+            <summary>
+            删除类对应的数据库记录
+            </summary>
+            <param name="dbo">数据库操作类</param>
+            <param name="objDataProvider">数据对象</param>
+            <param name="dp">操作参数，可为null</param>
+            <returns>受影响的记录数</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.Delete(PT.DB.DBOperator,System.Type,PT.DB.DeleteParam)">
+            <summary>
+            删除类型对应的数据库记录
+            </summary>
+            <param name="dbo">数据库操作类</param>
+            <param name="dataObjectClass">数据对象类型</param>
+            <param name="dp">操作参数</param>
+            <returns>受影响的记录数</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.JudgeExistsRecordsByMembersString(PT.DB.DBOperator,System.Object,System.String,System.String)">
+            <summary>
+            判断记录是否存在于数据库中，judgeMemberNames如果为null则根据主键判断，否则以judgeMemberNames对应的值判断
+            </summary>
+            <param name="dbo">数据库操作类</param>
+            <param name="objDataProvider">数据对象</param>
+            <param name="judgeMemberNames">判断依据名单（类成员名称）,逗号分隔,如果根据主键判断,则设置为null或空串</param>
+            <param name="priorTableName">优先指定的表明称，是用户通过SelectParam等运行参数指定的表名称，如果非空则优先使用</param>
+            <returns>是否存在记录</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.JudgeExistsRecords(PT.DB.DBOperator,System.Object,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            判断记录是否存在于数据库中，judgeMemberNames如果为null则根据主键判断，否则以judgeMemberNames对应的值判断
+            </summary>
+            <param name="dbo">数据库操作类</param>
+            <param name="objDataProvider">数据对象</param>
+            <param name="judgeMemberNames">判断依据名单（类成员名称）,如果根据主键判断,则设置为null</param>
+            <param name="priorTableName">优先指定的表明称，是用户通过SelectParam等运行参数指定的表名称，如果非空则优先使用</param>
+            <returns>是否存在记录</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.FillInsertParamListBatch``1(System.Collections.Generic.IList{``0},PT.DB.DBMapperTable,System.Collections.Generic.List{System.Data.Common.DbParameter},PT.DB.InsertParam,PT.DB.Portable.ConnectorTypeEnum)">
+            <summary>
+            批量填写到参数列表
+            </summary>
+            <param name="dataProviders">数据提供类列表，其成员可以通过反射为字段提供数据</param>
+            <param name="mapperTable">类映射表</param>
+            <param name="dbParameters">参数值列表</param>
+            <param name="isp">Insert操作参数,可为null</param>
+            <param name="connectorType">连接器类型</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.FillInsertParamList(System.Object,PT.DB.DBMapperTable,System.Collections.Generic.List{System.Data.Common.DbParameter},PT.DB.InsertParam,PT.DB.Portable.ConnectorTypeEnum)">
+            <summary>
+            填写到参数列表
+            </summary>
+            <param name="objDataProvider">数据提供类，其成员可以通过反射为字段提供数据</param>
+            <param name="mapperTable">类映射表</param>
+            <param name="dbParameters">参数值列表</param>
+            <param name="isp">Insert操作参数,可为null</param>
+            <param name="connectorType">连接器类型</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.FillUpdateParamList(System.Object,PT.DB.DBMapperTable,System.Collections.Generic.List{System.Data.Common.DbParameter},PT.DB.UpdateParam,PT.DB.Portable.ConnectorTypeEnum)">
+            <summary>
+            填写到参数列表
+            </summary>
+            <param name="objDataProvider">数据提供类，其成员可以通过反射为字段提供数据</param>
+            <param name="mapperTable">字段定义列表</param>
+            <param name="dbParameters">参数列表</param>
+            <param name="up">Update操作参数,可为null</param>
+            <param name="connectorType">连接器类型</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.ReceiveFromDataRows``1(System.Data.DataRowCollection,PT.DB.ReceiveParam,System.Collections.Generic.IList{``0})">
+            <summary>
+            将数据集的多行数据填充到对应的映射类列表里
+            </summary>
+            <typeparam name="T">作过数据映射的范型类型</typeparam>
+            <param name="rows">数据集</param>
+            <param name="rp">回填过程控制参数，可为null</param>
+            <param name="results">用于回填数据的泛型列表</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.ReceiveFromDataRow(System.Object,System.Data.DataRow,PT.DB.ReceiveParam)">
+            <summary>
+            从数据行获取数据填写到类成员
+            </summary>
+            <param name="objDataReceiver">数据接收类</param>
+            <param name="aRow">数据行</param>
+            <param name="rp">接收数据参数，可以为null</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.GenerateWhereClauseSubSegment(System.String,System.Object,PT.DB.Portable.DBFieldTypeEnum)">
+            <summary>
+            生成sql语句中的一小段值表达公式串
+            </summary>
+            <param name="dbFieldName">数据库字段名</param>
+            <param name="o">变量值</param>
+            <param name="fieldType">数据类型</param>
+            <returns>值表达公式串</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.ConvertMemberValueToSqlValue(System.Object,PT.DB.Portable.DBFieldTypeEnum)">
+            <summary>
+            变量值生成sql语句中的值表达串
+            </summary>
+            <param name="o">变量值</param>
+            <param name="fieldType">数据类型</param>
+            <returns>值表达串</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.GenerateSimpleInsertSql(System.Object,PT.DB.InsertParam)">
+            <summary>
+            根据字段定义表生成简单类型（不包含blob字段和clob）insert语句,生成的insert语句已包含值数据，可以直接执行。
+            </summary>
+            <param name="objDataProvider">已定义映射关系的数据提供类</param>
+            <param name="isp">insert参数,可为null</param>
+            <returns>insert语句</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.GenerateInsertSql(PT.DB.DBMapperTable,PT.DB.InsertParam)">
+            <summary>
+            根据字段定义表生成insert语句
+            </summary>
+            <param name="mapperTable">类映射表</param>
+            <param name="isp">insert参数,可为null</param>
+            <returns>insert语句</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.IsOracleReservedWord(System.String)">
+            <summary>
+            判断单词是否是oracle保留字，以确保maper字段时候加上正确的双引号
+            </summary>
+            <param name="sWord">单词</param>
+            <returns>是否是oracle保留字</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.GetTableName(System.Type)">
+            <summary>
+            获取映射类的对应库表名称
+            </summary>
+            <param name="tpMapped">映射类</param>
+            <returns>库表名称</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.GetTableName``1">
+            <summary>
+            获取泛型对应的映射类的对应库表名称
+            </summary>
+            <typeparam name="T">映射类的泛型</typeparam>
+            <returns>库表名称</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.FixOracleTableOrFieldName(System.String,System.Boolean,System.String)">
+            <summary>
+            修正表名称或字段名称，如果他们是Oracle关键字则加双引号返回
+            </summary>
+            <param name="tfn">原名称</param>
+            <param name="forceQuote">强制修正，不管是否为关键字</param>
+            <param name="priorTableName">优先指定的表名称，是用户通过SelectParam等运行参数指定的表名称，如果非空则优先使用</param>
+            <returns>修正后的名称</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.GenerateSelectSql(PT.DB.DBMapperTable,PT.DB.SelectParam)">
+            <summary>
+            根据条件生成SELECT语句
+            </summary>
+            <param name="mapperTable">映射表</param>
+            <param name="sp">生成条件</param>
+            <returns>SELECT语句</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.SelectFirst``1(PT.DB.DBOperator,PT.DB.SelectParam)">
+            <summary>
+            检索出的结果信息的第一条记录填充到指定类型的影射类实例里并返回该实例
+            </summary>
+            <typeparam name="T">作过数据映射的范型类型</typeparam>
+            <param name="dbo">数据库操作类</param>
+            <param name="sp">查询过程及结果控制参数,同时也用来作为回填数据条件，可为null</param>
+            <returns>有效结果或null</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.SelectUnique``1(PT.DB.DBOperator,PT.DB.SelectParam)">
+            <summary>
+            检索出的唯一结果信息填充到指定类型的影射类实例里并返回该实例，SelectParam参数必须描述出唯一的结果，如果结果不唯一，则抛出异常
+            </summary>
+            <typeparam name="T">作过数据映射的范型类型</typeparam>
+            <param name="dbo">数据库操作类</param>
+            <param name="sp">查询过程及结果控制参数,同时也用来作为回填数据条件，可为null</param>
+            <returns>有效结果或null</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.SelectUniqueBySql``1(PT.DB.DBOperator,System.String,System.Collections.Generic.List{System.Data.Common.DbParameter},PT.DB.ReceiveParam)">
+            <summary>
+            通过指定的sql和vsql参数检索出的唯一结果信息填充到指定类型的影射类实例里并返回该实例，如果结果不唯一，则抛出异常
+            SelectParam参数必须描述出唯一的结果，如果结果不唯一，则抛出异常
+            </summary>
+            <typeparam name="T">作过数据映射的范型类型</typeparam>
+            <param name="dbo">数据库操作类</param>
+            <param name="sql">查询语句</param>
+            <param name="dbParameters">查询语句参数，可为null</param>
+            <param name="rp">回填过程控制参数，可为null</param>
+            <returns>有效结果或null</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.SelectFirstBySql``1(PT.DB.DBOperator,System.String,System.Collections.Generic.List{System.Data.Common.DbParameter},PT.DB.ReceiveParam)">
+            <summary>
+            通过指定的sql和vsql参数检索出的结果信息的第一条填充到指定类型的影射类实例里并返回该实例
+            SelectParam参数必须描述出唯一的结果，如果结果不唯一，则抛出异常
+            </summary>
+            <typeparam name="T">作过数据映射的范型类型</typeparam>
+            <param name="dbo">数据库操作类</param>
+            <param name="sql">查询语句</param>
+            <param name="dbParameters">查询语句参数，可为null</param>
+            <param name="rp">回填过程控制参数，可为null</param>
+            <returns>有效结果或null</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.SelectMulti``1(PT.DB.DBOperator,PT.DB.SelectParam,System.Collections.Generic.IList{``0})">
+            <summary>
+            根据检索条件检索对应的映射数据库表并将每一行数据回填到IList中
+            </summary>
+            <typeparam name="T">作过数据映射的范型类型</typeparam>
+            <param name="dbo">数据库操作类</param>
+            <param name="sp">查询过程及结果控制参数,同时也用来作为回填数据条件，可为null</param>
+            <param name="results">用于回填数据的泛型列表</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.Count``1(PT.DB.DBOperator,PT.DB.SelectParam)">
+            <summary>
+            根据检索条件检索对应的映射数据库表符合条件的记录数量
+            </summary>
+            <typeparam name="T">作过数据映射的范型类型</typeparam>
+            <param name="dbo">数据库操作类</param>
+            <param name="sp">查询过程及结果控制参数,同时也用来作为回填数据条件，可为null</param>
+            <returns>记录数量</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.SelectMultiBySql``1(PT.DB.DBOperator,System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter},PT.DB.ReceiveParam,System.Collections.Generic.IList{``0})">
+            <summary>
+            根据检索条件检索对应的映射数据库表并将每一行数据回填到IList中
+            </summary>
+            <typeparam name="T">作过数据映射的范型类型</typeparam>
+            <param name="dbo">数据库操作类</param>
+            <param name="sql">查询语句</param>
+            <param name="dbParameters">查询语句参数，可为null</param>
+            <param name="rp">回填过程控制参数，可为null</param>
+            <param name="results">用于回填数据的泛型列表</param>
+        </member>
+        <member name="M:PT.DB.DBMapper.InternalSelect``1(PT.DB.DBOperator,PT.DB.SelectParam,System.Boolean)">
+            <summary>
+            按条件检索结果集，并创建范型类的实例进行填充
+            </summary>
+            <typeparam name="T">作过数据映射的范型类型</typeparam>
+            <param name="dbo">数据库操作类</param>
+            <param name="sp">查询过程及结果控制参数,同时也用来作为回填数据条件</param>
+            <param name="IsUnique">是否教验结果唯一</param>
+            <returns>有效结果或null</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.Select(PT.DB.DBOperator,System.Type,PT.DB.SelectParam)">
+            <summary>
+            根据影射表类型和参数确定条件来返回结果集，SelectParams为null则根据主键检索
+            </summary>
+            <param name="dbo">数据库操作类</param>
+            <param name="tableClassType">影射表类型</param>
+            <param name="sp">查询过程及结果控制参数，可为null</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.GenerateSelectSqlWithIncludeMembers(PT.DB.DBMapperTable,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            根据类型生成被映射对象的select语句并包含指定字段，此函数用于在一般多字段表中选择性包含比较方便，还可以避免考虑表明称、字段名为关键字的转换问题
+            </summary>
+            <param name="mapperTable">映射表</param>
+            <param name="includeMemberNames">包含成员名称列表，本次数据操作会只将这些字段包含在内</param>
+            <param name="priorTableName">优先指定的表明称，是用户通过SelectParam等运行参数指定的表名称，如果非空则优先使用</param>
+            <returns>sql</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.GenerateSelectSqlWithExcludeMembers(PT.DB.DBMapperTable,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            根据类型生成被映射对象的select语句并排除某些字段，此函数用于在一般多字段表中选择性排除比较方便，还可以避免考虑表明称、字段名为关键字的转换问题
+            </summary>
+            <param name="mapperTable">映射表</param>
+            <param name="excludeMemberNames">排除成员名称列表，本次数据操作会将这些字段排除在外</param>
+            <param name="priorTableName">优先指定的表明称，是用户通过SelectParam等运行参数指定的表名称，如果非空则优先使用</param>
+            <returns>sql</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.GenerateUpdateSql(PT.DB.DBMapperTable,PT.DB.UpdateParam)">
+            <summary>
+            根据字段定义表生成update语句
+            </summary>
+            <param name="mapperTable">字段定义表</param>
+            <param name="up">Update操作参数,可为null</param>
+            <returns>update语句</returns>
+        </member>
+        <member name="M:PT.DB.DBMapper.FillInsertParamList(System.Object,PT.DB.DBMapperTable,System.Collections.Generic.List{System.Data.Common.DbParameter},PT.DB.Portable.ConnectorTypeEnum)">
+            <summary>
+            填写到参数列表
+            </summary>
+            <param name="objDataProvider">数据提供类，其成员可以通过反射为字段提供数据</param>
+            <param name="mapperTable">字段定义列表</param>
+            <param name="dbParameters">参数列表</param>
+            <param name="connectorType">连接器类型</param>
+        </member>
+        <member name="T:PT.DB.DBOperator">
+            <summary>
+            类－BestDBOperator，提供参数相关的静态函数
+            </summary>
+            <summary>
+            类－BestDBOperator，提供对数据操作的抽象接口定义
+            </summary>
+            <summary>
+            类－BestDBOperator，提供对数据操作的抽象接口定义
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBOperator.RTMClassName_DBTrace">
+            <summary>
+            分类名称UpdateSqlTrace
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBOperator.CreateOracleParam(System.String,System.Object,PT.DB.Portable.DBFieldTypeEnum,System.Data.ParameterDirection)">
+            <summary>
+            创建OracleParam,建议使用CreateDbParam来创建参数，出于兼容考虑，此函数暂时保留
+            </summary>
+            <param name="paramName">参数名</param>
+            <param name="paramValue">值</param>
+            <param name="paramType">参数类型</param>
+            <param name="paramDir">传递方向</param>
+            <returns>DbParameter</returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.CreateDbParam(System.String,System.Object,PT.DB.Portable.DBFieldTypeEnum,System.Data.ParameterDirection)">
+            <summary>
+            创建一个新的DbParameter
+            </summary>
+            <param name="paramName">参数名</param>
+            <param name="paramValue">值</param>
+            <param name="paramType">参数类型</param>
+            <param name="paramDir">传递方向</param>
+            <returns>新创建的DbParameter</returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.CreateDbParam(PT.DB.Portable.ConnectorTypeEnum,System.String,System.Object,PT.DB.Portable.DBFieldTypeEnum,System.Data.ParameterDirection)">
+            <summary>
+            按数据库连接器类型创建并返回一个符合连接器架构的DbParameter
+            </summary>
+            <param name="connectorType">连接器类型</param>
+            <param name="paramName">参数名</param>
+            <param name="paramValue">值</param>
+            <param name="paramType">参数类型</param>
+            <param name="paramDir">传递方向</param>
+            <returns>新创建的DbParameter</returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.WriteInnerExceptionToLog_Runtime(System.String,System.Exception)">
+            <summary>
+            符合条件时输出内部异常
+            </summary>
+            <param name="posEx"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:PT.DB.DBOperator.WriteSelectLog_Runtime(System.String)">
+            <summary>
+            符合条件时输出select语句
+            </summary>
+            <param name="sql"></param>
+        </member>
+        <member name="M:PT.DB.DBOperator.WriteUpdateLog_Runtime(System.String)">
+            <summary>
+            符合条件时输出update语句
+            </summary>
+            <param name="sql"></param>
+        </member>
+        <member name="F:PT.DB.DBOperator.ExtMessage">
+            <summary>
+            当产生异常时候存放当前sql语句以便调试
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBOperator.ExceptionParameters">
+            <summary>
+            当产生异常时候存放当前sql语句运行的参数以便调试
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBOperator.CallerInfo">
+            <summary>
+            申请此数据库操作类的调用信息
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBOperator._IdleTimeout">
+            <summary>
+            ConnectionLifetime属性对应成员
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBOperator.IsLocked">
+            <summary>
+            是否处于锁定状态
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBOperator.LastAccessTime">
+            <summary>
+            最近一次访问时间
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBOperator.IsDisposed">
+            <summary>
+            标记连接已被释放
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBOperator.SetInternalData(System.String,System.Object,System.String)">
+            <summary>
+            设置内部数据值
+            </summary>
+            <param name="dataName"></param>
+            <param name="o"></param>
+            <param name="tk"></param>
+        </member>
+        <member name="M:PT.DB.DBOperator.GetInternalData(System.String,System.String)">
+            <summary>
+            获取内部数据值
+            </summary>
+            <param name="dataName"></param>
+            <param name="tk"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.GetSnapshot(PT.Toolkit.Portable.DataSection)">
+            <summary>
+            获取快照，快照指示当前数据访问器的状态
+            </summary>
+            <returns>snapshot</returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBOperator.DisConnect">
+            <summary>
+            断开连接
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBOperator.Connect">
+            <summary>
+            连接数据库，此函数不必显示调用，在执行数据操作时候会自动调用。
+            </summary>
+            <returns>成功返回true</returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.BeginTrans">
+            <summary>
+            开始事物处理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.CommitTrans">
+            <summary>
+            提交事务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.RollbackTrans">
+            <summary>
+            回滚事务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.ReleaseDBOperator">
+            <summary>
+            释放由BestDatabase.GetDBOperator申请的数据操作类实例
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBOperator.InsertBatch(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter},System.Int32)">
+            <summary>
+            执行批量Insert语句，参数列表中每个参数的Value属性值为数组，并且每个参数包含的数组长度必须一致
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="dbParameters">参数列表</param>
+            <param name="arrayCount">数组数量，必须与参数包含的数组长度一致</param>
+            <returns>rows affec</returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.ExecuteSql(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>
+            执行无结果集的更新语句 如更新语句update insert
+            </summary>
+            <param name="sql">更新语句</param>
+            <param name="dbParameters">参数集合,null则不带参数</param>
+            <returns>rows affect</returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.ExecuteSqlWithDataReader(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>
+            执行select操作,并返回个DbDataReader用于顺序读取
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="dbParameters">参数集合,可为null</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.ExecuteSqlWithDataSet(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>
+            执行select操作并返回结果集
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="dbParameters">参数集合,null则不带参数</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.ExecuteProcedure(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="dbParameters">参数集合,null则不带参数</param>
+            <example>Oracle示例，调用oracle 的一个存储过程
+            <code>
+            首先在oracle库中创建如下Package
+            ----------------------------------,
+            CREATE OR REPLACE PACKAGE BPMPKG IS
+                -- Public type declarations
+                -- Public functions and procedure declarations
+                Procedure qwtest(var1 NUMBER);
+            END BPMPKG;
+            /
+            CREATE OR REPLACE PACKAGE BODY BPMPKG IS
+                Procedure qwtest (var1 NUMBER) IS
+                BEGIN
+                	null;
+            	END qwtest;
+            END BPMPKG;
+            -------------------------------------
+            此时Package中包含一个Procedure名为qwtest,接下来可以使用如下代码即可调用它
+            BestDBOperator dbo = bdb.GetDBOperator();
+            System.Collections.ArrayList al = new System.Collections.ArrayList();
+            OracleParameter par;
+            par =  new OracleParameter("var1", System.Data.OracleClient.OracleType.Int);
+            par.Direction = ParameterDirection.Input;
+            par.Value=23;
+            al.Add(par);
+            int iRet= dbo.ExecuteProcedure("BPMPKG.qwtest", al);
+            </code>
+            </example>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.ExecuteProcedureWithDataSet(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>
+            执行存储过程操作并返回结果集
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="dbParameters">参数集合,null则不带参数</param>
+            <example>Oracle示例，调用oracle 的一个存储过程并返回结果集
+            <code>
+            首先在oracle库中创建如下Package
+            ----------------------------------,
+            CREATE OR REPLACE PACKAGE BPMPKG IS
+                -- Public type declarations
+                TYPE type_RefCursor IS REF CURSOR;--引用游标
+                -- Public functions and procedure declarations
+                Procedure qwtest(v_OutCursor out type_RefCursor);
+            END BPMPKG;
+            /
+            CREATE OR REPLACE PACKAGE BODY BPMPKG IS
+                Procedure qwtest (v_OutCursor out type_RefCursor) IS
+                BEGIN
+                	OPEN v_OutCursor for SELECT * FROM deptinfo;
+            	END qwtest;
+            END BPMPKG;
+            -------------------------------------
+            此时Package中包含一个Procedure名为qwtest,接下来可以使用如下代码即可调用它
+            BestDBOperator dbo = bdb.GetDBOperator();
+            System.Collections.ArrayList alParams = new System.Collections.ArrayList();
+            alParams.Add(BestDBOperator.CreateOracleParam("v_RegistryID", registryID, OracleType.VarChar, ParameterDirection.Input));
+            //游标名应与存储过程中的一致
+            alParams.Add(BestDBOperator.CreateOracleParam("v_OutCursor", null, OracleType.Cursor, ParameterDirection.Output));
+            System.Data.DataSet ds;
+            ds = dbo.ExecuteProcedureWithDataset("BPMPKG.qwtest", alParams);
+            </code>
+            </example>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.GetConnectorType">
+            <summary>
+            获取实例连接的数据库类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:PT.DB.DBOperator.DevartOracleDBOperatorType">
+            <summary>
+            缓存DevartOracleDBOperatorType
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBOperator.CreateDevartOracleParamMethod">
+            <summary>
+            缓存CreateDevartOracleParamMethod
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBOperator.GetDevartOracleDBOperatorType">
+            <summary>
+            通过反射从程序集中获得SqliteDBOperator,动态装载减少PT.TK的关联引用库数量
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:PT.DB.DBOperator.SQLiteDBOperatorType">
+            <summary>
+            缓存SQLiteDBOperatorType
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBOperator.CreateSQLiteParamMethod">
+            <summary>
+            缓存CreateSQLiteParamMethod
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBOperator.GetSqliteDBOperatorType">
+            <summary>
+            通过反射从程序集中获得SqliteDBOperator,动态装载减少PT.TK的关联引用库数量
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBOperator.CreateDBOperator(PT.DB.ConnectionPool,System.String)">
+            <summary>
+            使用连接串创建连接
+            </summary>
+            <param name="parentPool">父类缓冲池</param>
+            <param name="connString">连接串</param>
+            <returns></returns>
+        </member>
+        <member name="P:PT.DB.DBOperator.IdleTimeout">
+            <summary>
+            闲置生命周期，自最近一次被ReleaseDBOperator调用开始计算,单位:秒,,默认值:OracleConnectionConfig.ConnectionLifetimeDefault,取值范围: 无限
+            当从缓冲池获取数据操作类后,可改变此值,当数据库操作类被释放回连接池,此值被重置与连接池配置相同
+            </summary>
+        </member>
+        <member name="P:PT.DB.DBOperator.ConnectString">
+            <summary>
+            获取或设置连接串
+            </summary>
+        </member>
+        <member name="T:PT.DB.ConnectionPool">
+            <summary>
+            数据库类-分部类-数据库连接池管理相关参数
+            </summary>
+            <summary>
+            数据库类-分部类-数据库池管理相关参数
+            </summary>
+            <summary>
+            运行时函数
+            </summary>
+            <summary>
+            数据库连接池类,面向一个数据库连接串特征绑定，提供多个连接并进行缓冲池管理
+            </summary>
+            <example>示例-获取数据库管理类实例
+            <code>
+            ConnectionPool cp = ConnectionPool.GetConnectionPool(ip, port, serviceName, userName, password);
+            //1、获取数据访问器
+            DBOperator dbOper = cp.GetDBOperator();
+            DataSet ds = dbOper.ExecuteSqlWithDataset("SELECT * FROM ALL_USERS", NULL);
+            //2、释放数据访问器
+            cp.ReleaseDBOperator(dbOper);
+            </code>
+            </example>
+        </member>
+        <member name="F:PT.DB.ConnectionPool.Config">
+            <summary>
+            连接配置
+            </summary>
+        </member>
+        <member name="F:PT.DB.ConnectionPool.ConnectionRequestTimeOut">
+            <summary>
+            申请连接等待超时时长，秒
+            </summary>
+        </member>
+        <member name="F:PT.DB.ConnectionPool.ConnPool">
+            <summary>
+            数据库缓冲池
+            </summary>
+        </member>
+        <member name="F:PT.DB.ConnectionPool.ConnPoolMutex">
+            <summary>
+            数据库缓冲池列表访问的互斥量
+            </summary>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.ServerRuntimeMethod_ViewSnapshot(PT.Toolkit.Portable.Runtime.RuntimeMethodInvokeContext)">
+            <summary>
+            运行时函数-查看连接池信息
+            </summary>
+            <param name="invokeContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.ServerRuntimeMethod_ExecuteSqlWitResult(PT.Toolkit.Portable.Runtime.RuntimeMethodInvokeContext)">
+            <summary>
+            运行时函数-执行语句返回结果数
+            </summary>
+            <param name="invokeContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.ServerRuntimeMethod_ExecuteSql(PT.Toolkit.Portable.Runtime.RuntimeMethodInvokeContext)">
+            <summary>
+            运行时函数-执行语句
+            </summary>
+            <param name="invokeContext"></param>
+            <returns></returns>
+        </member>
+        <member name="F:PT.DB.ConnectionPool._ConnectString">
+            <summary>
+            连接串
+            </summary>
+        </member>
+        <member name="F:PT.DB.ConnectionPool.Creator">
+            <summary>
+            创建者信息
+            </summary>
+        </member>
+        <member name="F:PT.DB.ConnectionPool.ConnectKey">
+            <summary>
+            连接特征值,特征值标记唯一特征的数据库池,是一个较短的字符串,以便提高访问效率
+            </summary>
+        </member>
+        <member name="F:PT.DB.ConnectionPool.LastAccessTime">
+            <summary>
+            上次操作连接池时间
+            </summary>
+        </member>
+        <member name="F:PT.DB.ConnectionPool.DBOPoolMutex">
+            <summary>
+            数据库操作实例列表访问的互斥量
+            </summary>
+        </member>
+        <member name="F:PT.DB.ConnectionPool.DBOPool">
+            <summary>
+            独占数据库列表
+            </summary>
+        </member>
+        <member name="F:PT.DB.ConnectionPool.bForceDispose">
+            <summary>
+            是否强制释放
+            </summary>
+        </member>
+        <member name="F:PT.DB.ConnectionPool.ConnectMonitorTask">
+            <summary>
+            状态监控任务
+            </summary>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.#ctor(System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="connKey">数据库特征值</param>
+            <param name="sConnectString"></param>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.GetConnectionPool(PT.DB.Portable.OracleConnectionConfig)">
+            <summary>
+            获得一个数据库管理类的实例
+            </summary>
+            <param name="dbCfg">连接配置</param>
+            <returns>针对连接特征对应的数据库</returns>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.GetConnectionPool(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            获得一个数据库管理类的实例
+            </summary>
+            <param name="ip">数据库ip地址</param>
+            <param name="port">端口</param>
+            <param name="servicename">数据库服务名称</param>
+            <param name="username">用户名称</param>
+            <param name="password">密码</param>
+            <returns>针对连接特征对应的数据库</returns>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.GetConnectionPool(System.String,System.String)">
+            <summary>
+            通过特征值和连接串来获得数据库池,对数据库池的特特征值进行查找,如果未找到并且连接串非空,则使用连接串创建一个池
+            </summary>
+            <param name="ConnectKey">特征值标记唯一特征的数据库池,是一个较短的字符串,以便提高访问效率</param>
+            <param name="sConnectString">数据库连接串</param>
+            <returns>数据库池或null</returns>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.GetConnectionPool(System.String)">
+            <summary>
+            获得一个数据库管理类的实例
+            </summary>
+            <param name="sConnectString">连接串</param>
+            <returns>针对连接特征对应的数据库</returns>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.GetSnapshot">
+            <summary>
+            获取当前数据管理端的一个快照，快照反映当前数据库缓冲池每个对象的状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.GetDBOperator">
+            <summary>
+            从当前数据库申请数据操作类实例,申请到的数据操作类在使用完毕后必须使用ReleaseDBOperator释放,否则将会被永久锁定导致其它线程不能申请.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.ConnectionCollect">
+            <summary>
+            清理闲置时间过长的连接
+            </summary>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.ReleaseDBOperator(PT.DB.DBOperator)">
+            <summary>
+            释放由GetDBOperator申请的数据操作类实例
+            </summary>
+            <param name="dbo">数据操作类</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.ConnectionPool.Dispose">
+            <summary>
+            清理资源
+            </summary>
+        </member>
+        <member name="P:PT.DB.ConnectionPool.ConnectString">
+            <summary>
+            获取或设置连接串,为兼容连接串形式的连接，使用用户提供连接串来连接数据库
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Runtime.RuntimeObjectImportDispatcher">
+            <summary>
+            基础组件运行时对象装载承载者
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Runtime.ServerRuntimeHelperEx">
+            <summary>
+            服务器端维护ServerRuntimeVariable及其扩展属性信息
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeHelperEx.RuntimeHelper">
+            <summary>
+            对应的RuntimeHelper
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeHelperEx.DeclaringType">
+            <summary>
+            定义此RuntimeHelper的类的类型
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Runtime.ServerRuntimeHelperExList">
+            <summary>
+            ServerRuntimeVariableEx类列表,提供扩展功能访问
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeHelperExList.FindItemById(System.String)">
+            <summary>
+            根据Id查找项
+            </summary>
+            <param name="helperId">helperId</param>
+            <returns>ServerRuntimeHelperEx或null</returns>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeHelperExList.GetHelpers(System.String)">
+            <summary>
+            获取帮助Id指定的帮助项列表
+            </summary>
+            <param name="helperIds">帮助Id,多个用逗号分隔,如果想获取全部则传空</param>
+            <returns>RuntimeHelperList</returns>
+        </member>
+        <member name="T:PT.Toolkit.Runtime.ServerRuntimeHelperManager">
+            <summary>
+            服务器运行时变量管理类
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeHelperManager.HelperExs">
+            <summary>
+            帮助项集合
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeHelperManager.LoadHelpersByType(System.Type)">
+            <summary>
+            从特性的Attribute中装载调试信息
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Runtime.ServerRuntimeMethodEx">
+            <summary>
+            运行时函数信息类，控制台使用
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeMethodEx.Params">
+            <summary>
+            参数列表
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeMethodEx.RuntimeMethod">
+            <summary>
+            函数声明
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeMethodEx.MethodEntry">
+            <summary>
+            服务端函数委托入口
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Runtime.ServerRuntimeMethodExList">
+            <summary>
+            ServerRuntimeMethodEx类列表,提供扩展功能访问
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeMethodExList.FindItemByClassNameAndMethodName(System.String,System.String)">
+            <summary>
+            根据归属类名称和函数名称查找对应函数
+            </summary>
+            <param name="methodClassName">归属类名称</param>
+            <param name="methdName">函数名称</param>
+            <returns>ServerRuntimeMethodEx或null</returns>
+        </member>
+        <member name="T:PT.Toolkit.Runtime.ServerRuntimeMethodManager">
+            <summary>
+            分部类-运行时功能调用
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeMethodManager.RuntimeMethodExs">
+            <summary>
+            运行时功能调用信息
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeMethodManager.LoadRuntimeMethodsByType(System.Type)">
+            <summary>
+            从发布的服务类属性中装载运行时功能
+            </summary>
+            <param name="serviceType">服务类</param>
+        </member>
+        <member name="T:PT.Toolkit.Runtime.ServerRuntimeObjectLoader">
+            <summary>
+            运行时框架对象装载类
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeObjectLoader.ReflectedTypes">
+            <summary>
+            已反射的类的对照字典，防止重复反射
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeObjectLoader.LoadRuntimeObjectsByType(System.Type)">
+            <summary>
+            从发布的服务类特性中装载运行时框架对象
+            </summary>
+            <param name="serviceType">服务类</param>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeObjectLoader.GetStringFromAssemblyResource(System.String,System.Type)">
+            <summary>
+            从程序集装载字符串资源
+            </summary>
+            <param name="sResourcePath">资源定位</param>
+            <param name="tp">类型，字符串资源存在于该类型所在的程序集中</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeObjectLoader.GetByteArrayFromAssemblyImageResource(System.String,System.Type)">
+            <summary>
+            从程序集装载字符串资源
+            </summary>
+            <param name="sResourcePath">资源定位res::???</param>
+            <param name="tp">类型，字符串资源存在于该类型所在的程序集中</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeObjectLoader.LoadRuntimeObjectsFromDependencyType(System.Type)">
+            <summary>
+            从指定类型的ServerRuntimeImportType特性所指定的类型中装载运行时框架对象
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Runtime.ServerRuntimeVariableEx">
+            <summary>
+            服务器端维护ServerRuntimeVariable及其扩展属性信息
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeVariableEx.TargetOn">
+            <summary>
+            该服务器变量的特性属性定义在什么位置 
+            0:动态定义生成(调用了 PT_BS_Service.Core.BeServiceBase.StaticWriteLogUsingRuntimeSwitchVariable)
+            1:绑定到了某个类的静态字段(Field) ,且必须为可读写字段
+            2:绑定到了某个类的静态属性(Property) ,且必须为可读写属性
+            3:在符合调用规范函数上定义(暂时未实现)
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeVariableEx.SRV">
+            <summary>
+            对应的变量值
+            当TargetOn为1时，客户端的读写都要映射到FieldInfo对应的值上
+            当TargetOn为2时，客户端的读写都要映射到PropertyInfo对应的值上
+            当TargetOn为3时，客户端的读写都要映射到MethodInfo对应的调用上
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeVariableEx.VariableField">
+            <summary>
+            当TargetOn为1时，此值对应绑定的FieldInfo
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeVariableEx.VariableProperty">
+            <summary>
+            当TargetOn为2时，此值对应绑定的PropertyInfo
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeVariableEx.GetTargetOnDescription">
+            <summary>
+            获取绑定来源描述
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:PT.Toolkit.Runtime.ServerRuntimeVariableEx.RealValue">
+            <summary>
+            获取或设置变量实际值
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Runtime.ServerRuntimeVariableExList">
+            <summary>
+            ServerRuntimeVariableEx类列表,提供扩展功能访问
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeVariableExList.FindItemByVariableName(System.String,System.String)">
+            <summary>
+            根据名称在数组里查找对应变量
+            </summary>
+            <param name="variableClassName">分类名称</param>
+            <param name="variableName">变量名称</param>
+            <returns>变量或null</returns>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeVariableExList.GetAllVariables">
+            <summary>
+            获取所有变量信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:PT.Toolkit.Runtime.ServerRuntimeVariableManager">
+            <summary>
+            服务器运行时变量管理类
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Runtime.ServerRuntimeVariableManager.ServerRuntimeVariableExs">
+            <summary>
+            运行状态调试动态配置变量
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeVariableManager.GetAllVariables">
+            <summary>
+            获取所有变量信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeVariableManager.FindServerRuntimeVariableByName(System.String,System.String)">
+            <summary>
+            根据名称在数组里查找对应变量
+            </summary>
+            <param name="variableClassName">分类名称,如果传空找第一个</param>
+            <param name="variableName">变量名称</param>
+            <returns>变量或null</returns>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeVariableManager.UpdateVariable(PT.Toolkit.Portable.Runtime.ServerRuntimeVariable)">
+            <summary>
+            设置当前服务器运行时变量值
+            </summary>
+            <param name="srv">变量</param>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeVariableManager.DyanmicAddVariable(PT.Toolkit.Portable.Runtime.ServerRuntimeVariable)">
+            <summary>
+            动态查询时创建的ServerRuntimeVariable
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeVariableManager.GetBindingCompositeValueType(System.Type,PT.Toolkit.Portable.Runtime.CompositeValueTypeEnum,System.String)">
+            <summary>
+            根据反射类型确定运行时变量的绑定类型
+            </summary>
+            <param name="fieldType">字段类型</param>
+            <param name="originalValueType">运行时变量模型的原始类型</param>
+            <param name="posDef">出错时的定位信息</param>
+            <returns>CompositeValueTypeEnum</returns>
+        </member>
+        <member name="M:PT.Toolkit.Runtime.ServerRuntimeVariableManager.LoadVariablesByType(System.Type)">
+            <summary>
+            从类型的Attribute中装载调试信息
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.APIHelper">
+            <summary>
+            windowsapi集合
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.APIHelper.SendMessage(System.IntPtr,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            向有句柄的控件发消息
+            </summary>
+            <param name="hWnd">句柄</param>
+            <param name="Msg">消息代码</param>
+            <param name="wParam">wordparam</param>
+            <param name="lParam">longparam</param>
+            <returns>unknow</returns>
+        </member>
+        <member name="M:PT.Toolkit.APIHelper.ReleaseCapture">
+            <summary>
+            释放鼠标捕获状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.APIHelper.FlashWindow(System.IntPtr,System.Boolean)">
+            <summary>
+            闪烁窗体
+            </summary>
+            <param name="handle"></param>
+            <param name="bInvert"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.APIHelper.BeginMoveWindow(System.IntPtr)">
+            <summary>
+            使用鼠标移动控件或窗体
+            </summary>
+            <param name="hWnd">控件或窗体句柄</param>
+        </member>
+        <member name="T:PT.Toolkit.AdvanceMutex">
+            <summary>
+            提供对互斥量的排队控制支持（先进先出）
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.AdvanceMutex.SceneObject">
+            <summary>
+            存放用户定义的关于锁定场景的信息
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.AdvanceMutex.#ctor(System.String)">
+            <summary>
+            构造函数，参数为空串则创建无名称的互斥量
+            </summary>
+            <param name="sMutexName"></param>
+        </member>
+        <member name="M:PT.Toolkit.AdvanceMutex.Dispose">
+            <summary>
+            释放使用的资源
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.AdvanceMutex.TestLockState">
+            <summary>
+            获取锁定状态，获得的状态只是参考快照，并不可靠
+            </summary>
+            <returns>true已锁定，false未锁定</returns>
+        </member>
+        <member name="M:PT.Toolkit.AdvanceMutex.EnterToQueueTillTimeout(System.Int32)">
+            <summary>
+            进入队列等待直到超时
+            </summary>
+            <param name="millisecondsTimeout">等待的毫秒数，或为 System.Threading.Timeout.Infinite (-1)，表示无限期等待。</param>
+            <returns>是否排队成功</returns>
+        </member>
+        <member name="M:PT.Toolkit.AdvanceMutex.EnterToQueue">
+            <summary>
+            进入队列等待
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.AdvanceMutex.ExitFromQueue">
+            <summary>
+            退出队列释放信号给下一个排队的线程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.AdvanceMutex.ForceExitFromqueue">
+            <summary>
+            强制退出队列
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Compress.ZipHelper">
+            <summary>   
+            Zip 压缩解压类   
+            </summary>   
+        </member>
+        <member name="M:PT.Toolkit.Compress.ZipHelper.ZipFile(System.String,System.String,System.String,System.String@)">
+            <summary>   
+            功能：压缩文件（暂时只压缩文件夹下一级目录中的文件，文件夹及其子级被忽略）   
+            </summary>   
+            <param name="dirPath">被压缩的文件夹夹路径</param>   
+            <param name="zipFilePath">生成压缩文件的路径，为空则默认与被压缩文件夹同一级目录，名称为：文件夹名+.zip</param>   
+            <param name="err">出错信息</param>   
+            <returns>是否压缩成功</returns>   
+        </member>
+        <member name="M:PT.Toolkit.Compress.ZipHelper.ZipBuffer(System.Byte[],System.String,System.String)">
+            <summary>
+            功能：压缩buffer为zip文件格式（压缩后包内只包含一个文件）,返回文件内容
+            </summary>
+            <param name="pBytes">未压缩数据</param>
+            <param name="originalFileName">未压缩文件名</param>
+            <returns>压缩后文件内容</returns>
+        </member>
+        <member name="M:PT.Toolkit.Compress.ZipHelper.UnZipBuffer(System.Byte[])">
+            <summary>
+            功能：解压zip格式的buffer,返回第一个文件内容
+            </summary>
+            <param name="zipedBuffer">buffer</param>
+            <returns>第一个文件内容</returns>
+        </member>
+        <member name="M:PT.Toolkit.Compress.ZipHelper.UnZipFile(System.String,System.String,System.String@)">
+            <summary>   
+            功能：解压zip格式的文件。   
+            </summary>   
+            <param name="zipFilePath">压缩文件路径</param>   
+            <param name="unZipDir">解压文件存放路径,为空时默认与压缩文件同一级目录下，跟压缩文件同名的文件夹</param>   
+            <param name="err">出错信息</param>   
+            <returns>解压是否成功</returns>   
+        </member>
+        <member name="T:PT.Toolkit.LocalFileServer">
+            <summary>
+            本地文件服务器
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.LocalFileServer.BaseDirectory">
+            <summary>
+            文件服务管理根目录起点,默认值为"c:\\Files"
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.LocalFileServer.MaxFileLen">
+            <summary>
+            限制保存的文件大小(M),默认值为1024M
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.LocalFileServer.mutexObject">
+            <summary>
+            对敏感资源访问时的互斥量
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.LocalFileServer.GetFileLength(System.String)">
+            <summary>
+            获取文件长度
+            </summary>
+            <param name="fileName">文件名,不带路径</param>
+            <returns>文件长度</returns>
+        </member>
+        <member name="M:PT.Toolkit.LocalFileServer.ReadFileData(System.String,System.Int64,System.Byte[])">
+            <summary>
+            读取文件数据并返回读取的长度
+            </summary>
+            <param name="fileName">文件名,不带路径</param>
+            <param name="offset">文件偏移</param>
+            <param name="data">数据缓冲区</param>
+            <returns>实际读取的长度字节数</returns>
+        </member>
+        <member name="M:PT.Toolkit.LocalFileServer.WriteFileData(System.String,System.Int64,System.Byte[],System.Int64)">
+            <summary>
+            将某文件的部分数据写入临时文件,必须与CompleteWriteFile结合才能完成文件写入操作
+            </summary>
+            <param name="fileName">文件名,不带路径</param>
+            <param name="dataNumber">数据块序号，从0开始</param>
+            <param name="data">数据内容</param>
+            <param name="dataLen">数据内容中有效长度</param>
+        </member>
+        <member name="M:PT.Toolkit.LocalFileServer.DeleteExpiredTempFiles(System.String)">
+            <summary>
+            删除当前基础目录下的某个子目录下的所有过期临时文件(某些临时文件可能因为异常而未被删除)
+            </summary>
+            <param name="subDir"></param>
+        </member>
+        <member name="M:PT.Toolkit.LocalFileServer.DeleteFile(System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="fileName">文件名,不带路径</param>
+        </member>
+        <member name="M:PT.Toolkit.LocalFileServer.CompleteWriteFile(System.String,System.Int64)">
+            <summary>
+            合并临时文件为完整文件
+            </summary>
+            <param name="fileName">文件名,不带路径</param>
+            <param name="fileLen">总长度</param>
+        </member>
+        <member name="M:PT.Toolkit.LocalFileServer.EnsureSubDirectory(System.String)">
+            <summary>
+            判断文件名首字母为名称的子目录是否存在,不存在则创建
+            </summary>
+            <param name="fileName">文件名,不带路径</param>
+        </member>
+        <member name="M:PT.Toolkit.LocalFileServer.GetFilePathName(System.String)">
+            <summary>
+            获取的文件路径全名
+            </summary>
+            <param name="fileName">文件名,不带路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.LocalFileServer.GetSubDirectoryName(System.String)">
+            <summary>
+            根据文件名截取首字母获得子目录名称
+            </summary>
+            <param name="fileName">文件名,不带路径</param>
+            <returns>子目录名称</returns>
+        </member>
+        <member name="T:PT.Toolkit.LocalLogWriter">
+            <summary>
+            本地日志文件写入类
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.LocalLogWriter.LocalLogPaths">
+            <summary>
+            指定本地日志文件路径数组,写日志时会尝试按顺序向目标路径写日志,当写成功则不继续向下一个路径写入日志
+            ,默认为c:\BestPlatform\log
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.LocalLogWriter.GetPlatformLocalLogPath">
+            <summary>
+            获取本地日志文件路径,返回路径数组,当路径访问受限时,按数组索引优先顺序用最靠前的路径存取文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.LocalLogWriter.WriteLocalLog(System.String,System.String,System.Int32)">
+            <summary>
+            向本地日志目录的指定文件写入一条日志信息,文件名称要使用相对路径
+            自动添加时间戳信息
+            </summary>
+            <param name="fileName">指定文件名,文件名称要使用相对路径</param>
+            <param name="logMessage">日志内容</param>
+        </member>
+        <member name="M:PT.Toolkit.LocalLogWriter.ClearLocalLog(System.String)">
+            <summary>
+            清除本地日志目录的指定文件内容,文件名称要使用相对路径
+            </summary>
+            <param name="fileName">指定文件名,文件名称要使用相对路径</param>
+        </member>
+        <member name="M:PT.Toolkit.LocalLogWriter.WriteLocalLogWithoutTimeStamp(System.String,System.String,System.Int32)">
+            <summary>
+            向本地日志目录的指定文件写入一条日志信息,文件名称要使用相对路径
+            不添加时间戳信息
+            </summary>
+            <param name="fileName">指定文件名,文件名称要使用相对路径</param>
+            <param name="logMessage">日志内容</param>
+        </member>
+        <member name="F:PT.Toolkit.LocalLogWriter.LogFiles">
+            <summary>
+            缓存的文件及锁
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.LocalLogWriter.FindLogFileObjectByName(System.String)">
+            <summary>
+            根据文件全名查找文件锁
+            </summary>
+            <param name="filePathName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.Toolkit.LocalLogWriter.LogFileObject">
+            <summary>
+            文件访问锁对象
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.LocalLogWriter.LogFileObject.lockObject">
+            <summary>
+            文件对应的锁对象
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.LocalLogWriter.LogFileObject.filePathName">
+            <summary>
+            文件全名
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.NetHelper">
+            <summary> 
+            通信相关辅助类 
+            </summary> 
+        </member>
+        <member name="M:PT.Toolkit.NetHelper.PingHost2(System.String,System.Int32)">
+            <summary>
+            测试目标地址是否可用
+            </summary>
+            <param name="host">目标地址,格式：192.168.2.177</param>
+            <param name="timeout">timeout时间,单位毫秒</param>
+            <returns>是否可用</returns>
+        </member>
+        <member name="M:PT.Toolkit.NetHelper.PingHost(System.String,System.Int32,System.Int32)">
+            <summary>
+            测试目标地址是否可用
+            </summary>
+            <param name="ip">目标地址,格式：192.168.2.177</param>
+            <param name="port">端口</param>
+            <param name="timeout">timeout时间,单位毫秒</param>
+            <returns>是否可用</returns>
+        </member>
+        <member name="M:PT.Toolkit.NetHelper.PingHost1(System.String,System.Int32,System.Int32)">
+            <summary>
+            测试目标地址是否可用
+            </summary>
+            <param name="host">目标地址,格式：192.168.2.177</param>
+            <param name="port">端口</param>
+            <param name="timeout">timeout时间,单位毫秒</param>
+            <returns>是否可用</returns>
+        </member>
+        <member name="M:PT.Toolkit.NetHelper.Serialize(PT.Toolkit.NetHelper.BestIcmpPacket,System.Byte[],System.Int32,System.Int32)">
+            <summary> 
+            This method get the Packet and calculates the total size 
+            of the Pack by converting it to byte array 
+            </summary> 
+        </member>
+        <member name="M:PT.Toolkit.NetHelper.checksum(System.UInt16[],System.Int32)">
+            <summary> 
+            This Method has the algorithm to make a checksum 
+            </summary> 
+        </member>
+        <member name="M:PT.Toolkit.NetHelper.GetLocalIp">
+            <summary>
+            获取本机IP地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.NetHelper.GetLocalIps">
+            <summary>
+            获取本机所有IP地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.NetHelper.GetDnsAddresses">
+            <summary>
+            获取dns配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.NetHelper.Ip4RouteTable">
+            <summary>
+            Ip4RouteTable
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.NetHelper.GetUsablePort(System.Int32,System.Int32)">
+            <summary>
+            获取可用端口，返回-1标识无可用端口
+            </summary>
+            <param name="ptFrom">要获取端口的起始范围端口</param>
+            <param name="ptTo">要获取端口的截止范围端口</param>
+            <returns>返回-1标识无可用端口</returns>
+        </member>
+        <member name="M:PT.Toolkit.NetHelper.IsPortInUse(System.Int32)">
+            <summary>
+            判断某个端口是否占用中
+            </summary>
+            <param name="port">端口</param>
+            <returns>是否占用中</returns>
+        </member>
+        <member name="T:PT.Toolkit.NetHelper.BestIcmpPacket">
+            <summary> 
+            Class that holds the Pack information 
+            </summary> 
+        </member>
+        <member name="F:PT.Toolkit.NetHelper.BestIcmpPacket.Type">
+            <summary>
+            type of message
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.NetHelper.BestIcmpPacket.SubCode">
+            <summary>
+            type of sub code
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.NetHelper.BestIcmpPacket.CheckSum">
+            <summary>
+            ones complement checksum of struct
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.NetHelper.BestIcmpPacket.Identifier">
+            <summary>
+            identifier
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.NetHelper.BestIcmpPacket.SequenceNumber">
+            <summary>
+            sequence number
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.NetHelper.BestIcmpPacket.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.DataSectionHelper">
+            <summary>
+            支持Datasection对流的访问
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.DataSectionHelper.LoadFromFile(System.String)">
+            <summary>
+            从文件读取数据段信息
+            </summary>
+            <param name="sFile">文件名</param>
+            <returns>DataSection</returns>
+        </member>
+        <member name="M:PT.Toolkit.DataSectionHelper.LoadFromStream(System.IO.StreamReader)">
+            <summary>
+            从流读取数据
+            </summary>
+            <param name="sr">流</param>
+            <returns>DataSection</returns>
+        </member>
+        <member name="M:PT.Toolkit.DataSectionHelper.SaveToFile(PT.Toolkit.Portable.DataSection,System.String)">
+            <summary>
+            数据段信息保存到文件
+            </summary>
+            <param name="ds">DataSection</param>
+            <param name="sFile">文件名称</param>
+        </member>
+        <member name="M:PT.Toolkit.DataSectionHelper.SaveToStream(PT.Toolkit.Portable.DataSection,System.IO.StreamWriter)">
+            <summary>
+            数据写入流
+            </summary>
+            <param name="ds">DataSection</param>
+            <param name="sw">流</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="T:PT.DB.InsertParam">
+            <summary>
+            Insert操作参数
+            </summary>
+        </member>
+        <member name="F:PT.DB.InsertParam.TableName">
+            <summary>
+            表名,如指定此值则实际sql操作将以此表名为准，替代原有表名称
+            </summary>
+        </member>
+        <member name="F:PT.DB.InsertParam.affectMembers">
+            <summary>
+            操作时指定期望受影响的类成员名称列表
+            </summary>
+        </member>
+        <member name="M:PT.DB.InsertParam.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="T:PT.DB.ReceiveParam">
+            <summary>
+            数据回填过程及结果控制参数
+            </summary>
+        </member>
+        <member name="F:PT.DB.ReceiveParam.affectMembers">
+            <summary>
+            操作时指定期望受影响的类成员名称列表
+            </summary>
+        </member>
+        <member name="M:PT.DB.ReceiveParam.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.DB.ReceiveParam.CreateFromSelectParam(PT.DB.SelectParam)">
+            <summary>
+            从基于同一操作特征(如相同的字段选择特征)的SelectParam类创建ReceiveParam
+            </summary>
+            <param name="sp">SelectParam,可为null</param>
+            <returns>ReceiveParam或null</returns>
+        </member>
+        <member name="T:PT.DB.SelectParam">
+            <summary>
+            Select 查询过程及结果控制参数
+            </summary>
+        </member>
+        <member name="F:PT.DB.SelectParam.TableName">
+            <summary>
+            表名,如指定此值则实际sql操作将以此表名为准，替代原有表名称
+            </summary>
+        </member>
+        <member name="F:PT.DB.SelectParam.affectMembers">
+            <summary>
+            操作时指定期望受影响的类成员名称列表
+            </summary>
+        </member>
+        <member name="F:PT.DB.SelectParam.whereDictionary">
+            <summary>
+            WHERE子句键值(成员变量名，值)定义类
+            </summary>
+        </member>
+        <member name="F:PT.DB.SelectParam.orderByDictionary">
+            <summary>
+            OrderBy字典,包含类成员字段名及排序方式
+            </summary>
+        </member>
+        <member name="M:PT.DB.SelectParam.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.DB.SelectParam.Reset">
+            <summary>
+            重置内部成员状态
+            </summary>
+        </member>
+        <member name="T:PT.DB.UpdateParam">
+            <summary>
+            数据表更新操作参数配置
+            </summary>
+        </member>
+        <member name="F:PT.DB.UpdateParam.TableName">
+            <summary>
+            表名,如指定此值则实际sql操作将以此表名为准，替代原有表名称
+            </summary>
+        </member>
+        <member name="F:PT.DB.UpdateParam.affectMembers">
+            <summary>
+            操作时指定期望受影响的类成员名称列表
+            </summary>
+        </member>
+        <member name="F:PT.DB.UpdateParam.whereDictionary">
+            <summary>
+            WHERE子句键值(成员变量名，值)定义类
+            </summary>
+        </member>
+        <member name="M:PT.DB.UpdateParam.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="T:PT.DB.DeleteParam">
+            <summary>
+            删除操作参数
+            </summary>
+        </member>
+        <member name="F:PT.DB.DeleteParam.TableName">
+            <summary>
+            表名,如指定此值则实际sql操作将以此表名为准，替代原有表名称
+            </summary>
+        </member>
+        <member name="F:PT.DB.DeleteParam.whereDictionary">
+            <summary>
+            WHERE子句键值(成员变量名，值)定义类
+            </summary>
+        </member>
+        <member name="M:PT.DB.DeleteParam.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="T:PT.DB.OrderByDictionary">
+            <summary>
+            OrderBy语句字典,包含类成员字段名及排序方式
+            </summary>
+        </member>
+        <member name="F:PT.DB.OrderByDictionary.UseDic">
+            <summary>
+            是否使用字典定义信息进行order by，默认false
+            </summary>
+        </member>
+        <member name="F:PT.DB.OrderByDictionary.AscFlags">
+            <summary>
+            是否升序的标记列表
+            </summary>
+        </member>
+        <member name="F:PT.DB.OrderByDictionary.MemberNames">
+            <summary>
+            类成员名称列表
+            </summary>
+        </member>
+        <member name="M:PT.DB.OrderByDictionary.Add(System.String,System.Boolean)">
+            <summary>
+            添加一个排序
+            </summary>
+            <param name="memberName">成员名称</param>
+            <param name="isAsc">是否升序</param>
+        </member>
+        <member name="M:PT.DB.OrderByDictionary.MemberName(System.Int32)">
+            <summary>
+            获取索引位置对应的成员名称
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OrderByDictionary.AscFlag(System.Int32)">
+            <summary>
+            获取索引位置对应的成员的升序标记
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OrderByDictionary.Clear">
+            <summary>
+            清除排序列表
+            </summary>
+        </member>
+        <member name="P:PT.DB.OrderByDictionary.Count">
+            <summary>
+            获得已设置的排序字段的数量
+            </summary>
+        </member>
+        <member name="T:PT.DB.WhereDictionary">
+            <summary>
+            WHERE子句定义类
+            </summary>
+        </member>
+        <member name="F:PT.DB.WhereDictionary.UseDic">
+            <summary>
+            是否使用字典作为where子句的参考键值，默认false，如果为false则默认使用映射表的主键作为参考
+            </summary>
+        </member>
+        <member name="F:PT.DB.WhereDictionary.ClauseElements">
+            <summary>
+            where语句元素
+            </summary>
+        </member>
+        <member name="M:PT.DB.WhereDictionary.Clear">
+            <summary>
+            清除已定义的所有字典
+            </summary>
+        </member>
+        <member name="M:PT.DB.WhereDictionary.GetElements(System.String)">
+            <summary>
+            获取集合，内部使用
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.WhereDictionary.AddClauses(System.Object[])">
+            <summary>
+            添加where子句，可多次调用添加，不负责语句间关系连接,参数只支持string,MemberName,MemberValue三种类型。
+            例如 
+            AddClauses("UserID='1'");
+            AddClauses(new MemberName("UserAge"),">",new MemberValue(15));
+            AddClauses(new MemberName("SubsystemID"),"=",new MemberValue("1")," AND SubsystemName='平台'");
+            </summary>
+            <param name="clauses"></param>
+        </member>
+        <member name="M:PT.DB.WhereDictionary.Add(System.String,System.Object)">
+            <summary>
+            添加一个等值判定语句,与已存在语句间为"AND"关系
+            </summary>
+            <param name="memberName">映射类的成员名称</param>
+            <param name="memberValue">映射类的成员值</param>
+        </member>
+        <member name="M:PT.DB.WhereDictionary.AddEx(System.String,System.String,System.Object)">
+            <summary>
+            添加一个值判定语句,与已存在语句间为"AND"关系
+            </summary>
+            <param name="memberName">映射类的成员名称</param>
+            <param name="op">操作符号,例如= like 等</param>
+            <param name="memberValue">映射类的成员值</param>
+        </member>
+        <member name="M:PT.DB.WhereDictionary.AddByFieldTypeEx(System.String,System.String,System.Object,PT.DB.Portable.DBFieldTypeEnum)">
+            <summary>
+            添加一个等值判定语句并指定字段类型,与已存在语句间为"AND"关系
+            </summary>
+            <param name="memberName">映射类的成员名称</param>
+            <param name="op">操作符号,例如= like 等</param>
+            <param name="memberValue">映射类的成员值</param>
+            <param name="fieldType">指定映射类的成员字段类型</param>
+        </member>
+        <member name="M:PT.DB.WhereDictionary.AddByFieldType(System.String,System.Object,PT.DB.Portable.DBFieldTypeEnum)">
+            <summary>
+            添加一个等值判定语句并指定字段类型,与已存在语句间为"AND"关系
+            </summary>
+            <param name="memberName">映射类的成员名称</param>
+            <param name="memberValue">映射类的成员值</param>
+            <param name="fieldType">指定映射类的成员字段类型</param>
+        </member>
+        <member name="T:PT.DB.MemberName">
+            <summary>
+            代表一个映射类的成员,用于WhereDictionary的语句构建
+            </summary>
+        </member>
+        <member name="F:PT.DB.MemberName.Name">
+            <summary>
+            成员名称
+            </summary>
+        </member>
+        <member name="M:PT.DB.MemberName.#ctor(System.String)">
+            <summary>
+            构造
+            </summary>
+            <param name="memberName">成员名称</param>
+        </member>
+        <member name="T:PT.DB.MemberValue">
+            <summary>
+            代表一个映射类的成员的值,用于WhereDictionary的语句构建
+            </summary>
+        </member>
+        <member name="F:PT.DB.MemberValue.Value">
+            <summary>
+            成员值
+            </summary>
+        </member>
+        <member name="F:PT.DB.MemberValue.DBFieldType">
+            <summary>
+            成员的字段类型
+            </summary>
+        </member>
+        <member name="M:PT.DB.MemberValue.#ctor(System.Object)">
+            <summary>
+            构造
+            </summary>
+            <param name="o">成员值</param>
+        </member>
+        <member name="M:PT.DB.MemberValue.#ctor(System.Object,PT.DB.Portable.DBFieldTypeEnum)">
+            <summary>
+            构造
+            </summary>
+            <param name="o">成员值</param>
+            <param name="fieldType">成员的字段类型</param>
+        </member>
+        <member name="T:PT.DB.AffectMembers">
+            <summary>
+            指定数据库操作影响类成员名称定义列表
+            </summary>
+        </member>
+        <member name="F:PT.DB.AffectMembers.UseMode">
+            <summary>
+            类成员名称列表使用模式 默认值为MembersUseMode.NotUse
+            </summary>
+        </member>
+        <member name="T:PT.DB.MembersUseMode">
+            <summary>
+            数据操作时传递入得类成员名称列表使用模式
+            </summary>
+        </member>
+        <member name="F:PT.DB.MembersUseMode.Exclude">
+            <summary>
+            类成员名称列表参数被作为排除列表使用
+            </summary>
+        </member>
+        <member name="F:PT.DB.MembersUseMode.NotUse">
+            <summary>
+            数据操作时不考虑此列表
+            </summary>
+        </member>
+        <member name="F:PT.DB.MembersUseMode.Include">
+            <summary>
+            类成员名称列表参数被作为包含列表使用
+            </summary>
+        </member>
+        <member name="T:PT.DB.ConvertFromDB">
+            <summary>
+            从数据库转换值
+            </summary>
+        </member>
+        <member name="T:PT.DB.DBMapperField">
+            <summary>
+            类成员与数据库字段映射描述类
+            </summary>
+            <summary>
+            类成员与数据库字段映射描述类-字符串值向实际值转换函数集
+            </summary>
+            <summary>
+            类成员与数据库字段映射描述类-数据库值向实际值转换函数集
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBMapperField.SystemType_MemberType">
+            <summary>
+            系统类型与映射字段类型对应表，缓存以提高效率
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBMapperField.DBFieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBMapperField.MemberName">
+            <summary>
+            成员名称
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBMapperField.ForceQuoteName">
+            <summary>
+            数据库操作时列名需要强制双引号
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBMapperField.DBFieldType">
+            <summary>
+            字段数据类型
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBMapperField.PrimaryKey">
+            <summary>
+            是否是表的主键,Update和Delete的默认操作时主键将出现在where子句中作为条件
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBMapperField.MemberFieldInfo">
+            <summary>
+            成员的反射信息
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBMapperField.GetValueFromMember(System.Object)">
+            <summary>
+            获取类里对应映射成员的值
+            </summary>
+            <param name="oProvider">数据提供类</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBMapperField.SetValueToMember(System.Object,System.Object)">
+            <summary>
+            设置类里对应映射成员的值
+            </summary>
+            <param name="oReceive">包含成员的实例类</param>
+            <param name="o">值</param>
+        </member>
+        <member name="M:PT.DB.DBMapperField.MemberType">
+            <summary>
+            返回类成员的类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBMapperField.GetMemberDescriptionHeader(System.Reflection.MemberInfo)">
+            <summary>
+            取得成员描述头部信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBMapperField.#ctor(System.Reflection.MemberInfo,PT.DB.Portable.TableFieldMap)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="field">成员的字段访问器</param>
+            <param name="fieldMapAtt">字段自定义属性</param>
+        </member>
+        <member name="M:PT.DB.DBMapperField.BaseTypeToMemberFieldTypeEnum(System.Type)">
+            <summary>
+            基本数据类型转换为字段类型枚举
+            </summary>
+            <param name="baseType">基本数据类型</param>
+            <returns>字段类型枚举</returns>
+        </member>
+        <member name="M:PT.DB.DBMapperField.GetConvertFromStringDelegate(PT.DB.Portable.DBFieldTypeEnum)">
+            <summary>
+            根据字段类型查找从字符串值到实际值的转换函数
+            </summary>
+            <param name="fieldType">实际值类型</param>
+            <returns>转换函数</returns>
+        </member>
+        <member name="M:PT.DB.DBMapperField.SetDBValueToMember(System.Object,System.Object)">
+            <summary>
+            将数据库值经过转换后对类成员进行赋值
+            </summary>
+            <param name="objDataReceiver"></param>
+            <param name="dbValue"></param>
+        </member>
+        <member name="M:PT.DB.DBMapperField.SetStringValueToMember(System.Object,System.String)">
+            <summary>
+            将字符串值转换为实际值后对类成员进行赋值
+            </summary>
+            <param name="objDataReceiver"></param>
+            <param name="stringValue"></param>
+        </member>
+        <member name="M:PT.DB.DBMapperField.GetConvertFromDBDelegate(PT.DB.Portable.DBFieldTypeEnum)">
+            <summary>
+            根据字段类型查找数据库值到实际值的转换函数
+            </summary>
+            <param name="fieldType">实际值类型</param>
+            <returns>转换函数</returns>
+        </member>
+        <member name="T:PT.DB.DBMapperTable">
+            <summary>
+            BestMemberFieldMapper列表管理类
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBMapperTable.ForceQuoteName">
+            <summary>
+            数据库操作时表名需要强制双引号
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBMapperTable.TableName">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="F:PT.DB.DBMapperTable.ObjectType">
+            <summary>
+            绑定的表单类对象类型
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBMapperTable.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="tableName">表名</param>
+        </member>
+        <member name="M:PT.DB.DBMapperTable.FindItemByMemberName(System.String)">
+            <summary>
+            根据成员名称查找成员
+            </summary>
+            <param name="memberName"></param>
+            <returns></returns>
+        </member>
+        <member name="F:PT.DB.DBMapperTable.mapperTables">
+            <summary>
+            字段映射表缓存 mapperTables_AF,mapperTables_GL
+            </summary>
+        </member>
+        <member name="M:PT.DB.DBMapperTable.GetMapperTableByObject(System.Object)">
+            <summary>
+            根据实例对象创建字段映射列表
+            </summary>
+            <param name="objDataProvider">数据对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DBMapperTable.GetMapperTableByType(System.Type)">
+            <summary>
+            获取字段映射定义列表,为对应表数据的更新及读取数据提供依据(返回列表为缓冲区数据，不要对其进行修改)
+            </summary>
+            <returns>字段映射定义列表</returns>
+        </member>
+        <member name="T:PT.DB.DotNetOracleDBOperator">
+            <summary>
+            使用Devart组件对Oracle进行操作,无法批量插入操作，不支持连接超时Connection Timeout
+            </summary>
+        </member>
+        <member name="F:PT.DB.DotNetOracleDBOperator.CallingInfo">
+            <summary>
+            申请此数据库操作类的调用信息
+            </summary>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.StaticCreateDbParam(System.String,System.Object,PT.DB.Portable.DBFieldTypeEnum,System.Data.ParameterDirection)">
+            <summary>
+            按规格返回一个新创建的OracleParameter
+            </summary>
+            <param name="paramName">参数名</param>
+            <param name="paramValue">值</param>
+            <param name="paramType">参数类型</param>
+            <param name="paramDir">传递方向</param>
+            <returns>新创建的OracleParameter</returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.GetSnapshot(PT.Toolkit.Portable.DataSection)">
+            <summary>
+            获取快照，快照指示当前数据访问器的状态
+            </summary>
+            <returns>snapshot</returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.#ctor(PT.DB.ConnectionPool,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="parent">容器</param>
+            <param name="sConnectString">连接串</param>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.ReleaseDBOperator">
+            <summary>
+            释放由BestDatabase.GetDBOperator申请的数据操作类实例
+            </summary>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.DisConnect">
+            <summary>
+            断开连接
+            </summary>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.Breath">
+            <summary>
+            更新最近访问时间
+            </summary>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.IsConnected">
+            <summary>
+            判断是否已经与数据库连接成功
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.Connect">
+            <summary>
+            连接数据库，此函数不必显示调用，在执行数据操作时候会自动调用。
+            </summary>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.BeginTrans">
+            <summary>
+            开始事物处理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.CommitTrans">
+            <summary>
+            提交事务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.RollbackTrans">
+            <summary>
+            回滚事务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.PrepareSQLRequest">
+            <summary>
+            为执行sql语句提供基础准备
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.unPrepareSQLRequest">
+            <summary>
+            取消sql基础准备
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.InsertBatch(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter},System.Int32)">
+            <summary>
+            执行批量Insert语句，参数列表中每个参数的Value属性值为数组，并且每个参数包含的数组长度必须一致
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="dbParameters">参数列表</param>
+            <param name="arrayCount">数组数量，必须与参数包含的数组长度一致</param>
+            <returns>rows affect</returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.ExecuteSql(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>
+            执行更新语句 update insert
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="dbParameters">参数集合,null则不带参数</param>
+            <returns>rows affect</returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.IsDisconnectError(System.String)">
+            <summary>
+            判断是否错误信息是断线错误
+            </summary>
+            <param name="sErr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.ExecuteSqlWithDataReader(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>
+            执行select操作,并返回个DbDataReader用于顺序读取
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="dbParameters">参数集合,可为null</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.ExecuteSqlWithDataSet(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>
+            执行select操作,并返回个结果集
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="dbParameters">参数集合,可为null</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.ExecuteProcedure(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="dbParameters">参数集合,null则不带参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.ExecuteProcedureWithDataSet(System.String,System.Collections.Generic.IList{System.Data.Common.DbParameter})">
+            <summary>
+            执行存储过程操作并返回结果集
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="dbParameters">参数列表</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:PT.DB.DotNetOracleDBOperator.GetConnectorType">
+            <summary>
+            获取实例连接的数据库类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:PT.DB.DotNetOracleDBOperator.ConnectString">
+            <summary>
+            当前使用的连接串
+            </summary>
+        </member>
+        <member name="T:PT.DB.OracleParser.OracleLanguageDecoder">
+            <summary>
+            提供对sql脚本解析成数据库对象
+            </summary>
+        </member>
+        <member name="F:PT.DB.OracleParser.OracleLanguageDecoder.AllowedSeperators">
+            <summary>
+            可以被认为是分隔符号的字符
+            </summary>
+        </member>
+        <member name="F:PT.DB.OracleParser.OracleLanguageDecoder.ObjectList">
+            <summary>
+            解析出的对象列表
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleLanguageDecoder.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleLanguageDecoder.FindObjectByNameAndType(System.String,System.Type)">
+            <summary>
+            根据名称和类型查找对象
+            </summary>
+            <param name="sName"></param>
+            <param name="tp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleLanguageDecoder.Decode(System.String,System.Object[])">
+            <summary>
+            解析多条语句
+            </summary>
+            <param name="sContent">语句内容</param>
+            <param name="args">提供格式化参数</param>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleLanguageDecoder.Decode(System.String[],System.Object[])">
+            <summary>
+            按行解析多条语句
+            </summary>
+            <param name="sLines">多行语句</param>
+            <param name="args">格式化参数</param>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleLanguageDecoder.FormatSql(System.String,System.Object[])">
+            <summary>
+            参数替换
+            </summary>
+            <param name="sql"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.OracleParser.OracleObject">
+            <summary>
+            数据对象
+            </summary>
+        </member>
+        <member name="F:PT.DB.OracleParser.OracleObject.ObjectName">
+            <summary>
+            对象名称
+            </summary>
+        </member>
+        <member name="F:PT.DB.OracleParser.OracleObject.InternalSql">
+            <summary>
+            内部sql语句
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleObject.GetDropSql">
+            <summary>
+            获取清除该语句效果的语句
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleObject.ToString">
+            <summary>
+            重写object.ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleObject.ParseCommonCreateObject(PT.Toolkit.Portable.StringParser,System.Int32,System.Int32,System.String,System.String,System.String,System.Boolean,System.Int32@)">
+            <summary>
+            解析对象内容
+            </summary>
+            <param name="bsp">解析器</param>
+            <param name="iClauseBeginPos">整个语句开始位置</param>
+            <param name="iBeginParsePos">本次解析开始位置</param>
+            <param name="sNameEndSeperators">对象名称结束标志分隔符</param>
+            <param name="sClauseEndPattern">对象语句结束标志模型</param>
+            <param name="sClauseEndSeperators">模型使用的符号组</param>
+            <param name="bFormatObjectNameToEndPattern">当对象语句结束标志模型需要对象名称进行格式化时候，此值为真</param>
+            <param name="iEndParsePos">如果成功，返回解析结束位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleObject.GetValidKeywordAfterFlag(System.String[],System.Int32,System.String)">
+            <summary>
+            从标志字符串后开始截取关键字
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <param name="sBeginFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleObject.GetValidKeyword(System.String)">
+            <summary>
+            从第一个不是分隔符号的位置开始截取字符
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleObject.Explain(PT.Toolkit.Portable.StringParser,System.Int32,System.Int32@)">
+            <summary>
+            解析出数据对象
+            </summary>
+            <param name="bsp">解析器</param>
+            <param name="iBeginPos">开始解析的位置</param>
+            <param name="iExplainEndPos">解析结束的位置</param>
+            <returns>OracleObject</returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleObject.Explain(System.String[],System.Int32@)">
+            <summary>
+            解析出数据对象
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.OracleParser.OracleExecute">
+            <summary>
+            数据对象-sql语句
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleExecute.#ctor">
+            <summary>
+            sql语句类构造函数
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleExecute.GetDropSql">
+            <summary>
+            取得删除该语句的语句
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleExecute.Parse(PT.Toolkit.Portable.StringParser,System.Int32,System.Int32@)">
+            <summary>
+            解析
+            </summary>
+            <param name="bsp">解析器</param>
+            <param name="iBeginParsePos">整个语句开始位置</param>
+            <param name="iEndParsePos">如果成功，返回解析结束位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleExecute.Parse(System.String[],System.Int32@)">
+            <summary>
+            解析
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.OracleParser.OracleGlobalTemporaryTable">
+            <summary>
+            数据对象-全局临时表
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleGlobalTemporaryTable.#ctor">
+            <summary>
+            GlobalTemporaryTable类构造函数
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleGlobalTemporaryTable.GetDropSql">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleGlobalTemporaryTable.Parse(System.String[],System.Int32@,System.String)">
+            <summary>
+            解析
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <param name="sBeginFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.OracleParser.OracleTable">
+            <summary>
+            数据对象-表
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleTable.#ctor">
+            <summary>
+            OracleTable类构造函数
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleTable.GetDropSql">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleTable.Parse(System.String[],System.Int32@,System.String)">
+            <summary>
+            解析
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <param name="sBeginFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.OracleParser.OracleTrigger">
+            <summary>
+            数据对象-触发器
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleTrigger.#ctor">
+            <summary>
+            OracleTrigger类构造函数
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleTrigger.GetDropSql">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleTrigger.Parse(System.String[],System.Int32@,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <param name="sBeginFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.OracleParser.OracleFunction">
+            <summary>
+            数据对象-函数
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleFunction.#ctor">
+            <summary>
+            OracleFunction类构造函数
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleFunction.GetDropSql">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleFunction.Parse(System.String[],System.Int32@,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <param name="sBeginFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.OracleParser.OracleProcedure">
+            <summary>
+            数据对象-存储过程
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleProcedure.#ctor">
+            <summary>
+            OracleProcedure类构造函数
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleProcedure.GetDropSql">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleProcedure.Parse(System.String[],System.Int32@,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <param name="sBeginFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.OracleParser.OraclePackage">
+            <summary>
+            数据对象-包
+            </summary>
+        </member>
+        <member name="F:PT.DB.OracleParser.OraclePackage.BodySql">
+            <summary>
+            packagebody sql
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OraclePackage.#ctor">
+            <summary>
+            OraclePackage类构造函数
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OraclePackage.Combine(PT.DB.OracleParser.OraclePackage)">
+            <summary>
+            将两个同名包融合
+            </summary>
+            <param name="pkg"></param>
+        </member>
+        <member name="M:PT.DB.OracleParser.OraclePackage.GetDropSql">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OraclePackage.Parse(System.String[],System.Int32@,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <param name="sBeginFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.OracleParser.OracleView">
+            <summary>
+            数据对象-视图
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleView.#ctor">
+            <summary>
+            类构造函数
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleView.GetDropSql">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleView.Parse(System.String[],System.Int32@,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <param name="sBeginFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.OracleParser.OracleIndex">
+            <summary>
+            数据对象-Index
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleIndex.#ctor">
+            <summary>
+            OracleIndex类构造函数
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleIndex.GetDropSql">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleIndex.Parse(System.String[],System.Int32@,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <param name="sBeginFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.DB.OracleParser.OracleSequence">
+            <summary>
+            数据对象-Sequence
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleSequence.#ctor">
+            <summary>
+            OracleSequence类构造函数
+            </summary>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleSequence.GetDropSql">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.DB.OracleParser.OracleSequence.Parse(System.String[],System.Int32@,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sLines"></param>
+            <param name="iBeginLine"></param>
+            <param name="sBeginFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.Toolkit.Compress.DeflateHelper">
+            <summary>
+            内存流压缩类，封装简化了System.IO.Compression.DeflateStream类操作
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Compress.DeflateHelper.DeCompressBuffer(System.Byte[])">
+            <summary>
+            解压缓冲区
+            </summary>
+            <param name="pCompressedBuffer">待解压数据</param>
+            <returns>解压后数据</returns>
+        </member>
+        <member name="M:PT.Toolkit.Compress.DeflateHelper.CompressBuffer(System.Byte[])">
+            <summary>
+            压缩缓冲区
+            </summary>
+            <param name="pBytes">待压缩数据</param>
+            <returns>压缩后数据</returns>
+        </member>
+        <member name="T:PT.Toolkit.FileHelper">
+            <summary>
+            文件辅助管理类
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.GetMD5HashFromFile(System.String,System.Boolean)">
+            <summary>
+            获取文件的MD5码
+            </summary>
+            <param name="fileName">文件路径</param>
+            <param name="upperCase">返回值是否大写</param>
+            <returns>MD5</returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.GetFileEncoding(System.String)">
+            <summary>
+            取得一个文本文件的编码方式。如果无法在文件头部找到有效的前导符，Encoding.Default将被返回。
+            </summary>
+            <param name="fileName">文件名。</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.GetFileStreamEncoding(System.IO.FileStream)">
+            <summary>
+            取得一个文本文件流的编码方式。
+            </summary>
+            <param name="stream">文本文件流。</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.GetFileEncoding(System.String,System.Text.Encoding)">
+            <summary>
+            取得一个文本文件的编码方式。
+            </summary>
+            <param name="fileName">文件名。</param>
+            <param name="defaultEncoding">默认编码方式。当该方法无法从文件的头部取得有效的前导符时，将返回该编码方式。</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.GetFileStreamEncoding(System.IO.FileStream,System.Text.Encoding)">
+            <summary>
+            取得一个文本文件流的编码方式。
+            </summary>
+            <param name="stream">文本文件流。</param>
+            <param name="defaultEncoding">默认编码方式。当该方法无法从文件的头部取得有效的前导符时，将返回该编码方式。</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.RemoveFileAttributes(System.String,System.IO.FileAttributes)">
+            <summary>
+            去掉文件的某个属性例：RemoveFileAttributes("c:\\1.txt",FileAttributes.ReadOnly)
+            </summary>
+            <param name="strFile">文件</param>
+            <param name="attrs">属性</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.GetCurrentModulePath">
+            <summary>
+            获取当前函数所属dll模块所在的路径,路径最后无分隔斜线
+            </summary>
+            <returns>模块所在目录。如"c:\bin"</returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.GetApplicationPath">
+            <summary>
+            获得应用程序所在目录,路径最后无分隔斜线
+            </summary>
+            <returns>应用程序所在目录。如"c:\bin"</returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.GetFixedPath(System.String)">
+            <summary>
+            获得修正后的路径
+            </summary>
+            <param name="sAppFullPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.AnalysisExecutablePath(System.String)">
+            <summary>
+            对一个可执行的命令行代码进行解析
+            </summary>
+            <param name="filePath">命令行代码c:\\a.exe "-r"</param>
+            <returns>可运行信息</returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.FindExecutableExtIndex(System.String,System.Int32)">
+            <summary>
+            找到可运行类文件扩展名标志位置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.CombinePath(System.String,System.String)">
+            <summary>
+            连接两个路径,解决System.IO.Path.Combine处理不正常的问题
+            </summary>
+            <param name="Path1">路径1</param>
+            <param name="Path2">路径2</param>
+            <returns>路径</returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.CopyFiles(System.String,System.String)">
+            <summary>
+            Copy files from souce directory to dest directory
+            </summary>
+            <param name="SourceDir">源</param>
+            <param name="DestDir">目标</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.CopyDir(System.String,System.String)">
+            <summary>
+            Copy sub-directories and files from directory to dest directory
+            </summary>
+            <param name="SourceDir">源</param>
+            <param name="DestDir">目标</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.FileToByte(System.String)">
+            <summary>
+            将指定路径下的文件内容，转换成字节数组。
+            </summary>
+            <param name="filePath">文件名。（包含路径）</param>
+            <returns>转换后的文件内容。</returns>
+        </member>
+        <member name="M:PT.Toolkit.FileHelper.ByteToFile(System.String,System.Byte[])">
+            <summary>
+            将字节数组中的内容，保存到指定文件。
+            </summary>
+            <param name="filePath">文件名。</param>
+            <param name="Entity">字节数组。</param>
+        </member>
+        <member name="T:PT.Toolkit.FileHelper.ExecutableInfo">
+            <summary>
+            可运行信息
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.FileHelper.ExecutableInfo.FileName">
+            <summary>
+            文件名称
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.FileHelper.ExecutableInfo.Path">
+            <summary>
+            文件路径
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.FileHelper.ExecutableInfo.Arguments">
+            <summary>
+            参数
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.ImageHelper">
+            <summary>
+            提供对图像和颜色处理的一些静态处理函数
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.ImageHelper.MergeImage(PT.Toolkit.ImageHelper.MergeImageArgs)">
+            <summary>
+            将两个图片融合
+            </summary>
+            <param name="mergeImageArgs"></param>
+            <returns>融合后的图片</returns>
+        </member>
+        <member name="M:PT.Toolkit.ImageHelper.GetPartBitmap(System.Drawing.Image,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            截取指定区域图片
+            </summary>
+            <param name="originalImg">原始图片</param>
+            <param name="pStartPointX">截取位置X值</param>
+            <param name="pStartPointY">截取位置Y值</param>
+            <param name="pPartWidth">截取宽度</param>
+            <param name="pPartHeight">截取高度</param>
+        </member>
+        <member name="M:PT.Toolkit.ImageHelper.GetPartBitmap(System.Drawing.Image,System.Drawing.Rectangle)">
+            <summary>
+            截取指定区域图片
+            </summary>
+            <param name="originalImg">原始图片</param>
+            <param name="recPart">截取的尺寸</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.ImageHelper.CreateHotImage(System.Drawing.Bitmap)">
+            <summary>
+            创建焦点图像
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.ImageHelper.CreateDisabledImage(System.Drawing.Bitmap)">
+            <summary>
+            创建灰度图像
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.ImageHelper.CreateHalfDisabledImage(System.Drawing.Bitmap)">
+            <summary>
+            创建半灰度图像
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.ImageHelper.CutImageRgnByColor(System.Drawing.Bitmap,System.Drawing.Color)">
+            <summary>
+            生成一个bitmap大小的区域并把指定颜色的位置切掉
+            </summary>
+            <param name="bm">原图</param>
+            <param name="colorCut">指定的颜色</param>
+            <returns>处理后的区域</returns>
+        </member>
+        <member name="M:PT.Toolkit.ImageHelper.GererateRoundCornerRegion(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            生成一个圆角区域
+            </summary>
+            <param name="Regionwidth">区域原始宽度</param>
+            <param name="Regionheight">区域原始高度</param>
+            <param name="cornersize">角大小</param>
+        </member>
+        <member name="M:PT.Toolkit.ImageHelper.AdjustColorDegree(System.Drawing.Color,System.Int32)">
+            <summary>
+            增减指定颜色的整体颜色深度并返回修改过的颜色
+            </summary>
+            <param name="c">原始颜色</param>
+            <param name="iChange">更改量-255~255</param>
+            <returns>新颜色</returns>
+        </member>
+        <member name="M:PT.Toolkit.ImageHelper.ImageFromByteArray(System.Byte[])">
+            <summary>
+            将byte数组转换为image
+            </summary>
+            <param name="data">byte数组</param>
+            <returns>Image</returns>
+        </member>
+        <member name="M:PT.Toolkit.ImageHelper.ImageToByteArray(System.Drawing.Image)">
+            <summary>
+            将image转换为byte数组
+            </summary>
+            <param name="img">Image</param>
+            <returns>byte数组</returns>
+        </member>
+        <member name="T:PT.Toolkit.ImageHelper.MergeImageArgs">
+            <summary>
+            图片融合参数
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.ImageHelper.MergeImageArgs.bmUpper">
+            <summary>
+            上层图片
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.ImageHelper.MergeImageArgs.bmLower">
+            <summary>
+            下层图片
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.ImageHelper.MergeImageArgs.TransparentMode">
+            <summary>
+            透明处理模式 0:不透明 1:上层透明色处理 2:下层透明色处理 3:上下层透明色处理
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.ImageHelper.MergeImageArgs.OutputTarget">
+            <summary>
+            输出目标 0:在下层图片上融合 1:在新的Bitmap对象上融合
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.ImageHelper.MergeImageArgs.UpperTransparentColor">
+            <summary>
+            当有意义时,指定上层透明色
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.ImageHelper.MergeImageArgs.LowerTransparentColor">
+            <summary>
+            当有意义时,指定下层透明色
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.ImageHelper.MergeImageArgs.LowerRectangle">
+            <summary>
+            向下层图像绘制图片的区域范围,宽度和高度为-1时指定最大值
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.ImageHelper.MergeImageArgs.UpperRectangle">
+            <summary>
+            从上层图像拷贝图片的区域范围,宽度和高度为-1时指定最大值
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.PlatformSetting">
+            <summary>
+            平台配置管理类,使用c:\\PlatformConfig.xml作为配置文件
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.PlatformSetting.PlatformDBConfig">
+            <summary>
+            平台数据库配置
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.PlatformSetting.CatalogIP">
+            <summary>
+            目录服务Ip
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.PlatformSetting.CatalogPort">
+            <summary>
+            目录服务Port
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.PlatformSetting.NetworkcardIP">
+            <summary>
+            发布服务时候使用的网卡IP,当机器存在多IP时候以此为准
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.PlatformSetting.GuardServicePort">
+            <summary>
+            守护服务使用的端口号
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.PlatformSetting.IsConfigLoaded">
+            <summary>
+            标记配置信息是否读取过
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.PlatformSetting._Inst">
+            <summary>
+            唯一实例
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.PlatformSetting.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.PlatformSetting.GetPlatformLocalConfigPath">
+            <summary>
+            获取配置文件路径,返回路径数组,当路径访问受限时,按数组索引优先顺序用最靠前的路径存取文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.PlatformSetting.GetConfigFileFullName">
+            <summary>
+            获取配置文件全路径,返回路径数组,当路径访问受限时,按数组索引优先顺序用最靠前的路径存取文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.PlatformSetting.ReadConfig">
+            <summary>
+            读配置文件内容
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.PlatformSetting.GetFormatedString">
+            <summary>
+            获取内容描述
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.PlatformSetting.ToString">
+            <summary>
+            重写ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.PlatformSetting.SaveConfig">
+            <summary>
+            保存配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:PT.Toolkit.PlatformSetting.Inst">
+            <summary>
+            实例化的配置类
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.RegistryHelper">
+            <summary>
+            注册表扩展访问类
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.RegistryHelper.GetWebBrowserRunString">
+            <summary>
+            取得默认浏览器的启动路径
+            </summary>
+            <returns>默认浏览器路径和文件名。如"C:\Program Files\Internet Explorer\IEXPLORE.EXE"</returns>
+        </member>
+        <member name="T:PT.Toolkit.RunningInstance">
+            <summary>
+            类-进程实例查询类
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.RunningInstance.FindRunningInstance">
+            <summary>
+            查找与当前进程同名的进程
+            </summary>
+            <returns>找到的进程</returns>
+        </member>
+        <member name="T:PT.Toolkit.RunningInstance.tagProcess">
+            <summary>
+            结构体-进程信息
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.RunningInstance.tagProcess.szProcessID">
+            <summary>
+            进程ID
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.RunningInstance.tagProcess.szOldUserName">
+            <summary>
+            原用户名称
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.RunningInstance.tagProcess.szOldDomain">
+            <summary>
+            原域
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Security.Helper">
+            <summary>
+            安全访问功能静态函数
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Security.Helper.GetMD5HashFromStream(System.IO.Stream,System.Boolean)">
+            <summary>
+            获取输入流的MD5码
+            </summary>
+            <param name="inputStream">输入流</param>
+            <param name="upperCase">返回值是否大写</param>
+            <returns>MD5</returns>
+        </member>
+        <member name="T:PT.Toolkit.Serialization.BinaryFormatterHelper">
+            <summary>
+            使用System.Runtime.Serialization.Formatters.Binary.BinaryFormatter实现对象序列化与反序列化的辅助类
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.BinaryFormatterHelper.BinarySerialize(System.Object)">
+            <summary>
+             将一个对象以2进制方式进行序列化后按字节数组方式输出。
+            </summary>
+            <param name="obj">序列化的对象。</param>
+            <returns>序列化后的数组。</returns>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.BinaryFormatterHelper.XmlBinarySerialize(System.Object)">
+            <summary>
+            使用xml描述方式序列化对象，并转化为数组，兼容SilverLight，但占用空间较大。
+            </summary>
+            <param name="obj"></param>
+            <returns>数组</returns>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.BinaryFormatterHelper.XmlBinaryDeSerialize``1(System.Byte[])">
+            <summary>
+            使用xml描述方式序列化，并转化为数组的对象反序列化为对象，兼容SilverLight，但占用空间较大。
+            </summary>
+            <typeparam name="T">泛型转换</typeparam>
+            <param name="serializedObject">数组</param>
+            <returns>对象</returns>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.BinaryFormatterHelper.BinaryDeSerialize(System.Byte[])">
+            <summary>
+             将字节数据反序列化成对象。
+            </summary>
+            <param name="serializedObject">字节数组。</param>
+            <returns>反序列化后的对象。</returns>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.BinaryFormatterHelper.ObjectToString(System.Object)">
+            <summary>
+            将可序列化的对象序列化，以字符串形式输出。
+            </summary>
+            <param name="obj">可序列化对象。</param>
+            <returns>序列化后的字符串。</returns>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.BinaryFormatterHelper.StringToByte(System.String)">
+            <summary>
+            将字符串转换成字节数组。（只适用与由ByteToString转换的字符串）
+            </summary>
+            <param name="InString">字符串。</param>
+            <returns>转换后的字节数组。</returns>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.BinaryFormatterHelper.ByteToString(System.Byte[])">
+            <summary>
+            将字节数组转换成字符串。（转换成16进制格式）
+            </summary>
+            <param name="InBytes">字节数组。</param>
+            <returns>转换后的字符串。</returns>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.BinaryFormatterHelper.StringToObject(System.String)">
+            <summary>
+            将字符串转换成序列化对象。（该字符串应该由ByteToString转换）
+            </summary>
+            <param name="str">字符串。</param>
+            <returns>转换后的对象。</returns>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.BinaryFormatterHelper.ObjectSerializeToFile(System.Object,System.String)">
+            <summary>
+            序列化一个对象，并且序列化的结果保存到文件中。
+            </summary>
+            <param name="obj">序列化的对象。</param>
+            <param name="filePath">文件名。</param>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.BinaryFormatterHelper.ObjectDeSerializeFromFile(System.String)">
+            <summary>
+            将文件中的内容反序列化。
+            </summary>
+            <param name="filePath">文件名。</param>
+            <returns>反序列化成功，返回实际对象；否则抛出异常。</returns>
+        </member>
+        <member name="T:PT.Toolkit.Serialization.DataContractSerializerHelper">
+            <summary>
+            使用System.Runtime.Serialization.DataContractSerializer实现对象序列化与反序列化的辅助类
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.DataContractSerializerHelper.SerializeToXmlFile``1(``0,System.String)">
+            <summary>
+            将泛型T对应的对象实例序列化保存到xml文件，该类型必须标记DataContractAttribute
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="instance">泛型对象实例</param>
+            <param name="fileName">保存文件名</param>
+        </member>
+        <member name="M:PT.Toolkit.Serialization.DataContractSerializerHelper.DeSerializeFromXmlFile``1(System.String)">
+            <summary>
+            从xml文件反序列化出泛型对象，该类型必须标记DataContractAttribute
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="fileName">文件名</param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.Toolkit.StackHelper">
+            <summary>
+            堆栈扩展访问类
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.StackHelper.GetCallingStackFrame(System.Int32)">
+            <summary>
+            获得指定层的调用堆栈
+            </summary>
+            <param name="iFrameBegin">想要跟踪的堆栈开始层数 0为GetCallingStackFrame层，1为当前层，以此类推，一般为1以上即可</param>
+            <returns>堆栈</returns>
+        </member>
+        <member name="M:PT.Toolkit.StackHelper.GetCallingStackTraceInfoEx(System.Int32,System.Boolean)">
+            <summary>
+            获得调用处堆栈信息
+            </summary>
+            <param name="iFrameBegin">想要跟踪的堆栈开始层数 0为GetCallingStackTraceInfo层，1为当前层，以此类推，一般为1以上即可</param>
+            <param name="IsDiet">是否对冗余的堆栈描述信息进行缩略处理以节省空间</param>
+            <returns>堆栈信息</returns>
+        </member>
+        <member name="M:PT.Toolkit.StackHelper.GetCallingStackTraceInfo(System.Int32)">
+            <summary>
+            获得调用处堆栈信息
+            </summary>
+            <param name="iFrameBegin">想要跟踪的堆栈开始层数 0为GetCallingStackTraceInfo层，1为当前层，以此类推，一般为1以上即可</param>
+            <returns>堆栈信息</returns>
+        </member>
+        <member name="T:PT.Toolkit.SysXml">
+             <summary>
+            读、 写xml文件类，集成了所有读写xml文件的相关静态函数
+             </summary>
+        </member>
+        <member name="F:PT.Toolkit.SysXml.strEncoding">
+            <summary>
+            默认字符集
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.ReadXmlFile(System.String)">
+            <summary>
+            读xml文件
+            </summary>
+            <param name="strFileName">读取的文件名称</param>
+            <returns>Xml根节点</returns>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.ReadXmlString(System.String)">
+            <summary>
+            从字符串装载
+            </summary>
+            <param name="strXml">包含要加载的 XML 文档的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.WriteXmlNodeToFile(System.Xml.XmlNode,System.String)">
+            <summary>
+            将节点写入xml文件
+            </summary>
+            <param name="xmlNode">XmlNode节点</param>
+            <param name="strFileName">文件名</param>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.WriteXmlNodeToString(System.Xml.XmlNode)">
+            <summary>
+            将节点生成完整xml文件格式并返回格式内容
+            </summary>
+            <param name="xmlNode">XmlNode节点</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.GetXmlNodeAttribute(System.Xml.XmlNode,System.String,System.Boolean)">
+            <summary>
+            获取XmlNode某个属性值
+            </summary>
+            <param name="aNode">要取得属性的XmlNode的节点</param>
+            <param name="strAttributeName">属性名称</param>
+            <param name="bCaseSensitive">是否大小写敏感</param>
+            //<returns>返回属性的值</returns>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.SetXmlNodeAttribute(System.Xml.XmlNode,System.String,System.String)">
+            <summary>
+            设置XmlNode某个属性值
+            </summary>
+            <param name="aNode">要设置属性的XmlNode的节点</param>
+            <param name="strAttributeName">属性名称</param>
+            <param name="strAttributeValue">属性值</param>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.GetXmlNode(System.Xml.XmlNode,System.String)">
+            <summary>
+            获得某个指定路径的XmlNode节点，如果有多个取第一个
+            </summary>
+            <param name="xmlNode">要取值的XmlNode的根节点</param>
+            <param name="strNodePath">要取值的XmlNode节点的完整路径，多层路径间用'\'分隔</param>
+            <returns>返回指定XmlNode节点</returns>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.EnsureXmlNode(System.Xml.XmlNode,System.String)">
+            <summary>
+            保证指定路径存在并返回路径
+            </summary>
+            <param name="xmlNode">路径起点</param>
+            <param name="strNodePath">路径</param>
+            <returns>路径节点</returns>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.SetXmlNodeValue(System.Xml.XmlNode,System.String,System.String)">
+            <summary>
+            改变某个路径下XmlNode节点的值
+            </summary>
+            <param name="xmlNode">要取值的XmlNode的根节点</param>
+            <param name="strNodePath">要取值的XmlNode节点的完整路径，多层路径间用'\'分隔</param>
+            <param name="strValue">新的值</param>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.GetXmlNodeValue(System.Xml.XmlNode,System.String)">
+            <summary>
+            获得某个路径下XmlNode节点的值，公共接口
+            </summary>
+            <param name="xmlNode">要取值的XmlNode的根节点</param>
+            <param name="strNodePath">要取值的XmlNode节点的完整路径</param>
+            <returns>要得到的节点的值</returns>
+        </member>
+        <member name="M:PT.Toolkit.SysXml.GetXmlNodes(System.Xml.XmlNode,System.String)">
+            <summary>
+            查找某个XmlNode下对应某个路径的所有节点
+            </summary>
+            <param name="xmlNode">查找的XmlNode的根节点</param>
+            <param name="strNodePath">从根节点出发的路径，多层路径间用'\'分隔</param>
+        </member>
+        <member name="T:PT.Toolkit.Task.TaskEngine">
+            <summary>
+            在子线程上定期或通过Cron触发条件或指定下次触发时间来执行指定任务
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngine.ADC">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngine.ImplementThread_Polling">
+            <summary>
+            循环定时线程
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngine.ImplementThread_Signal">
+            <summary>
+            信号线程,接收信号并执行业务处理函数
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngine.resetEvent">
+            <summary>
+            线程信号量 fale为阻塞状态
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngine.ExceptionCount">
+            <summary>
+            异常记数
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngine.RunTimesCount">
+            <summary>
+            总运行次数记数
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngine.AutorunState">
+            <summary>
+            自动任务状态 0:停止 1:运行 2:暂停
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngine.LoopEntryState">
+            <summary>
+            循环函数运行状态 0:空闲 1:繁忙
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.GetLoopEntryState">
+            <summary>
+            获取循环函数运行状态 0:空闲 1:繁忙
+            </summary>
+            <returns>循环函数运行状态</returns>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.GetAutorunState">
+            <summary>
+            获取自动任务运行状态 0:停止 1:运行 2:暂停
+            </summary>
+            <returns>自动任务运行状态</returns>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.PauseAutorun">
+            <summary>
+            暂停循环函数的自动调用
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.TerminateAutorun">
+            <summary>
+            终止循环函数的自动调用
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.ResumeAutorun">
+            <summary>
+            恢复循环函数的自动调用
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.Start(PT.Toolkit.Task.TaskEngineConfig)">
+            <summary>
+            启动插件处理逻辑
+            </summary>
+            <param name="cfg">参数配置</param>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.PollingThreadRun">
+            <summary>
+            定时判断线程主函数
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.SetTerminateState">
+            <summary>
+            设置自动循环线程为停止状态
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.SignalThreadRun">
+            <summary>
+            信号线程主函数
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.Stop">
+            <summary>
+            停止插件处理逻辑,并释放相关资源
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.RunOnce">
+            <summary>
+            在已启动逻辑处理的引擎上，使用当前配置信息，触发立即执行一次入口函数
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngine.Trace(System.String,System.Object[])">
+            <summary>
+            调试输出信息
+            </summary>
+            <param name="msg">信息</param>
+            <param name="objs">相关对象</param>
+        </member>
+        <member name="T:PT.Toolkit.Task.TaskEngineQueryNextTimeDelegate">
+            <summary>
+            定时器运行模式为3时候使用
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:PT.Toolkit.Task.TaskEngineConfig">
+            <summary>
+            任务引擎运行配置
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Task.TaskEngineConfig.CheckRunable">
+            <summary>
+            校验是否符合
+            </summary>
+            <returns>错误信息</returns>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.TimerMode">
+            <summary>
+            定时器运行模式 1:定时循环  , 2:CronExpression,3:每次讯问
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.CronExpression">
+            <summary>
+            当定时模式为2时候，使用此表达式定时触发任务
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.LoopCountLimit">
+            <summary>
+            限制总运行次数 (默认:1)(-1:无限)
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.StopAfterExceptionCountLimit">
+            <summary>
+            在处理函数委托出现几次异常后终止运行，-1为无限
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.DelayBeforeFirstRun">
+            <summary>
+            启动延迟时间 单位:秒
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.LoopInterval">
+            <summary>
+            轮询执行时间间隔(秒) 1~无限
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.ValidTimeRange">
+            <summary>
+            是否限制定时器的有效时间范围 (默认:false)
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.ValidTimeRange_Begin">
+            <summary>
+            定时器生效的时间范围-起始
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.ValidTimeRange_End">
+            <summary>
+            定时器生效的时间范围-结束
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.ProcessEntry">
+            <summary>
+            定时时间到后引擎调用该处理函数委托
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.Tag">
+            <summary>
+            用户自定义数据,在函数委托回调时候传递
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.TraceEntry">
+            <summary>
+            调试信息函数委托
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Task.TaskEngineConfig.QueryNextTimeEntry">
+            <summary>
+            TimerMode为3时候需要实现此委托
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Webservice.InterfaceHelper">
+            <summary>
+            提供方法直接获取通信对象接口
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Webservice.InterfaceHelper.CachedChannels">
+            <summary>
+            缓冲的通道
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Webservice.InterfaceHelper.Invoke_BasicHttpBinding``1(System.String,System.String,System.String,System.Boolean,System.Action{``0})">
+            <summary>
+            使用BasicHttpBinding绑定方式从指定特征的终结点上获取接口执行委托并在执行完成后释放通信对象
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <param name="serviceIP">终节点ip地址</param>
+            <param name="servicePort">终节点端口</param>
+            <param name="endPointName">终节点名称</param>
+            <param name="useCachedChannel">如有可能，则使用闲置的缓冲通道进行调用来节省系统开销</param>
+            <param name="act">要执行的委托，参数为创建的通信对象</param>
+        </member>
+        <member name="M:PT.Toolkit.Webservice.InterfaceHelper.TryEnter(System.String)">
+            <summary>
+            尝试获得对应通道对象并锁定
+            </summary>
+            <param name="uri"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.Webservice.InterfaceHelper.Invoke_BasicHttpBinding``1(System.String,System.Boolean,System.Action{``0})">
+            <summary>
+            使用BasicHttpBinding绑定方式从指定特征的终结点上获取接口执行委托并在执行完成后释放通信对象
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <param name="uri">终节点地址</param>
+            <param name="useCachedChannel">如有可能，则使用闲置的缓冲通道进行调用来节省系统开销</param>
+            <param name="act">要执行的委托，参数为创建的通信对象</param> 
+        </member>
+        <member name="M:PT.Toolkit.Webservice.InterfaceHelper.GetInterface_BasicHttpBinding``1(System.String,System.String,System.String)">
+            <summary>
+            使用BasicHttpBinding绑定方式从指定特征的终结点上获取接口
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <param name="serviceIP">终节点ip地址</param>
+            <param name="servicePort">终节点端口</param>
+            <param name="endPointName">终节点名称</param>
+            <returns>接口</returns>
+        </member>
+        <member name="M:PT.Toolkit.Webservice.InterfaceHelper.CloseCommunicationObject(System.Object)">
+            <summary>
+            关闭ICommunicationObject类型的通道
+            </summary>
+            <param name="o">通道</param>
+        </member>
+        <member name="M:PT.Toolkit.Webservice.InterfaceHelper.GetInterface_BasicHttpBinding``1(System.String)">
+            <summary>
+            使用BasicHttpBinding绑定方式从指定特征的终结点上获取接口
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <param name="uri">终节点地址</param>
+            <returns>接口</returns>
+        </member>
+        <member name="M:PT.Toolkit.Webservice.InterfaceHelper.ReleaseInterface(System.Object)">
+            <summary>
+            释放System.ServiceModel.ICommunicationObject类型的接口对象
+            </summary>
+            <param name="t">要释放的对象</param>
+        </member>
+        <member name="T:PT.Toolkit.Webservice.InterfaceHelper.ChannelCacheScene">
+            <summary>
+            信道缓冲场景
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Webservice.InterfaceHelper.ChannelCacheScene.ChannelObject">
+            <summary>
+            通道对象
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.Webservice.InterfaceHelper.ChannelCacheScene.AccessTime">
+            <summary>
+            通道访问时间
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Webservice.StraightParseHelper">
+             <summary>
+             直接利用WebRequest/WebResponse进行WebService调用的类,By 同济黄正
+             这个类有三个公用的方法：QuerySoapWebService为通用的采用Soap方式调用WebService，
+             QueryGetWebService采用GET方式调用，QueryPostWebService采用POST方式调用，后两个方法需要WebService服务器支持相应的调用方式。
+             三个方法的参数和返回值相同：
+             URL为Webservice的Url地址(以.asmx结尾的)；
+             MethodName为要调用的方法名称；
+             Pars为参数表，它的Key为参数名称，Value为要传递的参数的值。注意方法名称、参数名称、参数个数必须完全匹配才能正确调用。
+             第一次以Soap方式调用时，因为需要查询WSDL获取xmlns，因此需要时间相对长些，第二次调用不用再读WSDL，直接从缓存读取。
+             这三个方法的返回值均为XmlDocument对象，这个返回的对象可以进行各种灵活的操作。最常用的一个SelectSingleNode方法，可以让你一步定位到Xml的任何节点，再读取它的文本或属性。
+             也可以直接调用Save保存到磁盘。采用Soap方式调用时，根结点名称固定为root。
+            这个类主要是利用了WebRequest/WebResponse来完成各种网络查询操作。为了精简明了，这个类中没有添加错误处理，需要在调用的地方设置异常捕获。
+             </summary>
+        </member>
+        <member name="F:PT.Toolkit.Webservice.StraightParseHelper._xmlNamespaces">
+            <summary>
+            缓存xmlNamespace，避免重复调用GetNamespace
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Webservice.StraightParseHelper.QueryPostWebService(System.String,System.String,PT.Toolkit.Portable.ProtoParamList)">
+            <summary>
+            需要WebService支持Post调用
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Webservice.StraightParseHelper.QueryGetWebService(System.String,System.String,PT.Toolkit.Portable.ProtoParamList)">
+            <summary>
+            需要WebService支持Get调用
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Webservice.StraightParseHelper.QuerySoapWebService(System.String,System.String,PT.Toolkit.Portable.ProtoParamList)">
+            <summary>
+            通用WebService调用(Soap),参数Pars为String类型的参数名、参数值
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.Webservice.URIHelper">
+            <summary>
+            URI地址管理
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.Webservice.URIHelper.GetEndPointAddressString(System.String,System.String,System.String)">
+            <summary>
+            将地址,端口,终结点名称拼成终结点地址返回
+            </summary>
+            <param name="serviceip">地址</param>
+            <param name="serviceport">端口,传空则使用80</param>
+            <param name="endpointname">终结点名称</param>
+            <returns>终结点地址</returns>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGridView">
+            <summary>
+            自定义表格编辑控件
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridView.ProcessKeyEnter">
+            <summary>
+            回车事件委托
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridView._DefaultRowHeight">
+            <summary>
+            缺省行高度
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView.ProcessDialogKey(System.Windows.Forms.Keys)">
+            <summary>
+            重写ProcessDialogKey
+            </summary>
+            <param name="keyData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._GetRowChanged(System.Int32)">
+            <summary>
+            如果某行是DataGridViewRow的派生类BestGridViewRow(通过_AddRow方法创建的行)，则判断该行的修改状态
+            </summary>
+            <param name="iRow">行</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._SetRowChangedFalse(System.Int32)">
+            <summary>
+            如果某行是DataGridViewRow的派生类BestGridViewRow(通过_AddRow方法创建的行)，则设置该行的修改状态为false
+            </summary>
+            <param name="iRow">行</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._GetCellChanged(System.Int32,System.Int32)">
+            <summary>
+            如果某行是DataGridViewRow的派生类BestGridViewRow(通过_AddRow方法创建的行)，则判断该行的某列的修改状态
+            </summary>
+            <param name="iRow">行</param>
+            <param name="iColumn">列</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._SetCellChanged(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            如果某行是DataGridViewRow的派生类BestGridViewRow(通过_AddRow方法创建的行)，则设置该行的某列的修改状态
+            </summary>
+            <param name="iRow">行</param>
+            <param name="iColumn">列</param>
+            <param name="bChanged">状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._AddColumn(System.String)">
+            <summary>
+            添加一列定义
+            </summary>
+            <param name="ColumnText">列标题</param>
+            <returns>列标题</returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._AddRow(System.Int32[],System.Object)">
+            <summary>
+            添加一行
+            </summary>
+            <param name="CellEditStyles">该行每列的属性，见QGridCellEditStyle</param>
+            <param name="rowTag">该行的用户定义对象，可以为null</param>
+            <returns>新行的行号</returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._InsertRow(System.Int32,System.Int32[],System.Object)">
+            <summary>
+            在指定位置之前插入一行
+            </summary>
+            <param name="index">要插入的位置</param>
+            <param name="CellEditStyles">该行每列的属性，见QGridCellEditStyle</param>
+            <param name="rowTag">该行的用户定义对象，可以为null</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._FindRowIndexByName(System.String)">
+            <summary>
+            根据行名称查找行号
+            </summary>
+            <param name="sName">行名称</param>
+            <returns>-1,没找到;　其他为找到的行号</returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._SetRowVisibleByName(System.String,System.Boolean)">
+            <summary>
+            设置指定名称的行的可见性
+            </summary>
+            <param name="sName">行名称</param>
+            <param name="bVisible">可见性</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._GetCellDataByRowName(System.String,System.Int32)">
+            <summary>
+            取得指定名称的行的列1的值，列0为第1列
+            </summary>
+            <param name="sName">行名称</param>
+            <param name="iColumn">列</param>
+            <returns>取得的值</returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._SetCellDataByRowName(System.String,System.Int32,System.Object)">
+            <summary>
+            设置指定名称的行的列1的值，列为第1列
+            </summary>
+            <param name="sName">>行名称</param>
+            <param name="iColumn">列</param>
+            <param name="obj">要设置的值</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._SetCellData(System.Int32,System.Int32,System.Object)">
+            <summary>
+            设置某行某列的值
+            </summary>
+            <param name="iRow">行</param>
+            <param name="iColumn">列</param>
+            <param name="obj">值</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._SetCellName(System.Int32,System.Int32,System.String)">
+            <summary>
+            设置某个单元格名称
+            </summary>
+            <param name="iRow">行</param>
+            <param name="iColumn">列</param>
+            <param name="sName">名称</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._GetCellData(System.Int32,System.Int32)">
+            <summary>
+            获取某个单元格的值
+            </summary>
+            <param name="iRow">行</param>
+            <param name="iColumn">列</param>
+            <returns>值</returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._SetCellReadOnly(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            设置单元格是否只读
+            </summary>
+            <param name="iRow">行</param>
+            <param name="iColumn">列</param>
+            <param name="b">只读</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._GetCellEditStyle(System.Int32,System.Int32)">
+            <summary>
+            获取单元格的编辑属性
+            </summary>
+            <param name="iRow">行</param>
+            <param name="iColumn">列</param>
+            <returns>QGridCellEditStyle</returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._GetRowNewFlag(System.Int32)">
+            <summary>
+            获取某行的更新标志，用以判断该行对于数据库来说是否是一条新记录
+            </summary>
+            <param name="iRow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView._SetRowNewFlag(System.Int32,System.Boolean)">
+            <summary>
+            设置某行的更新标志，用以判断该行对于数据库来说是否是一条新记录
+            </summary>
+            <param name="iRow"></param>
+            <param name="b">true:设置该行为新记录标志</param>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridView.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridView.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGridViewCellEditStyle">
+            <summary>
+            单元个编辑风格
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewCellEditStyle.Button">
+            <summary>
+            0 button编辑风格
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewCellEditStyle.Check">
+            <summary>
+            1 checkbox编辑风格
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewCellEditStyle.Text">
+            <summary>
+            2 textbox编辑风格
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewCellEditStyle.Combo">
+            <summary>
+            3 combobox下拉列表编辑风格
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewCellEditStyle.ComboEdit">
+            <summary>
+            4 combobox可编辑风格
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewCellEditStyle.Image">
+            <summary>
+            5 image编辑风格
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewCellEditStyle.BinaryFile">
+            <summary>
+            6 二进制文件数据,通过按钮设置
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewCellEditStyle.DateTime">
+            <summary>
+            7 时间
+            </summary>
+        </member>
+        <!-- 对于成员“F:PT.Toolkit.UI.BestGridViewCellEditStyle.CheckList”忽略有格式错误的 XML 注释 -->
+        <member name="F:PT.Toolkit.UI.BestGridViewCellEditStyle.MultiLineText">
+            <summary>
+            9 多行文本编辑
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridViewCellEditStyle.IsValidEditStyle(System.Int32)">
+            <summary>
+            是否是有效的编辑风格
+            </summary>
+            <param name="iStyle">编辑风格</param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGridViewRow">
+            <summary>
+            派生DataGridViewRow，增加一些控制属性
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewRow._IsNewRecord">
+            <summary>
+            标记该行对数据库而言是否是新加的一条记录，此状态需要用代码控制，
+            在未插入数据库时应将该值设置为true，　在代码执行Insert语句成功后应将该值设置为false。
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewRow._properties">
+            <summary>
+            行的扩展属性
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewRow._cellNames">
+            <summary>
+            存放该行每列的自定义名称
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewRow._cellsChanged">
+            <summary>
+            标记每个cell的状态
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridViewRow.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridViewRow.Clone">
+            <summary>
+            重写Clone
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridViewRow._GetCellChanged(System.Int32)">
+            <summary>
+            判断该行某一列是否一被改动
+            </summary>
+            <param name="iColumn">列</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridViewRow._SetCellChanged(System.Int32,System.Boolean)">
+            <summary>
+            设置该行某列的改动标记
+            </summary>
+            <param name="iColumn">列</param>
+            <param name="bChanged">是否改动</param>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewRow._Name">
+            <summary>
+            行名称
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridViewRow._GetCellEditStyle(System.Int32)">
+            <summary>
+            获取单元格的编辑风格
+            </summary>
+            <param name="iColumn">列号</param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridViewRow._SetCellEditStyle(System.Int32,System.Int32)">
+            <summary>
+            获取单元格的编辑风格
+            </summary>
+            <param name="iColumn"></param>
+            <param name="iEditStyle"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGridViewRow._SetCellName(System.Int32,System.String)">
+            <summary>
+            设置单元格名称
+            </summary>
+            <param name="iColumn">列号</param>
+            <param name="sName"></param>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGridViewRow._RowChanged">
+            <summary>
+            获取或设置某一行的改动标记
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGridViewRow.BestGridViewCellPropFlag">
+            <summary>
+            BestGridViewRow对每个cell属性标志位定义
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewRow.BestGridViewCellPropFlag.EditStyle">
+            <summary>
+            编辑风格
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGridViewRow.BestGridViewCellPropFlag.FlagCount">
+            <summary>
+            标记类型数
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.DataGridViewComboBoxEditCell">
+            <summary>
+            实现下拉列表可编辑
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.DataGridViewComboBoxEditCell.InitializeEditingControl(System.Int32,System.Object,System.Windows.Forms.DataGridViewCellStyle)">
+            <summary>
+            重写InitializeEditingControl
+            </summary>
+            <param name="rowIndex"></param>
+            <param name="initialFormattedValue"></param>
+            <param name="dataGridViewCellStyle"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.DataGridViewComboBoxEditCell.GetFormattedValue(System.Object,System.Int32,System.Windows.Forms.DataGridViewCellStyle@,System.ComponentModel.TypeConverter,System.ComponentModel.TypeConverter,System.Windows.Forms.DataGridViewDataErrorContexts)">
+            <summary>
+            重写GetFormattedValue
+            </summary>
+            <param name="value"></param>
+            <param name="rowIndex"></param>
+            <param name="cellStyle"></param>
+            <param name="valueTypeConverter"></param>
+            <param name="formattedValueTypeConverter"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.Toolkit.UI.DataGridViewBinaryFileCell">
+            <summary>
+            实现二进制数据导入导出
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.DataGridViewBinaryFileCell.BinaryData">
+            <summary>
+            存放二进制数据
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.DataGridViewBinaryFileCell.contextMenuStrip">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.DataGridViewBinaryFileCell.OnMouseClick(System.Windows.Forms.DataGridViewCellMouseEventArgs)">
+            <summary>
+            重写鼠标点击
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.DataGridViewBinaryFileCell.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.DataGridViewCheckListBoxCell">
+            <summary>
+            实现下拉列表可编辑
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.DataGridViewCheckListBoxCell.Items">
+            <summary>
+            在列表框显示的内容
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.DataGridViewCheckListBoxCell.contextMenuStrip">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.DataGridViewCheckListBoxCell.OnMouseClick(System.Windows.Forms.DataGridViewCellMouseEventArgs)">
+            <summary>
+            重写鼠标点击
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.DataGridViewCheckListBoxCell.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.DataGridViewCheckListBoxCell.GetValueText">
+            <summary>
+            获得显示文本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:PT.Toolkit.UI.Form_CheckListBoxCell.m_DialogResult">
+            <summary>
+            对话框选项
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.Form_CheckListBoxCell.Items">
+            <summary>
+            在列表框显示的内容
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.Form_CheckListBoxCell.Init(PT.Toolkit.Portable.UI.BaseVisualItemList)">
+            <summary>
+            使用列表项和选中信息初始化窗体
+            </summary>
+            <param name="Items"></param>
+            <param name="CheckedOptions"></param>
+        </member>
+        <member name="F:PT.Toolkit.UI.Form_CheckListBoxCell.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.Form_CheckListBoxCell.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.Form_CheckListBoxCell.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.DataGridViewMultiLineTextCell">
+            <summary>
+            多行文本编辑
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.DataGridViewMultiLineTextCell.OnMouseClick(System.Windows.Forms.DataGridViewCellMouseEventArgs)">
+            <summary>
+            重写鼠标点击
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.DataGridViewMultiLineTextCell.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestMarqueeProgressWindow">
+            <summary>
+            通用动画进度窗口
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestMarqueeProgressWindow.IsValid">
+            <summary>
+            线程控制参数
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestMarqueeProgressWindow.U_Show(System.Windows.Forms.Form,System.String)">
+            <summary>
+            显示进度窗口
+            </summary>
+            <param name="parentForm">指定要显示的进度条的父窗体</param>
+            <param name="info">信息</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestMarqueeProgressWindow.U_Hide">
+            <summary>
+            隐藏进度窗口
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestMarqueeProgressWindow._SetBackgroundColor(System.Drawing.Color)">
+            <summary>
+            设置进度窗口背景色
+            </summary>
+            <param name="c">背景色</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestMarqueeProgressWindow.U_SetBackgroundColor(System.Drawing.Color)">
+            <summary>
+            设置进度窗口背景色
+            </summary>
+            <param name="c">背景色</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestMarqueeProgressWindow.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestMarqueeProgressWindow.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestMarqueeProgressWindow.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestMarqueeProgressWindow.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGroupPanel.BestGroupItemClickEventHandler">
+            <summary>
+            点击项事件委托声明
+            </summary>
+            <param name="sender">发布者</param>
+            <param name="item">被点的项</param>
+            <param name="me">鼠标参数</param>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel">
+            <summary>
+            自定义分组列表控件
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_imageList">
+            <summary>
+            设置图标列表
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_OnItemClick">
+            <summary>
+            点击项事件委托实例
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_OnItemImageClick">
+            <summary>
+            点击项图标事件委托实例
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel._ItemTextColor">
+            <summary>
+            项标题画笔颜色
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_ContainsItem(PT.Toolkit.UI.BestGroupPanel.BestGroupItem)">
+            <summary>
+            是否包含指定项
+            </summary>
+            <param name="item">项</param>
+            <returns>是否包含</returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.ReCaculateScrollBar">
+            <summary>
+            重新设置scrollbar尺寸
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_AdjustColorDegree(System.Drawing.Color,System.Int32)">
+            <summary>
+            增减指定颜色的深度
+            </summary>
+            <param name="c"></param>
+            <param name="iChange"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.Dispose1">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.ObjectAtPosition(System.Int32,System.Int32)">
+            <summary>
+            判断坐标点位置为什么对象
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_ItemNeedRefresh(PT.Toolkit.UI.BestGroupPanel.BestGroupItem)">
+            <summary>
+            标记指定的项需要刷新效果
+            </summary>
+            <param name="aItem"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            重写的OnPaint事件
+            </summary>
+            <param name="pe"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_ReCalculateUI">
+            <summary>
+            重新计算界面元素位置
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_Refresh(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            调用重画
+            </summary>
+            <param name="pe"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.GetGroupAndItemValidWidth">
+            <summary>
+            获取组或项目的可显示宽度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.GetObjectRect(System.Object)">
+            <summary>
+            获取对象的重画区域
+            </summary>
+            <param name="aObject"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.GetTotalItemsHeight">
+            <summary>
+            计算所有项目总高度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.DrawGroup(PT.Toolkit.UI.BestGroupPanel.DrawBestGroupEventArgs)">
+            <summary>
+            画组
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.DrawItem(PT.Toolkit.UI.BestGroupPanel.DrawBestGroupItemEventArgs)">
+            <summary>
+            画项
+            </summary>
+            <param name="arg"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_FindGroupByName(System.String)">
+            <summary>
+            根据名称查找组
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_LayoutStart">
+            <summary>
+            挂起布局
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_ItemTextColor">
+            <summary>
+            项目前景色
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_GroupTextColor">
+            <summary>
+            组前景色
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_ItemBackColor">
+            <summary>
+            项目背景色
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_GroupHeaderColor">
+            <summary>
+            组标题背景色
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_VScrollBarVisible">
+            <summary>
+            垂直滚动条是否可见
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_GroupHeight">
+            <summary>
+            组标题高度
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_ItemHeight">
+            <summary>
+            项高度
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_SelectedItem">
+            <summary>
+            当前选中的项
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupPanel.U_Groups">
+            <summary>
+            取得组集合
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGroupPanel.BestGroup">
+            <summary>
+            类－BestPanel.组
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroup.Owner">
+            <summary>
+            拥有该组的_BestPanel
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroup.Text">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroup.Tag">
+            <summary>
+            用户数据
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroup.ContainsItem(PT.Toolkit.UI.BestGroupPanel.BestGroupItem)">
+            <summary>
+            判断是否包含某项
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroup.CheckState(PT.Toolkit.UI.BestGroupPanel.BestGroupStates)">
+            <summary>
+            检查组是否具有某一状态
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroup.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroup.FindItemByName(System.String)">
+            <summary>
+            根据名称查找项目
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroup.Expanded">
+            <summary>
+            读取或设置展开属性
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroup.Height">
+            <summary>
+            高度
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroup.Items">
+            <summary>
+            获取组的项目集合
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGroupPanel.BestGroupItem">
+            <summary>
+            类－_BestPanel.项目
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupItem.OwnerGroup">
+            <summary>
+            项目所归属的组
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupItem.Text">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupItem.Tag">
+            <summary>
+            用户数据
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupItem._ImageIndex">
+            <summary>
+            图片索引
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupItem._States">
+            <summary>
+            状态标志
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItem.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItem.CheckState(PT.Toolkit.UI.BestGroupPanel.BestGroupItemStates)">
+            <summary>
+            检查项是否具有某一状态
+            </summary>
+            <param name="s">状态标记</param>
+            <returns></returns>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupItem.Height">
+            <summary>
+            获取项高度
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupItem.ImageIndex">
+            <summary>
+            获取或设置图片索引
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupItem.Hot">
+            <summary>
+            是否在鼠标焦点下
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupItem.Selected">
+            <summary>
+            是否是选中状态
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection">
+            <summary>
+            组集合定义
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.#ctor(PT.Toolkit.UI.BestGroupPanel.BestGroupPanel)">
+            <summary>
+            构造
+            </summary>
+            <param name="owner"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.Add(PT.Toolkit.UI.BestGroupPanel.BestGroup)">
+            <summary>
+            添加一个组
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.Add(System.String)">
+            <summary>
+            指定文本作为标题添加一个组
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.Clear">
+            <summary>
+            从集合中移除所有组
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.Contains(PT.Toolkit.UI.BestGroupPanel.BestGroup)">
+            <summary>
+            确定指定组是否位于集合内。
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.GetEnumerator">
+            <summary>
+            返回一个枚举数，将使用该枚举数循环访问组集合。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.IndexOf(PT.Toolkit.UI.BestGroupPanel.BestGroup)">
+            <summary>
+            返回指定的组在集合中的索引。
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.Insert(System.Int32,PT.Toolkit.UI.BestGroupPanel.BestGroup)">
+            <summary>
+            将现有的 _BestGroup 插入到集合中的指定索引处。
+            </summary>
+            <param name="index"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.Insert(System.Int32,System.String)">
+            <summary>
+            创建一个新组，并将其插入到集合中的指定索引处。
+            </summary>
+            <param name="index"></param>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.Remove(PT.Toolkit.UI.BestGroupPanel.BestGroup)">
+            <summary>
+            从集合中移除指定的组。
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.RemoveAt(System.Int32)">
+            <summary>
+            移除集合中指定索引处的组。
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.Count">
+            <summary>
+            获取包含的组的数量
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupCollection.Item(System.Int32)">
+            <summary>
+            获取或设置集合中指定索引处的组
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection">
+            <summary>
+            项集合定义
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.#ctor(PT.Toolkit.UI.BestGroupPanel.BestGroup)">
+            <summary>
+            构造
+            </summary>
+            <param name="ownerGroup"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.Add(PT.Toolkit.UI.BestGroupPanel.BestGroupItem)">
+            <summary>
+            添加一个项
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.Add(System.String)">
+            <summary>
+            指定文本作为标题添加一个项
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.Clear">
+            <summary>
+            从集合中移除所有项
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.Contains(PT.Toolkit.UI.BestGroupPanel.BestGroupItem)">
+            <summary>
+            确定指定项是否位于集合内。
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.GetEnumerator">
+            <summary>
+            返回一个枚举数，将使用该枚举数循环访问组集合。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.IndexOf(PT.Toolkit.UI.BestGroupPanel.BestGroupItem)">
+            <summary>
+            返回指定的项在集合中的索引。
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.Insert(System.Int32,PT.Toolkit.UI.BestGroupPanel.BestGroupItem)">
+            <summary>
+            将现有的 _BestGroupItem 插入到集合中的指定索引处。
+            </summary>
+            <param name="index"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.Insert(System.Int32,System.String)">
+            <summary>
+            创建一个新项，并将其插入到集合中的指定索引处。
+            </summary>
+            <param name="index"></param>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.Remove(PT.Toolkit.UI.BestGroupPanel.BestGroupItem)">
+            <summary>
+            从集合中移除指定的组。
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.RemoveAt(System.Int32)">
+            <summary>
+            移除集合中指定索引处的组。
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.Count">
+            <summary>
+            获取包含的项的数量
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.BestGroupItemCollection.Item(System.Int32)">
+            <summary>
+            获取或设置集合中指定索引处的项
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGroupPanel.BestGroupItemStates">
+            <summary>
+            枚举－项状态
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupItemStates.Selected">
+            <summary>
+            该组已选择。
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupItemStates.Hot">
+            <summary>
+            该组为热节点。
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGroupPanel.BestGroupStates">
+            <summary>
+            枚举－组状态
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestGroupPanel.BestGroupStates.Expanded">
+            <summary>
+            是否在展开状态
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGroupPanel.DrawBestGroupEventArgs">
+            <summary>
+            重画组事件参数
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.DrawBestGroupEventArgs.#ctor(System.Drawing.Graphics,PT.Toolkit.UI.BestGroupPanel.BestGroup,System.Drawing.Rectangle)">
+            <summary>
+            构造
+            </summary>
+            <param name="graphics"></param>
+            <param name="group"></param>
+            <param name="bounds"></param>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.DrawBestGroupEventArgs.Bounds">
+            <summary>
+            大小
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.DrawBestGroupEventArgs.Graphics">
+            <summary>
+            获取用于绘制 _BestGroup 的 System.Drawing.Graphics 对象。
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.DrawBestGroupEventArgs.Group">
+            <summary>
+            获取要绘制的_BestGroup
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestGroupPanel.DrawBestGroupItemEventArgs">
+            <summary>
+            重画项事件参数
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestGroupPanel.DrawBestGroupItemEventArgs.#ctor(System.Drawing.Graphics,PT.Toolkit.UI.BestGroupPanel.BestGroupItem,System.Drawing.Rectangle)">
+            <summary>
+            构造
+            </summary>
+            <param name="graphics"></param>
+            <param name="item"></param>
+            <param name="bounds"></param>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.DrawBestGroupItemEventArgs.Bounds">
+            <summary>
+            大小
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.DrawBestGroupItemEventArgs.Graphics">
+            <summary>
+            获取用于绘制 _BestGroup 的 System.Drawing.Graphics 对象。
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestGroupPanel.DrawBestGroupItemEventArgs.Item">
+            <summary>
+            获取要绘制的_BestGroupItem
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestProgressWindow">
+            <summary>
+            通用进度窗口，支持单进度条或双进度条
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestProgressWindow.m_Inst">
+            <summary>
+            全局实例
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestProgressWindow.bSingleProgress">
+            <summary>
+            单进度方式标志
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.U_SetBackgroundColor(System.Drawing.Color)">
+            <summary>
+            设置进度窗口背景色
+            </summary>
+            <param name="c"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow._SetBackgroundColor(System.Drawing.Color)">
+            <summary>
+            设置进度窗口背景色
+            </summary>
+            <param name="c"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.SetSingleProgress(System.Boolean)">
+            <summary>
+            设置单双进度条模式
+            </summary>
+            <param name="b"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.U_HideProgressWindow">
+            <summary>
+            隐藏进度条窗口
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.U_ShowSingleProgress(System.Int32,System.String)">
+            <summary>
+            显示单进度条模式下的进度
+            </summary>
+            <param name="iProgress">进度比例0-100</param>
+            <param name="sInfo">进度信息</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.U_ShowSingleProgress(System.Int32,System.Int32,System.String)">
+            <summary>
+            显示单进度条模式下的进度
+            </summary>
+            <param name="iCurrent">当前值</param>
+            <param name="iTotal">总数</param>
+            <param name="sInfo">进度信息</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow._ShowSingleProgress(System.Int32,System.String)">
+            <summary>
+            显示单进度条模式下的进度
+            </summary>
+            <param name="iProgress">进度比例0-100</param>
+            <param name="sInfo"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.U_ShowDoubleProgressSub(System.Int32,System.String)">
+            <summary>
+            显示双进度条的子进度
+            </summary>
+            <param name="iProgress">进度比例0-100</param>
+            <param name="sInfo"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.U_ShowDoubleProgressSub(System.Int32,System.Int32,System.String)">
+            <summary>
+            显示双进度条的子进度
+            </summary>
+            <param name="iCurrent">当前值</param>
+            <param name="iTotal">总数</param>
+            <param name="sInfo"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow._ShowDoubleProgressSub(System.Int32,System.String)">
+            <summary>
+            显示双进度条的子进度
+            </summary>
+            <param name="iProgress"></param>
+            <param name="sInfo"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.U_ShowDoubleProgressMain(System.Int32,System.String)">
+            <summary>
+            显示双进度条的主进度
+            </summary>
+            <param name="iProgress">进度比例0-100</param>
+            <param name="sInfo"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.U_ShowDoubleProgressMain(System.Int32,System.Int32,System.String)">
+            <summary>
+            显示双进度条的主进度
+            </summary>
+            <param name="iCurrent">当前值</param>
+            <param name="iTotal">总数</param>
+            <param name="sInfo"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow._ShowDoubleProgressMain(System.Int32,System.String)">
+            <summary>
+            显示双进度条的主进度
+            </summary>
+            <param name="iProgress"></param>
+            <param name="sInfo"></param>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestProgressWindow.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestProgressWindow.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.BestVScrollBar">
+            <summary>
+            自定义垂直滚动条类
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.BestVScrollBar.moChannelColor">
+            <summary>
+            通道颜色
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestVScrollBar.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.BestVScrollBar.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            OnPaint重写
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="E:PT.Toolkit.UI.BestVScrollBar.U_Scroll">
+            <summary>
+            滚动事件
+            </summary>
+        </member>
+        <member name="E:PT.Toolkit.UI.BestVScrollBar.U_ValueChanged">
+            <summary>
+            值变化事件
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestVScrollBar.U_LargeChange">
+            <summary>
+            大范围移动的尺寸
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestVScrollBar.U_SmallChange">
+            <summary>
+            小范围移动的尺寸
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestVScrollBar.U_Minimum">
+            <summary>
+            最小值
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestVScrollBar.U_Maximum">
+            <summary>
+            最大值
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestVScrollBar.U_Value">
+            <summary>
+            当前值
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestVScrollBar.U_ChannelColor">
+            <summary>
+            滚动条颜色
+            </summary>
+        </member>
+        <member name="P:PT.Toolkit.UI.BestVScrollBar.AutoSize">
+            <summary>
+            自动调整大小
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.UI.ListViewHelper">
+            <summary>
+            ListView辅助类
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.ListViewHelper.SetListViewSubItemText(System.Windows.Forms.ListViewItem,System.Int32,System.String,System.Object)">
+            <summary>
+            设置列表项的某个子项的显示内容,自动判断子项数量,如果不够则扩展
+            </summary>
+            <param name="lvItem">列表项</param>
+            <param name="idx">子项索引</param>
+            <param name="subItemText">显示文本</param>
+            <param name="subItemTag">子项数据</param>
+        </member>
+        <member name="T:PT.Toolkit.UI.MultiLineTextWindow">
+            <summary>
+            通用多行编辑窗口
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.MultiLineTextWindow.U_ShowOKButton">
+            <summary>
+            是否显示确定按钮,默认值:true
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.MultiLineTextWindow.U_Content">
+            <summary>
+            编辑框显示的内容
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.MultiLineTextWindow.U_TextReadOnly">
+            <summary>
+            编辑框是否只读,默认值:false
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.MultiLineTextWindow.U_DialogResult">
+            <summary>
+            对话框结果，1表示按下了确定按钮
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.MultiLineTextWindow.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.MultiLineTextWindow.U_ApplyState">
+            <summary>
+            应用状态
+            </summary>
+        </member>
+        <member name="F:PT.Toolkit.UI.MultiLineTextWindow.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.MultiLineTextWindow.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.MultiLineTextWindow.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:PT.Toolkit.WcfClientManager">
+            <summary>
+            封装目录服务并实现了简化对远程对象访问方法的接口管理类
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.WcfClientManager.GetInterface``1(System.String,System.String,System.String)">
+            <summary>
+            从指定特征的终结点上获取接口
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <param name="serviceip">服务ip地址</param>
+            <param name="serviceport">段口</param>
+            <param name="endpointname">服务名称</param>
+            <returns>接口</returns>
+        </member>
+        <member name="M:PT.Toolkit.WcfClientManager.GetInterface``1(System.String)">
+            <summary>
+            从指定特征的终结点上获取接口
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <param name="uri">终节点地址</param>
+            <returns>接口</returns>
+        </member>
+        <member name="T:PT.Toolkit.UI.UIHelper">
+            <summary>
+            提供对Winform程序界面元素的访问操作封装
+            </summary>
+        </member>
+        <member name="M:PT.Toolkit.UI.UIHelper.ShowExceptionInfo(System.Exception)">
+            <summary>
+            显示异常信息
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.UIHelper.FriendlyRun(System.Action)">
+            <summary>
+            运行代码并在异常时候显示提示信息
+            </summary>
+            <param name="act"></param>
+        </member>
+        <member name="M:PT.Toolkit.UI.UIHelper.FriendlyRunWithArg``1(System.Action{``0},``0)">
+            <summary>
+            运行代码并在异常时候显示提示信息,传递参数
+            </summary>
+            <param name="act">委托</param>
+            <param name="obj">参数</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.UIHelper.ExpandTreeNodesLessOrEqualLevel(System.Int32,System.Windows.Forms.TreeNodeCollection)">
+            <summary>
+            展开小于等于指定级别的所有树节点
+            </summary>
+            <param name="level">级别</param>
+            <param name="treeNodes">节点列表</param>
+        </member>
+        <member name="M:PT.Toolkit.UI.UIHelper.GetParentForm(System.Windows.Forms.Control)">
+            <summary>
+            得到控件的父窗体
+            </summary>
+            <param name="c">控件</param>
+            <returns>父窗体</returns>
+        </member>
+    </members>
+</doc>

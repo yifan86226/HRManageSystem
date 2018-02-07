@@ -1,0 +1,886 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PT_BS_Service.Core</name>
+    </assembly>
+    <members>
+        <member name="T:PT_BS_Service.Core.BeBasicHttpBindingServiceHost">
+            <summary>
+            Binding方式为BasicHttpBinding的服务承载类
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceHost">
+            <summary>
+            服务承载基类,抽象类,负责规范各个派生类需要实现的接口,并提供通用的操作和配置
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceHost.baseAddress">
+            <summary>
+            服务基地址
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceHost.contractInterface">
+            <summary>
+            接口名称，服务id，不带命名空间名称
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHost.#ctor(System.Type,System.Type,System.Uri)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="serviceType">服务类型</param>
+            <param name="contractInterface">要发布的该服务的实现的某一接口名称</param>
+            <param name="address">服务基地址</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHost.OnOpening">
+            <summary>
+            重写打开方法,该方法中会按照规则配置终结点并发布服务,服务打开后其配置无法修改,该方法为服务承载类的核心
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHost.InitializeServiceBehavior">
+            <summary>
+            初始化服务行为-主要包括默认行为、异常捕捉行为、元数据发布行文
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHost.AddMetadataEnpoint">
+            <summary>
+            抽象方法,派生类必须重写该方法,添加元数据发布终结点
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHost.CreateBinding">
+            <summary>
+            抽象方法,派生类必须重写该方法,按照实际的binding协议类型,创建绑定
+            </summary>
+            <returns>创建的Binding</returns>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceHost.MetadataUri">
+            <summary>
+            获取元数据发布终结点地址：格式为：schema://host:port/服务类型完全限定名
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceHost.RealMetadataUri">
+            <summary>
+            获取真正的元数据发布终结点地址
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeServiceHost.HttpGetUri">
+            <summary>
+            Http-Get方式获取元数据地址,当使用非http协议是默认将其发布到80端口
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeBasicHttpBindingServiceHost.#ctor(System.Type,System.Type,System.Uri)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="serviceType">发布服务类型</param>
+            <param name="contractInterface">要发布的该服务的实现的某一接口类型</param>
+            <param name="address">Binding基地址</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeBasicHttpBindingServiceHost.AddMetadataEnpoint">
+            <summary>
+            向服务添加元数据终结点
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeBasicHttpBindingServiceHost.CreateBinding">
+            <summary>
+            创建Binding
+            </summary>
+            <returns>创建的BasicHttpBinding</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.HttpDomainService">
+            <summary>
+            Http协议对应的跨域服务
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeDomainService">
+            <summary>
+            跨域服务基类
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.IBeDomain">
+            <summary> 
+            策略文件获取接口,可以让非IIS托管的wcf服务也可以作到跨域策略文件的设置
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.IBeDomain.GetSilverlightPolicy">
+            <summary>
+            获取Silverlight策略文件
+            </summary>
+            <returns>流表示形式的Silverlight策略文件</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.IBeDomain.GetFlashPolicy">
+            <summary>
+            获取Flash策略文件
+            </summary>
+            <returns>流表示形式的Flash策略文件</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeDomainService.StringToStream(System.String)">
+            <summary>
+            将字符串转换为指定的流格式
+            </summary>
+            <param name="strContont">待转换字符串</param>
+            <returns>参数字符串的流格式表现形式</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeDomainService.GetSilverlightPolicy">
+            <summary>
+            获取Silverlight策略文件
+            </summary>
+            <returns>流表示形式的Silverlight策略文件</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeDomainService.GetFlashPolicy">
+            <summary>
+            获取Flash策略文件
+            </summary>
+            <returns>流表示形式的Flash策略文件</returns>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeDomainService.Name">
+            <summary>
+            服务名称
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.BeDomainService.Description">
+            <summary>
+            服务描述
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.HttpDomainService.GetSilverlightPolicy">
+            <summary>
+            获取Silverlight策略文件
+            </summary>
+            <returns>流表示形式的Silverlight策略文件</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.HttpDomainService.GetFlashPolicy">
+            <summary>
+            获取Flash策略文件
+            </summary>
+            <returns>流表示形式的Flash策略文件</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceOperationBehavior">
+            <summary>
+            实现IOperationBehavior进行数据统计
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceOperationInvoker">
+            <summary>
+            实现IOperationInvoker进行数据统计
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceOperationInvoker.Inner">
+            <summary>
+            原始Invoker
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceOperationInvoker.MethodName">
+            <summary>
+            代理的函数名称
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceOperationInvoker.#ctor(System.ServiceModel.Dispatcher.IOperationInvoker,System.String)">
+            <summary>
+            构造
+            </summary>
+            <param name="orginalIOperationInvoker"></param>
+            <param name="methodName"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeRestServiceHost.InitializeServiceBehavior">
+            <summary>
+            初始化服务行为-主要包括默认行为、异常捕捉行为、元数据发布行文
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceFaultBehavior">
+            <summary>
+            服务未处理异常处理行为
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.#cctor">
+            <summary>
+            静态构造函数
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            用于向绑定元素传递自定义数据，以支持协定实现
+            </summary>
+            <param name="serviceDescription">服务的服务说明</param>
+            <param name="serviceHostBase">服务的宿主</param>
+            <param name="endpoints">服务终结点</param>
+            <param name="bindingParameters">绑定元素可访问的自定义对象</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+            <summary>
+            用于更改运行时属性值或插入自定义扩展对象(例如错误处理程序、消息或参数拦截器、安全扩展以及其他自定义扩展对象)
+            </summary>
+            <param name="serviceDescription">服务的服务说明</param>
+            <param name="serviceHostBase">当前正在生成的宿主</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+            <summary>
+            用于检查服务宿主和服务说明，从而确定服务是否可成功运行
+            </summary>
+            <param name="serviceDescription">服务说明</param>
+            <param name="serviceHostBase">当前正在生成的宿主</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.ProvideFault(System.Exception,System.ServiceModel.Channels.MessageVersion,System.ServiceModel.Channels.Message@)">
+            <summary>
+            启用创建从服务方法过程中的异常返回的自定义 System.ServiceModel.FaultException[TDetail]
+            </summary>
+            <param name="error">服务操作过程中引发的 System.Exception 对象</param>
+            <param name="version">消息的 SOAP 版本</param>
+            <param name="fault">双工情况下，返回到客户端或服务的 System.ServiceModel.Channels.Message 对象</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.HandleError(System.Exception)">
+            <summary>
+            启用错误相关处理并返回一个值，该值指示调度程序在某些情况下是否中止会话和实例上下文
+            </summary>
+            <param name="ex">处理过程中引发的异常</param>
+            <returns>不应中止会话（如果有一个）和实例上下文（如果实例上下文不是 System.ServiceModel.InstanceContextMode.Single）,该方法永远返回为true</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceFaultBehavior.SilverlightFaultEndpointBehavior">
+            <summary>
+            错误处理终结点行为定义
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.SilverlightFaultEndpointBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            添加参数绑定,可以将数据传递给绑定
+            </summary>
+            <param name="endpoint">要修改的终结点</param>
+            <param name="bindingParameters">绑定元素支持该行为所需的对象</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.SilverlightFaultEndpointBehavior.ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+            <summary>
+            在终结点范围内实现客户端的修改或扩展
+            </summary>
+            <param name="endpoint">要自定义的终结点</param>
+            <param name="clientRuntime">要自定义的客户端运行时</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.SilverlightFaultEndpointBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)">
+            <summary>
+            在终结点范围内实现客户端的修改或扩展
+            </summary>
+            <param name="endpoint">公开协定的终结点</param>
+            <param name="endpointDispatcher">要修改或扩展的终结点调度程序</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.SilverlightFaultEndpointBehavior.Validate(System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            确认终结点是否满足某些设定条件
+            </summary>
+            <param name="endpoint">要验证的终结点</param>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceFaultBehavior.SilverlightFaultEndpointBehavior.SilverlightFaultMessageInspector">
+            <summary>
+            在服务应用程序中对入站和出站应用程序消息进行自定义检查或修改
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.SilverlightFaultEndpointBehavior.SilverlightFaultMessageInspector.AfterReceiveRequest(System.ServiceModel.Channels.Message@,System.ServiceModel.IClientChannel,System.ServiceModel.InstanceContext)">
+            <summary>
+            在已接收入站消息后将消息调度到应发送到的操作之前调用
+            </summary>
+            <param name="request">请求消息</param>
+            <param name="channel">传入通道</param>
+            <param name="instanceContext">当前服务实例</param>
+            <returns>用于关联状态的对象。该对象将在 System.ServiceModel.Dispatcher.IDispatchMessageInspector.BeforeSendReply(System.ServiceModel.Channels.Message@,System.Object)方法中传回</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceFaultBehavior.SilverlightFaultEndpointBehavior.SilverlightFaultMessageInspector.BeforeSendReply(System.ServiceModel.Channels.Message@,System.Object)">
+            <summary>
+            在操作已返回后发送回复消息之前调用
+            </summary>
+            <param name="reply">回复消息。如果操作是单向的，则此值为 null</param>
+            <param name="correlationState">从 System.ServiceModel.Dispatcher.IDispatchMessageInspector.AfterReceiveRequest(System.ServiceModel.Channels.Message@,System.ServiceModel.IClientChannel,System.ServiceModel.InstanceContext)方法返回的关联对象</param>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceHostFactory">
+            <summary>
+            服务承载类创建工厂,负责创建服务承载类,抽象基类,根据不同的协议存在不同的派生类
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceHostFactory.contractAttribute">
+            <summary>
+            数据协议自定义属性类型
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.BeServiceHostFactory.Current">
+            <summary>
+            当前实际使用的承载类创建工厂,依据不同绑定协议不同,该属性有不同的值
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHostFactory.#cctor">
+            <summary>
+            静态构造函数,初始化当前承载类创建工厂,依据不同的协议创建出不同的工厂行为
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHostFactory.CreateServiceHost(System.Type,System.String,System.String)">
+            <summary>
+            创建服务承载类
+            </summary>
+            <param name="serviceType">要加载的服务类型</param>
+            <param name="interfaceName">要发布的该服务的实现的某一接口名称</param>
+            <param name="baseAddress">服务基地址</param>
+            <returns>创建的服务承载类</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHostFactory.GetServiceHost(System.Type,System.Type,System.String)">
+            <summary>
+            创建服务承载类
+            </summary>
+            <param name="serviceType">要加载的服务类型</param>
+            <param name="contractInterface">要发布的该服务的实现的某一接口类型</param>
+            <param name="baseAddress">服务基地址</param>
+            <returns>创建的服务承载类</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHostFactory.CreateDomainServiceHosts(System.String[])">
+            <summary>
+            创建服务承载类
+            </summary>
+            <param name="baseAddresses">服务基地址列表</param>
+            <returns>创建跨域服务承载类,针对http协议,会基于不同的基地址创建出多个承载类,基于net.tcp只会在80端口上创建一个</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHostFactory.GetDomainServiceHosts(System.String[])">
+            <summary>
+            创建服务承载类
+            </summary>
+            <param name="baseAddresses">服务基地址列表</param>
+            <returns>创建跨域服务承载类,针对http协议,会基于不同的基地址创建出多个承载类,基于net.tcp只会在80端口上创建一个</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceHostFactory.BeBasicHttpBindingServiceHostFactory">
+            <summary>
+            BasicHttpBinding服务承载创建工厂,负责http协议的BasicHttpBinding服务承载器的创建
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHostFactory.BeBasicHttpBindingServiceHostFactory.GetServiceHost(System.Type,System.Type,System.String)">
+            <summary>
+            创建服务承载类
+            </summary>
+            <param name="serviceType">要加载的服务类型</param>
+            <param name="contractInterface">要发布的该服务的实现的某一接口名称</param>
+            <param name="baseAddress">服务基地址</param>
+            <returns>创建的服务承载类</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHostFactory.BeBasicHttpBindingServiceHostFactory.GetDomainServiceHosts(System.String[])">
+            <summary>
+            创建服务承载类
+            </summary>
+            <param name="baseAddresses">服务基地址列表</param>
+            <returns>创建跨域服务承载类,针对http协议,会基于不同的基地址创建出多个承载类</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeServiceHostFactory.BeTcpBindingServiceHostFactory">
+            <summary>
+            NetTcpBinding服务承载创建工厂,负责http协议的NetTcpBinding服务承载器的创建
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHostFactory.BeTcpBindingServiceHostFactory.GetServiceHost(System.Type,System.Type,System.String)">
+            <summary>
+            创建服务承载类
+            </summary>
+            <param name="serviceType">要加载的服务类型</param>
+            <param name="contractInterface">要发布的该服务的实现的某一接口名称</param>
+            <param name="baseAddress">服务基地址</param>
+            <returns>创建的服务承载类</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeServiceHostFactory.BeTcpBindingServiceHostFactory.GetDomainServiceHosts(System.String[])">
+            <summary>
+            创建服务承载类
+            </summary>
+            <param name="baseAddresses">服务基地址列表</param>
+            <returns>创建跨域服务承载类,基于net.tcp只会在80端口上创建一个</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.InlineXsdInWsdlBehavior">
+            <summary>
+            IEndpointBehavior implementation that will
+            force WCF to generate all schemas inline into the
+            generated WSDL files, instead of as individual files.
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.InlineXsdInWsdlBehavior.ExportContract(System.ServiceModel.Description.WsdlExporter,System.ServiceModel.Description.WsdlContractConversionContext)">
+            <summary>
+            ExportContract
+            </summary>
+            <param name="exporter"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.InlineXsdInWsdlBehavior.ExportEndpoint(System.ServiceModel.Description.WsdlExporter,System.ServiceModel.Description.WsdlEndpointConversionContext)">
+            <summary>
+            ExportEndpoint
+            </summary>
+            <param name="exporter"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.InlineXsdInWsdlBehavior.AddImportedSchemas(System.Xml.Schema.XmlSchema,System.Xml.Schema.XmlSchemaSet,System.Collections.Generic.List{System.Xml.Schema.XmlSchema})">
+            <summary>
+            Recursively extract all the list of imported
+            schemas
+            </summary>
+            <param name="schema">Schema to examine</param>
+            <param name="schemaSet">SchemaSet with all referenced schemas</param>
+            <param name="importsList">List to add imports to</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.InlineXsdInWsdlBehavior.RemoveXsdImports(System.Xml.Schema.XmlSchema)">
+            <summary>
+            Remove any &lt;xsd:imports/&gt; in the schema
+            </summary>
+            <param name="schema">Schema to process</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.InlineXsdInWsdlBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            AddBindingParameters
+            </summary>
+            <param name="endpoint"></param>
+            <param name="bindingParameters"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.InlineXsdInWsdlBehavior.ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+            <summary>
+            ApplyClientBehavior
+            </summary>
+            <param name="endpoint"></param>
+            <param name="clientRuntime"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.InlineXsdInWsdlBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)">
+            <summary>
+            ApplyDispatchBehavior
+            </summary>
+            <param name="endpoint"></param>
+            <param name="dispatcher"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.InlineXsdInWsdlBehavior.Validate(System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            Validate
+            </summary>
+            <param name="endpoint"></param>
+        </member>
+        <member name="T:PT_BS_Service.Core.BeTcpBindingServiceHost">
+            <summary>
+            Binding方式为NetTcpBinding的服务承载类
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeTcpBindingServiceHost.#ctor(System.Type,System.Type,System.Uri)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="serviceType">服务类型</param>
+            <param name="contractInterface">要发布的该服务的实现的某一接口名称</param>
+            <param name="address">服务发布基地址</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeTcpBindingServiceHost.AddMetadataEnpoint">
+            <summary>
+            添加元数据终结点
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.BeTcpBindingServiceHost.CreateBinding">
+            <summary>
+            创建并初始化类型为NetTcpBinding的服务绑定
+            </summary>
+            <returns>创建的服务绑定</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.TcpDomainService">
+            <summary>
+            Tcp协议对应的跨域服务
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.TcpDomainService.GetSilverlightPolicy">
+            <summary>
+            获取Silverlight策略文件
+            </summary>
+            <returns>流表示形式的Silverlight策略文件</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.TcpDomainService.GetFlashPolicy">
+            <summary>
+            获取Flash策略文件
+            </summary>
+            <returns>流表示形式的Flash策略文件</returns>
+        </member>
+        <member name="T:PT_BS_Service.Core.RuntimeManageService">
+            <summary>
+            运行时管理服务实现-自身的运行时函数及变量扩展
+            </summary>
+            <summary>
+            控制服务状态及配置信息
+            </summary>
+            <summary>
+            分部类-运行时功能调用
+            </summary>
+            <summary>
+            运行时变量管理
+            </summary>
+            <summary>
+            运行时管理服务实现-运行时函数:"查看运行快照"
+            </summary>
+            <summary>
+            运行时管理服务实现-控制服务状态及配置信息
+            </summary>
+            <summary>
+            运行时管理服务实现-基础组件的运行时框架导入声明
+            </summary>
+            <summary>
+            运行时管理服务实现-预装载处理
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.GetHelpers(System.String)">
+            <summary>
+            获取指定的帮助项信息
+            </summary>
+            <param name="helperIds">帮助Id,多个用逗号分隔,如果想获取全部则传空</param>
+            <returns>RuntimeHelperList</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.GetServerStartTime">
+            <summary>
+            获取当前应用服务器启动时间
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.QueryConsoleLogs(PT.Profile.Types.ConsoleLogQueryCondition)">
+            <summary>
+            获取控制台信息
+            </summary>
+            <param name="clqc">查询条件</param>
+            <returns>查询结果</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.ClearConsoleLogs">
+            <summary>
+            清掉服务端控制台信息
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.ManageFunction(System.String,System.String,System.Byte[])">
+            <summary>
+            服务器功能管理
+            </summary>
+            <param name="funcName">功能名称</param>
+            <param name="relStringValue">参考字符串</param>
+            <param name="relByteValue">参考字节数组</param>
+            <returns>返回值依据功能而不同</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.ManageUpdate_Process_AvailableRequest(System.String,System.String,System.Byte[])">
+            <summary>
+            处理升级管理请求-RequestUpdate
+            </summary>
+            <param name="funcName"></param>
+            <param name="relStringValue"></param>
+            <param name="relByteValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.ManageUpdate_Process_TransmitFile(System.String,System.String,System.Byte[])">
+            <summary>
+            处理升级管理请求-TransmitUpdateFile
+            </summary>
+            <param name="funcName"></param>
+            <param name="relStringValue"></param>
+            <param name="relByteValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.CopyFileToUpdateDirectory(System.String)">
+            <summary>
+            将服务目录的一个文件拷贝到升级管理目录
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.Manage_RestartApplicationServer(System.String,System.String,System.Byte[])">
+            <summary>
+            重启应用程序服务器
+            </summary>
+            <param name="funcName"></param>
+            <param name="relStringValue"></param>
+            <param name="relByteValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.ManageUpdate_Process_BeginProcess(System.String,System.String,System.Byte[])">
+            <summary>
+            处理升级管理请求-BeginUpdate
+            </summary>
+            <param name="funcName"></param>
+            <param name="relStringValue"></param>
+            <param name="relByteValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.GetServiceNameByImagePath(System.String)">
+            <summary>
+            根据映像路径查找服务名
+            </summary>
+            <param name="imgpath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.GetAllServerRuntimeMethods">
+            <summary>
+            获取当前应用服务器所有运行时功能调用信息
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.GetAllServerRuntimeMethodParams(System.String,System.String)">
+            <summary>
+            获取当前应用服务器某个运行时功能调用参数信息
+            </summary>
+            <param name="className">归属类名称</param>
+            <param name="methdName">功能调用名称</param>
+            <returns>功能调用需要的参数列表</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.RefereshServerRuntimeMethodParamsOnChange(System.String,System.String,System.String,PT.Toolkit.Portable.Runtime.ServerRuntimeMethodParamList)">
+            <summary>
+            当指定的参数变化时刷新参数列表
+            </summary>
+            <param name="className">归属类名称</param>
+            <param name="methdName">功能调用名称</param>
+            <param name="changingParamName">变动的参数名称</param>
+            <param name="methodParams">功能调用的参数列表</param>
+            <returns>调用结果显示于控制台界面</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.InvokeServerRuntimeMethod(System.String,System.String,PT.Toolkit.Portable.Runtime.ServerRuntimeMethodParamList)">
+            <summary>
+            执行一次运行时功能调用
+            </summary>
+            <param name="className">归属类名称</param>
+            <param name="methdName">功能调用名称</param>
+            <param name="methodParams">功能调用的参数列表</param>
+            <returns>调用结果显示于控制台界面</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.UpdateServerRuntimeVariable(PT.Toolkit.Portable.Runtime.ServerRuntimeVariable)">
+            <summary>
+            设置当前服务器运行时变量值
+            </summary>
+            <param name="srv">变量</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.GetAllServerRuntimeVariables">
+            <summary>
+            获取当前服务器所有运行时变量信息
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.ServerRuntimeMethod_ViewSnapshot(PT.Toolkit.Portable.Runtime.RuntimeMethodInvokeContext)">
+            <summary>
+            运行时函数-查看运行状态
+            </summary>
+            <param name="invokeContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.GetClientIP">
+            <summary>
+            获得调用方IP
+            </summary>
+            <returns>调用方IP</returns>
+        </member>
+        <member name="F:PT_BS_Service.Core.RuntimeManageService.invokers">
+            <summary>
+            invokerMethods
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.RuntimeManageService.ClientRequestSummary">
+            <summary>
+            客户端请求统计methodname,count
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.ServerRuntimeMethod_ViewSingleMethodTrace(PT.Toolkit.Portable.Runtime.RuntimeMethodInvokeContext)">
+            <summary>
+            服务调用跟踪
+            </summary>
+            <param name="invokeContext"></param>
+            <returns>ServerRuntimeMethodResult</returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.AddClientRequestTraceInfo_BeginInvoke(System.Object[])">
+            <summary>
+            保存服务跟踪开始状态
+            </summary>
+            <param name="inputs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.AddClientRequestTraceInfo_AfterInvoke(PT_BS_Service.Core.ClientRequestTraceDetail,System.Object)">
+            <summary>
+            保存服务跟踪结束状态
+            </summary>
+            <param name="traceDetail"></param>
+            <param name="outputs"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.AddClientRequestReference(System.String)">
+            <summary>
+            增加客户端请求次数统计
+            </summary>
+            <param name="methodName">服务uri</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.RuntimeManageService.GetClientRequestSummary">
+            <summary>
+            获取服务访问统计信息
+            </summary>
+            <returns>统计信息</returns>
+        </member>
+        <member name="P:PT_BS_Service.Core.RuntimeManageService.RuntimeVariable_RTM_SW_SummaryClientRequest">
+            <summary>
+            运行时变量 开关 - 统计服务调用次数
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.ServerControler">
+            <summary>
+            控制服务状态及配置信息
+            </summary>
+            <summary>
+            控制服务状态及配置信息
+            </summary>
+            <summary>
+            控制服务状态及配置信息
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerControler.ServiceStarted">
+            <summary>
+            服务已启动标记
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerControler.ip">
+            <summary>
+            运行时服务IP
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerControler.port">
+            <summary>
+            运行时服务端口
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.StartRuntimeManageService">
+            <summary>
+            启动本应用服务器的运行时管理服务
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.InvokePreLoadMethod(System.Type)">
+            <summary>
+            调用每个wcf服务的预装载函数
+            </summary>
+            <param name="servicetype"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.RegisterRuntimeManageServiceThread">
+            <summary>
+            定期向目录服务注册管理服务IP线程函数
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerControler.SubsystemExs">
+            <summary>
+            装载的子系统信息
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerControler.StartServiceCalled">
+            <summary>
+            是否已经调用开始服务函数
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerControler.OnServiceStarted">
+            <summary>
+            服务启动完成事件
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerControler.ServerStartTime">
+            <summary>
+            服务器启动时间
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerControler.ServiceNmae">
+            <summary>
+            window服务Name
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerControler.ServerContainerType">
+            <summary>
+            容器类型 0:以windows服务方式启动,1:以测试服务器方式启动
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.ServerControler.ServiceRuntimeList">
+            <summary>
+            服务运行时列表
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.StartService(System.Int32)">
+            <summary>
+            开始服务
+            </summary>
+            <param name="serverContainerType">0:以windows服务方式启动,1:以测试服务器方式启动</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.StopService">
+            <summary>
+            停止服务
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.StartServiceThread">
+            <summary>
+            服务启动的线程的主函数
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.WriteRuntimeLog(System.String,System.String,PT.Toolkit.Portable.Runtime.RuntimeLogType,PT.Toolkit.Portable.Runtime.LogOutputOptionEnum)">
+            <summary>
+            代理写运行时日志
+            </summary>
+            <param name="categoryname"></param>
+            <param name="msg"></param>
+            <param name="logType"></param>
+            <param name="logOutputOption"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.StartServiceInternal">
+            <summary>
+            启动配置中的服务
+            </summary>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.StartWcfService(PT_BS_Service.Core.SysServiceRuntime)">
+            <summary>
+            将类型中定义的wcf服务发布到指定终节点上
+            </summary>
+            <param name="sv"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.ReflectService(PT_BS_Service.Core.SysServiceRuntime)">
+            <summary>
+            通过反射获取服务实现类和实现的接口类型
+            </summary>
+            <param name="sv"></param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.LoadSimulateSubsystemConfig(System.String,PT.Toolkit.Portable.Collections.StringList)">
+            <summary>
+            读系统资源文件
+            </summary>
+            <param name="subsystemDirectory">系统资源文件配置路径</param>
+            <param name="warnnings">输出警告信息</param>
+        </member>
+        <member name="M:PT_BS_Service.Core.ServerControler.LoadSysDeployConfig(System.String,System.String,PT.Toolkit.Portable.Collections.StringList)">
+            <summary>
+            读配置文件信息
+            </summary>
+            <param name="subsystemDirectory">系统资源文件配置路径</param>
+            <param name="configFile">配置文件</param>
+            <param name="warnnings">输出警告信息</param>
+        </member>
+        <member name="T:PT_BS_Service.Core.SysServiceRuntime">
+            <summary>
+            类-注册系统系统服务信息运行时
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SysServiceRuntime.ServicePort">
+            <summary>
+            本服务发布所在的端口号
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SysServiceRuntime.SubsystemName">
+            <summary>
+            子系统名称
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SysServiceRuntime.statusMessage">
+            <summary>
+            错误消息
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SysServiceRuntime.status">
+            <summary>
+            服务状态,0未启动,1已启动,2启动异常
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SysServiceRuntime.servicetype">
+            <summary>
+            服务实现类的类型
+            </summary>
+        </member>
+        <member name="F:PT_BS_Service.Core.SysServiceRuntime.interfaceType">
+            <summary>
+            接口类型
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.SysServiceRuntime.EndPointAddress">
+            <summary>
+            终节点
+            </summary>
+        </member>
+        <member name="P:PT_BS_Service.Core.SysServiceRuntime.MetaDataAddress">
+            <summary>
+            MetaDataAddress
+            </summary>
+        </member>
+        <member name="T:PT_BS_Service.Core.SysServiceRuntimeList">
+            <summary>
+            SysServiceRuntime类列表,提供扩展功能访问
+            </summary>
+        </member>
+    </members>
+</doc>
