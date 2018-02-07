@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="CO_IA.UI.PersonSchedule.ScheduleDetailItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CO_IA.UI.PersonSchedule"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="600">
+    <UserControl.Resources>
+        <local:TimeTypeConverter x:Key="timetypeConvert"></local:TimeTypeConverter>
+        <Style TargetType="TextBlock" x:Key="tbStyle">
+            <Setter Property="Foreground" Value="#FF4D4D4D"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <!--<Setter Property="FontWeight" Value="Bold"></Setter>-->
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid x:Name="dg_ScheduleDetail" 
+                            Background="Transparent"
+                            HorizontalAlignment="Stretch"
+                            BorderThickness="0"
+                            AutoGenerateColumns="False"
+                            HorizontalContentAlignment="Center"
+                            Grid.Column="0" 
+                            VerticalAlignment="Stretch"
+                            IsReadOnly="True"
+                             Grid.Row="1"  MinRowHeight="25"
+                            ItemsSource="{Binding Path=_schedetail}" HeadersVisibility="None">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="时间类别" Width="180">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBlock Text="{Binding Path=TIMEDESC}" Style="{Binding tbStyle}" VerticalAlignment="Center"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="内容" Width="200*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBlock Text="{Binding Path=CONTENT}"  Style="{Binding tbStyle}" VerticalAlignment="Center"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="区域" Width="180*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBlock Text="{Binding Path=AREAS}" ToolTip="{Binding Path=AREAS}"  Style="{Binding tbStyle}" VerticalAlignment="Center"></TextBlock>
+                             </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="组" Width="180*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <TextBlock Text="{Binding Path=GROUPS}" ToolTip="{Binding Path=GROUPS}"  Style="{Binding tbStyle}" VerticalAlignment="Center" TextWrapping="Wrap"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

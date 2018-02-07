@@ -1,0 +1,46 @@
+﻿<Window x:Class="CO_IA.UI.FreqStation.StationPlan.SendLicenseDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:local="clr-namespace:CO_IA.UI.FreqStation.StationPlan"
+        Title="发放许可证" Height="600" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition  Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--EditValueChanged="MarginValueChanged"-->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" >
+            <TextBlock Text="许可证边框设置:" VerticalAlignment="Center" />
+            <TextBlock Text="左"  VerticalAlignment="Center" Margin="2"/>
+            <dxe:TextEdit x:Name="txtleft"  MinWidth="35" Margin="2" Text="5"
+                         Tag="Left" MaskType="Numeric" />
+            
+            <TextBlock Text="上"  VerticalAlignment="Center" Margin="2"/>
+            <dxe:TextEdit x:Name="txttop"  MinWidth="35" Margin="2"  Text="5"  MaxLength="2"
+                         Tag="Top" MaskType="Numeric"/>
+            
+            <TextBlock Text="右"  VerticalAlignment="Center" Margin="2"/>
+            <dxe:TextEdit x:Name="txtright"  MinWidth="35" Margin="2"  Text="5" MaxLength="2" 
+                          Tag="Right" MaskType="Numeric"/>
+            
+            <TextBlock Text="下"  VerticalAlignment="Center" Margin="2"/>
+            <dxe:TextEdit x:Name="txtbottom" MinWidth="35" Margin="2"  Text="5" MaxLength="2" 
+                          Tag="Bottom" MaskType="Numeric" />
+            <Button  Content="确定" Margin="5"  Click="Button_Click" />
+        </StackPanel>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto"  Grid.Row="1" >
+            <StackPanel x:Name="_contentPanel"></StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button  Content="打印" Margin="5" Click="btnPrint_Click" />
+            <Button  Content="发放许可证" Margin="5" Click="btnSendLicense_Click"/>
+            <Button  Content="取消" Margin="5" Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

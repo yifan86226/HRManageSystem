@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="CO_IA.UI.StationManage.StationQueryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <DataGrid BorderThickness="0" 
+                  x:Name="stationdatagrid" 
+                  AutoGenerateColumns="False"   
+                  IsReadOnly="True" 
+                  MouseDoubleClick="Stationdatagrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="台站guid" Binding="{Binding Path=STATGUID}" Width="*" Visibility="Hidden"/>
+                <DataGridTextColumn Header="申请表编号" Binding="{Binding Path=APP_CODE}" Width="*"/>
+                <DataGridTextColumn Header="资料表编号" Binding="{Binding Path=STAT_TDI}" Width="*" />
+                <DataGridTextColumn Header="资料表类型" Binding="{Binding Path=STAT_APP_TYPE}" Width="*" />
+                <DataGridTextColumn Header="单位名称" Binding="{Binding Path=ORG_NAME}" Width="*" />
+                <DataGridTextColumn Header="台站名称" Binding="{Binding Path=STAT_NAME}" Width="*" />
+                <DataGridTextColumn Header="台站地址" Binding="{Binding Path=STAT_ADDR}" Width="*" />
+                <DataGridTextColumn Header="系统代码" Binding="{Binding Path=ORGSYSCODE }" Width="*" />
+                <DataGridTextColumn Header="通信系统" Binding="{Binding Path=NET_SVN}" Width="*" />
+                <!--<DataGridTextColumn Header="频率(MHz)" Width="*" />-->
+                <DataGridTextColumn Header="功率(W)" Binding="{Binding Path=Power}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

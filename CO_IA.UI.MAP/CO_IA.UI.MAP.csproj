@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C9BE0CB-3FB2-481B-9BE8-E7CB41B00BAE}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CO_IA.UI.MAP</RootNamespace>
+    <AssemblyName>CO_IA.UI.MAP</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AT_BC.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Data.Portable">
+      <HintPath>..\Output\AT_BC.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.SystemPortal.Portable">
+      <HintPath>..\Output\AT_BC.SystemPortal.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="CustomWPFColorPicker">
+      <HintPath>..\Output\CustomWPFColorPicker.dll</HintPath>
+    </Reference>
+    <Reference Include="GS_MapBase">
+      <HintPath>..\Output\GS_MapBase.dll</HintPath>
+    </Reference>
+    <Reference Include="I_GS_MapBase.Portal">
+      <HintPath>..\Output\I_GS_MapBase.Portal.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityManage\ActivityPlaceMap.cs" />
+    <Compile Include="Control\LayerItem.xaml.cs">
+      <DependentUpon>LayerItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\LayerList.xaml.cs">
+      <DependentUpon>LayerList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\MoveSelect.xaml.cs">
+      <DependentUpon>MoveSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExtMethod.cs" />
+    <Compile Include="MapCoordinate.xaml.cs">
+      <DependentUpon>MapCoordinate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToMapHelper.cs" />
+    <Compile Include="Types\Types.cs" />
+    <Compile Include="UMap.xaml.cs">
+      <DependentUpon>UMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Map\MapGIS.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ToolBar\Bar.xaml.cs">
+      <DependentUpon>Bar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolBar\ButtonEx.cs" />
+    <Compile Include="WinMapCoordinate.xaml.cs">
+      <DependentUpon>WinMapCoordinate.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Images\cursor\arrow.ani" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Control\LayerItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\LayerList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\MoveSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MapCoordinate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolBar\Bar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinMapCoordinate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\del_all3.png" />
+    <Resource Include="Images\bar_blue\Ellipse_blue.png" />
+    <Resource Include="Images\br_prev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\checkbox_unchecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\arrow_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\circle_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\close_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\del_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\drag_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\font_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\hand_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\line_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\pen_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\polygon_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\polyline_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\rect_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CO_IA.Client\CO_IA.Client.csproj">
+      <Project>{b48b653d-d7d2-43f9-806e-e7621e9fa27c}</Project>
+      <Name>CO_IA.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Data.Portable\CO_IA.Data.Portable.csproj">
+      <Project>{d52a57d6-99b0-4bcf-9998-68099e2edc78}</Project>
+      <Name>CO_IA.Data.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA_Data.StationManage\CO_IA_Data.StationManage.csproj">
+      <Project>{a0dd0b1d-3c6d-495e-b481-1d2f2b0b8257}</Project>
+      <Name>CO_IA_Data.StationManage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pop_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pop_orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pop_green.png" />
+    <Resource Include="Images\pop_zi.png" />
+    <Resource Include="Images\pop_zi2.png" />
+    <Resource Include="Images\pop_zi3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pop_bk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pop_bk1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pop_bk2_96_zi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\Ellipse_blue1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bar_blue\elipse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Overview\C1.png" />
+    <Resource Include="Images\Overview\C2.png" />
+    <Resource Include="Images\Overview\C3.png" />
+    <Resource Include="Images\Overview\C4.png" />
+    <Resource Include="Images\Overview\C5.png" />
+    <Resource Include="Images\Overview\C6.png" />
+    <Resource Include="Images\Overview\C7.png" />
+    <Resource Include="Images\Overview\C8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Overview\C9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\selectP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cursor\Link_Hnd.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MapLocation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\bg\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\station\GIS_HF01.png" />
+    <Resource Include="Images\station\GIS_HF02.png" />
+    <Resource Include="Images\station\GIS_HF03.png" />
+    <Resource Include="Images\station\GIS_RADA.png" />
+    <Resource Include="Images\station\GIS_SHF1.png" />
+    <Resource Include="Images\station\GIS_SHF2.png" />
+    <Resource Include="Images\station\GIS_SHF3.png" />
+    <Resource Include="Images\station\GIS_SHF4.png" />
+    <Resource Include="Images\station\GIS_SHIP.png" />
+    <Resource Include="Images\station\GIS_UHF1.png" />
+    <Resource Include="Images\station\GIS_UHF2.png" />
+    <Resource Include="Images\station\GIS_UHF3.png" />
+    <Resource Include="Images\station\GIS_UHF4.png" />
+    <Resource Include="Images\station\GIS_VHF1.png" />
+    <Resource Include="Images\station\GIS_VHF2.png" />
+    <Resource Include="Images\station\GIS_VHF3.png" />
+    <Resource Include="Images\station\GIS_VHF4.png" />
+    <Resource Include="Images\station\GIS_VHF5.png" />
+    <Resource Include="Images\station\GIS_VHF6.png" />
+    <Resource Include="Images\station\map2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Overview\distance.png" />
+    <Resource Include="Images\Overview\full.png" />
+    <Resource Include="Images\Overview\hide.png" />
+    <Resource Include="Images\Overview\messure.png" />
+    <Resource Include="Images\Overview\print.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

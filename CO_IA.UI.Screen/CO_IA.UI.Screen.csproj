@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ADE13C5B-937F-4AB8-871F-D867EA4CAD51}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CO_IA.UI.Screen</RootNamespace>
+    <AssemblyName>CO_IA.UI.Screen</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AT_BC.Client.Extensions.v5.0">
+      <HintPath>..\Output\AT_BC.Client.Extensions.v5.0.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Common">
+      <HintPath>..\Output\AT_BC.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Data.Portable">
+      <HintPath>..\Output\AT_BC.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.SystemPortal.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.SystemPortal.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Video.Hikvision">
+      <HintPath>..\Output\AT_BC.Video.Hikvision.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Data.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Printing.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Core.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Grid.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Grid.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Mvvm.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Mvvm.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Printing.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="GS_MapBase">
+      <HintPath>..\Output\GS_MapBase.dll</HintPath>
+    </Reference>
+    <Reference Include="I_GS_MapBase.Portal">
+      <HintPath>..\Output\I_GS_MapBase.Portal.dll</HintPath>
+    </Reference>
+    <Reference Include="J832.Wpf.BagOTricksLib">
+      <HintPath>..\Output\J832.Wpf.BagOTricksLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MapUtiles">
+      <HintPath>..\Output\MapUtiles.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PT_BS_Service.Client.Core.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.Client.Core.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.Client.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.Client.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Extended, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivitySummarize\ActivitySummarizeDialog.xaml.cs">
+      <DependentUpon>ActivitySummarizeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\ActivityInfo.xaml.cs">
+      <DependentUpon>ActivityInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\AreaInfo.xaml.cs">
+      <DependentUpon>AreaInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\AreaTips.xaml.cs">
+      <DependentUpon>AreaTips.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Audio\AudioControl.xaml.cs">
+      <DependentUpon>AudioControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Audio\AudioDialog.xaml.cs">
+      <DependentUpon>AudioDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Audio\AudioPanel.xaml.cs">
+      <DependentUpon>AudioPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Audio\ScheduleCommand.cs" />
+    <Compile Include="Control\Point\MonitorStation.xaml.cs">
+      <DependentUpon>MonitorStation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Point\OrgEqu.xaml.cs">
+      <DependentUpon>OrgEqu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Point\PersonPoint.xaml.cs">
+      <DependentUpon>PersonPoint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\SelectPanel.xaml.cs">
+      <DependentUpon>SelectPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\WpfChart.cs" />
+    <Compile Include="Converter\ActivityStageTextConverter.cs" />
+    <Compile Include="Data\ActivityPlaceInfoEx.cs" />
+    <Compile Include="Areas\AreaList.xaml.cs">
+      <DependentUpon>AreaList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ActivityTitle.xaml.cs">
+      <DependentUpon>ActivityTitle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DataHelper.cs" />
+    <Compile Include="Data\EnumType.cs" />
+    <Compile Include="Data\StateData.cs" />
+    <Compile Include="Dialog\ExtentProgram.xaml.cs">
+      <DependentUpon>ExtentProgram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\FixedStationDetailDialog.xaml.cs">
+      <DependentUpon>FixedStationDetailDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\ORGAndEquipmentList.xaml.cs">
+      <DependentUpon>ORGAndEquipmentList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\OrgInfoControl.xaml.cs">
+      <DependentUpon>OrgInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\ORGInfoDialog.xaml.cs">
+      <DependentUpon>ORGInfoDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\ProgramInfo.xaml.cs">
+      <DependentUpon>ProgramInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\RemoteWatch.xaml.cs">
+      <DependentUpon>RemoteWatch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\StationListDialog.xaml.cs">
+      <DependentUpon>StationListDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\SurroundStationDialog.xaml.cs">
+      <DependentUpon>SurroundStationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Func\DrawTrack.cs" />
+    <Compile Include="Func\LoadAreaTips.cs" />
+    <Compile Include="Func\LoadGPSData.cs" />
+    <Compile Include="Func\LoadSurroundStation.cs" />
+    <Compile Include="Func\LoadMonitorGroup.cs" />
+    <Compile Include="Func\LoadMonitorStation.cs" />
+    <Compile Include="Func\LoadOrgEqu.cs" />
+    <Compile Include="Func\LoadStation.cs" />
+    <Compile Include="Group\GroupDialog.xaml.cs">
+      <DependentUpon>GroupDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Group\GroupList.xaml.cs">
+      <DependentUpon>GroupList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage\MainPanel.xaml.cs">
+      <DependentUpon>MainPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage\ScheduleSelect.xaml.cs">
+      <DependentUpon>ScheduleSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage\StagePanel.xaml.cs">
+      <DependentUpon>StagePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage\StateInfo.xaml.cs">
+      <DependentUpon>StateInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage\StateNotice.xaml.cs">
+      <DependentUpon>StateNotice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Monitor\MonitorView.xaml.cs">
+      <DependentUpon>MonitorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Obj.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScreenMap.cs" />
+    <Compile Include="Task\TaskAllList.xaml.cs">
+      <DependentUpon>TaskAllList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Task\TaskData.cs" />
+    <Compile Include="Task\TaskedList.xaml.cs">
+      <DependentUpon>TaskedList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Task\TaskingList.xaml.cs">
+      <DependentUpon>TaskingList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Track\ClearButton.xaml.cs">
+      <DependentUpon>ClearButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Track\TrackCondition.xaml.cs">
+      <DependentUpon>TrackCondition.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Video\VideoWindow.xaml.cs">
+      <DependentUpon>VideoWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CO_IA.Client\CO_IA.Client.csproj">
+      <Project>{b48b653d-d7d2-43f9-806e-e7621e9fa27c}</Project>
+      <Name>CO_IA.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Data.Portable\CO_IA.Data.Portable.csproj">
+      <Project>{d52a57d6-99b0-4bcf-9998-68099e2edc78}</Project>
+      <Name>CO_IA.Data.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Themes\CO_IA.Themes.csproj">
+      <Project>{97ddcd73-a7fb-40a5-983e-b6980dcd62c0}</Project>
+      <Name>CO_IA.Themes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.ActivitySummarize\CO_IA.UI.ActivitySummarize.csproj">
+      <Project>{7aa35907-9a01-4b80-b851-ffb9f63e72dc}</Project>
+      <Name>CO_IA.UI.ActivitySummarize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.Collection\CO_IA.UI.Collection.csproj">
+      <Project>{badb0783-9731-41c5-9569-c1b7cf158614}</Project>
+      <Name>CO_IA.UI.Collection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.FreqStation\CO_IA.UI.FreqStation.csproj">
+      <Project>{9f152614-28a1-4664-9b96-bfcd90b441ca}</Project>
+      <Name>CO_IA.UI.FreqStation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.MAP\CO_IA.UI.MAP.csproj">
+      <Project>{1c9be0cb-3fb2-481b-9be8-e7cb41b00bae}</Project>
+      <Name>CO_IA.UI.MAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.MonitorTask\CO_IA.UI.MonitorTask.csproj">
+      <Project>{f4fc412a-2da5-4571-85dc-040bacf4559d}</Project>
+      <Name>CO_IA.UI.MonitorTask</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.PersonSchedule\CO_IA.UI.PersonSchedule.csproj">
+      <Project>{b816c21c-364a-40a6-ae4c-db9290713d24}</Project>
+      <Name>CO_IA.UI.PersonSchedule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.PlanDatabase\CO_IA.UI.PlanDatabase.csproj">
+      <Project>{33cebd14-8a23-4001-9455-fb3b28df2902}</Project>
+      <Name>CO_IA.UI.PlanDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.StationManage\CO_IA.UI.StationManage.csproj">
+      <Project>{47214448-3e49-402e-b3e1-dde99388a73a}</Project>
+      <Name>CO_IA.UI.StationManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.Statistic\CO_IA.UI.Statistic.csproj">
+      <Project>{e50e6e16-da2e-44c8-a35d-a38a8a53b5ed}</Project>
+      <Name>CO_IA.UI.Statistic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA_Data.StationManage\CO_IA_Data.StationManage.csproj">
+      <Project>{a0dd0b1d-3c6d-495e-b481-1d2f2b0b8257}</Project>
+      <Name>CO_IA_Data.StationManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.ActivityManage\I_CO_IA.ActivityManage.csproj">
+      <Project>{fddc11eb-7155-4afc-9524-c95b52057d0b}</Project>
+      <Name>I_CO_IA.ActivityManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.Display\I_CO_IA.Display.csproj">
+      <Project>{a8de57a7-a1d7-41fa-9489-0339faf33fc3}</Project>
+      <Name>I_CO_IA.Display</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.FreqStation\I_CO_IA.FreqStation.csproj">
+      <Project>{657697a6-318e-430f-a2b5-35d7e973608d}</Project>
+      <Name>I_CO_IA.FreqStation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.GpsLib\I_CO_IA.Gps.csproj">
+      <Project>{1677c2d0-1ccb-4df3-8074-4885aa2fbf86}</Project>
+      <Name>I_CO_IA.Gps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.MessageCenter\I_CO_IA.MessageCenter.csproj">
+      <Project>{ea369f02-93bf-47bc-9087-1ca30558c1f2}</Project>
+      <Name>I_CO_IA.MessageCenter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.MonitorTask\I_CO_IA.MonitorTask.csproj">
+      <Project>{5a29a1d6-2d89-4c92-9544-cd9dea3abca9}</Project>
+      <Name>I_CO_IA.MonitorTask</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.PersonSchedule\I_CO_IA.PersonSchedule.csproj">
+      <Project>{e16eba22-f8be-4165-a7cb-f7d3a9c996be}</Project>
+      <Name>I_CO_IA.PersonSchedule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.PlanDatabase\I_CO_IA.PlanDatabase.csproj">
+      <Project>{3911e2ab-3054-44ca-9a34-47d42936292b}</Project>
+      <Name>I_CO_IA.PlanDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.Setting\I_CO_IA.Setting.csproj">
+      <Project>{0de625fd-f9b5-44e1-ba70-3b4a6a6ded54}</Project>
+      <Name>I_CO_IA.Setting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.StationManage\I_CO_IA.StationManage.csproj">
+      <Project>{4220961a-5459-43fd-9e07-b6385abcf1c6}</Project>
+      <Name>I_CO_IA.StationManage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ActivitySummarize\ActivitySummarizeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\ActivityInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\AreaInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\AreaList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Areas\AreaTips.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Audio\AudioControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Audio\AudioDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Audio\AudioPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ActivityTitle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\Loading.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\Point\MonitorStation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\Point\OrgEqu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\Point\PersonPoint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\SelectPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\ExtentProgram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\FixedStationDetailDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\ORGAndEquipmentList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\OrgInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\ORGInfoDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\ProgramInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\RemoteWatch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\StationListDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\SurroundStationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Group\GroupDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Group\GroupList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage\MainPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage\ScheduleSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage\StagePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage\StateInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage\StateNotice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Monitor\MonitorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Task\TaskAllList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Task\TaskedList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Task\TaskingList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Track\ClearButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Track\TrackCondition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Video\VideoWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MainPage\arrow_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MainPage\arrow_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Title\cg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Sys\LoginHint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\defaultprogram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Group\orgequ2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Group\monitorstation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ContextMenu\11.png" />
+    <Resource Include="Images\ContextMenu\22.png" />
+    <Resource Include="Images\ContextMenu\33.png" />
+    <Resource Include="Images\ContextMenu\44.png" />
+    <Resource Include="Images\ContextMenu\55.png" />
+    <Resource Include="Images\ContextMenu\66.png" />
+    <Resource Include="Images\ContextMenu\77.png" />
+    <Resource Include="Images\ContextMenu\88.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pin_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cog_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Group\person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MainPage\more.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Sys\more1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ContextMenu\voice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calloff.png" />
+    <Resource Include="Images\callon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ContextMenu\video.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\drag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\detail1.png" />
+    <Resource Include="Images\detail2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\video_64.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

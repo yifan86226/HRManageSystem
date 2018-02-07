@@ -1,0 +1,39 @@
+﻿<Window x:Class="CO_IA.UI.Screen.Dialog.ProgramInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CO_IA.UI.Screen.Dialog"
+        Title="添加" Height="150" Width="500" WindowStyle="ToolWindow">
+    <Window.Resources>
+        <local:StringToImageConverter x:Key="StringToImage"></local:StringToImageConverter>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="81*"/>
+            
+            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="72*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="名称：" Grid.Row="1" Grid.Column="1"></TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="2" Height="25" Text="{Binding Name}"></TextBox>
+        <TextBlock Text="路径：" Grid.Row="2" Grid.Column="1"></TextBlock>
+        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.ColumnSpan="2" IsReadOnly="False" Height="25" Text="{Binding Path}"></TextBox>
+            <Image ToolTip="更换"  Grid.Column="1" Width="25" Height="25" Source="/CO_IA.UI.Screen;component/Images/Sys/more1.png" Cursor="Hand" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
+        </Grid>
+        <Image Margin="10,0,0,0" Grid.Column="3" Grid.Row="1" Width="32" Height=" 32" HorizontalAlignment="Left" Source="{Binding IconURL,Converter={StaticResource StringToImage}}" Cursor="Hand" ToolTip="左键点击更换图片"   MouseLeftButtonUp="ImageChange_MouseLeftButtonUp" ></Image>
+
+        <Button Content="确定"  Grid.Column="3" Grid.Row="3" Width="30"  HorizontalAlignment="Right" Click="Button_Click"></Button>
+    </Grid>
+</Window>

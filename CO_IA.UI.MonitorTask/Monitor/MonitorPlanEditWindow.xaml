@@ -1,0 +1,75 @@
+﻿<Window x:Class="CO_IA.UI.MonitorTask.Monitor.MonitorPlanEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        Title="监测预案"
+        xmlns:client="clr-namespace:CO_IA.Client;assembly=CO_IA.Client"
+        Height="300"
+        Width="400">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="Margin"
+                    Value="5,0" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="72"/>
+            <ColumnDefinition />
+            <ColumnDefinition  Width="72"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="起始频率" />
+        <dxe:TextEdit Grid.Column="1"
+                      VerticalAlignment="Center"
+                      MaskType="RegEx"
+                      Mask="[1-9]\d{0,4}(\.\d{0,4})?"
+                      x:Name="textBoxFreqFrom"
+                      EditValue="{Binding MHzFreqFrom, Mode=OneWay}"/>
+        <TextBlock Text="MHz"
+                   Grid.Column="2" />
+        <TextBlock Text="终止频率"
+                   Grid.Row="1"/>
+        <dxe:TextEdit Grid.Column="1" VerticalAlignment="Center"
+                 Grid.Row="1"
+                 x:Name="textBoxFreqTo"
+                 MaskType="RegEx"
+                 Mask="[1-9]\d{0,4}(\.\d{0,4})?"
+                      EditValue="{Binding MHzFreqTo, Mode=OneWay}" />
+        <TextBlock Text="MHz"
+                   Grid.Column="2"
+                   Grid.Row="1"/>
+        <TextBlock Text="说明" Grid.Row="2"/>
+        <TextBox x:Name="textBoxComments"
+                 Grid.Row="3"
+                 Grid.ColumnSpan="4" AcceptsReturn="True" TextWrapping="Wrap"
+                 Text="{Binding Comments, Mode=OneWay}" MaxLength="1000"/>
+        <TextBlock Text="创建人" Grid.Row="4"/>
+        <TextBlock Text="{Binding Creator, Mode=OneWay}" x:Name="textBlockCreator"
+                   Grid.Row="4" Grid.Column="1"/>
+        <TextBlock Text="创建时间"
+                   Grid.Row="4" Grid.Column="2"/>
+        <TextBlock Text="{Binding CreateTime,  StringFormat={x:Static client:Utility.DateFormatString}, Mode=OneWay}" x:Name="textBlockCreateTime"
+                   Grid.Row="4" Grid.Column="3"/>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Grid.Row="5" Grid.ColumnSpan="4"
+                    VerticalAlignment="Center">
+            <Button Click="buttonOK_Click" Content="确定"/>
+            <Button Click="buttonCancel_Click"
+                    Content="取消" />
+        </StackPanel>
+    </Grid>
+</Window>

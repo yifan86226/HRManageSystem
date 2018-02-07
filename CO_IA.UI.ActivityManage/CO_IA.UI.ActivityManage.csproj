@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C60B2D48-02C1-4582-B540-AB5D30432B06}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CO_IA.UI.ActivityManage</RootNamespace>
+    <AssemblyName>CO_IA.UI.ActivityManage</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AT_BC.Client.Extensions.v5.0, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.Client.Extensions.v5.0.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Common">
+      <HintPath>..\Output\AT_BC.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Data.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Offices, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.Offices.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.SystemPortal.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.SystemPortal.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Data.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Controls.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Controls.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Core.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Docking.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Docking.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Grid.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Layout.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.LayoutControl.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="GS_MapBase, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\GS_MapBase.dll</HintPath>
+    </Reference>
+    <Reference Include="I_GS_MapBase.Portal, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\I_GS_MapBase.Portal.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>D:\Program Files (x86)\Microsoft Visual Studio 12.0\Visual Studio Tools for Office\PIA\Office15\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>D:\Program Files (x86)\Microsoft Visual Studio 12.0\Visual Studio Tools for Office\PIA\Office15\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.Client.Core.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.Client.Core.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.Client.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.Client.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityManageDialog.xaml.cs">
+      <DependentUpon>ActivityManageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converter\AreaCodeConverter.cs" />
+    <Compile Include="EmergencyManageModule.xaml.cs">
+      <DependentUpon>EmergencyManageModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExamPlaceManageModule.xaml.cs">
+      <DependentUpon>ExamPlaceManageModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FileManage\CatalogTreeNode.cs" />
+    <Compile Include="FileManage\Converter\SearchImgConverter.cs" />
+    <Compile Include="FileManage\Converter\VisibilityReverseConverter.cs" />
+    <Compile Include="FileManage\WorkFileManage.xaml.cs">
+      <DependentUpon>WorkFileManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FileManage\WorkFileQueryDialog.xaml.cs">
+      <DependentUpon>WorkFileQueryDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GetImagesConverter.cs" />
+    <Compile Include="GetPlaceImageConverter.cs" />
+    <Compile Include="LocationLAConverter.cs" />
+    <Compile Include="LocationLGConverter.cs" />
+    <Compile Include="PlaceManageModule.xaml.cs">
+      <DependentUpon>PlaceManageModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectExamPlaceDialog.xaml.cs">
+      <DependentUpon>SelectExamPlaceDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPlaceAddDialog.xaml.cs">
+      <DependentUpon>SelectPlaceAddDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FileManage\FileManageHelper.cs" />
+    <Compile Include="FileManage\FileManageModule.xaml.cs">
+      <DependentUpon>FileManageModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityVideoSettingDialog.xaml.cs">
+      <DependentUpon>ActivityVideoSettingDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VideoSettingEditDialog.xaml.cs">
+      <DependentUpon>VideoSettingEditDialog.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ActivityManageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityManageModule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ActivityManageModule.xaml.cs">
+      <DependentUpon>ActivityManageModule.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="EmergencyManageModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExamPlaceManageModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FileManage\WorkFileManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FileManage\WorkFileQueryDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlaceManageModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectExamPlaceDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectPlaceAddDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FileManage\FileManageModule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ActivityVideoSettingDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VideoSettingEditDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PlaceImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EventImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PlaceImg2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CO_IA.Client\CO_IA.Client.csproj">
+      <Project>{b48b653d-d7d2-43f9-806e-e7621e9fa27c}</Project>
+      <Name>CO_IA.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Data.Portable\CO_IA.Data.Portable.csproj">
+      <Project>{d52a57d6-99b0-4bcf-9998-68099e2edc78}</Project>
+      <Name>CO_IA.Data.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.MAP\CO_IA.UI.MAP.csproj">
+      <Project>{1c9be0cb-3fb2-481b-9be8-e7cb41b00bae}</Project>
+      <Name>CO_IA.UI.MAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.ActivityManage\I_CO_IA.ActivityManage.csproj">
+      <Project>{fddc11eb-7155-4afc-9524-c95b52057d0b}</Project>
+      <Name>I_CO_IA.ActivityManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.PersonSchedule\I_CO_IA.PersonSchedule.csproj">
+      <Project>{e16eba22-f8be-4165-a7cb-f7d3a9c996be}</Project>
+      <Name>I_CO_IA.PersonSchedule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.RuleAndFileManage\I_CO_IA.RuleAndFileManage.csproj">
+      <Project>{c432c209-3748-468a-9077-92dc13dfad10}</Project>
+      <Name>I_CO_IA.RuleAndFileManage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\defaultPlace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\query.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\license1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\user3.png" />
+    <Resource Include="Images\文件管理.png" />
+    <Resource Include="Images\规章制度.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pic_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\modify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\link.png" />
+    <Resource Include="Images\upload.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

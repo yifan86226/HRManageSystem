@@ -1,0 +1,188 @@
+﻿<UserControl x:Class="CO_IA.UI.FreqStation.FreqPlan.SurroundStation.SurroundStationListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converer="clr-namespace:CO_IA.UI.FreqStation.Converter"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:comconverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+             xmlns:commoncontrols="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:commonClient="clr-namespace:AT_BC.Common;assembly=AT_BC.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand}"
+                        Executed="CheckableDataCheckedCommandBinding_Executed" />
+    </UserControl.CommandBindings>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CO_IA.Client;component/Converters/ConverterDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Resources>
+            <converer:FreqRangeConverter x:Key="keyfreqRangeConverter" />
+            <converer:NeedClearConverter x:Key="keyneedClearConverter" />
+            <converer:NeedClearVisibilityConverter x:Key="keyneedClearVisibilityConverter" />
+            <comconverter:BusinessCodeConverter x:Key="keybusinessCodeConverter" />
+        </Grid.Resources>
+
+        <DataGrid BorderThickness="0" 
+                  x:Name="stationdatagrid" 
+                  AutoGenerateColumns="False"   
+                  IsReadOnly="True" 
+                  ItemsSource="{Binding }" 
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  LayoutUpdated="stationdatagrid_LayoutUpdated"
+                  SelectionChanged="stationdatagrid_SelectionChanged" >
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="Height"
+                            Value="Auto" />
+                    <Setter Property="MinHeight"
+                            Value="27" />
+                    <EventSetter Event="MouseDoubleClick"
+                                 Handler="stationdatagrid_MouseDoubleClick" />
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="chkAll" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedAllCommand}"
+                                       CommandParameter="{Binding ElementName=stationdatagrid, Path=ItemsSource}"
+                                      Loaded="chkAll_Loaded" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=IsChecked, UpdateSourceTrigger=PropertyChanged}"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand }"
+                                      CommandParameter="{Binding ElementName=stationdatagrid, Path=ItemsSource}"
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <commoncontrols:DataGridVerticalCenterTextColumn Header="申请表编号" Binding="{Binding Path=APP_CODE}" Width="100"  />
+                <commoncontrols:DataGridVerticalCenterTextColumn Header="资料表类型" Binding="{Binding Path=STAT_APP_TYPE}" Width="100" />
+                <commoncontrols:DataGridVerticalCenterTextColumn Header="资料表编号" Binding="{Binding Path=STAT_TDI}" Width="100" />
+                <commoncontrols:DataGridVerticalCenterTextColumn Header="单位名称" Binding="{Binding Path=ORG_NAME}" Width="*" />
+                <commoncontrols:DataGridVerticalCenterTextColumn Header="台站名称" Binding="{Binding Path=STAT_NAME}" Width="*" />
+                <commoncontrols:DataGridVerticalCenterTextColumn Header="台站地址" Binding="{Binding Path=STAT_ADDR}" Width="*" />
+                <commoncontrols:DataGridVerticalCenterTextColumn Header="系统代码" Binding="{Binding Path=ORGSYSCODE }" Width="100" />
+                <commoncontrols:DataGridVerticalCenterTextColumn Header="通信系统" Binding="{Binding Path=NET_SVN}" Width="*" />
+                <!--<commoncontrols:DataGridVerticalCenterTextColumn Header="功率(W)" Binding="{Binding Path=Power}" Width="50" />-->
+                <DataGridTemplateColumn Width="*" Header="待清理频率">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding Path=EmitInfo}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Margin="5,0,0,0" Width="90">
+                                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" 
+                                                      IsChecked="{Binding Path=NeedClear,Converter={StaticResource keyneedClearConverter}, Mode=TwoWay,
+                                                UpdateSourceTrigger = PropertyChanged}"
+                                                       Visibility="{Binding Path=FreqType ,Converter={StaticResource keyneedClearVisibilityConverter} }" />
+                                            <TextBlock Text="{Binding Path=FreqEC }" 
+                                                       HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--<dxg:GridControl x:Name="gridcontrol" ItemsSource="{Binding  }" SelectedItemChanged="gridcontrol_SelectedItemChanged">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="FreqPlan.Name" Header="频率规划名称" />
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView VerticalScrollbarVisibility="Auto" AutoWidth="True" 
+                               NavigationStyle="Row"
+                               DetailHeaderContent="台站信息" 
+                               ShowGroupPanel="False"
+                               ShowFixedTotalSummary="True"
+                               ShowColumnHeaders="False"
+                               ShowDetailButtons="True" />
+            </dxg:GridControl.View>
+            <dxg:GridControl.DetailDescriptor>
+                <dxg:DataControlDetailDescriptor ShowHeader="False"
+                                                 ItemsSourceBinding="{Binding SurroundStations}" >
+                    <dxg:GridControl x:Name="stationgridcontrol" SelectedItemChanged="stationgridcontrol_SelectedItemChanged">
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn Header="申请表编号" FieldName="APP_CODE" Width="100"  />
+                            <dxg:GridColumn Header="资料表类型" FieldName="STAT_APP_TYPE" Width="100" />
+                            <dxg:GridColumn Header="资料表编号" FieldName="STAT_TDI" Width="100" />
+                            <dxg:GridColumn Header="单位名称" FieldName="ORG_NAME"  />
+                            <dxg:GridColumn Header="台站名称" FieldName="STAT_NAME" />
+                            <dxg:GridColumn Header="台站地址" FieldName="STAT_ADDR" />
+                            <dxg:GridColumn Header="系统代码" FieldName="ORGSYSCODE " Width="100" />
+                            <dxg:GridColumn Header="通信系统" FieldName="NET_SVN"  />
+                            <dxg:GridColumn Header="功率(W)" FieldName="Power" Width="50" />
+                            <dxg:GridColumn Header="清理频率">
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding Path=RowData.Row.EmitInfo}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Vertical"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                                                        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" 
+                                                                  IsChecked="{Binding Path=NeedClear,Converter={StaticResource keyneedClearConverter}, Mode=TwoWay,UpdateSourceTrigger = PropertyChanged}"  />
+                                                        <TextBlock Text="{Binding Path=FreqEC}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                        </dxg:GridControl.Columns>
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="stationtableview"
+                                           VerticalScrollbarVisibility="Auto" 
+                                           AutoWidth="True" 
+                                           AllowFixedGroups="True"
+                                           NavigationStyle="Row"
+                                           DetailHeaderContent="周围台站" 
+                                           ShowGroupPanel="True"
+                                           ShowFixedTotalSummary="True"
+                                           ShowColumnHeaders="True" 
+                                           RowDoubleClick="TableView_RowDoubleClick"
+                                           />
+                        </dxg:GridControl.View>
+                        <dxg:GridControl.TotalSummary>
+                            <dxg:GridSummaryItem SummaryType="Count" Alignment="Left" />
+                            <dxg:GridSummaryItem FieldName="Total" SummaryType="Sum" Alignment="Right" />
+                        </dxg:GridControl.TotalSummary>
+                    </dxg:GridControl>
+                </dxg:DataControlDetailDescriptor>
+            </dxg:GridControl.DetailDescriptor>
+
+            <dxg:GridControl.TotalSummary>
+                <dxg:GridSummaryItem FieldName="Freight" SummaryType="Sum" Alignment="Right" />
+            </dxg:GridControl.TotalSummary>
+        </dxg:GridControl>-->
+
+
+    </Grid>
+</UserControl>

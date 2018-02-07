@@ -1,0 +1,420 @@
+﻿<UserControl x:Class="CO_IA.UI.PlanDatabase.Template.OrganizationTemplateControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:clientConverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:commonConverter="clr-namespace:AT_BC.Common.Converters;assembly=AT_BC.Common"
+             xmlns:local="clr-namespace:CO_IA.UI.PlanDatabase.Template"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CO_IA.Themes;component/Style.xaml" />
+                <ResourceDictionary Source="/AT_BC.Common;component/Converters/ConverterTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        <clientConverter:DistrictNameConverter x:Key="districtNameConverter" />
+        <clientConverter:BytesToImageConverter x:Key="BytesToImageConverter" />
+        <commonConverter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <local:OrganizationEquipmentVisibilityConverter x:Key="OrganizationEquipmentVisibilityConverter" />
+        <local:VehicleImageConverter x:Key="VehicleImageConverter" />
+            <local:NullObjectToCollapsedConverter x:Key="NullObjectToCollapsedConverter" />
+            <!--<Style TargetType="dxe:TextEdit">
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+        </Style>
+        <Style TargetType="dxe:ComboBoxEdit">
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+        </Style>-->
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Right" />
+        </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TreeView Name="treeViewOrg"
+                  TreeViewItem.Selected="treeViewOrg_Selected">
+            <TreeView.Resources>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded"
+                            Value="True" />
+                    <Setter Property="IsSelected"
+                            Value="{Binding IsSelected}" />
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                    <Setter Property="HorizontalAlignment"
+                            Value="Stretch" />
+                    <EventSetter Event="TreeViewItem.PreviewMouseLeftButtonDown"
+                                 Handler="treeViewOrg_PreviewMouseUp" />
+                </Style>
+            </TreeView.Resources>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding SubTreeNodes}">
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="新建下级"
+                                          x:Name="menuItemNewOrg"
+                                          Click="MenuItemCreateSubOrg_Click"
+                                          Visibility="Collapsed" />
+                                <MenuItem Header="删除"
+                                          x:Name="menuItemDeleteOrg"
+                                          Click="menuItemDeleteOrg_Click" />
+                            </ContextMenu>
+                        </Grid.ContextMenu>
+                        <TextBlock Text="{Binding Path=Value.Name}">
+                        </TextBlock>
+                    </Grid>
+                    <HierarchicalDataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Level}"
+                                     Value="0">
+                            <Setter Property="UIElement.Visibility"
+                                    Value="Visible"
+                                    TargetName="menuItemNewOrg" />
+                            <Setter Property="UIElement.Visibility"
+                                    Value="Collapsed"
+                                    TargetName="menuItemDeleteOrg" />
+                        </DataTrigger>
+                    </HierarchicalDataTemplate.Triggers>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <Grid Grid.Column="1"
+              x:Name="gridOrgTemplate"
+              DataContext="{Binding ElementName=treeViewOrg, Path=SelectedItem.Value}"
+              DataContextChanged="gridOrgTemplate_DataContextChanged">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Margin="10"
+                    BorderBrush="{DynamicResource ModuleToolBar.BorderBrush}"
+                    BorderThickness="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border BorderThickness="0,0,0,1"
+                            Margin="-10,0"
+                            BorderBrush="{DynamicResource ModuleToolBar.BorderBrush}"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Stretch" />
+                    <TextBlock Text="基本信息"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               HorizontalAlignment="Left"
+                               FontWeight="SemiBold" />
+                    <Button Click="buttonSave_Click"
+                            Content="保存"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Margin="6,0" />
+                    <!--<Grid Grid.Row="1"
+                          Margin="5" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBox Width="300"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 TextAlignment="Center"
+                                 FontSize="20"
+                                 Text="{Binding Path=Name}"
+                                 BorderThickness="0,0,0,1" />
+                        <GroupBox Header="职责"
+                                  Grid.Row="1">
+                            <ListBox x:Name="listBoxDuty"
+                                     DataContextChanged="listBoxDuty_DataContextChanged"
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     MaxHeight="70"
+                                     LostFocus="listBoxDuty_LostFocus"
+                                     SelectionMode="Single"
+                                     BorderThickness="0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Content="{Binding Name}"
+                                                  IsChecked="{Binding IsChecked}" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"
+                                                   Margin="7"
+                                                   HorizontalAlignment="Stretch"
+                                                   VerticalAlignment="Stretch" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                            </ListBox>
+                        </GroupBox>
+                        <GroupBox Header="车辆"
+                                  Grid.Row="2"
+                                  Margin="0,5">
+                            <Grid x:Name="gridVehicle"
+                                  DataContext="{Binding Vehicle}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition  Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border Height="90"
+                                        Width="90"
+                                        Grid.RowSpan="3"
+                                        BorderThickness="1">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image x:Name="imageVehicle" Grid.Row="1" Grid.Column="1" MaxHeight="90" MaxWidth="90"
+                                               VerticalAlignment="Stretch"
+                                               HorizontalAlignment="Stretch"
+                                               Source="{Binding Converter={StaticResource VehicleImageConverter}, ConverterParameter=/CO_IA.UI.PlanDatabase;component/Images/VehicleSelectTip.png}"/>
+                                        <Rectangle Fill="Transparent"
+                                                   MouseLeftButtonUp="imageVehicle_MouseLeftButtonUp" Grid.RowSpan="3" Grid.ColumnSpan="3" />
+                                        <Button VerticalAlignment="Top"
+                                                Grid.Row="1"
+                                                Grid.Column="1" Height="20" Width="20"
+                                                x:Name="buttonDeleteVehicle"
+                                                HorizontalAlignment="Right"
+                                                Style="{StaticResource controlButton}" Visibility="{Binding Converter={StaticResource NullObjectToCollapsedConverter}}" Click="buttonDeleteVehicle_Click">
+                                            <Image Source="/CO_IA.UI.PlanDatabase;component/Images/Remove.png"
+                                                   Stretch="Uniform"
+                                                   VerticalAlignment="Stretch"
+                                                   HorizontalAlignment="Stretch"/>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                                <TextBlock Text="所属地区："
+                                           Grid.Column="1" />
+                                <dxe:ComboBoxEdit x:Name="combArea"
+                                                  Grid.Column="2"
+                                                  ValueMember="Key"
+                                                  Margin="0"
+                                                  IsReadOnly="True"
+                                                  DisplayMember="Value"
+                                                  EditValue="{Binding Path=AreaCode}" />
+                                <CheckBox Grid.Column="3"
+                                          Margin="0"
+                                          Content="监测车"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Right"
+                                          IsChecked="{Binding Path=IsMonitor }"
+                                          IsHitTestVisible="False" />
+                                <TextBlock Text="车牌号码："
+                                           Grid.Column="1"
+                                           Grid.Row="1" />
+                                <dxe:TextEdit Grid.Column="2"
+                                              IsReadOnly="True"
+                                              Grid.Row="1"
+                                              Text="{Binding Path=VehicleNo}"
+                                              MaxLength="10" />
+
+                                <TextBlock Text="车辆型号："
+                                           Grid.Column="3"
+                                           Grid.Row="1" />
+                                <dxe:TextEdit Grid.Column="4"
+                                              Grid.Row="1"
+                                              Text="{Binding Path=VehicleModel}"
+                                              MaxLength="10"
+                                              IsReadOnly="True" />
+
+
+                                <TextBlock Text="司       机："
+                                           Grid.Column="1"
+                                           Grid.Row="2" />
+                                <dxe:TextEdit Grid.Column="2"
+                                              Grid.Row="2"
+                                              Text="{Binding Path=Driver}"
+                                              MaxLength="10"
+                                              IsReadOnly="True" />
+
+                                <TextBlock Text="手机号码："
+                                           Grid.Column="3"
+                                           Grid.Row="2" />
+                                <dxe:TextEdit x:Name="txtPhone"
+                                              Grid.Column="4"
+                                              Grid.Row="2"
+                                              Text="{Binding Path=Phone}"
+                                              IsReadOnly="True" />
+                            </Grid>
+                        </GroupBox>
+                    </Grid>-->
+                    <local:OrganizationEditControl Grid.Row="1"
+                                                   Margin="5" x:Name="organizationEditControl" />
+                </Grid>
+            </Border>
+            <Border Margin="10,10,10,0"
+                    BorderBrush="{DynamicResource ModuleToolBar.BorderBrush}"
+                    BorderThickness="0"
+                    Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="24" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border BorderThickness="0,0,0,1"
+                            Margin="-10,0"
+                            BorderBrush="{DynamicResource ModuleToolBar.BorderBrush}"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Stretch" />
+                    <TextBlock Text="人员设备"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               HorizontalAlignment="Left"
+                               FontWeight="SemiBold" />
+                    <TabControl Grid.Row="1"
+                                Margin="5,5,5,0">
+                        <TabItem Header="设备配置"
+                                 Visibility="{Binding ElementName=treeViewOrg, Path=SelectedItem,  Converter={StaticResource OrganizationEquipmentVisibilityConverter}}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Right">
+                                    <Button Content="增加"
+                                            Click="buttonMonitorEquipmentAdd_Click" />
+                                    <Button Content="删除"
+                                            Click="buttonMonitorEquipmentDelete_Click" />
+                                </StackPanel>
+                                <DataGrid x:Name="dataGridMonitorEquipment"
+                                          IsReadOnly="True"
+                                          AutoGenerateColumns="False"
+                                          CanUserAddRows="False"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          Grid.Row="1">
+                                    <DataGrid.RowStyle>
+                                        <Style TargetType="{x:Type DataGridRow}">
+                                            <EventSetter Event="MouseDoubleClick"
+                                                         Handler="dataGridMonitorEquipment_MouseDoubleClick" />
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <DataGrid.Columns>
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="设备名称"
+                                                                                         Binding="{Binding Path=Name}"
+                                                                                         Width="*" />
+                                        <commonControls:DataGridVerticalCenterTextColumn x:Name="areacodeColumn"
+                                                                                         Header="地区"
+                                                                                         Binding="{Binding Path=AreaCode,Converter={StaticResource districtNameConverter}}"
+                                                                                         Width="*" />
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="供应商"
+                                                                                         Binding="{Binding Path=Supplier}"
+                                                                                         Width="*" />
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="起始频率(MHz)"
+                                                                                         Binding="{Binding Path=StartFreq}"
+                                                                                         Width="*" />
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="终止频率(MHz)"
+                                                                                         Binding="{Binding Path=EndFreq}"
+                                                                                         Width="*" />
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="类型"
+                                                                                         Binding="{Binding Path=Type}"
+                                                                                         Width="*" />
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="型号"
+                                                                                         Binding="{Binding Path=ModelNo}"
+                                                                                         Width="*" />
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="设备编号"
+                                                                                         Binding="{Binding Path=Code}"
+                                                                                         Width="*" />
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="设备串号"
+                                                                                         Binding="{Binding Path=SerialNumber}"
+                                                                                         Width="*" />
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="灵敏度(dBm)"
+                                                                                         Binding="{Binding Path=Sensitivity}"
+                                                                                         Width="*" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem Header="人员配置" x:Name="tabItemStaffSetting">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Right">
+                                    <Button Content="增加"
+                                            Click="buttonPersonAdd_Click" />
+                                    <Button Content="删除"
+                                            Click="buttonPersonDelete_Click" />
+                                </StackPanel>
+                                <DataGrid Name="dataGridPersons"
+                                          IsReadOnly="True"
+                                          AutoGenerateColumns="False"
+                                          CanUserAddRows="False"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          Grid.Row="1">
+                                    <DataGrid.Columns>
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="姓名"
+                                                                                         Width="*"
+                                                                                         Binding="{Binding Name}"
+                                                                                         IsReadOnly="True" />
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="所属地区"
+                                                                                         Width="*"
+                                                                                         Binding="{Binding AreaCode, Converter={StaticResource districtNameConverter}}"
+                                                                                         IsReadOnly="True">
+                                        </commonControls:DataGridVerticalCenterTextColumn>
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="单位"
+                                                                                         Width="*"
+                                                                                         Binding="{Binding Unit}"
+                                                                                         IsReadOnly="True" />
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="职务"
+                                                                                         Width="*"
+                                                                                         Binding="{Binding Duty}"
+                                                                                         IsReadOnly="True" />
+                                        <commonControls:DataGridVerticalCenterTextColumn Header="电话"
+                                                                                         Width="*"
+                                                                                         Binding="{Binding Phone}"
+                                                                                         IsReadOnly="True" />
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                    <Grid Background="White"
+                          Opacity="0.5"
+                          Grid.RowSpan="2"
+                          Visibility="{Binding IsNew, Converter={StaticResource BoolToVisibilityConverter}}" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

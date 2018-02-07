@@ -1,0 +1,185 @@
+﻿<Window x:Class="CO_IA.UI.FreqStation.StationPlan.LicenseTempleteDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:converter="clr-namespace:CO_IA.UI.FreqStation.Converter"
+        xmlns:clientconverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+        WindowStartupLocation="CenterScreen"
+        Title="许可证模板" Width="730" Height="450" >
+    <Window.Resources>
+        <converter:SelectedConverter  x:Key="keySelectedConverter"/>
+        <clientconverter:BytesToImageConverter  x:Key="keyBytesToImageConverter"/>
+    </Window.Resources>
+    <Grid>
+        <GroupBox Grid.Row="0" Grid.Column="0" Header="模板设置">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1"  Margin="1"  >
+                    <StackPanel  Grid.Column="0" Margin="2"  Grid.RowSpan="2"
+                             Orientation="Vertical" HorizontalAlignment="Left">
+                        <TextBlock Text="选择字段" Margin="2" />
+                        <TreeView x:Name="treefiles" Width="200" Height="200" >
+                            <TreeView.ItemContainerStyle>
+                                <Style TargetType="{x:Type TreeViewItem}">
+                                    <Setter Property="IsExpanded" Value="False"></Setter>
+                                    <Setter Property="AllowDrop" Value="True"/>
+                                    <EventSetter Event="MouseMove" Handler="TreeViewItem_MouseMove"/>
+                                </Style>
+                            </TreeView.ItemContainerStyle>
+                        </TreeView>
+
+                        <CheckBox  Margin="0,2" x:Name="_chkImage"
+                                   Checked="_chkImage_Checked"  
+                                   Unchecked="_chkImage_Unchecked">
+                            <CheckBox.Content>
+                                <Hyperlink Click="hlinkBGImage_Click" >活动图标作为背景图片
+                                </Hyperlink>
+                            </CheckBox.Content>
+                        </CheckBox>
+
+                        <CheckBox  Margin="0,2" x:Name="_chkQRCode" 
+                                   Checked="_chkQRCode_Checked" 
+                                   Unchecked="_chkQRCode_Unchecked">
+                            <CheckBox.Content>
+                                <Hyperlink Click="hlinkQRCode_Click" >二维码
+                                </Hyperlink>
+                            </CheckBox.Content>
+                        </CheckBox>
+
+                        <Border Margin="0,2"  BorderBrush="Gray" BorderThickness="1" Width="100" Height="100" HorizontalAlignment="Left">
+                            <Image x:Name="imgQRcode" Height="100"  Width="100"
+                                   Source="{Binding Path=QRCodeImageSource ,Converter={StaticResource keyBytesToImageConverter}}"  >
+                            </Image>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <Grid  Grid.Column="1"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition  Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border x:Name="_borderCanvas" Margin="1" HorizontalAlignment="Left"
+                            VerticalAlignment="Top" BorderBrush="Gray" BorderThickness="1" 
+                            MouseDown="_borderCanvas_MouseDown"
+                            Height="{Binding ElementName=_txtHeight,Path=EditValue, Mode=TwoWay}" 
+                            Width="{Binding  ElementName=_txtWidth , Path=EditValue, Mode=TwoWay}">
+                        <Canvas Name="_canvasPanel"
+                                AllowDrop="True" 
+                                Drop="_canvasPanel_Drop"
+                                Grid.Row="0"
+                                Margin="2,2,2,2"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch">
+                            <!--Background="#01000000"-->
+                            <Canvas.Background>
+                                <ImageBrush 
+                                    Stretch="Uniform"
+                                    ImageSource="{Binding Path=BackgroundImageSource ,Mode=TwoWay,
+                                    Converter={StaticResource keyBytesToImageConverter}}" />
+                            </Canvas.Background>
+                            <Border  x:Name="_borderqriamge" 
+                                     Width="{Binding ElementName=_qrCodeImage, Path=Width ,Mode=TwoWay}"
+                                     Height="{Binding ElementName=_qrCodeImage,Path=Height,Mode=TwoWay}"
+                                     Canvas.Left="290" Canvas.Top="10" Visibility="Collapsed"
+                                     MouseMove="_qrCodeImage_MouseMove" 
+                                     BorderBrush="{Binding Path=IsQRCodeSelect, Mode=TwoWay,Converter={StaticResource keySelectedConverter}}" 
+                                     BorderThickness="1" >
+                                <Image x:Name="_qrCodeImage"  
+                                       Width="{Binding ElementName=_txtqrWidth ,Path=EditValue, Mode=TwoWay}"
+                                       Height="{Binding ElementName=_txtqrHeight,Path=EditValue,Mode=TwoWay}"
+                                       Source="{Binding Path=QRCodeImageSource ,Converter={StaticResource keyBytesToImageConverter},Mode=TwoWay}" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform"
+                                       MouseLeftButtonUp="_qrCodeImage_MouseLeftButtonUp"
+                                       Margin="1"/>
+                            </Border>
+                        </Canvas>
+                    </Border>
+
+                    <Border Grid.Column="1" Background="White" />
+
+                    <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1"  Margin="1" 
+                            x:Name="_bordertool" MinWidth="480"  Grid.ColumnSpan="2">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition  Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="2"  >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="模板高度:" Grid.Row="1" Grid.Column="0"  Margin="2" VerticalAlignment="Center"/>
+                                    <dxe:TextEdit x:Name="_txtHeight" Grid.Row="1" Grid.Column="1" Margin="2" MaskType="Numeric" 
+                                          Width="60" Text="300" EditValueChanged="_txtHeight_EditValueChanged" MaxLength="5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="模板宽度:" Grid.Row="2" Grid.Column="0" Margin="2"  VerticalAlignment="Center"/>
+                                    <dxe:TextEdit x:Name="_txtWidth" Grid.Row="2" Grid.Column="1" Margin="2" MaskType="Numeric" 
+                                          Width="60"  Text="400" EditValueChanged="_txtWidth_EditValueChanged" MaxLength="5"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="2" Grid.Column="1"    >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="二维码高度:" Grid.Row="1" Grid.Column="0"  Margin="2" VerticalAlignment="Center"/>
+                                    <dxe:TextEdit x:Name="_txtqrHeight" Grid.Row="1" Grid.Column="1" Margin="2" MaskType="Numeric" 
+                                          Width="60" Text="100" EditValueChanged="_txtqrHeight_EditValueChanged" MaxLength="5" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="二维码宽度:" Grid.Row="2" Grid.Column="0" Margin="2"  VerticalAlignment="Center"/>
+                                    <dxe:TextEdit x:Name="_txtqrWidth" Grid.Row="2" Grid.Column="1" Margin="2" MaskType="Numeric" 
+                                          Width="60"  Text="100" EditValueChanged="_txtqrWidth_EditValueChanged" MaxLength="5" />
+                                </StackPanel>
+                            </StackPanel>
+
+                            <TextBlock  Grid.Column="2" Text="位置调整:" VerticalAlignment="Center" Margin="10"/>
+                            <Grid Grid.Column="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="20" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="1" 
+                                   Source="/CO_IA.UI.FreqStation;component/Images/Up.png" 
+                                   VerticalAlignment="Bottom"  Stretch="None" MouseLeftButtonUp="ImageUp_MouseLeftButtonUp" />
+                                <Image Grid.Column="0" Grid.Row="1"
+                                   Source="/CO_IA.UI.FreqStation;component/Images/Left.png" 
+                                   VerticalAlignment="Bottom"  Stretch="None" MouseLeftButtonUp="ImageLeft_MouseLeftButtonUp" />
+                                <Image Grid.Column="1" Grid.Row="2"
+                                   Source="/CO_IA.UI.FreqStation;component/Images/Down.png" 
+                                   VerticalAlignment="Bottom" Stretch="None" MouseLeftButtonUp="ImageDown_MouseLeftButtonUp" />
+                                <Image Grid.Row="1" Grid.Column="2" Source="/CO_IA.UI.FreqStation;component/Images/Right.png" 
+                                   VerticalAlignment="Bottom"  Stretch="None" MouseLeftButtonUp="ImageRight_MouseLeftButtonDown" />
+                            </Grid>
+                            <Button x:Name="_btnSave" Content="保存模板"  Grid.Column="4" Height="25" Margin="10,2"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="_btnSave_Click"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="grpView" Header="许可证预览" Grid.Column="1"   
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10 0 5 0" MinWidth="400" Visibility="Collapsed">
+        </GroupBox>
+    </Grid>
+</Window>

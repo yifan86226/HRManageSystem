@@ -1,0 +1,92 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CO_IA.RIAS", "CO_IA.RIAS\CO_IA.RIAS.csproj", "{797F1D1A-F50D-4CD5-A36C-35C203959073}"
+	ProjectSection(ProjectDependencies) = postProject
+		{959477DC-E288-4AB8-A0E3-175E298DD102} = {959477DC-E288-4AB8-A0E3-175E298DD102}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CO_IA.Public", "CO_IA.Public\CO_IA.Public.csproj", "{D44E8E69-4FBE-495E-B411-4408DD78F77D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CO_IA.Data.Portable", "CO_IA.Data.Portable\CO_IA.Data.Portable.csproj", "{D52A57D6-99B0-4BCF-9998-68099E2EDC78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CO_IA.Client", "CO_IA.Client\CO_IA.Client.csproj", "{B48B653D-D7D2-43F9-806E-E7621E9FA27C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CO_IA.UI.Statistic", "CO_IA.UI.Statistic\CO_IA.UI.Statistic.csproj", "{E50E6E16-DA2E-44C8-A35D-A38A8A53B5ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CO_IA.UI.PlanDatabase", "CO_IA.UI.PlanDatabase\CO_IA.UI.PlanDatabase.csproj", "{33CEBD14-8A23-4001-9455-FB3B28DF2902}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CO_IA.Client.UIBuilderFactory", "CO_IA.Client.UIBuilderFactory\CO_IA.Client.UIBuilderFactory.csproj", "{1311FD8A-634E-4963-AD25-E95911337EC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CO_IA.Client.UIBuilderFactory.Standard", "CO_IA.Client.UIBuilderFactory.Standard\CO_IA.Client.UIBuilderFactory.Standard.csproj", "{959477DC-E288-4AB8-A0E3-175E298DD102}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CO_IA.UI.PersonSchedule", "CO_IA.UI.PersonSchedule\CO_IA.UI.PersonSchedule.csproj", "{B816C21C-364A-40A6-AE4C-DB9290713D24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataManager.Public", "DataManager.Public\DataManager.Public.csproj", "{61A12E25-9843-44DF-9583-1E17ADE092A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CO_IA.Display", "CO_IA.Display\CO_IA.Display.csproj", "{6B352FA2-2D28-4710-9E97-C5173D71886B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{797F1D1A-F50D-4CD5-A36C-35C203959073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{797F1D1A-F50D-4CD5-A36C-35C203959073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{797F1D1A-F50D-4CD5-A36C-35C203959073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{797F1D1A-F50D-4CD5-A36C-35C203959073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D44E8E69-4FBE-495E-B411-4408DD78F77D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D44E8E69-4FBE-495E-B411-4408DD78F77D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D44E8E69-4FBE-495E-B411-4408DD78F77D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D44E8E69-4FBE-495E-B411-4408DD78F77D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D52A57D6-99B0-4BCF-9998-68099E2EDC78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D52A57D6-99B0-4BCF-9998-68099E2EDC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D52A57D6-99B0-4BCF-9998-68099E2EDC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D52A57D6-99B0-4BCF-9998-68099E2EDC78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B48B653D-D7D2-43F9-806E-E7621E9FA27C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B48B653D-D7D2-43F9-806E-E7621E9FA27C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B48B653D-D7D2-43F9-806E-E7621E9FA27C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B48B653D-D7D2-43F9-806E-E7621E9FA27C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E50E6E16-DA2E-44C8-A35D-A38A8A53B5ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E50E6E16-DA2E-44C8-A35D-A38A8A53B5ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E50E6E16-DA2E-44C8-A35D-A38A8A53B5ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E50E6E16-DA2E-44C8-A35D-A38A8A53B5ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33CEBD14-8A23-4001-9455-FB3B28DF2902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33CEBD14-8A23-4001-9455-FB3B28DF2902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33CEBD14-8A23-4001-9455-FB3B28DF2902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33CEBD14-8A23-4001-9455-FB3B28DF2902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1311FD8A-634E-4963-AD25-E95911337EC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1311FD8A-634E-4963-AD25-E95911337EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1311FD8A-634E-4963-AD25-E95911337EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1311FD8A-634E-4963-AD25-E95911337EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{959477DC-E288-4AB8-A0E3-175E298DD102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{959477DC-E288-4AB8-A0E3-175E298DD102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{959477DC-E288-4AB8-A0E3-175E298DD102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{959477DC-E288-4AB8-A0E3-175E298DD102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B816C21C-364A-40A6-AE4C-DB9290713D24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B816C21C-364A-40A6-AE4C-DB9290713D24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B816C21C-364A-40A6-AE4C-DB9290713D24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B816C21C-364A-40A6-AE4C-DB9290713D24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61A12E25-9843-44DF-9583-1E17ADE092A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61A12E25-9843-44DF-9583-1E17ADE092A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61A12E25-9843-44DF-9583-1E17ADE092A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61A12E25-9843-44DF-9583-1E17ADE092A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B352FA2-2D28-4710-9E97-C5173D71886B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B352FA2-2D28-4710-9E97-C5173D71886B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B352FA2-2D28-4710-9E97-C5173D71886B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B352FA2-2D28-4710-9E97-C5173D71886B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A47E5392-E79A-4518-8542-3FDE53B8B629}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,30 @@
+﻿<commonClient:CheckableWindow x:Class="CO_IA.UI.FreqStation.FreqPlan.SurroundStation.SurroundStationSelectorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CO_IA.UI.FreqStation.FreqPlan.SurroundStation"
+        xmlns:commonClient="clr-namespace:AT_BC.Common;assembly=AT_BC.Common"
+        xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        WindowStartupLocation="CenterScreen"
+        Title="请选择周围台站" Height="600" Width="1000">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CO_IA.Client;component/Converters/ConverterDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <toolkit:BusyIndicator x:Name="busyIndicator" BusyContent="正在保存,请稍后..." IsBusy="False"  >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <local:SurroundStationListControl x:Name="surroundStationListControl" />
+            <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Right" Grid.Row="1">
+                <Button Content="保存" Margin="5" Click="btnOK_Click" />
+                <Button Content="取消" Margin="5" Click="btnCancel_Click"/>
+            </StackPanel>
+        </Grid>
+    </toolkit:BusyIndicator>
+</commonClient:CheckableWindow>

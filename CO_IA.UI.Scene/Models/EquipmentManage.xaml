@@ -1,0 +1,66 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        x:Class="CO_IA.UI.Scene.EquipmentManage"
+        Height="300"
+        Width="300"
+        ShowInTaskbar="False"
+        Title="现场监测设备管控">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin"
+                        Value="5" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <!--第0行-->
+        <TextBlock Text="管控中心连接"
+                   Grid.Row="0"
+                   Grid.Column="0" />
+        <TextBox Grid.Row="0"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="3" />
+        <!--第1行-->
+        <TextBlock Text="工作地点名称"
+                   Grid.Row="1"
+                   Grid.Column="0" />
+        <TextBox Grid.Row="1"
+                 Grid.Column="1" />
+        <TextBlock Text="监测车代号"
+                   Grid.Row="1"
+                   Grid.Column="2" />
+        <TextBox Grid.Row="1"
+                 Grid.Column="3" />
+        <!--第2行-->
+        <GroupBox Header="现场监测设备配置"
+                  Grid.Row="2"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="4">
+            <DataGrid Name="xDgEquipConfig"
+                      AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="设备型号"
+                                        Binding="{Binding Path=EquipModel}"
+                                        Width="100" />
+                    <DataGridTextColumn Header="IP"
+                                        Binding="{Binding Path=IP}" />
+                    <DataGridTextColumn Header="端口"
+                                        Binding="{Binding Path=Port}" />
+                    <DataGridCheckBoxColumn Header="状态"
+                                            Binding="{Binding Path=State}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+    </Grid>
+</Window>

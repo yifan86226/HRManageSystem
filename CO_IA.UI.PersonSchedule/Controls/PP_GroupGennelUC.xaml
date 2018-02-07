@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="CO_IA.UI.PersonSchedule.PP_GroupGennelUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="120" d:DesignWidth="600">
+    <Grid   MouseLeftButtonUp="Grid_MouseLeftButtonUp">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition   Width="100" />
+            <ColumnDefinition   Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image x:Name="img_GroupLeader" Height="120"  Grid.Column="0"   Source="/CO_IA.UI.PersonSchedule;component/Images/组长.jpg" Margin="5" />
+
+        <Grid   Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition   Width="50" />
+                <ColumnDefinition   Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="tb_GroupName"   FontSize="14" FontWeight="Bold"  Text="监测组第一小组"  Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Stretch"  Margin="1" VerticalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Stretch"  Grid.Column="0"  Margin="5" Grid.Row="1" TextWrapping="Wrap" Text="负责人:" VerticalAlignment="Stretch"/>
+            <TextBlock  x:Name="tb_GroupLeader"   HorizontalAlignment="Stretch"  Grid.Column="1"  Margin="5" Grid.Row="1" TextWrapping="Wrap" Text="胡晓明" VerticalAlignment="Stretch"/>
+            <TextBlock  x:Name="tb_GroupDetail"   HorizontalAlignment="Stretch"  Grid.Column="0"  Grid.ColumnSpan="2" Margin="5" Grid.Row="2" TextWrapping="Wrap" Text="副组长霍中华；组员5人；设备4台；为监测车辆。" VerticalAlignment="Stretch"/>
+
+        </Grid>
+   </Grid>
+</UserControl>

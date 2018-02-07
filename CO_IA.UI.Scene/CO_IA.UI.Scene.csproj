@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{46ECD47C-4BFF-497F-A53E-FFDBF5FF0D22}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CO_IA.UI.Scene</RootNamespace>
+    <AssemblyName>CO_IA.UI.Scene</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="AT_BC.Common">
+      <HintPath>..\Output\AT_BC.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Data.Portable">
+      <HintPath>..\Output\AT_BC.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Data.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2013.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Themes.Office2013.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="GS_MapBase">
+      <HintPath>..\Output\GS_MapBase.dll</HintPath>
+    </Reference>
+    <Reference Include="I_GS_MapBase.Portal">
+      <HintPath>..\Output\I_GS_MapBase.Portal.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="PT_BS_Service.Client.Core.Portable">
+      <HintPath>..\Output\PT_BS_Service.Client.Core.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.Client.Framework">
+      <HintPath>..\Output\PT_BS_Service.Client.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppImageRadioButton.cs" />
+    <Compile Include="DataOperator.cs" />
+    <Compile Include="LoginService.cs" />
+    <Compile Include="Models\EquipmentManage.xaml.cs">
+      <DependentUpon>EquipmentManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FreqPlanView.xaml.cs">
+      <DependentUpon>FreqPlanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MonitorPlanView.xaml.cs">
+      <DependentUpon>MonitorPlanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RealTimeMonitoring.xaml.cs">
+      <DependentUpon>RealTimeMonitoring.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StationPlanView.xaml.cs">
+      <DependentUpon>StationPlanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ActivititySummarize.png" />
+    <Resource Include="Images\app.ico" />
+    <Resource Include="Images\Bylaw.png" />
+    <Resource Include="Images\Close.png" />
+    <Resource Include="Images\collect.png" />
+    <Resource Include="Images\defaultActivity.png" />
+    <Resource Include="Images\ElectronicEnvironmentAnalysis.png" />
+    <Resource Include="Images\FreqPlan.png" />
+    <Resource Include="Images\help.png" />
+    <Resource Include="Images\Min.png" />
+    <Resource Include="Images\MonitorPlan.png" />
+    <Resource Include="Images\Setting.png" />
+    <Resource Include="Images\sound.png" />
+    <Resource Include="Images\StationPlan.png" />
+    <Resource Include="Images\实时监测界面截图.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Models\EquipmentManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Models\FreqPlanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Models\MonitorPlanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Models\RealTimeMonitoring.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Models\StationPlanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CO.IA.UI.TaskManage\CO_IA.UI.TaskManage.csproj">
+      <Project>{dd95003f-628e-496e-81af-835323b6a0d7}</Project>
+      <Name>CO_IA.UI.TaskManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Client\CO_IA.Client.csproj">
+      <Project>{b48b653d-d7d2-43f9-806e-e7621e9fa27c}</Project>
+      <Name>CO_IA.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Data.Portable\CO_IA.Data.Portable.csproj">
+      <Project>{d52a57d6-99b0-4bcf-9998-68099e2edc78}</Project>
+      <Name>CO_IA.Data.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Themes\CO_IA.Themes.csproj">
+      <Project>{97ddcd73-a7fb-40a5-983e-b6980dcd62c0}</Project>
+      <Name>CO_IA.Themes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.FreqPlan\CO_IA.UI.FreqPlan.csproj">
+      <Project>{9d82c7ed-d006-4307-bb63-a11486283c95}</Project>
+      <Name>CO_IA.UI.FreqPlan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.MonitorPlan\CO_IA.UI.MonitorPlan.csproj">
+      <Project>{ee1fd02b-c843-4250-92be-b30e56f428cf}</Project>
+      <Name>CO_IA.UI.MonitorPlan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.Setting\CO_IA.UI.Setting.csproj">
+      <Project>{bbffc08d-1716-4ecc-ad5b-f98685635d1c}</Project>
+      <Name>CO_IA.UI.Setting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.StationPlan\CO_IA.UI.StationPlan.csproj">
+      <Project>{01d26ab5-e20c-4ef5-9cfd-eb0b6037c744}</Project>
+      <Name>CO_IA.UI.StationPlan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.MessageCenter\I_CO_IA.MessageCenter.csproj">
+      <Project>{ea369f02-93bf-47bc-9087-1ca30558c1f2}</Project>
+      <Name>I_CO_IA.MessageCenter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.PersonPlan\I_CO_IA.PersonPlan.csproj">
+      <Project>{e16eba22-f8be-4165-a7cb-f7d3a9c996be}</Project>
+      <Name>I_CO_IA.PersonPlan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.TaskManage\I_CO_IA.TaskManage.csproj">
+      <Project>{af9388ff-efa3-4afd-a88f-35085bd1263f}</Project>
+      <Name>I_CO_IA.TaskManage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\headphones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Ctrls\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

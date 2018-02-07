@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="CO_IA.UI.Setting.SecurityClassManageModule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <commonControls:ModuleToolbar Grid.Row="0" >
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar>
+                    <Button Content="添加保障类别" Click="securityAdd_Click" />
+                    <Button Content="修改" Click="securityUpdate_Click" Visibility="Collapsed" />
+                    <Button Content="删除保障类别" Click="securityDelete_Click"/>
+                    <Button Content="保障级别" Click="securitygrade_Click" Visibility="Collapsed" />
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+        <DataGrid x:Name="securityclassgrid"
+                  Grid.Row="1" 
+                  Grid.Column="0" 
+                  BorderThickness="0"  
+                  AutoGenerateColumns="False" 
+                  HorizontalContentAlignment="Left">
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="MouseDoubleClick"
+                                 Handler="rulsgrid_DoubleClick" />
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <!--<commonControls:DataGridVerticalCenterTextColumn Header="编号" Binding="{Binding Path=SecurityNO}" Width="*"/>-->
+                <commonControls:DataGridVerticalCenterTextColumn Header="保障类别名称" Binding="{Binding Path=Name}" Width="200"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="保障类别描述" Binding="{Binding Path=Comments}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,36 @@
+﻿<Window x:Class="CO_IA.UI.Collection.NavBarFreqAdd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             mc:Ignorable="d" 
+             dx:ThemeManager.ThemeName="Office2013"
+             Title="频段添加" 
+             d:DesignHeight="260" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="起始频率："></TextBlock>
+            <dxe:TextEdit Width="120" x:Name="text_freqStart" MaskType="RegEx" Mask="\d+(\.\d{2,})?"></dxe:TextEdit>
+            <TextBlock Text="MHz"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="终止频率："></TextBlock>
+            <dxe:TextEdit Width="120" x:Name="text_freqStop" MaskType="RegEx" Mask="\d+(\.\d{2,})?"></dxe:TextEdit>
+            <TextBlock Text="MHz"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="带        宽："></TextBlock>
+            <dxe:TextEdit Width="120" x:Name="text_bandWidth" MaskType="RegEx" Mask="\d+(\.\d{2,})?"></dxe:TextEdit>
+            <TextBlock Text="kHz"></TextBlock>
+        </StackPanel>
+        <Button Grid.Row="3" x:Name="bt_freqAdd" Click="bt_freqAdd_Click" Width="60" Height="24" Content="添加" HorizontalAlignment="Right" Margin="0,0,20,0"></Button>
+    </Grid>
+</Window>

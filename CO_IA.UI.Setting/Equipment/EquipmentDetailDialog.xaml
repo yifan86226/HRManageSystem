@@ -1,0 +1,24 @@
+﻿<Window x:Class="CO_IA.UI.Setting.Equipment.EquipmentDetailDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CO_IA.UI.Setting.Equipment"
+        WindowStyle="SingleBorderWindow"   
+        WindowStartupLocation="CenterScreen" 
+        Title="设台申请登记" 
+        Width="800" 
+        Height="560" >
+
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition  Height="Auto"/>
+        </Grid.RowDefinitions>
+        <local:EquipmentDetailControl x:Name="_equipmentDetailControl"  DataContext="{Binding Path=CurrentEquipment,Mode=TwoWay}"   />
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" >
+            <Button  x:Name="btnSave" Content="保存" Click="BtnSave_Click" />
+            <Button  x:Name="btnCancel" Content="取消" Click="BtnCancel_Click"/>
+        </StackPanel>
+        <Rectangle x:Name="_rectangle" Grid.RowSpan="2" Opacity="1" Fill="Transparent" />
+    </Grid>
+</Window>

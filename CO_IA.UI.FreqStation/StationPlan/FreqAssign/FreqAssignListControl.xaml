@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="CO_IA.UI.FreqStation.StationPlan.FreqAssignListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converer="clr-namespace:CO_IA.UI.FreqStation.Converter"
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:commonClient="clr-namespace:AT_BC.Common;assembly=AT_BC.Common"
+             xmlns:commonConverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+             xmlns:client="clr-namespace:CO_IA.Client;assembly=CO_IA.Client"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand}"
+                        Executed="CheckableDataCheckedCommandBinding_Executed" />
+    </UserControl.CommandBindings>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CO_IA.Client;component/Converters/ConverterDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converer:FreqRangeConverter x:Key="keyfreqRangeConverter" />
+            <converer:AssignFreqConverter x:Key="keyAssignFreqConverter" />
+            <commonConverter:BusinessCodeConverter  x:Key="keyBusinessCodeConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" 
+                  Grid.Row="1"
+                  Margin="5" Name="xFreqAssignGrid" 
+                  HorizontalGridLinesBrush="#FFB4B4B4"
+                  VerticalGridLinesBrush="#FFB4B4B4" 
+                  SelectionMode="Single"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                  RowHeight="25"
+                  ItemsSource="{Binding  }">
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="MouseDoubleClick"
+                                 Handler="xFreqAssignGrid_MouseDoubleClick" />
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="chkAll" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedAllCommand}"
+                                       CommandParameter="{Binding ElementName=xFreqAssignGrid, Path=ItemsSource}"
+                                      Loaded="chkAll_Loaded" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=IsChecked, UpdateSourceTrigger=PropertyChanged}"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand }"
+                                      CommandParameter="{Binding ElementName=xFreqAssignGrid, Path=ItemsSource}"
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <commonControls:DataGridVerticalCenterTextColumn x:Name="columnCompany" Header="设备所属单位" Binding="{Binding Path=OrgInfo.Name}" Width="*"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备名称"
+                                                                 Binding="{Binding Path=Name}"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备类型"
+                                                                 Binding="{Binding Path=EquipmentClassID,Converter={StaticResource IdentifiableDataConverter},
+                    ConverterParameter={x:Static client:Utility.EquipmentClasses}}"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备数量"
+                                                                 Binding="{Binding Path=EQUCount}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="发射频率(MHz)"
+                                                                 Binding="{Binding Path=SendFreq}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="接收频率(MHz)"
+                                                                 Binding="{Binding Path=ReceiveFreq}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="备用频率(MHz)"
+                                                                 Binding="{Binding Path=SpareFreq}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                <DataGridTemplateColumn Header="频率可调">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox  IsChecked="{Binding Path=IsTunable}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       IsEnabled="False" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <commonControls:DataGridVerticalCenterTextColumn Header="带宽(kHz)"
+                                                                 Binding="{Binding Path=Band_kHz}"
+                                                                 Width="*"
+                                                                 TextHorizontalAlignment="Right" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="发射功率(W)"
+                                                                 Binding="{Binding Path=Power_W}"
+                                                                 Width="*"
+                                                                 TextHorizontalAlignment="Right" />
+                <DataGridTemplateColumn x:Name="verticalcolumnsendSpareFreq" Header="发射频率指配频率(MHz)" 
+                                        Width="*"  >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:TextEdit Background="White" MaskType="RegEx" Mask="\d{1,5}(\.\d{1,5})?" Height="27" 
+                                          VerticalContentAlignment="Center"
+                                          Text="{Binding AssignSendFreq, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource keyAssignFreqConverter}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="verticalcolumnSpareFreq" Header="备用频率指配频率(MHz)" 
+                                        Width="*"   >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:TextEdit Background="White" MaskType="RegEx" Mask="\d{1,5}(\.\d{1,5})?" Height="27"
+                                          VerticalContentAlignment="Center"
+                                          Text="{Binding AssignSpareFreq, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource keyAssignFreqConverter}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

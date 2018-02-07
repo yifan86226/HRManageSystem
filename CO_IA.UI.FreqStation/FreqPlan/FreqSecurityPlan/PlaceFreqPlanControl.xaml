@@ -1,0 +1,154 @@
+﻿<UserControl x:Class="CO_IA.UI.FreqStation.FreqPlan.PLaceFreqPlanControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:commonClient="clr-namespace:AT_BC.Common;assembly=AT_BC.Common"
+             xmlns:commonConverter="clr-namespace:AT_BC.Common.Converters;assembly=AT_BC.Common"
+             xmlns:client="clr-namespace:CO_IA.Client;assembly=CO_IA.Client"
+             xmlns:clientConverters="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <UserControl.Resources>
+        <clientConverters:IdentifiableDataConverter x:Key="IdentifiableDataConverter" />
+        <commonConverter:ReverseVisibilityConverter x:Key="reverseVisibilityConverter" />
+    </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand}"
+                        Executed="CheckableDataCheckedCommandBinding_Executed" />
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <commonControls:ModuleToolbar>
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar>
+                    <Button Content="添加"
+                            Click="buttonAdd_Click" />
+                    <Button Content="删除"
+                            MinWidth="50"
+                            Click="buttonDelete_Click" />
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+        <DataGrid AutoGenerateColumns="False"
+                  x:Name="dataGridFreqRange"
+                  Margin="5"
+                  Grid.Row="1"
+                  SelectionChanged="dataGridFreqRange_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="{DynamicResource DataGrid.CheckboxColumnWidth}"
+                                        CanUserResize="False">
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedAllCommand}"
+                                      CommandParameter="{Binding ElementName=dataGridFreqRange,Path=ItemsSource}"
+                                      Loaded="checkBoxAll_Loaded" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand }"
+                                      CommandParameter="{Binding ElementName=dataGridFreqRange, Path=ItemsSource}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备类别"
+                                                                 CanUserSort="True"
+                                                                 Width="*"
+                                                                 Binding="{Binding Path=EquipmentClassID,Converter={StaticResource IdentifiableDataConverter},
+                    ConverterParameter={x:Static client:Utility.EquipmentClasses}}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="名称"
+                                                                 CanUserSort="True"
+                                                                 Width="*"
+                                                                 Binding="{Binding Name}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="起始频率(MHz)"
+                                                                 CanUserSort="False"
+                                                                 Width="*"
+                                                                 Binding="{Binding MHzFreqFrom}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="终止频率(MHz)"
+                                                                 CanUserSort="False"
+                                                                 Width="*"
+                                                                 Binding="{Binding MHzFreqTo}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="带宽(kHz)"
+                                                                 CanUserSort="False"
+                                                                 Width="*"
+                                                                 Binding="{Binding kHzBand}" />
+                <!--<commonControls:DataGridVerticalCenterTextColumn Header="台站查询距离"
+                                                                 CanUserSort="False"
+                                                                 Width="*"
+                                                                 Binding="{Binding mDistanceToActivityPlace}" />-->
+                <DataGridTemplateColumn  Header="周围台站搜索区域(米)">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition MinWidth="30"
+                                                      Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding mDistanceToActivityPlace, Mode=OneWay}">
+                                </TextBlock>
+                                <TextBlock Grid.Column="1" x:Name="textBlockAreaSetting"
+                                           Margin="5,0,0,0">
+                                    <Hyperlink Click="buttonAreaSetting_Click"
+                                               Tag="{Binding ElementName=textBlockAreaSetting}">
+                                        <TextBlock Text="重新设置" />
+                                    </Hyperlink>
+                                </TextBlock>
+                                <!--<Button Content="重新设置"
+                                        
+                                        MinWidth="60"
+                                        Height="22"
+                                        
+                                        Click="buttonAreaSetting_Click" />-->
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <!--<DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid x:Name="gridNormal">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition MinWidth="30"
+                                                          Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding mDistanceToActivityPlace, Mode=OneWay}" />
+                                    <Button Content="重新设置"
+                                            DataContext="{Binding ElementName=gridNormal}"
+                                            Grid.Column="1"
+                                            MinWidth="60"
+                                            Height="22"
+                                            Margin="2"
+                                            Click="buttonAreaSetting_Click" />
+                                </Grid>
+                                <Grid x:Name="gridEdit"
+                                      Visibility="{Binding ElementName=gridNormal, Path=Visibility, Converter={StaticResource reverseVisibilityConverter}}">
+                                    <TextBox Width="200"
+                                             Text="{Binding mDistanceToActivityPlace, Mode=OneWay }" />
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>-->
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <GridSplitter VerticalAlignment="Bottom"
+                      HorizontalAlignment="Stretch"
+                      Height="3"
+                      Grid.Row="1" />
+        <Border x:Name="borderMapContainer"
+                Grid.Row="2" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="CO_IA.UI.ActivitySummarize.MonitorEquip"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+                 xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill"
+                       ImageSource="/CO_IA.UI.ActivitySummarize;component/Images/BG.jpg" />
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TreeView x:Name="tv_Category"
+                  ItemsSource="{Binding }"
+                  Grid.Column="0"
+                  VerticalAlignment="Stretch" 
+                  HorizontalAlignment="Stretch" 
+                  AllowDrop="True" SelectedItemChanged="tv_Category_SelectedItemChanged">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="True"></Setter>
+                </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.ItemTemplate >
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}"   >
+                    <StackPanel Orientation="Horizontal"  Tag="{Binding PARENTGUID}" ContextMenuOpening="StackPanel_ContextMenuOpening">
+                        <!--<Image VerticalAlignment="Center" Source="{Binding Path=DUTY,  Converter={StaticResource myIntToImageConverter}}"  Height="16" Width="16" />-->
+                        <StackPanel Orientation="Vertical" Tag="{Binding PARENTGUID}">
+                            <TextBlock Text="{Binding NAME, Mode=TwoWay}" Uid="{Binding GUID, Mode=TwoWay}" HorizontalAlignment="Center" Width="Auto" MouseDown="TextBlock_MouseDown" MinWidth="100"/>
+                            <TextBox x:Name="txtName" Text="{Binding NAME, Mode=TwoWay}" HorizontalAlignment="Center" Margin="0,-15,0,0"
+                             Width="Auto"  Visibility="Collapsed"  LostFocus="renametextbox_LostFous" MinWidth="100" ></TextBox>
+                        </StackPanel>
+                        <StackPanel.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem  Name="AddTreeItem" Header="添加" Click="AddTreeViewItem_Click">
+                                </MenuItem>
+                                <MenuItem  Name="DelTreeItem" Header="删除" Click="DelTreeViewItem_Click">
+                                </MenuItem>
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        
+        <dxlc:FlowLayoutControl x:Name="flc_ImgList" ItemsSource="{Binding}" Orientation="Horizontal" ItemSpace="12" LayerSpace="12" Background="Transparent"
+                                Grid.Column="1">
+            <dxlc:FlowLayoutControl.ItemTemplate>
+                <DataTemplate>
+                    <dxlc:GroupBox Header="{Binding}" Content="{Binding}" Width="200" Height="250" Padding="0" MaximizeElementVisibility="Collapsed"
+                                 FontFamily="Segoe UI Light" FontSize="14" Cursor="Hand"
+                                 MouseLeftButtonUp="GroupBox_MouseLeftButtonUp">
+                        <dxlc:GroupBox.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Margin="1">
+                                    <Run Text="{Binding Path=NAME}" FontFamily="Segoe UI" />
+                                    </TextBlock>
+                                    <StackPanel HorizontalAlignment="Right" Margin="0,0,0,0" Orientation="Horizontal" Grid.Column="1" Visibility="{Binding Path=IsVisible}">
+                                        <Image MouseLeftButtonUp="btn_ModifyClick" Width="20" Margin="0,0,2,0" Source="../Images/update.png" />
+                                        <Image MouseLeftButtonUp="btn_DelClick" Width="20" Margin="2,0,0,0" Source="../Images/delete.png" />
+                                        <!--<Button Content="编辑" Click="btn_ModifyClick" Width="10" />
+                                        <Button Content="删除" Click="btn_DelClick" Width="10" />-->
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </dxlc:GroupBox.HeaderTemplate>
+                        <dxlc:GroupBox.ContentTemplate>
+                            <DataTemplate>
+                                <!--<Image Source="{Binding ImageSource}" Stretch="UniformToFill" HorizontalAlignment="Center" />-->
+                                <Image Source="{Binding ImageSource}" Stretch="Uniform" HorizontalAlignment="Center" />
+                            </DataTemplate>
+                        </dxlc:GroupBox.ContentTemplate>
+                        <!--<dxlc:GroupBox.MaximizedContentTemplate>
+                            <DataTemplate>
+                                <dxlc:LayoutControl ItemSpace="12">
+
+                                    <Image Source="{Binding ImageSource}" Stretch="Uniform" ToolTip="{Binding Path=TASK}" HorizontalAlignment="Center" />
+                                </dxlc:LayoutControl>
+                            </DataTemplate>
+                        </dxlc:GroupBox.MaximizedContentTemplate>-->
+                    </dxlc:GroupBox>
+                </DataTemplate>
+            </dxlc:FlowLayoutControl.ItemTemplate>
+        </dxlc:FlowLayoutControl>
+
+    </Grid>
+</UserControl>

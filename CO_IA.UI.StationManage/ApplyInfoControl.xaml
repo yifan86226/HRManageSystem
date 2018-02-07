@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="CO_IA.UI.StationManage.ApplyInfoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400"
+    FontFamily="Arial,SimSun" FontSize="12">
+    <Grid x:Name="LayoutRoot" Background="White">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <!--<ColumnDefinition Width="Auto"/>-->
+                <ColumnDefinition Width="*"/>
+                <!--<ColumnDefinition Width="Auto"/>-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2">
+                <TextBlock Grid.Column="0" Text="单位名称："  Width="65"   VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Name="tb_UnitName" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="单位地址：" Width="65"   VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+                <TextBlock Grid.Row="1" Grid.Column="1"  Name="tb_UnitAddress"   Grid.ColumnSpan="3"  VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="单位联系人：" Width="65" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="tb_UnitPerson" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="联系电话：" Width="65"   VerticalAlignment="Center" HorizontalAlignment="Left"   Margin="5,5,0,5"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" Name="tb_UnitPhone" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="无线电系统/网络名称：" Width="120" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Name="tb_NetName" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+                <TextBlock Grid.Row="3" Grid.Column="2" Text="组织机构代码："  Width="85" VerticalAlignment="Center" HorizontalAlignment="Left"   Margin="5,5,0,5"/>
+                <TextBlock Grid.Row="3" Grid.Column="3" Name="tb_UnitCode" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="信道带宽/波道间隔：" Width="120" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+                <TextBlock Grid.Row="4" Grid.Column="1"  Name="tb_NetBand" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+                <TextBlock Grid.Row="4" Grid.Column="2" Text="通信业务/系统类型：" Width="120" VerticalAlignment="Center" HorizontalAlignment="Left"   Margin="5,5,0,5"/>
+                <TextBlock Grid.Row="4" Grid.Column="3" Name="tb_NetSvn" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="业务性质："  Width="65"  VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+                <TextBlock Grid.Row="5" Grid.Column="1"  Name="tb_NetSP" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+                <TextBlock Grid.Row="5" Grid.Column="2" Text="技术体制："  Width="65"  VerticalAlignment="Center" HorizontalAlignment="Left"   Margin="5,5,0,5"/>
+                <TextBlock Grid.Row="5" Grid.Column="3" Name="tb_NetTS" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0">
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="使用范围：" Width="65"   VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+                <TextBlock Grid.Row="6" Grid.Column="1" Name="tb_NetArea" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
+                <TextBlock Grid.Row="6" Grid.Column="2" Text="网络用途：" Width="65"   VerticalAlignment="Center" HorizontalAlignment="Left"   Margin="5,5,0,5"/>
+                <TextBlock Grid.Row="6" Grid.Column="3"  Name="tb_NetUse" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="0,5"/>
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

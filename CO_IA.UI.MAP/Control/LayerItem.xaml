@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="CO_IA.UI.Map.Control.LayerItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="200" Foreground="White" Name="U" Cursor="Hand">
+    <UserControl.Resources>
+        <Storyboard x:Key="OnMouseEnter1">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="border">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="Orange"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="border">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="Orange"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnMouseLeave1">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="border">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF000351"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="border">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF252DE6"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+            <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+            <BeginStoryboard Storyboard="{StaticResource OnMouseLeave1}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Grid Background="#FF726960">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Border Name="border" BorderThickness="0,0,0,1" BorderBrush="Black"  Grid.ColumnSpan="2">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF000351" Offset="1"/>
+                    <GradientStop Color="#FF252DE6"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <CheckBox Name="chk" Content="" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="chk_Checked" Foreground="{Binding Foreground, ElementName=U}" VerticalContentAlignment="Center" Unchecked="chk_Unchecked"></CheckBox>
+
+        <Image Name="btnClose" Visibility="Collapsed" Grid.Column="1" Cursor="Hand" Width="13" Height="13" Stretch="Fill" Source="/CO_IA.UI.Map;component/Images/delete.png" MouseLeftButtonUp="Image_MouseLeftButtonUp" ></Image>
+    </Grid>
+</UserControl>

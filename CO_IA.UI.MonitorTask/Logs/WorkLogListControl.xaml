@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="CO_IA.UI.MonitorTask.Logs.WorkLogListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:commonClient="clr-namespace:AT_BC.Common;assembly=AT_BC.Common"
+             xmlns:local="clr-namespace:CO_IA.UI.MonitorTask.Logs"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <local:WorkTimeConverter  x:Key="KeyWorkTimeConverter"/>
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand}"
+                        Executed="CheckableDataCheckedCommandBinding_Executed" />
+    </UserControl.CommandBindings>
+
+    <Grid>
+        <DataGrid x:Name="worklogdatagrid" 
+                  Grid.Column="1" 
+                  BorderThickness="0"  
+                  AutoGenerateColumns="False" 
+                  HorizontalContentAlignment="Left"  
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  SelectedIndex="0"
+                  ItemsSource="{Binding}"  >
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="MouseDoubleClick" Handler="worklogdatagrid_MouseDoubleClick" />
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="chkAll" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedAllCommand}"
+                                       CommandParameter="{Binding ElementName=worklogdatagrid, Path=ItemsSource}"
+                                      Loaded="chkAll_Loaded" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=IsChecked, UpdateSourceTrigger=PropertyChanged}"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand }"
+                                      CommandParameter="{Binding ElementName=worklogdatagrid, Path=ItemsSource}"
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <commonControls:DataGridVerticalCenterTextColumn Header="日志标题" Width="200"
+                                                                 Binding="{Binding Path=Title}" 
+                                                                 TextHorizontalAlignment="Left" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="工作时间" 
+                                                                 Binding="{Binding Converter={StaticResource 
+                    KeyWorkTimeConverter}}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="工作人员" Width="200"
+                                                                 Binding="{Binding Path=Worker}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="描述" Width="*"
+                                                                 Binding="{Binding Path=Description }" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

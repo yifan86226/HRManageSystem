@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="CO_IA.UI.PlanDatabase.TemplateModule">
+    <Position X="0.5" Y="0.5" Width="6.25" />
+    <Members>
+      <Method Name="buttonModify_Click" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gCAAABAAAAAAAEAAAIgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TemplateModule.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CO_IA.UI.PlanDatabase.Template.TemplateManageModule">
+    <Position X="0.5" Y="3" Width="7.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAEAAAAAAQAAAEA=</HashCode>
+      <FileName>Template\TemplateManageModule.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

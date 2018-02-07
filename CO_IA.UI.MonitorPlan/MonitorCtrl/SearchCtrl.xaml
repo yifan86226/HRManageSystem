@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="CO_IA.UI.MonitorPlan.MonitorCtrl.SearchCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+    <Grid>
+        <!--<ListBox x:Name="_byAddressListBox" SelectionChanged="Address_SelectionChanged"/>   MouseLeftButtonUp="listPlace_MouseLeftButtonUp"-->
+        <ListBox x:Name="listPlace" HorizontalAlignment="Left" MinHeight="400"  Grid.Row="1" Grid.Column="0"  VerticalAlignment="Top" Width="300">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ListBoxItem Content="{Binding Path=Name}" HorizontalAlignment="Center" FontSize="12" MouseLeftButtonUp="ListBoxItem_MouseLeftButtonUp"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7AA35907-9A01-4B80-B851-FFB9F63E72DC}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CO_IA.UI.ActivitySummarize</RootNamespace>
+    <AssemblyName>CO_IA.UI.ActivitySummarize</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AT_BC.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Data.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Offices, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.Offices.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.SystemPortal.Portable">
+      <HintPath>..\Output\AT_BC.SystemPortal.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Charts.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Data.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Charts.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Charts.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Core.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Layout.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.LayoutControl.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="PT.DB.Devart">
+      <HintPath>..\Output\PT.DB.Devart.dll</HintPath>
+    </Reference>
+    <Reference Include="PT.DB.Sqlite">
+      <HintPath>..\Output\PT.DB.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.Base">
+      <HintPath>..\Output\PT_BS_Service.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.BindingCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.BindingCore.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.Client.Core.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.Client.Core.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.Client.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.Client.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.Core">
+      <HintPath>..\Output\PT_BS_Service.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_SV.Public">
+      <HintPath>..\Output\PT_SV.Public.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_SV_PR.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_SV_PR.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_TK">
+      <HintPath>..\Output\PT_TK.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_TK.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_TK.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit">
+      <HintPath>..\Output\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\Output\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ActivityDetail\ActivityPlace.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ActivityDetail\MonitorEquipForShow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityDetail\MonitorEquipInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityDetail\Resources\Shared.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ActivityDetail\Resources\Slider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ActivityDetail\SummarizeTotal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityDetail\SummarizeTotalTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityDetail\Video.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivitySummarizeModule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ActivityDetail\OrgStructure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityDetail\HonorWall.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityDetail\MonitorEquip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityDetail\SummarizeDocItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityDetail\WorkAchievement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivityDetail\ImportTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrgStructure\NodeBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityDetail\ActivityPlace.xaml.cs">
+      <DependentUpon>ActivityPlace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityDetail\MonitorEquipForShow.xaml.cs">
+      <DependentUpon>MonitorEquipForShow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityDetail\MonitorEquipInput.xaml.cs">
+      <DependentUpon>MonitorEquipInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityDetail\SummarizeTotal.xaml.cs">
+      <DependentUpon>SummarizeTotal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityDetail\SummarizeTotalTemplate.xaml.cs">
+      <DependentUpon>SummarizeTotalTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityDetail\Video.xaml.cs">
+      <DependentUpon>Video.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivitySummarizeModule.xaml.cs">
+      <DependentUpon>ActivitySummarizeModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityDetail\OrgStructure.xaml.cs">
+      <DependentUpon>OrgStructure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityDetail\HonorWall.xaml.cs">
+      <DependentUpon>HonorWall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityDetail\MonitorEquip.xaml.cs">
+      <DependentUpon>MonitorEquip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Canstant.cs" />
+    <Compile Include="ActivityDetail\ImportTask.xaml.cs">
+      <DependentUpon>ImportTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\WordHelper.cs" />
+    <Compile Include="FileSizeConverter.cs" />
+    <Compile Include="FormatConverter.cs" />
+    <Compile Include="OrgStructure\NodeBox.xaml.cs">
+      <DependentUpon>NodeBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrgStructure\Person.cs" />
+    <Compile Include="OrgStructure\Util.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ActivityDetail\SummarizeDocItem.xaml.cs">
+      <DependentUpon>SummarizeDocItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityDetail\WorkAchievement.xaml.cs">
+      <DependentUpon>WorkAchievement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SummarizeHelpData.cs" />
+    <Compile Include="SummarizeTotalEnum.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Template\总结模板.doc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\place.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn保障过程.png" />
+    <Resource Include="Images\btn工作成果.png" />
+    <Resource Include="Images\btn活动总结.png" />
+    <Resource Include="Images\btn组织结构.png" />
+    <Resource Include="Images\btn荣誉奖章.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CO_IA.Client.UIBuilderFactory\CO_IA.Client.UIBuilderFactory.csproj">
+      <Project>{1311fd8a-634e-4963-ad25-e95911337ec8}</Project>
+      <Name>CO_IA.Client.UIBuilderFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Client\CO_IA.Client.csproj">
+      <Project>{b48b653d-d7d2-43f9-806e-e7621e9fa27c}</Project>
+      <Name>CO_IA.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Data.Portable\CO_IA.Data.Portable.csproj">
+      <Project>{d52a57d6-99b0-4bcf-9998-68099e2edc78}</Project>
+      <Name>CO_IA.Data.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.Statistic\CO_IA.UI.Statistic.csproj">
+      <Project>{e50e6e16-da2e-44c8-a35d-a38a8a53b5ed}</Project>
+      <Name>CO_IA.UI.Statistic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.ActivitySummarize\I_CO_IA.ActivitySummarize.csproj">
+      <Project>{a60966f9-b6b2-460d-913b-bd256233a39f}</Project>
+      <Name>I_CO_IA.ActivitySummarize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.MonitorTask\I_CO_IA.MonitorTask.csproj">
+      <Project>{5a29a1d6-2d89-4c92-9544-cd9dea3abca9}</Project>
+      <Name>I_CO_IA.MonitorTask</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.PersonSchedule\I_CO_IA.PersonSchedule.csproj">
+      <Project>{e16eba22-f8be-4165-a7cb-f7d3a9c996be}</Project>
+      <Name>I_CO_IA.PersonSchedule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.PlanDatabase\I_CO_IA.PlanDatabase.csproj">
+      <Project>{3911e2ab-3054-44ca-9a34-47d42936292b}</Project>
+      <Name>I_CO_IA.PlanDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.Statistic\I_CO_IA.Statistic.csproj">
+      <Project>{e69a3244-deca-41a9-b18f-5fe44c008ece}</Project>
+      <Name>I_CO_IA.Statistic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\addImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pause.png" />
+    <Resource Include="Images\play.png" />
+    <Resource Include="Images\stop.png" />
+    <Resource Include="Images\volume.png" />
+    <Resource Include="Images\volume1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Up_Down_Yellow_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Right_Left_Red_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_1.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

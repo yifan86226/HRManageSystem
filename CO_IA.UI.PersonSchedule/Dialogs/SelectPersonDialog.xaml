@@ -1,0 +1,241 @@
+﻿<Window x:Class="CO_IA.UI.PersonSchedule.SelectPersonDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:Interactivity="clr-namespace:Microsoft.Practices.Prism.Interactivity;assembly=Microsoft.Practices.Prism.Interactivity"
+        xmlns:ViewModels="clr-namespace:CO_IA.UI.PersonSchedule"
+        xmlns:Converters="clr-namespace:CO_IA.UI.PersonSchedule"
+        Title="请选择" Height="600" Width="600" >
+    <Window.Resources>
+        <Converters:IntToVisibilityConverter x:Key="intToVisibilityConverter"/>
+
+        <ViewModels:LoginUserTreeViewItemDataTemplateSelector x:Key="xLoginUserTreeViewItemDataTemplateSelector" />
+        <HierarchicalDataTemplate x:Key="xLoginUserTreeViewItemTemplate">
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,1,0,0">
+                <Path Visibility="{Binding Type}" Data="M4,5 C6.2091389,5 8,7.2385764 8,10 L0,10 C0,7.2385764 1.790861,5 4,5 z M4,0 C5.3807118,0 6.5,1.1192881 6.5,2.5 6.5,3.8807118 5.3807118,5 4,5 2.6192881,5 1.5,3.8807118 1.5,2.5 1.5,1.1192881 2.6192881,0 4,0 z" Fill="#FF246BE7" HorizontalAlignment="Stretch" Height="10" Margin="0,0,5,0" Stretch="Fill" VerticalAlignment="Stretch" Width="8"/>
+                <Image Width="16"
+                       Height="16"
+                       Source="{Binding UserImage}" />
+                <TextBlock Text="{Binding Name}"
+                           Margin="4,0,0,0"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate x:Key="xLoginUserDepartmentTreeViewItemTemplate"
+                                  ItemsSource="{Binding Childs}"
+                                 >
+            <StackPanel Orientation="Horizontal">
+                <Path Visibility="{Binding Type}"
+                      Data="M4,5 C6.2091389,5 8,7.2385764 8,10 L0,10 C0,7.2385764 1.790861,5 4,5 z M4,0 C5.3807118,0 6.5,1.1192881 6.5,2.5 6.5,3.8807118 5.3807118,5 4,5 2.6192881,5 1.5,3.8807118 1.5,2.5 1.5,1.1192881 2.6192881,0 4,0 z"
+                      Fill="#FF246BE7"
+                      HorizontalAlignment="Stretch"
+                      Height="10"
+                      Margin="0,0,5,0"
+                      Stretch="Fill"
+                      VerticalAlignment="Stretch"
+                      Width="8" />
+                <TextBlock Text="{Binding Name}" />
+            </StackPanel>
+        </HierarchicalDataTemplate>
+
+        <SolidColorBrush x:Key="ListBorder" Color="#828790"/>
+        <Style x:Key="UserTreeViewStyle" TargetType="{x:Type TreeView}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ListBorder}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TreeView}">
+                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ScrollViewer x:Name="_tv_scrollviewer_" Background="{TemplateBinding Background}" CanContentScroll="false" Focusable="false" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" Template="{DynamicResource ScrollViewerControlTemplate1}" >
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="VirtualizingStackPanel.IsVirtualizing" Value="true">
+                                <Setter Property="CanContentScroll" TargetName="_tv_scrollviewer_" Value="true"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="VirtualizingStackPanel.IsVirtualizing" Value="true">
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TreeViewItemFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z"/>
+        <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Background="Transparent" Height="16" Padding="5,5,5,5" Width="16">
+                            <Path x:Name="ExpandPath" Data="{StaticResource TreeArrow}" Fill="Transparent" Stroke="#FF989898">
+                                <Path.RenderTransform>
+                                    <RotateTransform Angle="135" CenterY="3" CenterX="3"/>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Stroke" TargetName="ExpandPath" Value="#FF1BBBFA"/>
+                                <Setter Property="Fill" TargetName="ExpandPath" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="RenderTransform" TargetName="ExpandPath">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="180" CenterY="3" CenterX="3"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Fill" TargetName="ExpandPath" Value="#FF595959"/>
+                                <Setter Property="Stroke" TargetName="ExpandPath" Value="#FF262626"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TreeViewItemStyle_Blue" TargetType="{x:Type TreeViewItem}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Padding" Value="1,0,0,0"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="19" Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <ToggleButton x:Name="Expander" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ExpandCollapseToggleStyle}"/>
+                            <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Column="1" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </Border>
+                            <ItemsPresenter x:Name="ItemsHost" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="Bd" Value="#FFCBE2FF"/>
+                            </Trigger>
+                            <Trigger Property="IsExpanded" Value="false">
+                                <Setter Property="Visibility" TargetName="ItemsHost" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" TargetName="Bd" Value="#FFCBE2FF"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true"/>
+                                    <Condition Property="IsSelectionActive" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#FFCBE2FF"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="VirtualizingStackPanel.IsVirtualizing" Value="true">
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+     
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Image HorizontalAlignment="Left"   Source="/CO_IA.UI.PersonSchedule;component/Images/人员标题.png"/>
+
+        <TreeView x:Name="treeView"
+                              Grid.Row="1"
+                              BorderThickness="0"
+                              MouseDoubleClick="OnUserTreeViewMouseDoubleClick"
+                              ItemsSource="{Binding }"   
+                              ItemTemplateSelector="{StaticResource xLoginUserTreeViewItemDataTemplateSelector}"
+                           Style="{StaticResource UserTreeViewStyle}"
+                 
+                              Background="{x:Null}"
+                          
+                          Margin="0,5,0,0">
+                    <!--ItemsSource="{Binding OrganizationViewModel.DepartmentInfoCollection}"-->
+                    <!--Style="{DynamicResource UserTreeViewStyle}"
+                         ItemContainerStyle="{DynamicResource TreeViewItemStyle_Blue}"-->
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectedItemChanged">
+                            <!--<Interactivity:InvokeCommandAction Command="{Binding UserSelectedCommand, Mode=OneWay, Source={StaticResource xLoginViewModel}}"
+                                                                   CommandParameter="{Binding SelectedItem, ElementName=treeView, Mode=OneWay}" />-->
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TreeView>
+        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="*" />
+                <ColumnDefinition  Width="*" />
+
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="确定" HorizontalAlignment="Right"  Margin="10,0" VerticalAlignment="Center"  Width="75"/>
+            <Button Content="取消" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0" VerticalAlignment="Center" Width="75" Click="Button_Click"/>
+        </Grid>
+    </Grid>
+</Window>

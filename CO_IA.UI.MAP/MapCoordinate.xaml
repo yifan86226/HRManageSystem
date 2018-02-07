@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="CO_IA.UI.MAP.MapCoordinate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="btnStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FF1F3B53" />
+            <Setter Property="Foreground" Value="#FF000000" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="BorderThickness" Value="1" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="Background" Background="#FFAAD1F7" BorderBrush="#B21F6CBC" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" />
+                            <ContentPresenter x:Name="contentPresenter" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            <Rectangle x:Name="DisabledVisualElement" Fill="#FFFFFFFF" IsHitTestVisible="false" Opacity="0" RadiusX="3" RadiusY="3" />
+                            <Rectangle x:Name="FocusVisualElement" Margin="1" IsHitTestVisible="false" Opacity="0" RadiusX="2" RadiusY="2" Stroke="#FF6DBDD1" StrokeThickness="1" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="14*"/>
+            <RowDefinition  Height="0"/>
+        </Grid.RowDefinitions>
+        <Grid Name="grid_map" >
+            <Button Name="dwBtn" Height="25" Width="35" Style="{StaticResource btnStyle}" Content="全图"  VerticalAlignment="Top" HorizontalAlignment="Center"  Margin="0,5,0,0" Click="Button_Click" Opacity="0.5" MouseEnter="dwBtn_MouseEnter" MouseLeave="dwBtn_MouseLeave" Cursor="Hand">
+
+            </Button>
+            <!--<Grid.Background>
+                <ImageBrush ImageSource="/CO_IA.UI.MAP;component/Images/bg/bk1.jpg" Opacity="0.2"/>
+            </Grid.Background>-->
+        </Grid>
+    </Grid>
+</UserControl>

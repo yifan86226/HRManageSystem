@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="CO_IA.Scene.FreqPlan.FreqPlanViewNew"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+              xmlns:client="clr-namespace:CO_IA.Client;assembly=CO_IA.Client"
+             xmlns:surroundStation="clr-namespace:CO_IA.UI.FreqStation.FreqPlan.SurroundStation;assembly=CO_IA.UI.FreqStation"
+             xmlns:map="clr-namespace:CO_IA.UI.FreqStation;assembly=CO_IA.UI.FreqStation"
+             xmlns:currentCommonCtrl="clr-namespace:CO_IA.Scene.CommonCtr"
+        >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CO_IA.Client;component/Converters/ConverterDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutGrid">
+        <Grid.Resources>
+            <Style TargetType="{x:Type ScrollBar}">
+                <Setter Property="Stylus.IsPressAndHoldEnabled"  
+                Value="false"/>
+                <Setter Property="Stylus.IsFlicksEnabled"  
+                Value="false"/>
+                <Setter Property="Background"  
+                Value="#FFFFFF"/>
+                <Setter Property="Margin"  
+                Value="0,1,1,6"/>
+
+                <Setter Property="Width"  
+                Value="15"/>
+                <Setter Property="MinWidth"  
+                Value="5"/>
+                <Setter Property="Opacity"  
+                Value="0.8"/>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="单位设备信息" Grid.Row="0">
+            <currentCommonCtrl:EquipmentsManageCtrl IsReadOnly="true" />   
+        </GroupBox>
+        <GroupBox Header="周围台站信息" Grid.Row="1">
+            <Border Margin="5" BorderBrush="LightGray" BorderThickness="1">
+                <Grid x:Name="xGroundStationsGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid BorderThickness="0" 
+                  x:Name="stationdatagrid"  ItemsSource="{Binding ActivityStationItemsSource}"
+                  AutoGenerateColumns="False"   
+                  IsReadOnly="True" 
+                  SelectionChanged="stationdatagrid_SelectionChanged" >
+                        <DataGrid.Columns>
+                        <commonControls:DataGridVerticalCenterTextColumn Header="申请表编号" Binding="{Binding Path=APP_CODE}" Width="100"  />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="资料表类型" Binding="{Binding Path=STAT_APP_TYPE}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="资料表编号" Binding="{Binding Path=STAT_TDI}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="单位名称" Binding="{Binding Path=ORG_NAME}" Width="*" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="台站名称" Binding="{Binding Path=STAT_NAME}" Width="*" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="台站地址" Binding="{Binding Path=STAT_ADDR}" Width="*" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="系统代码" Binding="{Binding Path=ORGSYSCODE }" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="通信系统" Binding="{Binding Path=NET_SVN}" Width="*" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="功率(W)" Binding="{Binding Path=Power}" Width="55" />
+                        </DataGrid.Columns>
+                    </DataGrid>  
+
+                    <map:MapControl x:Name="mapcontrol"   Grid.Column="1" />
+
+                    <Button Grid.Row="1" Width="70" Content="重试" Click="Button_Click"/>
+
+                </Grid>
+            </Border>
+        </GroupBox>
+</Grid>
+</UserControl>

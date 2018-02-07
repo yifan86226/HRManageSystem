@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CO_IA.UI.Statistic.StatisticModule">
+    <Position X="1.5" Y="2.75" Width="3" />
+    <AssociationLine Name="_personPlanStatisticControl" Type="CO_IA.UI.Statistic.PersonPlanStatisticControl">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.133" Y="0.318" Height="0.181" Width="1.941" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gACAAAAAAAAAKAAAACBAAAAAgAAAQEAggQEAAABUAgA=</HashCode>
+      <FileName>StatisticModule.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_roundStatStatistic" />
+      <Field Name="_equInspectionStatisticControl" />
+      <Field Name="_freqAssignStatistic" />
+      <Field Name="_freqPartPlanStatistic" />
+      <Field Name="_organdequStatistic" />
+      <Field Name="_personPlanStatisticControl" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CO_IA.UI.Statistic.RoundStatStatisticControl" Collapsed="true">
+    <Position X="7" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAEAEAAAAAAAAAAACgAABAAAAIAIAAAA=</HashCode>
+      <FileName>RoundStatAnalyseStatisticControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CO_IA.UI.Statistic.EquInspectionStatisticControl" Collapsed="true">
+    <Position X="7" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAEAEAAAAAAAAAAACgAABAAAAIAIAAAA=</HashCode>
+      <FileName>EquInspectionStatisticControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CO_IA.UI.Statistic.FreqAssignStatisticControl" Collapsed="true">
+    <Position X="7" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAEAEAAAAAAAAAAACgAABAAAAIAIAAAA=</HashCode>
+      <FileName>FreqAssignStatisticControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CO_IA.UI.Statistic.FreqPartPlanStatisticControl" Collapsed="true">
+    <Position X="7" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAEAEAAAAAAAAAAACgAABAAAAIAIAAAA=</HashCode>
+      <FileName>FreqPartPlanStatisticControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CO_IA.UI.Statistic.ORGAndEQUStatisticControl" Collapsed="true">
+    <Position X="1.75" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAEAEAAAAAAAAAAACgAABAAAAIAIAAAA=</HashCode>
+      <FileName>ORGAndEQUStatisticControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CO_IA.UI.Statistic.PersonPlanStatisticControl" Collapsed="true">
+    <Position X="1.75" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAQARAAAAAEAECAAgAAAAAAACAAQBAAAEIAAAAEA=</HashCode>
+      <FileName>PersonPlanStatisticControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

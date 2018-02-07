@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="CO_IA.UI.FreqStation.StationPlanModule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:commonConverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <commonConverter:FreqPlanningStepToImageSource x:Key="freqPlanningStepToImageSource" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource ModuleToolBar.BorderBrush}" 
+                    Background="{DynamicResource ModuleToolBar.Background}" Grid.RowSpan="2"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,1,0" x:Name="spSite">
+                <TextBlock Text="活动区域:" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"/>
+                <ComboBox x:Name="xComboboxSite"
+                          MinWidth="160"
+                          Height="22"
+                          HorizontalAlignment="Left"
+                          Margin="5"
+                          DisplayMemberPath = "Name"
+                          SelectedValuePath = "Guid"
+                          SelectionChanged="xComboboxSite_SelectionChanged" 
+                          />
+            </StackPanel>
+            <ListBox x:Name="listBoxStationPlanningStep" 
+                     Margin="0,0,1,0" 
+                     Grid.Row="1"
+                     BorderThickness="0" 
+                     HorizontalAlignment="Stretch"  
+                     SelectionMode="Extended" 
+ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                     Style="{DynamicResource LeftDockListBox}"
+SelectionChanged="listBoxStationPlanningStep_SelectionChanged" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="60"
+                              Width="220">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Stretch="Uniform"
+                                   Source="{Binding Step, Converter={StaticResource freqPlanningStepToImageSource}}"
+                                   Height="48"
+                                   Width="48" />
+                            <Image HorizontalAlignment="Left"
+                                   VerticalAlignment="Top"
+                                   Margin="0,2,0,0"
+                                   Stretch="Uniform"
+                                   Source="{DynamicResource CompletedState}"
+                                   Width="20"
+                                   Height="20"
+                                   Visibility="{Binding IsCompleted, Converter={StaticResource boolToVisibilityConverter}}" />
+                            <TextBlock Text="{Binding Step,Converter={StaticResource enumDefaultConverter}}"
+                                       Grid.Column="1"
+                                       HorizontalAlignment="Left"
+                                       Foreground="{Binding Foreground}"
+                                       Margin="2,0"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap" />
+                            <Image Grid.Column="2"
+                                   x:Name="completeButton"
+                                   Source="/CO_IA.UI.FreqPlan;component/Images/CompleteButton.png"
+                                   Visibility="Collapsed"
+                                   Height="20"
+                                   Width="40"
+                         MouseLeftButtonUp="buttonCompleteStep_MouseLeftButtonDown" />
+                        </Grid>
+                        <DataTemplate.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBoxItem}},Path=IsSelected}"
+                                               Value="True" />
+                                    <Condition Binding="{Binding Path=IsCompleted}"
+                                               Value="false" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Visibility"
+                                        Value="Visible"
+                                        TargetName="completeButton" />
+                            </MultiDataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Border Width="1" BorderBrush="{DynamicResource ModuleToolBar.BorderBrush}" HorizontalAlignment="Right"  VerticalAlignment="Stretch" BorderThickness="0,0,1,0"/>
+        <GridSplitter VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="1"  Grid.Column="1"/>
+        <Grid Grid.Column="2">
+            <Border x:Name="borderContent" Background="White" Visibility="Collapsed" Grid.Row="1"/>
+        </Grid>
+    </Grid>
+</UserControl>

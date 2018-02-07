@@ -1,0 +1,30 @@
+﻿<Window x:Class="CO_IA.UI.PlanDatabase.Equipments.EquipmentSelectorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:org="clr-namespace:CO_IA.UI.PlanDatabase.ORG"
+        xmlns:equ="clr-namespace:CO_IA.UI.PlanDatabase.Equipments"
+        Title="设备库导入设备" Height="600" Width="1000" 
+        WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition  Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border   Margin="2" BorderThickness="1" BorderBrush="Silver" >
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  />
+                    <ColumnDefinition Width="Auto"  />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <org:ORGListControl x:Name="orgListControl" Grid.Column="0" />
+                <GridSplitter  Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center"  BorderThickness="0.5"/>
+                <equ:EquipmentListControl x:Name="equListControl" Grid.Column="2" ShowCompany="False"/>
+            </Grid>
+        </Border>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" >
+            <Button Content="确定" Click="btnOK_Click"/>
+            <Button Content="取消" Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,499 @@
+﻿<UserControl x:Class="CO_IA.UI.Collection.RealTimeMonitorNew"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
+             xmlns:vm="clr-namespace:CO_IA.UI.Collection.ViewModel"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:GalaSoft_MvvmLight_Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+             xmlns:converter="clr-namespace:CO_IA.UI.Collection.Converter"
+             mc:Ignorable="d"
+             xmlns:localChartUc="clr-namespace:CO_IA.UI.Collection.Chart"
+             xmlns:local="clr-namespace:CO_IA.UI.Collection">
+    <UserControl.Resources>
+        <vm:ViewModelLocator x:Key="Locator"
+                             d:IsDataSource="True" />
+        <local:StringToIntConverter x:Key="cts" />
+        <local:VissbilityConverter x:Key="VissbilityConverter" />
+        <local:NumberConverter x:Key="NumberConverter" />
+        <local:FreqPlanNameConverter x:Key="FreqPlanNameConverter" />
+        <Style x:Key="slider" TargetType="dxe:CheckEdit">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="dxe:CheckEdit">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver" />
+                                        <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.15" To="Normal" />
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="on">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="off">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Hidden" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="pressed">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="off">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled" />
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.15" To="Checked">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <CircleEase EasingMode="EaseIn" />
+                                            </VisualTransition.GeneratedEasingFunction>
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="0:0:0.15" From="1" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="on">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CircleEase EasingMode="EaseInOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X" Storyboard.TargetName="translate">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="50" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition GeneratedDuration="0:0:0.15" To="Unchecked">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X" Storyboard.TargetName="translate">
+                                                    <EasingDoubleKeyFrame KeyTime="0" Value="50" />
+                                                    <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X" Storyboard.TargetName="translate">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="50" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="on">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unchecked" />
+                                    <VisualState x:Name="Indeterminate" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="back" Background="#26313137" CornerRadius="3">
+                                <Border CornerRadius="4" >
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF919293" Offset="0" />
+                                            <GradientStop Color="#FFBEBFBF" Offset="1" />
+                                            <GradientStop Color="#FF9FA1A2" Offset="0.25" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border CornerRadius="3" Margin="1">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FFCECECE" Offset="0" />
+                                                <GradientStop Color="White" Offset="1" />
+                                                <GradientStop Color="#FFECECED" Offset="0.1" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                            </Border>
+                            <Grid x:Name="off_Copy" HorizontalAlignment="Right" Height="13" Margin="0,1,23,0" VerticalAlignment="Center" Width="18" FlowDirection="LeftToRight">
+                                <Path Stretch="Fill" Fill="White" Data="F1 M 676.602,232.803C 676.576,233.415 676.257,233.734 675.645,233.76L 671.717,233.76C 671.105,233.734 670.786,233.415 670.76,232.803L 670.76,222.717C 670.786,222.105 671.105,221.786 671.717,221.76L 675.645,221.76C 676.257,221.786 676.576,222.105 676.602,222.717L 676.602,232.803 Z M 674.865,232.023L 674.865,223.497L 672.497,223.497L 672.497,232.023L 674.865,232.023 Z M 683.076,223.497L 679.918,223.497L 679.918,226.813L 682.602,226.813L 682.602,228.55L 679.918,228.55L 679.918,233.76L 678.181,233.76L 678.181,221.76L 683.076,221.76L 683.076,223.497 Z M 688.76,223.497L 685.602,223.497L 685.602,226.813L 688.286,226.813L 688.286,228.55L 685.602,228.55L 685.602,233.76L 683.865,233.76L 683.865,221.76L 688.76,221.76L 688.76,223.497 Z " HorizontalAlignment="Stretch" Margin="0,1,0,0" UseLayoutRounding="False" VerticalAlignment="Stretch" />
+                                <Path Stretch="Fill" Fill="#FF9A9C9D" Data="F1 M 676.602,232.803C 676.576,233.415 676.257,233.734 675.645,233.76L 671.717,233.76C 671.105,233.734 670.786,233.415 670.76,232.803L 670.76,222.717C 670.786,222.105 671.105,221.786 671.717,221.76L 675.645,221.76C 676.257,221.786 676.576,222.105 676.602,222.717L 676.602,232.803 Z M 674.865,232.023L 674.865,223.497L 672.497,223.497L 672.497,232.023L 674.865,232.023 Z M 683.076,223.497L 679.918,223.497L 679.918,226.813L 682.602,226.813L 682.602,228.55L 679.918,228.55L 679.918,233.76L 678.181,233.76L 678.181,221.76L 683.076,221.76L 683.076,223.497 Z M 688.76,223.497L 685.602,223.497L 685.602,226.813L 688.286,226.813L 688.286,228.55L 685.602,228.55L 685.602,233.76L 683.865,233.76L 683.865,221.76L 688.76,221.76L 688.76,223.497 Z " HorizontalAlignment="Stretch" Margin="0,0,0,1" UseLayoutRounding="False" VerticalAlignment="Stretch" />
+                            </Grid>
+                            <Grid x:Name="on_Copy" HorizontalAlignment="Left" Height="13" Margin="27,1,0,0" VerticalAlignment="Center" Width="14" FlowDirection="LeftToRight">
+                                <Path Stretch="Fill" Fill="White" Data="F1 M 614.727,178.803C 614.699,179.415 614.362,179.734 613.716,179.76L 609.57,179.76C 608.925,179.734 608.588,179.415 608.56,178.803L 608.56,168.717C 608.588,168.105 608.925,167.786 609.57,167.76L 613.716,167.76C 614.362,167.786 614.699,168.105 614.727,168.717L 614.727,178.803 Z M 612.893,178.023L 612.893,169.497L 610.393,169.497L 610.393,178.023L 612.893,178.023 Z M 622.56,179.76L 620.914,179.76L 618.104,172.208C 618.186,172.577 618.227,172.865 618.227,173.074L 618.227,179.76L 616.393,179.76L 616.393,167.76L 618.039,167.76L 620.849,175.159C 620.767,174.79 620.727,174.502 620.727,174.293L 620.727,167.76L 622.56,167.76L 622.56,179.76 Z " HorizontalAlignment="Stretch" Margin="0,1,0,0" UseLayoutRounding="False" VerticalAlignment="Stretch" />
+                                <Path Stretch="Fill" Fill="#FF9A9C9D" Data="F1 M 614.727,178.803C 614.699,179.415 614.362,179.734 613.716,179.76L 609.57,179.76C 608.925,179.734 608.588,179.415 608.56,178.803L 608.56,168.717C 608.588,168.105 608.925,167.786 609.57,167.76L 613.716,167.76C 614.362,167.786 614.699,168.105 614.727,168.717L 614.727,178.803 Z M 612.893,178.023L 612.893,169.497L 610.393,169.497L 610.393,178.023L 612.893,178.023 Z M 622.56,179.76L 620.914,179.76L 618.104,172.208C 618.186,172.577 618.227,172.865 618.227,173.074L 618.227,179.76L 616.393,179.76L 616.393,167.76L 618.039,167.76L 620.849,175.159C 620.767,174.79 620.727,174.502 620.727,174.293L 620.727,167.76L 622.56,167.76L 622.56,179.76 Z " HorizontalAlignment="Stretch" Margin="0,0,0,1" UseLayoutRounding="False" VerticalAlignment="Stretch" />
+                            </Grid>
+                            <Grid Margin="3">
+                                <Grid x:Name="thumb" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}},Path=ActualWidth,Converter={StaticResource NumberConverter}, ConverterParameter=3}" HorizontalAlignment="Left" >
+                                    <Border x:Name="off" CornerRadius="3">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FFB2B2B2" Offset="0" />
+                                                <GradientStop Color="#FFA1A1A1" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <Border CornerRadius="2" Margin="1" BorderThickness="0,1,0,0" BorderBrush="#FFE5E5E5">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FFD9D9D9" Offset="0" />
+                                                    <GradientStop Color="#FFCACACA" Offset="1" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                    </Border>
+                                    <Border x:Name="on" CornerRadius="3" Opacity="0">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FF7E9BCD" Offset="0" />
+                                                <GradientStop Color="#FF6383BD" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <Border CornerRadius="2" Margin="1" BorderThickness="0,1,0,0" BorderBrush="#FFBFD8F3">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FFA1BEE5" Offset="0" />
+                                                    <GradientStop Color="#FF85A3D0" Offset="1" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                    </Border>
+                                    <Border x:Name="pressed" CornerRadius="3" Opacity="0">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FFB2B2B2" Offset="1" />
+                                                <GradientStop Color="#FF8B8B8B" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <Border CornerRadius="2" Margin="1" BorderThickness="0" BorderBrush="#FFE5E5E5">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="Silver" Offset="1" />
+                                                    <GradientStop Color="#FFA7A7A7" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                    </Border>
+                                    <Grid.RenderTransform>
+                                        <TranslateTransform x:Name="translate" />
+                                    </Grid.RenderTransform>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="UserItemContainerStyle" TargetType="ListBoxItem">
+            <Style.Resources>
+                <!--SelectedItem with focus-->
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightBlue" Opacity=".4"/>
+                <!--SelectedItem without focus-->
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="LightBlue" Opacity=".4"/>
+            </Style.Resources>
+            <!-- 设置触发器 -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="#efefef"/>
+                    <Setter Property="Foreground" Value="Red"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="true">
+                    <Setter Property="Background" Value="Coral"/>
+                    <Setter Property="Foreground" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <converter:ImageConverter x:Key="ImageConverter"/>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <Binding Path="FreqDataCollectNew" Source="{StaticResource Locator}"/>
+    </UserControl.DataContext>
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>-->
+    <!--<dxdo:DockLayoutManager Grid.Row="1">-->
+    <dxdo:DockLayoutManager>
+        <dxdo:LayoutGroup>
+            <dxdo:LayoutGroup ItemWidth="360" ShowCaption="False" Orientation="Vertical">
+                <!--<dxdo:LayoutPanel ItemHeight="100" Caption="测量参数" ShowCloseButton="False" AllowFloat="False" ShowPinButton="False" AllowSizing="False">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="起始频率:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+                            <Label Grid.Row="0" Grid.Column="2" Content="终止频率:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+                            <Label Grid.Row="1" Grid.Column="0" Content="带宽:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+                            <Label Grid.Row="1" Grid.Column="2" Content="信号门限:" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+                        </Grid>
+                    </dxdo:LayoutPanel>-->
+                <dxdo:LayoutPanel Caption="规划频段" ShowCloseButton="False" AllowFloat="False" ShowPinButton="False" AllowSizing="False">
+                    <!--<dxe:ListBoxEdit
+                    ShowBorder="False"
+                    x:Name="listBoxEdit"
+                    MouseLeftButtonUp="listBoxEdit_MouseLeftButtonUp"
+                    SelectionMode="Single">
+                            <dxe:ListBoxEdit.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="LightGray" BorderThickness="1">
+                                        <Grid Width="345" Height="30" Background="#F3F3F3">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="2"></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition Height="2"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding FreqPlanName}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="4,0,0,0"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </dxe:ListBoxEdit.ItemTemplate>
+                        </dxe:ListBoxEdit>-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="160"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">循环监测间隔</TextBlock>
+                            <dxe:TextEdit x:Name="text_interval" Text="10" Margin="2,2,2,2" HorizontalAlignment="Center" VerticalAlignment="Center"></dxe:TextEdit>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">秒</TextBlock>
+                            <Button x:Name="btn_monitor_start" IsEnabled="True" Click="btn_monitor_start_Click" HorizontalAlignment="Center" VerticalAlignment="Center">启动循环监测</Button>
+                            <Button x:Name="btn_monitor_stop" IsEnabled="False" Click="btn_monitor_stop_Click" HorizontalAlignment="Center" VerticalAlignment="Center">终止循环监测</Button>
+                        </DockPanel>
+                        <dxe:ListBoxEdit
+                    ShowBorder="False"
+                    x:Name="listBoxEdit"
+                    MouseLeftButtonUp="listBoxEdit_MouseLeftButtonUp" 
+                    SelectionMode="Single" Grid.Row="1">
+                            <dxe:ListBoxEdit.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="LightGray" BorderThickness="1">
+                                        <Grid Width="345" Height="30" Background="#0080C0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="2"></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition Height="2"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Converter={StaticResource FreqPlanNameConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="4,0,0,0"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </dxe:ListBoxEdit.ItemTemplate>
+                        </dxe:ListBoxEdit>
+                        <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
+                                <dxn:NavBarControl Name="navBar">
+                                </dxn:NavBarControl>
+                            </ScrollViewer>-->
+                        <Border x:Name="border_button" BorderThickness="0,1,0,1" Grid.Row="2" BorderBrush="LightGray">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="70"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <RadioButton Grid.Column="0" Grid.ColumnSpan="2" GroupName="group1" Margin="10,0,0,0" Command="{Binding RadioACommand}" HorizontalAlignment="Center" VerticalAlignment="Center">Sensor</RadioButton>
+                                <RadioButton Grid.Column="2" Grid.ColumnSpan="2" GroupName="group1" Margin="30,0,0,0" IsChecked="True" Command="{Binding RadioBCommand}" HorizontalAlignment="Center" VerticalAlignment="Center">RMTP</RadioButton>
+                                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="70"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center">设备IP:</TextBlock>
+                                    <dxe:TextEdit Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2,0,2" x:Name="spin_Ip" Text="{Binding RoadTestInfor.ReciverIp,UpdateSourceTrigger=PropertyChanged}" MaskType="RegEx" Mask="(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})?"></dxe:TextEdit>
+                                    <DockPanel Grid.Column="3" >
+                                        <TextBlock VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Margin="2,2,2,2">端口:
+                                        </TextBlock>
+                                        <dxe:TextEdit Margin="2,2,2,2" x:Name="spin_Port" MaskType="RegEx" Mask="(\d{0,4})?" Text="">5150</dxe:TextEdit>
+                                    </DockPanel>
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Visibility="{Binding RadioBVisibility}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="70"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center">用户名:</TextBlock>
+                                    <dxe:TextEdit Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2,0,2"  Text="{Binding RoadTestInfor.Username}"></dxe:TextEdit>
+                                    <DockPanel Grid.Column="3" >
+                                        <TextBlock VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Margin="2,2,2,2">口令:
+                                        </TextBlock>
+                                        <dxe:TextEdit Margin="2,2,2,2" Text="{Binding RoadTestInfor.Password}"></dxe:TextEdit>
+                                    </DockPanel>
+                                </Grid>
+                                <TextBlock Grid.Row="3"
+                                               Grid.Column="0"
+                                               Text="起始频率:"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Grid.Row="3"
+                                               Grid.Column="2"
+                                               Text="终止频率:"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Grid.Row="4"
+                                               Grid.Column="0"
+                                               Text="带宽:"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Grid.Row="4"
+                                                Grid.Column="2"
+                                               Text="信号门限:"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"></TextBlock>
+                                <dxe:TextEdit Grid.Row="3" Grid.Column="1" Margin="2,2,2,2" x:Name="spin_start" Text="{Binding RoadTestInfor.StartFreq,UpdateSourceTrigger=PropertyChanged}" MaskType="RegEx" Mask="\d+(\.\d{0,4})?"/>
+                                <dxe:TextEdit Grid.Row="3" Grid.Column="3" Margin="2,2,2,2" x:Name="spin_stop" Text="{Binding RoadTestInfor.EndFreq,UpdateSourceTrigger=PropertyChanged}" MaskType="RegEx" Mask="\d+(\.\d{0,4})?"/>
+                                <dxe:TextEdit Grid.Row="4" Grid.Column="1" Margin="2,2,2,2" x:Name="spin_bandWidth" Text="{Binding RoadTestInfor.Bandwidth,UpdateSourceTrigger=PropertyChanged}" MaskType="RegEx" Mask="\d+(\.\d{0,1})?"/>
+                                <dxe:TextEdit Grid.Row="4" Grid.Column="3" Margin="2,2,2,2" x:Name="spin_signalLimit" Text="{Binding RoadTestInfor.SignalLimit,UpdateSourceTrigger=PropertyChanged}" MaskType="RegEx" Mask="([0-9])|([1-9][0-9])|100"></dxe:TextEdit>
+                                <DockPanel Grid.Row="5" Grid.ColumnSpan="4">
+                                    <Button DockPanel.Dock="Right" Height="24" Margin="2,2,2,2" Width="80" Content="停止测量" Command="{Binding StopRealTimeMonitorCommand}" x:Name="btnStop" Click="btnStop_Click"/>
+                                    <Button DockPanel.Dock="Right" Height="24" Margin="2,2,2,2" Width="80"  Content="开始测量" HorizontalAlignment="Right" Command="{Binding StartRealTimeMonitorCommand}" x:Name="btnStart" Click="btnStart_Click"></Button>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,12,0">
+                                        <TextBlock VerticalAlignment="Center"
+                                                            HorizontalAlignment="Center"
+                                                            Margin="0,0,5,0">大屏端显示:</TextBlock>
+                                        <dxe:CheckEdit  x:Name="cbxSaveData" Grid.Column="1" Style="{StaticResource slider}" EditValue="{Binding RoadTestInfor.SaveData,UpdateSourceTrigger=PropertyChanged}" Width="105" EditValueChanged="cbxSaveData_EditValueChanged"  VerticalAlignment="Center" Height="24"  />
+                                    </StackPanel>
+                                </DockPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </dxdo:LayoutPanel>
+                <!--<dxdo:LayoutPanel ItemHeight="50"  ShowCloseButton="False" AllowFloat="False" ShowPinButton="False" ShowCaption="False" AllowSizing="False">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="突发信号显示控制" Foreground="SteelBlue" Grid.Column="0" FontSize="24" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+                        <dxe:CheckEdit x:Name="signalCheckEdit" Width="105" Grid.Column="1" Style="{StaticResource slider}" Height="40" EditValueChanged="slider_EditValueChanged" Margin="0,0,0,0" />
+                    </Grid>
+                </dxdo:LayoutPanel>-->
+            </dxdo:LayoutGroup>
+            <dxdo:LayoutGroup AllowClose="False" AllowFloat="False" Orientation="Vertical">
+                <dxdo:LayoutPanel Caption="谱图" ShowCloseButton="False" AllowDock="False" AllowMove="False" AllowFloat="False" ShowPinButton="False" MinHeight="150">
+                    <Grid Background="Black">
+                        <!--<StackPanel x:Name="nmb"></StackPanel>-->
+                        <localChartUc:ChartView  x:Name="chartView_collection" Margin="5" Background="Black" DataContext="{Binding LineChartViewModel}" VerticalAlignment="Stretch"/>
+                        <Image x:Name="img_burst_signal" Visibility="{Binding RoadTestInfor.IllegalAnalysisList,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource VissbilityConverter}}" Source="/CO_IA.UI.Collection;component/Images/burst_64x64.png" Width="64" Height="64" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,70,0" Opacity="0.7" IsHitTestVisible="True"></Image>
+                    </Grid>
+                </dxdo:LayoutPanel>
+                <dxdo:LayoutPanel Caption="信号列表" ShowCloseButton="False" AllowDock="False" AllowMove="False" AllowFloat="False" ShowPinButton="False" MinHeight="100">
+                    <TabControl x:Name="tabControl">
+                        <TabControl.Resources>
+                            <Style TargetType="{x:Type TabItem}">
+                                <Setter Property="HeaderTemplate" >
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <Grid >
+                                                <TextBlock Text="{Binding FreqRangeName}"></TextBlock>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="ContentTemplate" >
+                                    <Setter.Value>
+                                        <DataTemplate >
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <DataGrid Margin="3" ItemsSource="{Binding LegalFreqInfoList}" >
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Header="信号频率(MHz)" Width="110" Binding="{Binding Frequency}"></DataGridTextColumn>
+                                                        <DataGridTemplateColumn Header="发射情况" Width="80">
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <Image Source="{Binding SendStatusPic}" Height="24" Width="24" Margin="2,2,2,2"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTextColumn Header="发射强度(dBμV)" Width="120" Binding="{Binding AmplitudeMaxValue}"></DataGridTextColumn>
+                                                        <DataGridTextColumn Header="单位名称" Width="80" Binding="{Binding StationName}"></DataGridTextColumn>
+                                                        <DataGridTextColumn Header="设备名称" Width="80" Binding="{Binding EquimentName}"></DataGridTextColumn>
+                                                        <DataGridTextColumn Header="占用度(%)" Width="90" Binding="{Binding Occupy}"></DataGridTextColumn>
+                                                        <DataGridTextColumn Header="首次出现时间" Width="150" Binding="{Binding StartTime,StringFormat='yyyy年MM月dd日 HH:mm'}"></DataGridTextColumn>
+                                                        <DataGridTextColumn Header="最后出现时间" Width="150" Binding="{Binding StopTime,StringFormat='yyyy年MM月dd日 HH:mm'}"></DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                                <DataGrid Margin="3" Grid.Row="1" ItemsSource="{Binding IllegalFreqInfoList}" >
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Header="信号频率(MHz)" Width="120" Binding="{Binding Frequency}"></DataGridTextColumn>
+                                                        <DataGridTextColumn Header="发射强度(dBμV)" Width="120" Binding="{Binding AmplitudeMaxValue}"></DataGridTextColumn>
+                                                        <DataGridTemplateColumn Header="发射情况" Width="80">
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <Image Source="{Binding SendStatusPic}" Height="24" Width="24" Margin="2,2,2,2"/>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTextColumn Header="占用度(%)" Width="90" Binding="{Binding Occupy}"></DataGridTextColumn>
+                                                        <DataGridTextColumn Header="首次出现时间" Width="150" Binding="{Binding StartTime,StringFormat='yyyy年MM月dd日 HH:mm'}"></DataGridTextColumn>
+                                                        <DataGridTextColumn Header="最后出现时间" Width="150" Binding="{Binding StopTime,StringFormat='yyyy年MM月dd日 HH:mm'}"></DataGridTextColumn>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TabControl.Resources>
+                    </TabControl>
+                </dxdo:LayoutPanel>
+
+            </dxdo:LayoutGroup>
+        </dxdo:LayoutGroup>
+    </dxdo:DockLayoutManager>
+    <!--</Grid>-->
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <GalaSoft_MvvmLight_Command:EventToCommand x:Name="winClosing" Command="{Binding WinCloseCommand, Mode=OneWay}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+</UserControl>

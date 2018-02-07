@@ -1,0 +1,165 @@
+﻿<Window x:Class="CO_IA.UI.PlanDatabase.Equipments.EquipmentQueryDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+        Title="设备查询窗口" Height="300" Width="600" 
+        WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+    <Grid>
+        <Grid.Resources>
+            <Style x:Key="baseStyle">
+                <Setter Property="FrameworkElement.VerticalAlignment"
+                        Value="Center" />
+                <Setter Property="FrameworkElement.Margin"
+                        Value="5,0,5,0" />
+            </Style>
+            <Style TargetType="TextBlock"
+                   BasedOn="{StaticResource baseStyle}">
+                <Setter Property="HorizontalAlignment"
+                        Value="Right" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+            </Style>
+
+            <Style TargetType="dxe:TextEdit" BasedOn="{StaticResource baseStyle}">
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+            </Style>
+            <Style TargetType="CheckBox"
+                   BasedOn="{StaticResource baseStyle}">
+                <Setter Property="HorizontalAlignment"
+                        Value="Right" />
+            </Style>
+            <Style TargetType="TextBox"
+                   BasedOn="{StaticResource baseStyle}">
+                <Setter Property="HorizontalAlignment"
+                        Value="Stretch" />
+            </Style>
+            <Style TargetType="ComboBox"
+                   BasedOn="{StaticResource baseStyle}">
+                <Setter Property="HorizontalAlignment"
+                        Value="Stretch" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="30" />
+            <RowDefinition MinHeight="30" />
+            <RowDefinition MinHeight="30" />
+            <RowDefinition MinHeight="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="85" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="85" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="设备单位:" />
+        <dxe:TextEdit Grid.Row="0"  Grid.Column="1" 
+                      x:Name="orgname"
+                      EditValue="{Binding Path=OrgName, Mode=TwoWay}" />
+        <!--<dxe:ComboBoxEdit Grid.Row="0"
+                          Grid.Column="1"
+                          x:Name="comboBoxOrgs"  
+                          DisplayMember="Name"
+                          ValueMember="Guid"
+                          ShowCustomItems="True"
+                          IsEnabled="False"
+                          EditValue="{Binding Path=OrgGuid, Mode=TwoWay}"
+                          Margin="5,0,5,0"
+                          IsTextEditable="False"  >-->
+        <!--<dxe:ComboBoxEdit.StyleSettings>
+                <dxe:CheckedComboBoxStyleSettings />
+            </dxe:ComboBoxEdit.StyleSettings>
+        </dxe:ComboBoxEdit>-->
+
+        <TextBlock Text="设备名称:"
+                   Grid.Column="2" Margin="0,7,5,7" />
+        <dxe:TextEdit Grid.Column="3"
+                      x:Name="textBoxName"
+                      EditValue="{Binding Path=EquipmentName, Mode=TwoWay}"/>
+
+        <TextBlock Text="设备类别:"
+                   Grid.Row="1"  Margin="0,7,5,7" />
+        <dxe:ComboBoxEdit Grid.Row="1"
+                          Grid.Column="1"
+                          DisplayMember="Name"
+                          ValueMember="Guid"
+                          IsTextEditable="False"
+                          Margin="5,0,5,0"
+                          x:Name="comboBoxClass">
+            <dxe:ComboBoxEdit.StyleSettings>
+                <dxe:CheckedComboBoxStyleSettings />
+            </dxe:ComboBoxEdit.StyleSettings>
+        </dxe:ComboBoxEdit>
+
+        <TextBlock Text="频率范围:" Grid.Row="1" Grid.Column="2"/>
+        <Grid Grid.Row="1" Grid.Column="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="36" />
+            </Grid.ColumnDefinitions>
+            <dxe:TextEdit x:Name="textBoxFreqRangeFrom"  MaskType="RegEx" Mask="\d{1,5}(\.\d{1,5})?"
+                          Grid.Column="0" EditValue="{Binding Path=FreqRange.Little, Mode=TwoWay }"/>
+            <TextBlock Text="-"
+                       Grid.Column="1" HorizontalAlignment="Center"/>
+            <dxe:TextEdit x:Name="textBoxFreqRangeTo" 
+                          MaskType="RegEx" Mask="\d{1,5}(\.\d{1,5})?"
+                          Grid.Column="2" 
+                          EditValue="{Binding Path=FreqRange.Great, Mode=TwoWay }"/>
+            <TextBlock Text="MHz" Grid.Column="3" />
+        </Grid>
+
+
+        <TextBlock Text="已建站:"  Grid.Row="2"  Grid.Column="0" />
+        <commonControls:MultipleBoolenCheckBox x:Name="ckboxIsStation"
+                                               TrueValueText="已建站"
+                                               FalseValueText="非已建站"
+                                               Grid.Row="2" Grid.Column="1"
+                                               HorizontalAlignment="Left" 
+                                               VerticalAlignment="Center"
+                                               Width="200" Margin="5"
+                                               Value="{Binding Path=IsStation, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBlock Text="已建台站名称:"
+                        Grid.Row="2"
+              Grid.Column="2" />
+        <dxe:TextEdit x:Name="textBoxStationName"
+                          Grid.Row="2"
+              Grid.Column="3"
+                          EditValue="{Binding Path=StationName, Mode=TwoWay}" 
+                          IsReadOnly="{Binding ElementName=ckboxIsStation, Path=IsChecked ,Mode=TwoWay}"/>
+
+
+
+        <TextBlock Text="移动设备:"  Grid.Row="3"  Grid.Column="0" />
+        <commonControls:MultipleBoolenCheckBox Grid.Row="3"
+                                               Grid.Column="1"
+                                               Grid.ColumnSpan="2"
+                                               TrueValueText="移动设备"
+                                               FalseValueText="非移动设备" 
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Width="200" Margin="5"
+                                               Value="{Binding Path=IsMobile, Mode=TwoWay}" />
+
+        <TextBlock Text="频率可调:"  Grid.Row="3"  Grid.Column="2" />
+        <commonControls:MultipleBoolenCheckBox Grid.Row="3"
+                                               Grid.Column="3"
+                                               Width="200" Margin="5"
+                                               TrueValueText="频率可调"
+                                               FalseValueText="频率不可调" 
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Value="{Binding Path=IsTunable, Mode=TwoWay}" />
+
+        <StackPanel Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"  Margin="5,10"
+                    Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="重置" Click="btnReset_Click" />
+            <Button Content="查询"  Click="btnQuery_Click" />
+            <Button Content="取消"  Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

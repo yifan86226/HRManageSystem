@@ -1,0 +1,95 @@
+﻿<Window x:Class="CO_IA.UI.Screen.Audio.AudioDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CO_IA.UI.Screen.Audio"
+         xmlns:clientConverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+        Title="语音通话" Height="450" Width="550" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Background="#FF10639A" Foreground="White">
+    <Window.Resources>
+        <clientConverter:DutyToImageConverter x:Key="myIntToImageConverter" />
+        <clientConverter:BytesToImageConverter x:Key="byteImageConverter"></clientConverter:BytesToImageConverter>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="14"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <GroupBox Margin="10,0" FontSize="{DynamicResource  DefaultFontSizeH2}" BorderBrush="Black"  BorderThickness="1">
+            <GroupBox.Header>
+                <TextBlock FontSize="{DynamicResource  DefaultFontSizeH2}" Text="当前通话"></TextBlock>
+            </GroupBox.Header>
+        <local:AudioControl  x:Name="topAudio" Margin="2,-10,2,0"/>
+        </GroupBox>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="︿" Cursor="Hand" ToolTip="点击收回" x:Name="splitText" Width="50" MouseLeftButtonUp="splitText_MouseLeftButtonUp" FontWeight="Bold" Foreground="#FFE5F91A"></TextBlock>
+
+        <Grid Grid.Row="2" x:Name="bottomGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="53*"/>
+            </Grid.ColumnDefinitions>
+            <TreeView  x:Name="tv_PersonPlan" Background="Transparent"
+                        ItemsSource="{Binding }"  
+                        SelectedItemChanged="tv_PersonPlan_SelectedItemChanged" 
+                        Grid.Column="0" 
+                        VerticalAlignment="Stretch" 
+                        HorizontalAlignment="Stretch" 
+                        >
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded" Value="True"></Setter>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+                <TreeView.ItemTemplate >
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}"   >
+                        <StackPanel Orientation="Horizontal"  Tag="{Binding PARENT_GUID}" >
+                            <Image VerticalAlignment="Center" Source="{Binding Path=DUTY,  Converter={StaticResource myIntToImageConverter}}"  Height="16" Width="16" />
+                            <StackPanel Orientation="Vertical" Tag="{Binding PARENT_GUID}">
+                                <TextBlock Text="{Binding NAME, Mode=TwoWay}" FontSize="{DynamicResource  DefaultFontSizeH2}" HorizontalAlignment="Center" Width="Auto" Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+            <GridSplitter Width="2"></GridSplitter>
+            <!--<StackPanel Orientation="Vertical" Grid.Column="1" x:Name="stpPanel"></StackPanel>-->
+            <ListBox x:Name="personlistbox" Margin="1" BorderThickness="0" Background="Transparent"  SelectionMode="Extended"   Grid.Column="1" SelectionChanged="personlistbox_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListBox.Resources>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="HorizontalAlignment" Value="Left" />                       
+                    </Style>
+
+                </ListBox.Resources>
+             
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="1" Height="35" Width="{Binding ActualWidth,ElementName=personlistbox}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Stretch="Uniform" Source="{Binding Path=PHOTO, Mode=TwoWay, Converter={StaticResource byteImageConverter}}" Height="32" Width="32"/>
+                            <TextBlock Grid.Column="1" Text="{Binding  Path=NAME}" FontSize="{DynamicResource DefaultFontSizeH2}" Foreground="White">
+                            </TextBlock>
+                            <TextBlock Grid.Column="2" Text="{Binding  Path=VOICEID}"   Margin="0,2" FontSize="{DynamicResource  DefaultFontSizeH2}"  Foreground="White"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </Grid>
+        <StatusBar  Grid.Row="3" Background="Transparent">
+            <StatusBarItem>
+                <TextBlock x:Name="statusInfo" Margin="5,0,0,0"></TextBlock>
+            </StatusBarItem>
+
+            <StatusBarItem>
+                <!--<TextBlock  Margin="5,0,0,0"  Foreground="White" Text="呼叫状态：" Visibility="Collapsed"></TextBlock>-->
+                <TextBlock x:Name="statusInfo2"  Foreground="White"></TextBlock>
+            </StatusBarItem>
+            
+        </StatusBar>
+
+    </Grid>
+</Window>

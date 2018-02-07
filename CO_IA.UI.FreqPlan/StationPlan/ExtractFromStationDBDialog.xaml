@@ -1,0 +1,18 @@
+﻿<Window x:Class="CO_IA.UI.FreqPlan.StationPlan.ExtractFromStationDBDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CO_IA.UI.FreqPlan.StationPlan"
+        WindowStartupLocation="CenterScreen" 
+        Title="台站库" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="5"  Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Content="查询" Click="ButQuery_Click"/>
+            <Button Content="导入" Click="BtnExtract_Click"/>
+        </StackPanel>
+        <local:StationListControl x:Name="stationListControl"  Grid.Row="1"  />
+    </Grid>
+</Window>

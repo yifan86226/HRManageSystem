@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BADB0783-9731-41C5-9569-C1B7CF158614}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CO_IA.UI.Collection</RootNamespace>
+    <AssemblyName>CO_IA.UI.Collection</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="AT_BC.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Data.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.SystemPortal.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.SystemPortal.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Best.WMonitor.Common">
+      <HintPath>..\Output\FreqCollect\Best.WMonitor.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Charts.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v13.2">
+      <HintPath>..\Output\DevExpress.Data.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Charts.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Charts.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v13.2">
+      <HintPath>..\Output\DevExpress.Xpf.Core.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Docking.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Docking.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Grid.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Grid.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v13.2.Core">
+      <HintPath>..\Output\DevExpress.Xpf.Layout.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.LayoutControl.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Mvvm.v13.2">
+      <HintPath>..\Output\DevExpress.Xpf.Mvvm.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.NavBar.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.NavBar.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamicDataDisplay, Version=0.3.4703.0, Culture=neutral, PublicKeyToken=5b7d744a7263923f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\FreqCollect\DynamicDataDisplay.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\Output\FreqCollect\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\Output\FreqCollect\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\FreqCollect\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="PT_BS_Service.Client.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.Client.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="PWMIS.Core, Version=5.5.4.614, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\FreqCollect\PWMIS.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PWMIS.Core.Extensions, Version=5.3.6.1125, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\FreqCollect\PWMIS.Core.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Data.SQLite, Version=1.0.98.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\FreqCollect\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPFToolkit">
+      <HintPath>..\Output\FreqCollect\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\Output\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="ZedGraph">
+      <HintPath>..\Output\FreqCollect\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Chart\ChartView.xaml.cs">
+      <DependentUpon>ChartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chart\ChartViewModel.cs" />
+    <Compile Include="Chart\LineGraphViewModel.cs" />
+    <Compile Include="Chart\MinuteQuoteViewModel.cs" />
+    <Compile Include="Chart\ChartNewViewModel.cs" />
+    <Compile Include="CollectionDataSave.cs" />
+    <Compile Include="CollectionIndexManage.xaml.cs">
+      <DependentUpon>CollectionIndexManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converter\FreqValueConverter.cs" />
+    <Compile Include="Converter\NeedClearConverter.cs" />
+    <Compile Include="Converter\NumberConverter.cs" />
+    <Compile Include="Converter\RowShowConverter.cs" />
+    <Compile Include="DataAanalysis.xaml.cs">
+      <DependentUpon>DataAanalysis.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAnalysis\CursorPanel.xaml.cs">
+      <DependentUpon>CursorPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAnalysis\DataAnalysisEnum.cs" />
+    <Compile Include="DataAnalysis\ElecEnvFlexGridData.cs" />
+    <Compile Include="DataAnalysis\FreqNavBar.xaml.cs">
+      <DependentUpon>FreqNavBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAnalysis\ImageButton.cs" />
+    <Compile Include="DataAnalysis\MultibandSpectrumData.cs" />
+    <Compile Include="DataAnalysis\MultibandSpectrumDataManage.cs" />
+    <Compile Include="DataAnalysis\MultibandSpectrumDiagram.cs" />
+    <Compile Include="DataAnalysis\SpectrumFreqPointData.cs" />
+    <Compile Include="DataAnalysis\StatisticFreq.cs" />
+    <Compile Include="DbEntity\FreqDataTemplate.cs" />
+    <Compile Include="DbEntity\RoadTest.cs" />
+    <Compile Include="DbEntity\SQLiteConnect.cs" />
+    <Compile Include="DbEntity\SQLiteDataService.cs" />
+    <Compile Include="DbEntity\SQLiteMonitorService.cs" />
+    <Compile Include="Design\DesignDataService.cs" />
+    <Compile Include="FreqCollection.xaml.cs">
+      <DependentUpon>FreqCollection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="helper\ActualSizePropertyProxy.cs" />
+    <Compile Include="helper\DbHelper.cs" />
+    <Compile Include="helper\InternetHelper.cs" />
+    <Compile Include="IService\IChestBitmapService.cs" />
+    <Compile Include="IService\IMultiPersionTrainingSerice.cs" />
+    <Compile Include="MessageEntity\PageGoMessage.cs" />
+    <Compile Include="Model\ChartSeriesPoints.cs" />
+    <Compile Include="Model\DataItem.cs" />
+    <Compile Include="Model\DataService.cs" />
+    <Compile Include="Model\FreqCollectionIndex.cs" />
+    <Compile Include="Model\FreqDataItem.cs" />
+    <Compile Include="Model\FreqStatModel.cs" />
+    <Compile Include="Model\IDataService.cs" />
+    <Compile Include="NavBarFreqAdd.xaml.cs">
+      <DependentUpon>NavBarFreqAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PaletteItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealTimeMonitorDataShowNew.xaml.cs">
+      <DependentUpon>RealTimeMonitorDataShowNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RealTimeMonitorDataShow.xaml.cs">
+      <DependentUpon>RealTimeMonitorDataShow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RealTimeMonitor.xaml.cs">
+      <DependentUpon>RealTimeMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RealTimeMonitorNew.xaml.cs">
+      <DependentUpon>RealTimeMonitorNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service\ChestBitmapService.cs" />
+    <Compile Include="StringToIntConverter.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="ViewModel\CarRunInforViewModel.cs" />
+    <Compile Include="ViewModel\FreqDataCollectViewModel.cs" />
+    <Compile Include="ViewModel\FreqDataCreatViewModel.cs" />
+    <Compile Include="ViewModel\FreqListInfocs.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\RoadTestViewModel.cs" />
+    <Compile Include="ViewModel\RtCdma2G_DataViewModel.cs" />
+    <Compile Include="ViewModel\RtFreqDataViewModel.cs" />
+    <Compile Include="ViewModel\RtGpsDataViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\FreqDataCollectNewViewModel.cs" />
+    <Compile Include="FreqCollectionNew.xaml.cs">
+      <DependentUpon>FreqCollectionNew.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Chart\ChartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CollectionIndexManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAanalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAnalysis\CursorPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAnalysis\FreqNavBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqCollection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NavBarFreqAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RealTimeMonitorDataShowNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RealTimeMonitorDataShow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RealTimeMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RealTimeMonitorNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MultibandSpectrumDiagram.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqCollectionNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Agilent\Agilent.csproj">
+      <Project>{62d1ec1b-b81e-4dc1-91cd-6b5495cef3a5}</Project>
+      <Name>Agilent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Best\BeiLiNu.Ui.Controls\BeiLiNu.Ui.Controls.csproj">
+      <Project>{0208bc3a-2f98-40f7-8d42-dd44e87d9180}</Project>
+      <Name>BeiLiNu.Ui.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Best\Best.VWPlatform.Assist\Best.VWPlatform.Assist.csproj">
+      <Project>{ed0f6b9b-d472-4744-b126-1ee128e5d73e}</Project>
+      <Name>Best.VWPlatform.Assist</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Best\Best.VWPlatform.Common\Best.VWPlatform.Common.csproj">
+      <Project>{ca79c979-55f5-4cc6-a453-2148e2e78df3}</Project>
+      <Name>Best.VWPlatform.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Best\Best.VWPlatform.Controls\Best.VWPlatform.Controls.csproj">
+      <Project>{7d01f156-55c0-4601-9cfc-9a123ca1fe15}</Project>
+      <Name>Best.VWPlatform.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Best\Best.VWPlatform.Resources\Best.VWPlatform.Resources.csproj">
+      <Project>{577a4876-850a-444d-b66d-ce61c37ca9de}</Project>
+      <Name>Best.VWPlatform.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Client\CO_IA.Client.csproj">
+      <Project>{b48b653d-d7d2-43f9-806e-e7621e9fa27c}</Project>
+      <Name>CO_IA.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Data.Portable\CO_IA.Data.Portable.csproj">
+      <Project>{d52a57d6-99b0-4bcf-9998-68099e2edc78}</Project>
+      <Name>CO_IA.Data.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA_Data.StationManage\CO_IA_Data.StationManage.csproj">
+      <Project>{a0dd0b1d-3c6d-495e-b481-1d2f2b0b8257}</Project>
+      <Name>CO_IA_Data.StationManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.ActivityManage\I_CO_IA.ActivityManage.csproj">
+      <Project>{fddc11eb-7155-4afc-9524-c95b52057d0b}</Project>
+      <Name>I_CO_IA.ActivityManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.Collection\I_CO_IA.Collection.csproj">
+      <Project>{e538500e-ef06-4e15-9463-9a64227cc4bf}</Project>
+      <Name>I_CO_IA.Collection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.FreqStation\I_CO_IA.FreqStation.csproj">
+      <Project>{657697a6-318e-430f-a2b5-35d7e973608d}</Project>
+      <Name>I_CO_IA.FreqStation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Connect.png" />
+    <Resource Include="Images\disconnect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\selectList.png" />
+    <Resource Include="Images\burst_64x64.png" />
+    <Resource Include="Images\addFreq.png" />
+    <Resource Include="Images\closelist.png" />
+    <Resource Include="Images\dbuv_auto.png" />
+    <Resource Include="Images\dbuv_down.png" />
+    <Resource Include="Images\dbuv_up.png" />
+    <Resource Include="Images\importFreq.png" />
+    <Resource Include="Images\openlist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\right_24x24.png" />
+    <Resource Include="Images\right_32x32.png" />
+    <Resource Include="Images\wrong_24x24.png" />
+    <Resource Include="Images\wrong_32x32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

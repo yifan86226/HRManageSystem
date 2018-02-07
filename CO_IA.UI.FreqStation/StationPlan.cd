@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CO_IA.UI.FreqStation.StationPlan.FreqAssignManage">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAADAQAQAAIQAAAAAAAAAAAgAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>StationPlan\FreqAssign\FreqAssignManage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CO_IA.UI.FreqStation.StationPlan.SurroundStationDialog">
+    <Position X="4" Y="1.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAABAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StationPlan\FreqAssign\SurroundStationDialog.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CO_IA.UI.FreqStation.StationPlan.InterfereAnalyseDialog">
+    <Position X="0.5" Y="5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>QAAAAQAAEAIQAAAQAAAEKAACAAAEAAAACAAAAAAAAgA=</HashCode>
+      <FileName>StationPlan\FreqAssign\InterfereAnalyseDialog.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CO_IA.InterferenceAnalysis.InterferenceAnalysisResult">
+    <Position X="7.25" Y="5.75" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CO_IA.UI.FreqStation.StationPlan.InterferedCalculateManage">
+    <Position X="4" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QICAAAAAUAARIAAASEAAAQCAAEIUAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>StationPlan\FreqAssign\InterferedCalculateManage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CO_IA.UI.FreqStation.StationPlan.EquipmentInspectionManageControl">
+    <Position X="0.75" Y="10.75" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>JAASgFMEAAABAIQAAAAAAEAAgAAAABAAAAgAABIAAAg=</HashCode>
+      <FileName>StationPlan\EquipmentInspection\EquipmentInspectionManageControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DataContextEquipmentInspection" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CO_IA.UI.FreqStation.StationPlan.LicenseTempleteDialog">
+    <Position X="9.5" Y="10.5" Width="2.75" />
+    <Members>
+      <Method Name="_txtHeight_EditValueChanged" Hidden="true" />
+      <Method Name="_txtqrHeight_EditValueChanged" Hidden="true" />
+      <Method Name="_txtqrWidth_EditValueChanged" Hidden="true" />
+      <Method Name="_txtWidth_EditValueChanged" Hidden="true" />
+      <Method Name="ImageDown_MouseLeftButtonUp" Hidden="true" />
+      <Method Name="ImageLeft_MouseLeftButtonUp" Hidden="true" />
+      <Method Name="ImageRight_MouseLeftButtonDown" Hidden="true" />
+      <Method Name="ImageUp_MouseLeftButtonUp" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>UAFUAAA4BQAkCMAVKAQAAQAmgIEIjQKAQAIDACAJIgE=</HashCode>
+      <FileName>StationPlan\EquipmentInspection\LicenseTempleteDialog.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CO_IA.Data.EquipmentInspection">
+    <Position X="6.5" Y="11" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

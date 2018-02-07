@@ -1,0 +1,114 @@
+﻿<Window x:Class="CO_IA.UI.ActivitySummarize.ImportTask"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:clientConverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+        xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+        xmlns:local="clr-namespace:CO_IA.UI.ActivitySummarize"
+        Title="导入" Height="700" Width="900">
+    <Window.Resources>
+        <clientConverter:DistrictNameConverter x:Key="KeyAreaCodeConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <commonControls:ModuleToolbar Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Background="#E6E6E6">
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar>
+                    <Button Content="选择添加" Click="Button_Click"
+                            BorderBrush="Gray"
+                            Background="LightGray"></Button>
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+        <Grid Grid.Row="0" Grid.Column="1" Background="#E6E6E6">
+            <TextBlock Text="图片列表"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="0" Background="#E6E6E6">
+            <TextBlock Text="任务列表" Grid.Row="0" Grid.Column="0"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <ListBox x:Name="listPlace" Style="{x:Null}"
+                     BorderThickness="0"
+                     Background="#EDEDED" SelectionChanged="listPlace_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Description}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Stretch"
+                                               Foreground="Black"
+                                               FontWeight="SemiBold"
+                                               FontSize="12"
+                                               Height="30"
+                                               Background="Transparent"
+                                               Margin="5,5,5,5"
+                                               />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <DataGrid x:Name="dataGridTask"
+                  Grid.Row="1" 
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                  BorderThickness="0"  
+                  AutoGenerateColumns="False" 
+                  HorizontalContentAlignment="Left"
+                  RowHeight="40"
+                  ItemsSource="{Binding Path=TaskItemsSource}">
+            <DataGrid.Columns>
+                <!--选择-->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="chkAll" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" 
+                                      Loaded="chkAll_Loaded"
+                                      Click="chkAll_Click"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                      IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      Click="chkCell_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--图片-->
+                <DataGridTemplateColumn Width="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Path=Content }" Height="40" Width="40" Margin="2" >
+                                <Image.ToolTip>
+                                    <Image Width="200" Height="200" Source="{Binding Path=Content}"/>
+                                </Image.ToolTip>
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <commonControls:DataGridVerticalCenterTextColumn Header="图片名称" Binding="{Binding Path=Name}" Width="*"/>
+                <!--<DataGridTemplateColumn Width="120" Header="预览">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Margin="2" Content="预览" Name="btnPreview" Uid="{Binding Path=Key}"  Click="btnPreview_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--<Image x:Name="taskImg"
+            	HorizontalAlignment="Stretch"
+            	VerticalAlignment="Stretch"
+                 Grid.Row="2"
+               Grid.Column="1"
+            	Stretch="Uniform" Margin="10"/>-->
+    </Grid>
+</Window>

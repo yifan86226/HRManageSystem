@@ -1,0 +1,481 @@
+﻿<commonExtension:EditableUserControl x:Class="CO_IA.UI.PersonSchedule.PersonPlanModule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:clientConverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+             xmlns:local="clr-namespace:CO_IA.UI.PersonSchedule"
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:commonExtension="clr-namespace:AT_BC.Client.Extensions;assembly=AT_BC.Client.Extensions.v5.0"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024" Background="White">
+    <commonExtension:EditableUserControl.Resources>
+        <clientConverter:ImageStretchConverter x:Key="ImageStretchConverter" />
+        <clientConverter:DistrictNameConverter x:Key="districtNameConverter" />
+        <local:ByteToImageSourceConverter x:Key="myByteToImageSourceConverter" />
+        <local:IntToBoolConverter x:Key="myIntToBoolConverter" />
+        <local:IntToIsEnableConverter x:Key="myIntToIsEnableConverter" />
+        <clientConverter:DutyToImageConverter x:Key="myIntToImageConverter" />
+        <local:VehicleTypeConverter x:Key="vehicletypeConverter"/>
+        <clientConverter:BoolToVisibility  x:Key="myBoolToVisibility"/>
+    </commonExtension:EditableUserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="*"   />
+            <ColumnDefinition  Width="4*" />
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TreeView   x:Name="tv_PersonPlan" 
+                        ItemsSource="{Binding }"  
+                        PreviewMouseRightButtonDown="tv_PersonPlan_PreviewMouseRightButtonDown"   
+                        SelectedItemChanged="tv_PersonPlan_SelectedItemChanged" 
+                        Grid.ColumnSpan="2" 
+                        Grid.Column="0" 
+                        VerticalAlignment="Stretch" 
+                        HorizontalAlignment="Stretch" 
+                        AllowDrop="True"
+                        >
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded" Value="True"></Setter>
+                        
+                    </Style>
+                    
+                </TreeView.ItemContainerStyle>
+                <TreeView.ItemTemplate >
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}"   >
+                        <StackPanel Orientation="Horizontal"  Tag="{Binding PARENT_GUID}" ContextMenuOpening="StackPanel_ContextMenuOpening">
+                            <Image VerticalAlignment="Center" Source="{Binding Path=DUTY,  Converter={StaticResource myIntToImageConverter}}"  Height="16" Width="16" />
+                            <StackPanel Orientation="Vertical" Tag="{Binding PARENT_GUID}">
+                                <TextBlock Text="{Binding NAME, Mode=TwoWay}" HorizontalAlignment="Center" Width="Auto"/>
+                                <TextBox x:Name="renametextbox" Text="{Binding NAME, Mode=TwoWay}" HorizontalAlignment="Center" Margin="0,-20,0,0"
+                             Width="Auto"  Visibility="Collapsed"  LostFocus="renametextbox_LostFous"/>
+                            </StackPanel>
+                            <StackPanel.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem  Name="AddTreeItem" Header="添加" Click="AddTreeViewItem_Click">
+                                    </MenuItem>
+                                    <MenuItem  Name="DelTreeItem" Header="删除" Click="DelTreeViewItem_Click">
+                                    </MenuItem>
+                                </ContextMenu>
+                            </StackPanel.ContextMenu>
+                        </StackPanel>                        
+                    </HierarchicalDataTemplate>                    
+                </TreeView.ItemTemplate>
+            </TreeView>
+            <Button Content="增加节点" HorizontalAlignment="Right"  Margin="10,0" Grid.Row="2" 
+                    VerticalAlignment="Center"  Width="75" Click="btnAddItem_Click"/>
+            <Button Content="删除节点" HorizontalAlignment="Left"  Margin="10,0"  Grid.Column="1" Grid.Row="2"
+                    VerticalAlignment="Center"  Width="75" Click="btnMove_Click"/>
+        </Grid>
+        <TabControl x:Name="tabControl" Grid.Column="1">
+            <TabItem Header="基本信息" AllowDrop="False" >
+                <Grid Name="grid_Main"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="65" />
+                        <RowDefinition Height="160"/>
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="0" Name="g_equ"/>
+                      
+                    </Grid.RowDefinitions>
+                    <Grid   x:Name="grid_OrgLeaderHeader" DataContext="{Binding}" Grid.Column="1" Visibility="Visible">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="90" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox  Name="tb_OfficeName" Grid.Column="1" Text="{Binding Path=NAME,Mode=TwoWay}" BorderThickness="0,0,0,1"  Height="33"  FontSize="18" FontWeight="Bold"  TextWrapping="Wrap" MaxLength="30" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+
+                        <Button   Content="保存" Grid.Column="2"   HorizontalAlignment="Right"   VerticalAlignment="Center" Width="75" Click="btn_SaveInfo_Click" Margin="5"/>
+                    </Grid>
+
+                    <GroupBox Header="职责" Grid.Row="1" >
+                        <ScrollViewer  Name="sv_duty"   VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
+                            <WrapPanel  x:Name="wp_dutylist"   HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+                        </ScrollViewer>
+                    </GroupBox>
+                    
+                    <Grid Visibility="Visible" x:Name="grid_OrgLeader" Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120*" />
+                            <ColumnDefinition Width="120*" />
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="办公室主任"  Visibility="Visible">
+                            <Grid   DataContext="{Binding }" Grid.Row="0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>                               
+                                <Grid Grid.Column="0"  >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="16" />
+                                    </Grid.RowDefinitions>
+                                    <Image x:Name="img_OrgLeader"  Source="{Binding Path=PHOTO, Mode=TwoWay, Converter={StaticResource myByteToImageSourceConverter}}" >
+                                        <Image.ToolTip  >
+                                            <ToolTip DataContext="{Binding Path=PlacementTarget, RelativeSource={x:Static RelativeSource.Self}}">
+                                                <Image Source="{Binding Source}" Width="400" Height="300" />
+                                            </ToolTip>
+                                        </Image.ToolTip>
+                                        <Image.Stretch>
+                                            <MultiBinding Converter="{StaticResource ImageStretchConverter}">
+                                                <Binding RelativeSource="{RelativeSource Self}" Path="Source"/>
+                                                <Binding ElementName="borderImage"  Path="ActualWidth"/>
+                                                <Binding ElementName="borderImage" Path="ActualHeight"/>
+                                            </MultiBinding>
+                                        </Image.Stretch>
+                                        <Image.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="设为组员" Click="menuItemSetGrouper_Click"/>
+                                                <MenuItem Header="清除" Click="menuItemClearGrouper_Click"/>
+                                            </ContextMenu>
+                                        </Image.ContextMenu>
+                                    </Image>
+                                    <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Horizontal"   Background="#33F9EB5C" FlowDirection="RightToLeft">
+                                        <Image Source="/CO_IA.UI.PersonSchedule;component/Images/addperson.png" ToolTip="添加图片" Height="16" Width="16"  Grid.Column="1" VerticalAlignment="Center" Cursor="Hand"  MouseLeftButtonUp="btn_OrgLeader_Upload" Margin="2,0"/>
+                                        <Image Source="/CO_IA.UI.PersonSchedule;component/Images/delete1.png" ToolTip="删除图片" Height="14" Width="14"   Grid.Column="1" VerticalAlignment="Center"  Cursor="Hand"   MouseLeftButtonUp="ImgDel_MouseLeftButtonUp" Margin="2,0"/>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="1" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="2*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="43"/>
+                                        <ColumnDefinition  Width="2*"/>
+                                        <ColumnDefinition  Width="18"/>
+                                        <ColumnDefinition  Width="43"/>
+                                        <ColumnDefinition  Width="2*"/>
+
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock VerticalAlignment="Center" Text="*"  Foreground="Red" Margin="-2,0,0,0" Height="15"></TextBlock>
+                                    <TextBlock Text="姓名："   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+                                    <TextBox Grid.Row="0"  Text="{Binding Path=NAME,Mode=TwoWay}"  MaxLength="20" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Grid.Column="1" Height="23" />
+                                    <!--<TextBlock Text="*" Grid.Column="2" Foreground="Red"></TextBlock>-->
+                                    <Image Margin="1" x:Name="img1" Grid.Column="2"  Height="18" Width="18" Cursor="Hand" Source="/CO_IA.UI.PersonSchedule;component/Images/addperson.png" MouseLeftButtonUp="btn_OrgLeaderAdd_Click" />
+
+                                    <TextBlock Text="单位：" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="0" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Grid.Column="4"  Text="{Binding Path=UNIT,Mode=TwoWay}" Height="23"  MaxLength="99"  TextWrapping="Wrap" />
+
+                                    <TextBlock Text="部门：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="1"  Grid.Column="1" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Text="{Binding Path=DEPT,Mode=TwoWay}"  Height="23"  MaxLength="50"  TextWrapping="Wrap"    />
+                                    <TextBlock Text="电话号：" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="1" Grid.Column="4"   Text="{Binding Path=PHONE,Mode=TwoWay}"  Height="23"  MaxLength="20"  TextWrapping="Wrap"  />
+
+                                    <TextBlock Text="职务：" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="2"  Grid.Column="1" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Text="{Binding Path=DUTY,Mode=TwoWay}"  Height="23"  MaxLength="50"  TextWrapping="Wrap"    />
+                                    <TextBlock Text="呼叫号：" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="2" Grid.Column="4"   Text="{Binding Path=VOICEID,Mode=TwoWay}"  Height="23"  MaxLength="20"  TextWrapping="Wrap"  />
+                                    
+                                    <TextBlock Text="备注：" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                                    <TextBox Grid.Column="1" Grid.Row="3"  Text="{Binding Path=TASK,Mode=TwoWay}"  Grid.ColumnSpan="4" HorizontalAlignment="Stretch"  MaxLength="300" AcceptsReturn="True" AcceptsTab="True"    TextWrapping="Wrap"  VerticalAlignment="Stretch"/>
+
+                                </Grid>
+
+
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="协调联系员" Grid.Column="1"  Margin="5,0,0,0">
+                            <Grid  x:Name="grid_PSO_Coordinator"  DataContext="{Binding}" Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Grid.RowSpan="4" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="16" />
+                                    </Grid.RowDefinitions>
+                                    <!--<TextBlock Text="协调联系员"   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>-->
+                                    <Image  x:Name="img_Coordinator"  Source="{Binding Path=PHOTO, Mode=TwoWay, Converter={StaticResource myByteToImageSourceConverter}}"  >
+                                        <Image.ToolTip>
+                                            <ToolTip DataContext="{Binding Path=PlacementTarget, RelativeSource={x:Static RelativeSource.Self}}">
+                                                <Image Source="{Binding Source}" Width="400" Height="300" />
+                                            </ToolTip>
+                                        </Image.ToolTip>
+                                        <Image.Stretch>
+                                            <MultiBinding Converter="{StaticResource ImageStretchConverter}">
+                                                <Binding RelativeSource="{RelativeSource Self}" Path="Source"/>
+                                                <Binding ElementName="borderImage"  Path="ActualWidth"/>
+                                                <Binding ElementName="borderImage" Path="ActualHeight"/>
+                                            </MultiBinding>
+                                        </Image.Stretch>
+                                        <Image.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="设为组员" Click="menuItemSetGrouper_Click"/>
+                                                <MenuItem Header="清除" Click="menuItemClearGrouper_Click"/>
+                                            </ContextMenu>
+                                        </Image.ContextMenu>
+                                    </Image>
+                                    <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Horizontal" Background="#33F9EB5C" FlowDirection="RightToLeft">
+                                        <Image Source="/CO_IA.UI.PersonSchedule;component/Images/addperson.png" ToolTip="添加图片" Height="16" Width="16"  Grid.Column="1" VerticalAlignment="Center" Cursor="Hand"  MouseLeftButtonUp="btn_Coordinator_Upload" Margin="2,0"/>
+                                        <Image Source="/CO_IA.UI.PersonSchedule;component/Images/delete1.png" ToolTip="删除图片" Height="14" Width="14"   Grid.Column="1" VerticalAlignment="Center"  Cursor="Hand"   MouseLeftButtonUp="ImgDel_MouseLeftButtonUp" Margin="2,0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Column="1" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="2*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="43"/>
+                                        <ColumnDefinition  Width="2*"/>
+                                        <ColumnDefinition  Width="18"/>
+                                        <ColumnDefinition  Width="43"/>
+                                        <ColumnDefinition  Width="2*"/>
+
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock VerticalAlignment="Center" Text="*"  Foreground="Red" Margin="-2,0,0,0" Height="15"></TextBlock>
+                                    <TextBlock Text="姓名："   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox Grid.Row="0" Height="23" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Grid.Column="1" Text="{Binding Path=NAME,Mode=TwoWay}"  MaxLength="20" />
+                                    <Image Margin="1"  x:Name="img2" Grid.Column="2" Height="18" Width="18"  Cursor="Hand" Source="/CO_IA.UI.PersonSchedule;component/Images/addperson.png" MouseLeftButtonUp="btn_CoordinatorAdd_Click" />
+                                    <TextBlock Text="单位："  Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="0" Grid.Column="4" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Text="{Binding Path=UNIT,Mode=TwoWay}"  Height="23" MaxLength="99"  TextWrapping="Wrap" />
+
+                                    <TextBlock Text="部门：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="1"  Grid.Column="1" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Text="{Binding Path=DEPT,Mode=TwoWay}"  Height="23"  MaxLength="50"  TextWrapping="Wrap"    />
+                                    <TextBlock Text="电话号：" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="1" Grid.Column="4"   Text="{Binding Path=PHONE,Mode=TwoWay}"  Height="23"  MaxLength="20"  TextWrapping="Wrap"  />
+
+                                    <TextBlock Text="职务：" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="2"  Grid.Column="1" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Text="{Binding Path=DUTY,Mode=TwoWay}"  Height="23"  MaxLength="50"  TextWrapping="Wrap"    />
+                                    <TextBlock Text="呼叫号：" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="2" Grid.Column="4"   Text="{Binding Path=VOICEID,Mode=TwoWay}"  Height="23"  MaxLength="20"  TextWrapping="Wrap"  />
+                                    
+                                    <TextBlock Text="备注：" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                                    <TextBox Grid.Column="1" Grid.ColumnSpan="4"  Grid.Row="3"  Text="{Binding Path=TASK,Mode=TwoWay}"  MaxLength="300" HorizontalAlignment="Stretch"  AcceptsReturn="True" AcceptsTab="True"    TextWrapping="Wrap"  VerticalAlignment="Stretch"/>
+
+                                </Grid>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                    <!--Visibility="Hidden"-->
+                    <Grid  Name="grid_GroupLeader"  Visibility="Collapsed" Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                       
+                        <GroupBox Header="组长">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Name="grid_GroupLeaderImage" DataContext="{Binding}" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="16" />
+                                    </Grid.RowDefinitions>
+                                    <Image   x:Name="img_GroupLeader"  Grid.Column="0"  Source="{Binding Path=PHOTO, Mode=TwoWay, Converter={StaticResource myByteToImageSourceConverter}}">
+                                        <Image.ToolTip>
+                                            <ToolTip DataContext="{Binding Path=PlacementTarget, RelativeSource={x:Static RelativeSource.Self}}">
+                                                <Image Source="{Binding Source}" Width="400" Height="300" />
+                                            </ToolTip>
+                                        </Image.ToolTip>
+                                        <Image.Stretch>
+                                            <MultiBinding Converter="{StaticResource ImageStretchConverter}">
+                                                <Binding RelativeSource="{RelativeSource Self}" Path="Source"/>
+                                                <Binding ElementName="borderImage"  Path="ActualWidth"/>
+                                                <Binding ElementName="borderImage" Path="ActualHeight"/>
+                                            </MultiBinding>
+                                        </Image.Stretch>
+                                        <Image.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="设为组员" Click="menuItemSetGrouper_Click"/>
+                                                <MenuItem Header="清除" Click="menuItemClearGrouper_Click"/>
+                                            </ContextMenu>
+                                        </Image.ContextMenu>
+                                    </Image>
+                                    <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Horizontal" Background="#33F9EB5C" FlowDirection="RightToLeft">
+                                        <Image Source="/CO_IA.UI.PersonSchedule;component/Images/addperson.png" ToolTip="添加图片" Height="16" Width="16"  Grid.Column="1" VerticalAlignment="Center" Cursor="Hand"  MouseLeftButtonUp="btn_GroupLeader_Upload" Margin="2,0"/>
+                                        <Image Source="/CO_IA.UI.PersonSchedule;component/Images/delete1.png" ToolTip="删除图片" Height="14" Width="14"   Grid.Column="1" VerticalAlignment="Center"  Cursor="Hand"   MouseLeftButtonUp="ImgDel_MouseLeftButtonUp" Margin="2,0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Name="grid_GroupLeaderDetail" DataContext="{Binding}" Grid.Column="1" Grid.Row="1" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="2*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="43"/>
+                                        <ColumnDefinition  Width="2*"/>
+                                        <ColumnDefinition  Width="18"/>
+                                        <ColumnDefinition  Width="43"/>
+                                        <ColumnDefinition  Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock VerticalAlignment="Center" Text="*"  Foreground="Red" Margin="-2,0,0,0"  Height="15"></TextBlock>
+                                    <TextBlock Text="姓名：" Name="lb_GroupLeader" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1"  Height="23" Text="{Binding Path=NAME,Mode=TwoWay}"  MaxLength="20" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}"/>
+                                    <Image Margin="1"  x:Name="img3" Grid.Column="2" Height="18" Width="18" Cursor="Hand" Source="/CO_IA.UI.PersonSchedule;component/Images/addperson.png" MouseLeftButtonUp="btn_GroupLeaderAdd_Click" />
+                                    <TextBlock Text="单位：" Grid.Row="0" Grid.Column="3"  HorizontalAlignment="Center"  VerticalAlignment="Center"/>                                    
+                                    <TextBox  Grid.Row="0" Grid.Column="4" Text="{Binding Path=UNIT,Mode=TwoWay}" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Height="23"  MaxLength="99"   TextWrapping="Wrap"/>
+                                    
+                                    <TextBlock Text="部门：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="1"  Grid.Column="1" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Text="{Binding Path=DEPT,Mode=TwoWay}"  Height="23"  MaxLength="50"  TextWrapping="Wrap"    />
+                                    <TextBlock Text="电话号：" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="1" Grid.Column="4"   Text="{Binding Path=PHONE,Mode=TwoWay}"  Height="23"  MaxLength="20"  TextWrapping="Wrap"  />
+
+                                    <TextBlock Text="职务：" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="2"  Grid.Column="1" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Text="{Binding Path=DUTY,Mode=TwoWay}"  Height="23"  MaxLength="50"  TextWrapping="Wrap"    />
+                                    <TextBlock Text="呼叫号：" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="2" Grid.Column="4"   Text="{Binding Path=VOICEID,Mode=TwoWay}"  Height="23"  MaxLength="20"  TextWrapping="Wrap"  />
+                                    
+                                    <TextBlock Text="备注：" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                                    <TextBox Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="3"  Text="{Binding Path=TASK,Mode=TwoWay}" HorizontalAlignment="Stretch" MaxLength="300" AcceptsReturn="True" AcceptsTab="True"    TextWrapping="Wrap"  VerticalAlignment="Stretch"/>
+
+                                </Grid>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="副组长" Grid.Column="1" Margin="5,0,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Name="grid_SLeaderImage" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="16" />
+                                    </Grid.RowDefinitions>
+                                    <Image  x:Name="img_SLeader"  Source="{Binding Path=PHOTO, Mode=TwoWay, Converter={StaticResource myByteToImageSourceConverter}}" >
+                                        <Image.ToolTip>
+                                            <ToolTip DataContext="{Binding Path=PlacementTarget, RelativeSource={x:Static RelativeSource.Self}}">
+                                                <Image Source="{Binding Source}" Width="400" Height="300" />
+                                            </ToolTip>
+                                        </Image.ToolTip>
+                                        <Image.Stretch>
+                                            <MultiBinding Converter="{StaticResource ImageStretchConverter}">
+                                                <Binding RelativeSource="{RelativeSource Self}" Path="Source"/>
+                                                <Binding ElementName="borderImage"  Path="ActualWidth"/>
+                                                <Binding ElementName="borderImage" Path="ActualHeight"/>
+                                            </MultiBinding>
+                                        </Image.Stretch>
+                                        <Image.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="设为组员" Click="menuItemSetGrouper_Click"/>
+                                                <MenuItem Header="清除" Click="menuItemClearGrouper_Click"/>
+                                            </ContextMenu>
+                                        </Image.ContextMenu>
+                                    </Image>
+                                    <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Horizontal"   Background="#33F9EB5C" FlowDirection="RightToLeft">
+                                        <Image Source="/CO_IA.UI.PersonSchedule;component/Images/addperson.png" ToolTip="添加图片" Height="16" Width="16"  Grid.Column="1" VerticalAlignment="Center" Cursor="Hand"  MouseLeftButtonUp="btn_SLeader_Upload" Margin="2,0"/>
+                                        <Image Source="/CO_IA.UI.PersonSchedule;component/Images/delete1.png" ToolTip="删除图片" Height="14" Width="14"   Grid.Column="1" VerticalAlignment="Center"  Cursor="Hand"   MouseLeftButtonUp="ImgDel_MouseLeftButtonUp" Margin="2,0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Name="grid_SLeaderInfo" DataContext="{Binding}"  Grid.Column="1" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="28" />
+                                        <RowDefinition Height="2*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="43"/>
+                                        <ColumnDefinition  Width="2*"/>
+                                        <ColumnDefinition  Width="18"/>
+                                        <ColumnDefinition  Width="43"/>
+                                        <ColumnDefinition  Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock VerticalAlignment="Center" Text="*"  Foreground="Red" Margin="-2,0,0,0" Height="15"></TextBlock>
+                                    <TextBlock Text="姓名："  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Column="1" Height="23" Text="{Binding Path=NAME,Mode=TwoWay}" Grid.Row="0" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" MaxLength="20"/>
+                                    <Image Margin="1"  x:Name="img4" Height="18" Width="18" Grid.Column="2" Cursor="Hand" Source="/CO_IA.UI.PersonSchedule;component/Images/addperson.png" MouseLeftButtonUp="btn_SubGroupLeaderAdd_Click" />
+                                    <TextBlock Text="单位：" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="0" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Grid.Column="4" Text="{Binding Path=UNIT,Mode=TwoWay}" Height="23" MaxLength="99" TextWrapping="Wrap"/>
+
+                                    <TextBlock Text="部门：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="1"  Grid.Column="1" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Text="{Binding Path=DEPT,Mode=TwoWay}"  Height="23"  MaxLength="50"  TextWrapping="Wrap"    />
+                                    <TextBlock Text="电话号：" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="1" Grid.Column="4"   Text="{Binding Path=PHONE,Mode=TwoWay}"  Height="23"  MaxLength="20"  TextWrapping="Wrap"  />
+
+                                    <TextBlock Text="职务：" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="2"  Grid.Column="1" IsReadOnly="{Binding Path=ADD_TYPE,Converter={StaticResource myIntToIsEnableConverter}}" Text="{Binding Path=DUTY,Mode=TwoWay}"  Height="23"  MaxLength="50"  TextWrapping="Wrap"    />
+                                    <TextBlock Text="呼叫号：" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                                    <TextBox  Grid.Row="2" Grid.Column="4"   Text="{Binding Path=VOICEID,Mode=TwoWay}"  Height="23"  MaxLength="20"  TextWrapping="Wrap"  />
+                                    
+                                    <TextBlock Text="备注：" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                                    <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" Text="{Binding Path=TASK,Mode=TwoWay}"  HorizontalAlignment="Stretch" MaxLength="300" AcceptsReturn="True" AcceptsTab="True"    TextWrapping="Wrap"  VerticalAlignment="Stretch"/>
+
+                                </Grid>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+
+                    <TabControl x:Name="tabControl1"  Grid.Row="3" Grid.Column="1" Margin="0,5,0,0">
+                        <TabItem Header="组员" AllowDrop="False" >
+                            <Grid  x:Name="grid_PSO_Grouper">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="100" />
+                                    </Grid.ColumnDefinitions>
+                              
+                                    <Grid   Grid.Column="1" HorizontalAlignment="Right">
+                                        <StackPanel  Orientation="Vertical" >
+                                            <CheckBox Name="cb_Grouper" Content="列表模式"  HorizontalAlignment="Left" Margin="5,5,5,0"  VerticalAlignment="Center" Click="cb_Grouper_Click" />
+                                            <Button   Content="添加" Width="75" Height="23" Margin="5,5,5,0"  Click="btn_LevelAdd_Click"/>
+                                            <Button Content="删除" Width="75" Height="23" Margin="5,5,5,0"  Click="btn_PersonDelete_Click"  />
+                                      
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
+
+                                        <ScrollViewer  Name="sv_Grouper"   VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
+                                            <WrapPanel  x:Name="wp_GrouperListr"   HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+                                        </ScrollViewer>
+                                        <DataGrid Name="dg_GrouperList"  ItemsSource="{Binding}" Visibility="Hidden" IsReadOnly="True"   AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch"     VerticalAlignment="Stretch" MouseRightButtonUp="dg_GrouperList_MouseRightButtonUp">
+                                            <DataGrid.Columns>
+                                            
+                                                <DataGridTemplateColumn Header="选择" >
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding ISCHECKED,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Click="cb_SingleGrouper_Click" ></CheckBox>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <commonControls:DataGridVerticalCenterTextColumn Header="姓名" Binding="{Binding Path=NAME}" Width="*" />
+                                                <commonControls:DataGridVerticalCenterTextColumn Header="单位" Binding="{Binding Path=UNIT}" Width="*" />
+                                                <commonControls:DataGridVerticalCenterTextColumn Header="职务" Binding="{Binding Path=DUTY}" Width="*" />
+                                                <commonControls:DataGridVerticalCenterTextColumn Header="电话号" Binding="{Binding Path=PHONE}" Width="*" />
+                                                <commonControls:DataGridVerticalCenterTextColumn Header="呼叫号" Binding="{Binding Path=VOICEID}" Width="*" />
+                                            </DataGrid.Columns>
+
+                                        </DataGrid>
+
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </TabItem>
+
+                    </TabControl>
+                  
+                </Grid>
+
+            </TabItem>
+      
+
+        </TabControl>
+    </Grid>
+</commonExtension:EditableUserControl>

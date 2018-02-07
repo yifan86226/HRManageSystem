@@ -1,0 +1,48 @@
+﻿<Window x:Class="CO_IA.UI.StationPlan.InterfereResetDetailControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="干扰详细信息"
+        WindowStartupLocation="CenterScreen"
+        Height="500" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter  Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="2" />
+            </Style>
+        </Grid.Resources>
+        <TextBlock  Grid.Row="0" Grid.Column="0"  Text="干扰类型:"/>
+        <ComboBox x:Name="comboxType" Grid.Row="0" Grid.Column="1"  Margin="5"  SelectedItem="{Binding Path=InterfereType}" />
+
+        <TextBlock  Grid.Row="1" Grid.Column="0"  Text="是否排除:"/>
+        <CheckBox Grid.Row="1" Grid.Column="1"  IsChecked="True"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center" Margin="5"/>
+
+        <TextBlock  Grid.Row="2" Grid.Column="0"  Text="干扰描述:"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Describe}" TextWrapping="Wrap" />
+
+        <TextBlock  Grid.Row="3" Grid.Column="0"  Text="建议信息:"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Advise}" TextWrapping="Wrap"/>
+
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="保存" Click="BtnSave_Click" />
+            <Button Content="取消"  Click="BtnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,49 @@
+﻿<Window x:Class="CO_IA.UI.FreqStation.StationPlan.PrintPreviewDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+         
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:clientconverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+        Title="打印预览" Height="600" Width="500">
+    <Window.Resources>
+        <clientconverter:BytesToImageConverter  x:Key="keyBytesToImageConverter"/>
+    </Window.Resources>
+    
+    <Grid>
+        <dxg:GridControl x:Name="gridControl" Grid.Row="1">
+            <dxg:GridControl.Resources>
+                <DataTemplate x:Key="detailPrintRowTemplate">
+                    <ContentControl Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
+                        <Grid DataContext="{Binding DataContext.Content, RelativeSource={RelativeSource TemplatedParent}}"
+                      Width="{Binding Path=(dxg:GridPrintingHelper.PrintRowInfo).TotalHeaderWidth}"
+                      Margin="0,12,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="12" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <dxe:ImageEdit IsPrintingMode="True" Height="300" Width="300"
+                                   Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   BorderThickness="8"
+                                   BorderBrush="#FFF0EDDA"
+                                   Source="{Binding Path=Row ,Converter={StaticResource keyBytesToImageConverter}}" />
+                        </Grid>
+                    </ContentControl>
+                </DataTemplate>
+            </dxg:GridControl.Resources>
+            <dxg:GridControl.View>
+                <dxg:TableView Name="view"
+                               PrintRowTemplate="{StaticResource detailPrintRowTemplate}"
+                               ShowGroupedColumns="True"
+                               AutoWidth="True"
+                               AllowGrouping="False">
+                    <dxg:TableView.PrintHeaderTemplate>
+                        <DataTemplate />
+                    </dxg:TableView.PrintHeaderTemplate>
+                </dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</Window>

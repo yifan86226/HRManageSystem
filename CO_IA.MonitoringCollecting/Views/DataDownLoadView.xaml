@@ -1,0 +1,46 @@
+﻿<Window x:Class="CO_IA.MonitoringCollecting.Views.DataDownLoadView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Title="数据下载窗口" Height="300" Width="400" WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <CheckBox Content="周围台站下载" Margin="5" IsChecked="True" x:Name="_statDownLoad"/>
+            <!--<CheckBox Content="活动设台下载" Margin="5" IsChecked="True" x:Name="_emitDownLoad"/>-->
+            <!--<CheckBox Content="活动信息下载" Margin="5" IsChecked="True" x:Name="_activityDownLoad"/>-->
+            <CheckBox Content="活动区域下载" Margin="5" IsChecked="True" x:Name="_areaDownLoad"/>
+            <CheckBox Content="频率预案下载" Margin="5" IsChecked="True" x:Name="_freqRangeDownLoad"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="下载进度:" Grid.Row="0" Grid.Column="0" FontWeight="Black" VerticalAlignment="Top"/>
+            <ProgressBar Grid.Row="0" Grid.Column="1" Height="20" Margin="5,0,5,0"  VerticalAlignment="Top" x:Name="_progressBar"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="1" x:Name="_downLoadInfo" Foreground="Green" Margin="5,0,5,0" Text="正在准备下载数据……"/>
+
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Content="下  载" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="2" Click="DownLoadBtn_Click"/>
+            <Button Content="关  闭" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="2" Click="CancelBtn_Click"/>
+        </Grid>
+
+    </Grid>
+</Window>

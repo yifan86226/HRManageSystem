@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="CO_IA.Scene.Task.TaskGridCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:locaCconverter="clr-namespace:CO_IA.Scene.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <locaCconverter:TaskListOfTaskStateConverter x:Key="KeyTaskListOfTaskStateConverter"/>
+        <locaCconverter:TaskTypeConverter x:Key="KeyTaskInfoTypeTaskListOfTaskTypeConverter"/>
+        <locaCconverter:AndioIsEnabledConverter x:Key="KeyAndioIsEnabledConverter"/>
+        <locaCconverter:OrgNameConverter x:Key="KeyOrgNameConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid Grid.Row="1" Grid.Column="0" BorderThickness="0" x:Name="_taskgrid" AutoGenerateColumns="False" 
+                  HorizontalContentAlignment="Left"  IsReadOnly="True" >
+            <DataGrid.Columns>
+                <commonControls:DataGridVerticalCenterTextColumn Header="任务来源" Binding="{Binding Path=GROUPNAME,Converter={StaticResource KeyOrgNameConverter}}" Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="任务类型" Binding="{Binding Path=TASKTYPE,Converter={StaticResource KeyTaskInfoTypeTaskListOfTaskTypeConverter}}" Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="任务状态" Binding="{Binding Path=TASKSTATE,Converter={StaticResource KeyTaskListOfTaskStateConverter}}" Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="任务名称" Binding="{Binding Path=TASKNAME}" Width="2*"/>
+               
+                <DataGridTemplateColumn Header="录音" Width="*" Visibility="Collapsed">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <Image Source="/CO_IA.Scene;component/Images/sound.png" MouseLeftButtonUp="RecordPlay_MouseLeftButtonUp" Tag="{Binding AudioFile}" IsEnabled="{Binding AudioFile, Converter={StaticResource KeyAndioIsEnabledConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</UserControl>

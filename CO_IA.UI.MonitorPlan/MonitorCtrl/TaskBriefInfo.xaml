@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="CO_IA.UI.MonitorPlan.MonitorCtrl.TaskBriefInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converter="clr-namespace:CO_IA.UI.MonitorPlan.Converters" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Resources>
+            <converter:FreqPointsConverter x:Key="KeyFreqPointsConverter"/>
+            <converter:FreqRangeConverter x:Key="KeyFreqRangeConverter"/>
+            <converter:TaskTypeConverter x:Key="KeyTaskTypeConverter"/>
+            <converter:WorkerGroupConverter x:Key="KeyWorkerGroupConverter"/>
+           
+        </Grid.Resources>
+        
+        <ListBox Grid.Row="0" x:Name="_listBoxCtrl" ItemsSource="{Binding DataSource, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10,0,0,0"  Loaded="Grid_Loaded" >
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" HorizontalAlignment="Left">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" >
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock><Hyperlink Click="Hyperlink_Click" Tag="{Binding TaskID}"> <TextBlock Text="{Binding WorkAddress}" FontWeight="Black"/></Hyperlink></TextBlock>
+                                   
+                                <TextBlock Text="("/>
+                                    <TextBlock Text="{Binding TaskType, Converter={StaticResource KeyTaskTypeConverter}}" x:Name="_taskTypeTBlock" FontWeight="Black"/>
+                                <TextBlock Text=")"/>
+                                    <TextBlock Text="{Binding WorkDate.Month}" Margin="6,0,0,0"/>
+                                    <TextBlock Text="月-"/>
+                                    <TextBlock Text="{Binding WorkDate.Day}"/>
+                                    <TextBlock Text="日"/>
+                                </StackPanel>
+                            
+                        </Grid>
+                        <Grid  Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                                <TextBlock  Grid.Row="0">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource KeyFreqRangeConverter}">
+                                            <Binding Path="ProtectFreqRanges"/>
+                                            <Binding Path="TaskType"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            
+                                <TextBlock Grid.Row="1">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource KeyFreqPointsConverter}">
+                                            <Binding Path="ProtectFreqPoints"/>
+                                            <Binding Path="TaskType"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Grid>
+                        <Grid  Grid.Row="2" >
+                                <TextBlock FontWeight="Black" Text="{Binding WorkerGroup, Converter={StaticResource KeyWorkerGroupConverter}}" x:Name="_performPersons" HorizontalAlignment="Right"/>
+                        </Grid>
+                        </Grid>
+                        
+                        <Grid Grid.Column="1"  HorizontalAlignment="Right">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text=">>" Foreground="Black" Margin="4" Height="20" Width="20" ToolTipService.ToolTip="详细信息" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" Cursor="Hand"/>
+                            <Image Grid.Row="1" Source="/CO_IA.UI.MonitorPlan;component/Images/page_copy.png" Margin="4" Height="20" Width="20" ToolTipService.ToolTip="复制"  Cursor="Hand" MouseLeftButtonUp ="CopyBtn_MouseLeftButtonUp"></Image>
+                            <Image Grid.Row="2" Source="/CO_IA.UI.MonitorPlan;component/Images/print.png" Margin="4" Height="20" Width="20" ToolTipService.ToolTip="打印"  Cursor="Hand" MouseLeftButtonUp="PrintBtn_MouseLeftButtonUp"></Image>
+                            <Image Grid.Row="3" Source="/CO_IA.UI.MonitorPlan;component/Images/cancel.png" Margin="4" Height="20" Width="20" ToolTipService.ToolTip="删除"  Cursor="Hand" MouseLeftButtonUp="DeleteBtn_MouseLeftButtonUp"></Image>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

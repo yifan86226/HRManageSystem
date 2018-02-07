@@ -1,0 +1,23 @@
+﻿<Window x:Class="CO_IA.UI.MonitorPlan.MonitorDialog.ActivityListDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        Title="ActivityListDialog" Height="350" Width="300">
+    
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="listPlace"  VerticalAlignment="Stretch"  HorizontalAlignment="Stretch"  MouseLeftButtonUp="listPlace_MouseLeftButtonUp">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                    <ListBoxItem Content="{Binding Path=LocationName}" HorizontalAlignment="Center" FontSize="12" MouseLeftButtonUp="ListBoxItem_MouseLeftButtonUp"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        <Button Content="确  定" Grid.Row="1" HorizontalAlignment="Left" Margin="50,0,0,0" Height="20" Width="60" Click="OKButton_Click"/>
+        <Button Content="取  消" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,50,0" Height="20" Width="60" Click="CancelButton_Click"/>
+        </Grid>
+</Window>

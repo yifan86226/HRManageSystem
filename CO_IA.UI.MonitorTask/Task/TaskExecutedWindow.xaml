@@ -1,0 +1,100 @@
+﻿<Window x:Class="CO_IA.UI.MonitorTask.Task.TaskExecutedWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Task="clr-namespace:CO_IA.UI.MonitorTask.Task"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:task="clr-namespace:CO_IA.UI.MonitorTask"
+        xmlns:local="clr-namespace:CO_IA.UI.MonitorTask.Task"
+        xmlns:commonClient="clr-namespace:AT_BC.Common;assembly=AT_BC.Common"
+        xmlns:dxpdf="http://schemas.devexpress.com/winfx/2008/xaml/pdf"
+        Title="任务执行情况"
+        Height="740"
+        Width="1024">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AT_BC.Common;component/Converters/ConverterTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <task:OrgNameMultiBindingConverter x:Key="OrgNameMultiBindingConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static commonClient:CommonCommand.FileDescriptionSaveAsCommand}"
+                        Executed="FileDescriptionSaveAsCommandBinding_Executed" />
+        <CommandBinding Command="{x:Static commonClient:CommonCommand.FileDescriptionOpenCommand}"
+                        Executed="FileDescriptionOpenCommandBinding_Executed" />
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="400"/>
+            <RowDefinition Height="1" />
+            <RowDefinition />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Task:TaskEditControl x:Name="taskEditControl" />
+        <Border BorderThickness="0,0,0,1"
+                Grid.Row="1"
+                BorderBrush="Gray">
+        </Border>
+        <TabControl Grid.Row="2"
+                    x:Name="tabControlExecuteConclusion">
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="TabItem">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Task:TaskExecuteConclusionControl x:Name="taskExecuteConclusionControl" IsReadOnly="True"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Stretch">
+                                    <Rectangle Height="12"
+                                               Width="12"
+                                               Fill="Gray"
+                                               VerticalAlignment="Center"
+                                               Visibility="{Binding Executed, Converter={StaticResource boolToVisibilityReverseConverter}}"
+                                               Margin="3">
+                                    </Rectangle>
+                                    <Rectangle Height="12"
+                                               Width="12"
+                                               Fill="Green"
+                                               VerticalAlignment="Center"
+                                               Margin="3"
+                                               Visibility="{Binding Executed, Converter={StaticResource boolToVisibilityConverter}}">
+                                    </Rectangle>
+                                    <TextBlock Text="{Binding}">
+                                        <TextBlock.DataContext>
+                                            <MultiBinding Converter="{StaticResource OrgNameMultiBindingConverter}">
+                                                <Binding Path="Executor" />
+                                                <Binding RelativeSource="{RelativeSource AncestorType=local:TaskExecutedWindow}"
+                                                         Path="OrgList" />
+                                            </MultiBinding>
+                                        </TextBlock.DataContext>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <!--<Setter Property="Header"
+                            Value="{Binding Executor}" />-->
+                </Style>
+            </TabControl.ItemContainerStyle>
+        </TabControl>
+        <!--<dxpdf:PdfViewerControl x:Name="pdfViewer"
+                                Grid.Row="2" />-->
+        <!--<DocumentViewer  x:Name="xpsDocViewr"
+                         Grid.Row="2">
+        </DocumentViewer>-->
+        <!--<Task:TaskExecuteConclusionControl x:Name="taskExecuteConclusionControl" Grid.Row="2"/>-->
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right">
+            <Button Content="关闭"
+                    Click="buttonClose_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

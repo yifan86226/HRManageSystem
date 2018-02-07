@@ -1,0 +1,93 @@
+﻿<Window x:Class="CO_IA.UI.StationPlan.EquCheckQueryDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:converter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+        mc:Ignorable="d" 
+        WindowStartupLocation="CenterScreen"
+        Title="查询"
+        Height="300" Width="500">
+    <Window.Resources>
+        <converter:BoolToVisibility x:Key="keyBoolToVisibility" />
+    </Window.Resources>
+    <Grid >
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter  Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="CheckBox">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="Auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0"  Text="单位名称:"  />
+        <TextBox  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" 
+                      Text="{Binding Path=ORGName, Mode=TwoWay}" />
+        <!--<ComboBox  x:Name="comboxORG" 
+                   Grid.Row="0" 
+                   Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   Margin="5" 
+                   SelectedValuePath="Guid"
+                   DisplayMemberPath="Name"
+                   VerticalContentAlignment="Center"
+                   SelectedValue="{Binding Path=ORGguid, Mode=TwoWay}"/>-->
+
+        <TextBlock   Grid.Row="1" Grid.Column="0"  Text="设备名称:"  />
+        <TextBox  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
+                      Text="{Binding Path=EuqName, Mode=TwoWay}" />
+
+        <TextBlock   Grid.Row="2" Grid.Column="0"  Text="发射频率(MHz):" />
+        <TextBox  Grid.Row="2" Grid.Column="1" Text="{Binding Path=SendFreqLittle, Mode=TwoWay}"  />
+        <TextBlock Grid.Row="2" Grid.Column="2"  Text="—"/>
+        <TextBox  Grid.Row="2" Grid.Column="3" Text="{Binding Path=SendFreqGreat, Mode=TwoWay}" />
+
+        <TextBlock   Grid.Row="3" Grid.Column="0"  Text="带宽(kHz):" />
+        <TextBox  Grid.Row="3" Grid.Column="1" Text="{Binding Path=BandLittle, Mode=TwoWay}"  />
+        <TextBlock Grid.Row="3" Grid.Column="2"  Text="—"/>
+        <TextBox  Grid.Row="3" Grid.Column="3" Text="{Binding Path=BandGreat, Mode=TwoWay}" />
+
+        <TextBlock   Grid.Row="4" Grid.Column="0"  Text="检测状态:" />
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Content="未检测"  x:Name="chkuncheced"/>
+                <CheckBox Content="通过检测" x:Name="chkqualified" />
+                <CheckBox Content="未通过检测" x:Name="chkunqualified" />
+            </StackPanel>
+        </StackPanel>
+        <TextBlock   Grid.Row="5" Grid.Column="0"  Text="许可证发放:" />
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3" >
+            <CheckBox Content="已发放" x:Name="chksendlicense" />
+            <CheckBox Content="未发放" x:Name="chkunsendlicense" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="4" Orientation="Horizontal"  HorizontalAlignment="Right">
+            <Button Content="查询" Margin="5"  Click="BtnQuery_Click" />
+            <Button Content="取消" Margin="5" Click="BtnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

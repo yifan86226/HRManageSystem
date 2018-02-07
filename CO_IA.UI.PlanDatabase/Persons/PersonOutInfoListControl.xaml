@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="CO_IA.UI.PlanDatabase.PersonOutInfoListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CO_IA.UI.PlanDatabase"
+             
+               xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+
+        <Grid.Resources>
+            <local:DateTimeToStringConverter x:Key="dateTimeToStringConverter" />
+        </Grid.Resources>
+        
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition  />
+        </Grid.RowDefinitions>
+
+        <commonControls:ModuleToolbar>
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar>
+                    <Button Content="新增"
+                                Click="buttonAdd_Click" />
+                    <Button Content="编辑"
+                                Click="buttonModify_Click" />
+                    <Button Content="删除"
+                                Click="buttonDelete_Click" />
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+        <DataGrid x:Name="dg_GrouperList" SelectionMode="Single" 
+                    MaxHeight="880"
+                   ItemsSource="{Binding}" 
+                  Grid.Row="1"
+                      BorderThickness="0"
+                      AutoGenerateColumns="False"
+                      HorizontalContentAlignment="Left"
+                      VerticalScrollBarVisibility="Auto">
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="MouseDoubleClick"
+                                     Handler="dataGridTemplate_MouseDoubleClick" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                     Value="True">
+                            <Setter Property="Background"
+                                        Value="Red" />
+                            <Setter Property="Foreground"
+                                        Value="Yellow" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+
+
+                <DataGridTemplateColumn Header="选择" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding ISCHECKED,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Click="cb_SingleGrouper_Click" ></CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                
+                
+                <commonControls:DataGridVerticalCenterTextColumn   Header="姓名"
+                                                                       Binding="{Binding Path=NAME}"
+                                                                       Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn   Header="请假类型"
+                                                                       Binding="{Binding Path=INCIDENT}"
+                                                                       Width="*" />
+
+
+                <commonControls:DataGridVerticalCenterTextColumn   Header="外出时间"
+                                                                       Binding="{Binding Path=OUTTIME}"
+                                                                       Width="*" />
+
+                <commonControls:DataGridVerticalCenterTextColumn   Header="归队时间"
+                                                                       Binding="{Binding Path=BACKTIME}"    
+                                                                       Width="*" />
+
+
+
+                <commonControls:DataGridVerticalCenterTextColumn   Header="简述" ToolTipService.ToolTip="{Binding Path=BZ}"
+                                                                       Binding="{Binding Path=BZ}"
+                                                                       Width="*" />
+                
+                <commonControls:DataGridVerticalCenterTextColumn   Header="登记人"
+                                                                       Binding="{Binding Path=OPERATOR}"
+                                                                       Width="*" />
+                
+                <commonControls:DataGridVerticalCenterTextColumn   Header="登记时间"
+                                                                       Binding="{Binding Path=OPERATORTIME, Converter={StaticResource dateTimeToStringConverter}}"
+                                                                       Width="*" />
+
+                
+                
+ 
+
+
+         
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

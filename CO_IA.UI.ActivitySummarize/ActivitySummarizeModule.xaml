@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="CO_IA.UI.ActivitySummarize.ActivitySummarizeModule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="800">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions >
+        <ListBox BorderThickness="0"
+                 Margin="1,1,6,1"
+                 ItemsSource="{Binding}"
+                 x:Name="listBoxPlace"
+                 SelectionMode="Extended"
+                 SelectionChanged="listBoxPlace_SelectionChanged"
+                 ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="1"
+                          Height="60">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+                        <Image HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Stretch="Uniform"
+                               Source="{Binding Path=ImageSource}"
+                               Height="48"
+                               Width="48" />
+                        <TextBlock Text="{Binding  Path=Name}"
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Left"
+                                   Foreground="{Binding Foreground}"
+                                   Margin="2"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="Wrap" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <GridSplitter VerticalAlignment="Stretch"
+                      HorizontalAlignment="Right"
+                      Width="5" />
+        <Grid Grid.Column="1"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              x:Name="grid_ShowOrgStructure">
+
+        </Grid>
+
+        <Grid Grid.Column="1"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              x:Name="grid_ShowSummarizeDocItem">
+
+        </Grid>
+        <Grid Grid.Column="1"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              x:Name="grid_ShowMonitorEquip">
+
+        </Grid>
+        <Grid Grid.Column="1"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              x:Name="grid_ShowWorkAchievement">
+
+        </Grid>
+
+    </Grid>
+
+</UserControl>

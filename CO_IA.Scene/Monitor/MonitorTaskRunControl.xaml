@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="CO_IA.Scene.Monitor.MonitorTaskRunControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"    
+             xmlns:stationPlan="clr-namespace:CO_IA.UI.StationPlan;assembly=CO_IA.UI.StationPlan"
+             xmlns:local="clr-namespace:CO_IA.Scene.Monitor"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+            <commonControls:ModuleToolbar>
+                <commonControls:ModuleToolbar.ToolBar>
+                    <ToolBar>
+                        <Button Content="返  回" Click="buttonReturn_Click" Visibility="Collapsed"/>
+                        <Button Content="结束监测" Click="buttonFinish_Click"/>
+                    </ToolBar>
+                </commonControls:ModuleToolbar.ToolBar>
+            </commonControls:ModuleToolbar>
+            <Grid x:Name="grid_monitor" Grid.Row="1">
+
+            </Grid>
+            <GridSplitter Height="3" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+            <GroupBox Header="干扰预警" Grid.Row="2" MouseDoubleClick="CalculatorTest_Click">
+            <Grid>
+                <DataGrid x:Name="InterferedResult" 
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True" RowDetailsVisibilityMode="Collapsed"
+                              BorderThickness="0">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <EventSetter Event="MouseDoubleClick"
+                                 Handler="DataGridRow_MouseDoubleClick" />
+                        </Style>
+                    </DataGrid.RowStyle>
+                   
+                    <DataGrid.Columns>
+                        <!--<commonControls:DataGridVerticalCenterTextColumn Header="干扰类型" Binding="{Binding Path=InterfereType}"/>-->
+                        <commonControls:DataGridVerticalCenterTextColumn Header="设台单位" Binding="{Binding Path=ORG.Value}" Width="150"/>
+                        <commonControls:DataGridVerticalCenterTextColumn Header="设备名称" Binding="{Binding Path=Name}" Width="250" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="设备数量" Binding="{Binding Path=EQUCount}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="发射频率(MHz)" Binding="{Binding Path=SendFreq}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="接收频率(MHz)" Binding="{Binding Path=ReceiveFreq}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="带宽(kHz)" Binding="{Binding Path=Band}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="发射功率(W)" Binding="{Binding MaxPower}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="指配频率(MHz)" Binding="{Binding AssignFreq}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Width="70" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="暂停" Click="PauseBtn_Click"/>
+            </Grid>
+              
+            </GroupBox>
+        </Grid>
+</UserControl>

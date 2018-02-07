@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="CO_IA.UI.Scene.RealTimeMonitoring"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <commonControls:ModuleToolbar x:Name="xFreqAssignMenu">
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar>
+                    <Button Content="返回"
+                            x:Name="xBtnBack" />
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+        <Image Source="/CO_IA.UI.Scene;component/Images/实时监测界面截图.png"
+               Stretch="None"
+               Height="641"
+               Width="1022"
+               Grid.Row="1" />
+    </Grid>
+</UserControl>

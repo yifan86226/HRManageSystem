@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="CO_IA.UI.FreqStation.StationPlan.LicenseViewControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:clientconverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client">
+    <UserControl.Resources>
+        <clientconverter:BytesToImageConverter  x:Key="keyBytesToImageConverter"/>
+        <clientconverter:BoolToVisibility x:Key="keyBoolToVisibility" />
+    </UserControl.Resources>
+
+    <Border x:Name="_borderCanvas" Margin="1" HorizontalAlignment="Left"
+                VerticalAlignment="Top" BorderBrush="Gray" BorderThickness="1" 
+                Height="{Binding Path=Height, Mode=TwoWay}" 
+                Width="{Binding  Path=Width, Mode=TwoWay}">
+        <Border.Background>
+            <ImageBrush Stretch="Uniform"
+                        ImageSource="{Binding Path=BackgroundImage ,Mode=TwoWay,
+                        Converter={StaticResource keyBytesToImageConverter}}"/>
+        </Border.Background>
+        <Canvas Name="_canvasPanel"
+                    AllowDrop="True"
+                    Grid.Row="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Height="{Binding ElementName=_borderCanvas,Path=Height, Mode=TwoWay}" 
+                    Width="{Binding  ElementName=_borderCanvas , Path=Width, Mode=TwoWay}" >
+
+            <Border  x:Name="_borderqriamge"      
+                         Visibility="{Binding Path=IsShowQRCode, Converter={StaticResource keyBoolToVisibility}}" >
+                <Image x:Name="_qrCodeImage" Margin="1"
+                       Width="{Binding ElementName=_borderqriamge,Path=Width}"
+                       Height="{Binding ElementName=_borderqriamge,Path=Height}"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"  Stretch="Uniform"
+                       />
+                <!--Source="{Binding Path=QRCode ,Converter={StaticResource keyBytesToImageConverter},Mode=TwoWay}"-->
+            </Border>
+        </Canvas>
+    </Border>
+
+</UserControl>

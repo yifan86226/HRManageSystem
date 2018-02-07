@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="CO_IA.UI.Setting.Equipment.EquipmentListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:commonConverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+             xmlns:converer="clr-namespace:CO_IA.UI.Setting.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converer:FreqRangeConverter x:Key="freqRangeConverter" />
+        <commonConverter:DoubleNaNConvert x:Key="keyDoubleNaNConvert" />
+        <commonConverter:BusinessCodeConverter  x:Key="keyBusinessCodeConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid x:Name="equdatagrid" 
+                  Grid.Column="1" 
+                  BorderThickness="0"  
+                  AutoGenerateColumns="False" 
+                  HorizontalContentAlignment="Left"  
+                  SelectionChanged="equdatagrid_SelectionChanged"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="MouseDoubleClick"
+                                 Handler="equdatagrid_MouseDoubleClick" />
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <commonControls:DataGridVerticalCenterTextColumn x:Name="columnCompany" Header="单位" Binding="{Binding Path=ORG.Value}" Width="*"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备名称" Binding="{Binding Path=Name}" Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="业务类型" Binding="{Binding Path=BusinessCode, Converter={StaticResource keyBusinessCodeConverter}}" Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备数量"
+                                                                 Binding="{Binding Path=EQUCount}" 
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="发射频率(MHz)"
+                                                                 Binding="{Binding Path=SendPara.SendFreq,Converter=
+                    {StaticResource keyDoubleNaNConvert}  }" 
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="接收频率(MHz)"
+                                                                 Binding="{Binding Path=RecivePara.ReceiveFreq,Converter={StaticResource keyDoubleNaNConvert} }"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                <DataGridTemplateColumn Header="频率可调" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox  IsChecked="{Binding Path=SendPara.IsTunAble}" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <commonControls:DataGridVerticalCenterTextColumn Header="带宽(kHz)" Binding="{Binding Path=SendPara.Band,Converter={StaticResource keyDoubleNaNConvert} }" Width="*" TextHorizontalAlignment="Right"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="发射功率(W)" Binding="{Binding Path=SendPara.MaxPower,Converter={StaticResource keyDoubleNaNConvert} }" Width="*" TextHorizontalAlignment="Right" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

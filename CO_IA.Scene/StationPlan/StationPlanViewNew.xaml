@@ -1,0 +1,311 @@
+﻿<UserControl x:Class="CO_IA.Scene.StationPlan.StationPlanViewNew"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:commonClient="clr-namespace:AT_BC.Common;assembly=AT_BC.Common"
+             xmlns:RefConverter="clr-namespace:CO_IA.UI.FreqStation.Converter"
+             xmlns:thisConverter="clr-namespace:CO_IA.Scene.Converters"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:sp="clr-namespace:CO_IA.UI.FreqStation.StationPlan;assembly=CO_IA.UI.FreqStation"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+    <UserControl.Resources>
+        <RefConverter:CheckStateConverter x:Key="keyCheckStateConvert" />
+        <RefConverter:SendLicenseConverter  x:Key="keySendLicenseConverter" />
+        <thisConverter:FreqChangeReadOnlyConverter x:Key="keyReadOnlyConverter" />
+    </UserControl.Resources>
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand}"
+                        Executed="CheckableDataCheckedCommandBinding_Executed" />
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <commonControls:ModuleToolbar  Grid.Row="0"
+                                       Grid.ColumnSpan="2">
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar>
+                    <Button  Content="临时设备入场"
+                                Click="TemporaryDeviceBtn_Click" />
+                    <Button Content="更改频率"
+                            Click="MenuItemFreqModify_Click"
+                            x:Name="xChangedFreqBtn" />
+                    <Button Content="保存频率"
+                            Click="MenuItemSaveFreq_Click"
+                            x:Name="_saveFreqBtn"
+                            Visibility="Collapsed" />
+                    <Button Content="干扰分析"
+                            Click="InterferenceAnalyseButton_Click" />
+                    <Menu Background="Transparent">
+                        <MenuItem Header="设备检测" >
+                            <MenuItem Header="设备检测"
+                                      Click="MenuItemEquipmentInspection_Click"
+                                      ToolTipService.ToolTip="检测当前选中的那一台设备" />
+                            <MenuItem Header="许可证发放"
+                                      Visibility="Collapsed"
+                                      Tag="有批量发放许可证，就用不到该单独放功能了"
+                                      Click="MenuItemLicenseIssuance_Click"
+                                      ToolTipService.ToolTip="检测完成的设备，可以进行许可证发放" />
+                            <!--<MenuItem Header="许可证打印"
+                                      Click="MenuItemLicensePrint_Click"  ToolTipService.ToolTip="许可证发放完毕的设备，可以进行许可证打印"/>-->
+                            <MenuItem Header="许可证发放"
+                                      Tag="批量发放许可证"
+                                      Click="btnBathSendLicense_Click"
+                                      ToolTipService.ToolTip="检测完成的设备，可以批量进行许可证发放" />
+                            <Separator />
+
+                            <MenuItem Header="许可证模板"
+                                      Click="MenuItemEquipmentPrintTemplate_Click"
+                                      ToolTipService.ToolTip="设置打印许可证的格式" />
+                        </MenuItem>
+                    </Menu>
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+
+        <DataGrid x:Name="equInspectiondatagrid"
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  BorderThickness="0"
+                  AutoGenerateColumns="False"
+                  HorizontalContentAlignment="Left"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  SelectionChanged="equInspectiondatagrid_SelectionChanged"
+                  SelectedIndex="0"
+                  ItemsSource="{Binding}">
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="MouseDoubleClick"
+                                 Handler="equInspectiondatagrid_MouseDoubleClick" />
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="chkAll"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedAllCommand}"
+                                      CommandParameter="{Binding ElementName=equInspectiondatagrid, Path=ItemsSource}"
+                                      Loaded="chkAll_Loaded" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=IsChecked, UpdateSourceTrigger=PropertyChanged}"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand }"
+                                      CommandParameter="{Binding ElementName=equInspectiondatagrid, Path=ItemsSource}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn CanUserResize="False"
+                                        Header="检测">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image  Width="16"
+                                    Height="16"
+                                    Source="{Binding Path=CheckState , Converter={StaticResource keyCheckStateConvert} ,Mode=OneWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn CanUserResize="False"
+                                        Header="许可证发放">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image  Width="16"
+                                    Height="16"
+                                    Source="{Binding Path=SendLicense,Converter={StaticResource keySendLicenseConverter},Mode=OneWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <commonControls:DataGridVerticalCenterTextColumn x:Name="columnCompany"
+                                                                 Header="单位"
+                                                                 Width="*"
+                                                                 Binding="{Binding Path=ActivityEquipment.OrgInfo.Name}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备名称"
+                                                                 Width="*"
+                                                                 Binding="{Binding Path=ActivityEquipment.Name}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备型号"
+                                                                 Width="*"
+                                                                 Binding="{Binding Path=ActivityEquipment.EquModel}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备数量"
+                                                                 Width="80"
+                                                                 Binding="{Binding Path=ActivityEquipment.EQUCount}"
+                                                                 TextHorizontalAlignment="Right" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="发射频率(MHz)"
+                                                                 Width="*"
+                                                                 Binding="{Binding Path=ActivityEquipment.SendFreq }"
+                                                                 TextHorizontalAlignment="Right" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="接收频率(MHz)"
+                                                                 Width="*"
+                                                                 Binding="{Binding Path=ActivityEquipment.ReceiveFreq }"
+                                                                 TextHorizontalAlignment="Right" />
+
+                <DataGridTemplateColumn Header="频率可调">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox  IsChecked="{Binding Path=ActivityEquipment.IsTunable}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       IsEnabled="False" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <commonControls:DataGridVerticalCenterTextColumn Header="带宽(kHz)"
+                                                                 Width="*"
+                                                                 Binding="{Binding Path=ActivityEquipment.Band_kHz}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="发射功率(W)"
+                                                                 Width="*"
+                                                                 Binding="{Binding Path=ActivityEquipment.Power_W}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="指配频率(MHz)"
+                                                                 x:Name="_readOnlyFreqColumn"
+                                                                 Width="*"
+                                                                 Binding="{Binding Path=ActivityEquipment.AssignSendFreq,Mode=TwoWay}" />
+                <DataGridTemplateColumn  Header="指配频率(MHz)"
+                                         x:Name="_editFreqColumn"
+                                         Width="*"
+                                         IsReadOnly="True"
+                                         Visibility="Collapsed">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:TextEdit  Text="{Binding ActivityEquipment.AssignSendFreq, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+                                           MaskType="RegEx"
+                                           Mask="\d{0,5}(\.\d{0,4})?"
+                                           EditValueChanged="TextEdit_EditValueChanged"
+                                          />
+                            <!--<TextBox Text="{Binding ActivityEquipment.AssignSendFreq, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+                                     TextChanged="TextBox_TextChanged" />-->
+
+                            <!-- IsReadOnly="{Binding CheckState,Converter={StaticResource keyReadOnlyConverter}}" 
+                                     ToolTipService.ToolTip="只有未经过检测的设备才能重新指配频率"-->
+
+                            <!--MaskType="RegEx" Mask="\d{,7}"-->
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <commonControls:DataGridVerticalCenterTextColumn Header="备用频率(MHz)"
+                                                                 x:Name="_readOnlyStandbyFreqColumn"
+                                                                 Width="*"
+                                                                 Binding="{Binding Path=ActivityEquipment.AssignSpareFreq,Mode=TwoWay}" />
+                <DataGridTemplateColumn  Header="备用频率(MHz)"
+                                         x:Name="_editStandbyFreqColumn"
+                                         Width="*"
+                                         IsReadOnly="True"
+                                         Visibility="Collapsed">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:TextEdit  Text="{Binding ActivityEquipment.AssignSpareFreq, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           EditValueChanged="TextEdit_EditValueChanged"
+                                           MaskType="RegEx"
+                                           Mask="\d{0,5}(\.\d{0,4})?" />
+                            <!--EditValueChanged="TextEdit_EditValueChanged"-->
+                            <!--<TextBox Text="{Binding ActivityEquipment.AssignSpareFreq, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+                                     TextChanged="TextBox_TextChanged" />-->
+                            <!--IsReadOnly="{Binding CheckState,Converter={StaticResource keyReadOnlyConverter}}" 
+                                     ToolTipService.ToolTip="只有未经过检测的设备才能重新指配频率"-->
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2"
+              x:Name="xDeviceCheckGrid"
+              Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <GroupBox Header="设备检测信息"
+                      Grid.Row="1">
+                <sp:EquipmentInspectionDetailControl x:Name="equipmentInspectionDetailControl" IsEnabled="False"
+                                                     ></sp:EquipmentInspectionDetailControl>
+            </GroupBox>
+           
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        Grid.Row="2"
+                        HorizontalAlignment="Right"
+                        Margin="2">
+                <Button Content="保存"
+                        Click="btnSave_Click" />
+                <Button Content="取消"
+                        Click="btnCancel_Click" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="2"
+                        x:Name="xDeviceCheckSP">
+                <Image Source="/CO_IA.UI.FreqStation;component/Images/Qualified.png" />
+                <TextBlock Text="检测成功"
+                           Margin="5,2" />
+                <Line Stroke="Gray"
+                      StrokeThickness="2"
+                      Height="15"
+                      X1="0"
+                      X2="0"
+                      Y1="0"
+                      Y2="20"
+                      Width="5" />
+
+                <Image Source="/CO_IA.UI.FreqStation;component/Images/UnQualified.png" />
+                <TextBlock Text="检测失败"
+                           Margin="5,2" />
+                <Line Stroke="Gray"
+                      StrokeThickness="2"
+                      Height="15"
+                      X1="0"
+                      X2="0"
+                      Y1="0"
+                      Y2="20"
+                      Width="5" />
+
+                <Image Source="/CO_IA.UI.FreqStation;component/Images/UnCheck.png" />
+                <TextBlock Text="未检测"
+                           Margin="5,2" />
+                <Line Stroke="Gray"
+                      StrokeThickness="2"
+                      Height="15"
+                      X1="0"
+                      X2="0"
+                      Y1="0"
+                      Y2="20"
+                      Width="5" />
+
+                <Image Source="/CO_IA.UI.FreqStation;component/Images/SendLicense.png" />
+                <TextBlock Text="发放许可证  "
+                           Margin="5,2" />
+                <Line Stroke="Gray"
+                      StrokeThickness="2"
+                      Height="15"
+                      X1="0"
+                      X2="0"
+                      Y1="0"
+                      Y2="20"
+                      Width="5" />
+
+                <Image Source="/CO_IA.UI.FreqStation;component/Images/UnSendLicense.png" />
+                <TextBlock Text="未发放许可证 "
+                           Margin="5,2" />
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</UserControl>

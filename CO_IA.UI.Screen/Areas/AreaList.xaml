@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="CO_IA.UI.Screen.Areas.AreaList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="4"/>
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="#FFD3D2CF" Background="White" BorderThickness="1" CornerRadius="3" Grid.ColumnSpan="4">
+
+        </Border>
+        <Image Source="/CO_IA.UI.Screen;component/Images/drag.png"  Margin="2,4,0,4" Stretch="Fill"></Image>
+        <Thumb Name="thumb1" ToolTip="移动"  DragDelta="DragDelta" DragStarted="DragStarted" DragCompleted="DragCompleted"  Background="{x:Null}" Opacity="0.1" Cursor="SizeAll">
+        </Thumb>
+        <ComboBox Grid.Column="1" x:Name="cmbAreas"  Style="{x:Null}" SelectionChanged="cmbAreas_SelectionChanged" Margin="2,4,4,4" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="0,0">
+                        <Image Source="{Binding Image}" Width="20" Height="20"  />
+                        <TextBlock Text="{Binding Name}" FontSize="{DynamicResource DefaultFontSizeH2}" Foreground="#FF939088" Margin="2,0,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Image Margin="2" Source="/CO_IA.UI.Screen;component/Images/ContextMenu/video.png" Grid.Column="2" Cursor="Hand" ToolTip="查看视频" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
+    </Grid>
+</UserControl>

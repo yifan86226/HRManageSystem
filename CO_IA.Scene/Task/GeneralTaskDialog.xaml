@@ -1,0 +1,72 @@
+﻿<Window x:Class="CO_IA.Scene.Task.GeneralTaskDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:local="clr-namespace:CO_IA.Scene.Task"
+        Title="GeneralTaskDialog" Height="600" Width="600">
+    <Grid Background="White" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Tag="任务信息" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="执行小组" Grid.Row="0" Grid.Column="0"/>
+            <TextBox IsReadOnly="True" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Height="25" VerticalAlignment="Center"/>
+
+            <TextBlock Text="紧急程度" Grid.Row="1" Grid.Column="0"/>
+            <ListBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Height="25" VerticalAlignment="Center">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton Content="一般"/>
+                            <RadioButton Content="紧急"/>
+                            <RadioButton Content="特别紧急"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <TextBlock Text="提 交 人" Grid.Row="2" Grid.Column="0"/>
+            <TextBox IsReadOnly="True" Text="提交人" Grid.Row="2" Grid.Column="1" Height="25" VerticalAlignment="Center"/>
+
+            <TextBlock Text="提交日期" Grid.Row="2" Grid.Column="2"/>
+            <dxe:DateEdit Grid.Row="2" Grid.Column="3" Height="25" VerticalAlignment="Center"/>
+
+            <TextBlock Text="任务描述" Grid.Row="3" Grid.Column="0"/>
+            <Grid Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="3" >
+                <TextBox x:Name="TaskContent" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MinHeight="145" MaxHeight="200"
+                             Text="{Binding Path=GENERICDESCRIBE, Mode=TwoWay}" Tag="^[\s\S]{0,2000}$" ToolTipService.ToolTip="最大长度2000个字符"/>
+            </Grid>
+
+
+        </Grid>
+
+        <Grid Grid.Row="1" Tag="音频内容" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="音频信息" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <local:VoiceControl Grid.Row="1" HorizontalAlignment="Left" Margin="10,5,0,0"/>
+        </Grid>
+        
+        <Grid Grid.Row="2" Tag="执行结果">
+            
+        </Grid>
+        
+    </Grid>
+</Window>

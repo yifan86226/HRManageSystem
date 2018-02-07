@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="CO_IA.UI.StationPlan.FreqAssignHandleControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:local="clr-namespace:CO_IA.UI.StationPlan"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>-->
+        </Grid.RowDefinitions>
+        <commonControls:ModuleToolbar>
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar>
+                    <Button Content="查询" x:Name="xEquQuery" Click="xEquQuery_Click"/>
+                    <Button Content="周围台站" x:Name="xAroundStationQuery"  Click="xAroundStationQuery_Click"/>
+                    <Button Content="干扰分析" x:Name="xinterferenceAnalysis" Click="xinterferenceAnalysis_Click"/>
+                    <Button Content="建议" x:Name="xAssignAdvise" Click="xAssignAdvise_Click"/>
+                    <Button Content="保存" x:Name="xSaveAssingnFreq" Click="xSaveAssingnFreq_Click"/>
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+        <local:FreqAssignInfoListControl x:Name ="_freqAssignListControl" 
+                                          Grid.Row="1"/>
+    </Grid>
+</UserControl>

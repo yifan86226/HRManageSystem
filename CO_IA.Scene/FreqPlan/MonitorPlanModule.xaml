@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="CO_IA.Scene.Modules.MonitorPlanModule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"             
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition MinHeight="300"/>
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" x:Name="dataGridTask" BorderThickness="0" Margin="0,0,0,3">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="ToolTipService.ToolTip"   
+                                    Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Content.Text}" />
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <commonControls:DataGridVerticalCenterTextColumn Header="工作地点" Binding="{Binding WORKPLACE}" Width="150"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="任务起始时间" Binding="{Binding STARTTASKDATE, StringFormat=yyyy-MM-dd}"  Width="150"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="任务结束时间" Binding="{Binding ENDTASKDATE, StringFormat=yyyy-MM-dd}"  Width="150"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="工作频段" Width="200"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="任务描述" Binding="{Binding WorkDescribe}" Width="200"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="任务状态"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <GridSplitter Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <commonControls:ModuleToolbar x:Name="_toolBar" >
+                <commonControls:ModuleToolbar.ToolBar>
+                    <ToolBar>
+                        <Button Content="执行任务" Click="TaskRun_Click" />
+                        <Button Content="监测报告登记" />
+                    </ToolBar>
+                </commonControls:ModuleToolbar.ToolBar>
+            </commonControls:ModuleToolbar>
+            <DataGrid AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1" BorderThickness="0" MouseDoubleClick="dataFreqRange_DoubleClick">
+                <DataGrid.Columns>
+                    <commonControls:DataGridVerticalCenterTextColumn Header="业务类型"  Width="150"/>
+                    <commonControls:DataGridVerticalCenterTextColumn Header="频率范围(MHz)" Width="200"/>
+                    <commonControls:DataGridVerticalCenterTextColumn Header="规划频点(个)"  Width="200"/>
+                    <commonControls:DataGridVerticalCenterTextColumn Header="活动用频数量(个)" Width="200"/>
+                    <commonControls:DataGridVerticalCenterTextColumn Header="周围环境用频数量(个)" Width="200"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid x:Name="gridMonitorRunningContainer" Grid.RowSpan="2" Visibility="Collapsed"/>
+    </Grid>
+</UserControl>

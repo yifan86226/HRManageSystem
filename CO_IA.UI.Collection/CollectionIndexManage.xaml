@@ -1,0 +1,39 @@
+﻿<Window x:Class="CO_IA.UI.Collection.CollectionIndexManage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             mc:Ignorable="d" Title="采集来源管理"
+             dx:ThemeManager.ThemeName="Office2013"
+             d:DesignHeight="400" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <dxg:GridControl Grid.Row="1" x:Name="grid_collectionData">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn  Header="采集时间" HorizontalHeaderContentAlignment="Center" FieldName="DisplayMem"></dxg:GridColumn>
+                <dxg:GridColumn  Header="采集地点" HorizontalHeaderContentAlignment="Center" FieldName="CurrentActivityPlaceName"></dxg:GridColumn>
+                <dxg:GridColumn  Header="开始频率(MHz)" HorizontalHeaderContentAlignment="Center" FieldName="StartFreq"></dxg:GridColumn>
+                <dxg:GridColumn  Header="结束频率(MHz)" HorizontalHeaderContentAlignment="Center" FieldName="EndFreq"></dxg:GridColumn>
+                <dxg:GridColumn  Header="操作" HorizontalHeaderContentAlignment="Center" Tag="{Binding}">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:ButtonEdit ShowText="False" AllowDefaultButton="False">
+                                <dxe:ButtonInfo x:Name="deleteone" GlyphKind="Cancel" Tag="{Binding}" ToolTipService.ToolTip="删除" Click="deleteone_Click"/>
+                                <dxe:ButtonInfo x:Name="applyone" GlyphKind="Apply" Tag="{Binding}" ToolTipService.ToolTip="选中" Click="applyone_Click"/>
+                            </dxe:ButtonEdit>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowGroupPanel="False" ShowIndicator="False" HorizontalContentAlignment="Center"  AllowColumnFiltering="False" AllowEditing="False" AutoWidth="True"></dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</Window>

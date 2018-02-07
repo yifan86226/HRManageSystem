@@ -1,0 +1,71 @@
+﻿<Window x:Class="CO_IA.UI.PersonSchedule.Foreign.VehicleInfoDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CO_IA.UI.PersonSchedule"
+        xmlns:clientConverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+        xmlns:extCommon="clr-namespace:AT_BC.Client.Extensions;assembly=AT_BC.Client.Extensions.v5.0"
+        Title="VehicleInfoDialog" Height="200" Width="700" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+    <Window.Resources>
+        <local:ByteToImageSourceConverter x:Key="myByteToImageSourceConverter" />
+        <clientConverter:ImageStretchConverter x:Key="ImageStretchConverter" />
+        <local:VehicleTypeConverter x:Key="vehicletypeConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid  x:Name="gird_VehicleInfo" DataContext="{Binding}"  Margin="3" Height="150" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="33" />
+                    <RowDefinition Height="33" />
+                    <RowDefinition Height="6*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="110"/>
+                    <ColumnDefinition  Width="70"/>
+                    <ColumnDefinition  Width="2*"/>
+                    <ColumnDefinition  Width="70"/>
+                    <ColumnDefinition  Width="2*"/>
+                    <ColumnDefinition  Width="70"/>
+                    <ColumnDefinition  Width="2*"/>
+                    <ColumnDefinition  Width="10"/>
+                </Grid.ColumnDefinitions>
+                <Image  Margin="5" x:Name="img_Vehicle" Grid.RowSpan="3"  Grid.Column="0"  Source="{Binding Path=PICTURE, Mode=TwoWay, Converter={StaticResource myByteToImageSourceConverter}}" Height="130" VerticalAlignment="Top">
+                    <Image.ToolTip>
+                        <ToolTip DataContext="{Binding Path=PlacementTarget, RelativeSource={x:Static RelativeSource.Self}}">
+                            <Image Source="{Binding Source}" Width="400" Height="300" />
+                        </ToolTip>
+                    </Image.ToolTip>
+                    <Image.Stretch>
+                        <MultiBinding Converter="{StaticResource ImageStretchConverter}">
+                            <Binding RelativeSource="{RelativeSource Self}" Path="Source"/>
+                            <Binding ElementName="borderImage"  Path="ActualWidth"/>
+                            <Binding ElementName="borderImage" Path="ActualHeight"/>
+                        </MultiBinding>
+                    </Image.Stretch>
+                </Image>
+
+                <TextBlock Text="车辆用途：" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                <!--<TextBox Grid.Row="0" Grid.Column="2"  Text="{Binding Path=VEHICLE_TYPE,Mode=TwoWay}"  HorizontalAlignment="Stretch" Height="23" MaxLength="99"  TextWrapping="Wrap" />-->
+                <ComboBox Grid.Row="0" Grid.Column="2" IsEnabled="False" SelectedIndex="{Binding Path=VEHICLE_TYPE,Mode=TwoWay,Converter={StaticResource vehicletypeConverter}}" HorizontalAlignment="Stretch" Height="25" VerticalAlignment="Center" >
+                    <ComboBoxItem>无</ComboBoxItem>
+                    <ComboBoxItem>非监测车</ComboBoxItem>
+                    <ComboBoxItem>监测车</ComboBoxItem>
+                </ComboBox>
+                <TextBlock Text="车牌号：" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                <TextBox Grid.Row="0" Grid.Column="4" Name="txtNum" Text="{Binding Path=VEHICLE_NUMB,Mode=TwoWay}"  HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap"  MaxLength="20" VerticalAlignment="Center" IsReadOnly="True"/>
+                <TextBlock Text="型号：" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                <TextBox  Grid.Row="0"  Grid.Column="6" Name="txtModel" Text="{Binding Path=VEHICLE_MODEL,Mode=TwoWay}"  HorizontalAlignment="Stretch" Height="23" MaxLength="20" TextWrapping="Wrap"  VerticalAlignment="Center" IsReadOnly="True" />
+
+                <TextBlock Text="司机：" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                <TextBox  Grid.Row="1"  Grid.Column="2" Name="txtDriver" Text="{Binding Path=DRIVER,Mode=TwoWay}"  HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap" MaxLength="20" VerticalAlignment="Center" IsReadOnly="True"/>
+                <TextBlock Text="手机号码：" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                <TextBox  Grid.Row="1"  Grid.Column="4" Name="txtPhone" Text="{Binding Path=DRIVER_PHONE,Mode=TwoWay}"  HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap"  MaxLength="20" VerticalAlignment="Center" IsReadOnly="True"/>
+                <Label  Grid.Row="1" Content="其他人员数量："   Grid.Column="5" HorizontalAlignment="Right"  VerticalAlignment="Center"  Visibility="Collapsed"/>
+                <TextBox  Grid.Row="1"  Grid.Column="6"  Text="{Binding Path=OTHER_NUMB,Mode=TwoWay}"  HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap"  MaxLength="20" VerticalAlignment="Center"  Visibility="Collapsed"/>
+                <Label  Grid.Row="2" Content="说明：" Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Top"/>
+                <TextBox Grid.Row="2" Name="txtMemo"    Grid.Column="2" Grid.ColumnSpan="5" Text="{Binding Path=REMARKS,Mode=TwoWay}"  HorizontalAlignment="Stretch"  MaxLength="300" TextWrapping="Wrap" Margin="0,3" VerticalAlignment="Stretch" IsReadOnly="True" />
+
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

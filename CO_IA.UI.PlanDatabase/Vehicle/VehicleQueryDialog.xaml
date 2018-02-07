@@ -1,0 +1,88 @@
+﻿<Window x:Class="CO_IA.UI.PlanDatabase.Vehicle.VehicleQueryDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterScreen"
+        Title="车辆查询" Height="320" Width="500">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter  Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter  Property="Margin" Value="5,2"/>
+        </Style>
+        <Style TargetType="dxe:TextEdit">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter  Property="Margin" Value="5,2"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition  Height="3*"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="车牌号码:" />
+        <dxe:TextEdit Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  
+                      EditValue="{Binding Path=VehicleNo,Mode=TwoWay}" MaxLength="10"/>
+
+        <TextBlock Text="车辆型号:" Grid.Row="1" />
+        <dxe:TextEdit Grid.Row="1" Grid.Column="1" EditValue="{Binding Path=VehicleModel, Mode=TwoWay}"
+                      Grid.ColumnSpan="2" MaxLength="10"/>
+
+        <TextBlock Text="车辆类型:" Grid.Row="2" />
+        <dxe:ListBoxEdit x:Name="lstboxType"
+                         ShowBorder="False"
+                         Background="{x:Null}"
+                         ShowCustomItems="True"
+                         Margin="5,2"
+                         DisplayMember="Value"
+                         ValueMember="Key"
+                         VerticalAlignment="Center"
+                         Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <dxe:ListBoxEdit.StyleSettings>
+                <dxe:CheckedListBoxEditStyleSettings />
+            </dxe:ListBoxEdit.StyleSettings>
+            <dxe:ListBoxEdit.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" ItemWidth="80"  Width="350"/>
+                </ItemsPanelTemplate>
+            </dxe:ListBoxEdit.ItemsPanel>
+        </dxe:ListBoxEdit>
+
+
+        <TextBlock  Text="所属地区:" Grid.Row="3"/>
+        <dxe:ListBoxEdit x:Name="lstboxArea"
+                         ShowBorder="True"
+                         Background="{x:Null}"
+                         Margin="5,2"
+                         DisplayMember="Value"
+                         ValueMember="Key"
+                         Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+            <dxe:ListBoxEdit.StyleSettings>
+                <dxe:CheckedListBoxEditStyleSettings />
+            </dxe:ListBoxEdit.StyleSettings>
+            <dxe:ListBoxEdit.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" ItemWidth="120"  Width="400"/>
+                </ItemsPanelTemplate>
+            </dxe:ListBoxEdit.ItemsPanel>
+        </dxe:ListBoxEdit>
+
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"  Margin="0,2"
+                    Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="重置" Click="btnReset_Click" />
+            <Button Content="查询" Click="btnQuery_Click" />
+            <Button Content="取消" Click="btnCancel_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

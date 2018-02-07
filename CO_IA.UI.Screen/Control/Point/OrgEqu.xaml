@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="CO_IA.UI.Screen.Control.OrgEqu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="72" Margin="0,-50,0,0" HorizontalAlignment="Right" VerticalAlignment="Center">
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+    <UserControl.Effect>
+        <DropShadowEffect Color="Blue"  ShadowDepth="2"/>
+    </UserControl.Effect>
+    <Border x:Name="checkBorder"
+            CornerRadius="0" 
+            BorderThickness="0"
+            BorderBrush="#7733A6A1">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="8"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="0,0,0,0" BorderBrush="#66CDE213">
+                <Image Source="/CO_IA.UI.Screen;component/Images/Group/orgequ2.png"  x:Name="img" Margin="-5,0,0,0"
+                   AllowDrop="True"
+                   Width="48"
+                   Height="48"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"  />
+            </Border>
+            <Grid  Grid.Column="1" Margin="-5,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="txtOrgname" FontSize="{DynamicResource DefaultFontSizeMap2}"                      
+                       VerticalAlignment="Center" />
+                <TextBlock x:Name="txtEquname"  Grid.Row="1" FontSize="{DynamicResource DefaultFontSizeMap2}"                      
+                       VerticalAlignment="Center" />
+            </Grid>
+            <Path Data="M308.75,173.875 L306.5,180.125 314.625,173.875 z" Fill="BlueViolet" Opacity="0.6"  Stretch="Fill"  Width="20" Grid.Row="1" HorizontalAlignment="Left" Margin="0,-1,0,0"/>
+            <!--<Image Source="/CO_IA.UI.PersonSchedule;component/Images/delete.png"
+                   Grid.Column="2" 
+                   Width="16" 
+                   Height="16" 
+                   VerticalAlignment="Top"
+                   MouseLeftButtonDown="Image_MouseLeftButtonDown" Visibility="Collapsed"/>-->
+        </Grid>
+    </Border>
+</UserControl>

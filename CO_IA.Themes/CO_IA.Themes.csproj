@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{97DDCD73-A7FB-40A5-983E-B6980DCD62C0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CO_IA.Themes</RootNamespace>
+    <AssemblyName>CO_IA.Themes</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AT_BC.Common">
+      <HintPath>..\Output\AT_BC.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Data.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Controls.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Controls.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Core.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityIcon.cs" />
+    <Compile Include="IconHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="BaseWindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FunctionImages\ActivitySummarize.png" />
+    <Resource Include="FunctionImages\Task.png" />
+    <Resource Include="FunctionImages\MonitorPlan.png" />
+    <Resource Include="FunctionImages\PersonnelPlan.png" />
+    <Resource Include="ActivityTypeImages\Conference.png" />
+    <Resource Include="ActivityTypeImages\Drill.png" />
+    <Resource Include="ActivityTypeImages\Emergency.png" />
+    <Resource Include="ActivityTypeImages\Exam.png" />
+    <Resource Include="ActivityTypeImages\MajorDisturbance.png" />
+    <Resource Include="ActivityTypeImages\OtherActivity.png" />
+    <Resource Include="ActivityTypeImages\RecreationalActivities.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ActivityTypeImages\defaultActivity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ControlImages\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FunctionImages\Files.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FunctionImages\FreqPlan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FunctionImages\FreqQuery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ControlImages\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ControlImages\Min.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ControlImages\Setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FunctionImages\StationPlan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FunctionImages\Statistic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CompletedState.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FreqPlanningStepImage\BusinessPlanning.png" />
+    <Resource Include="FreqPlanningStepImage\EMEAnalyse.png" />
+    <Resource Include="FreqPlanningStepImage\EMEClear.png" />
+    <Resource Include="FreqPlanningStepImage\EquipmentInspection.png" />
+    <Resource Include="FreqPlanningStepImage\FreqAssign.png" />
+    <Resource Include="FreqPlanningStepImage\MonitorPlanning.png" />
+    <Resource Include="FreqPlanningStepImage\StationPlanning.png" />
+    <Resource Include="FreqPlanningStepImage\SurroundStationAnalyse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ControlImages\PlanDatabase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ControlImages\Template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FunctionImages\Schedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\place.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bk.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Area\zhzx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Area\location_img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Area\location_point.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Area\modify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Area\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Area\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\skin\Button\btbg.png" />
+    <Resource Include="Images\skin\Button\btfg.png" />
+    <Resource Include="Images\skin\Button\M.png" />
+    <Resource Include="Images\skin\Button\MAX.png" />
+    <Resource Include="Images\skin\Button\MNI.png" />
+    <Resource Include="Images\skin\Button\x1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Group\jcc.png" />
+    <Resource Include="Images\Group\jcc_offline.png" />
+    <Resource Include="Images\Group\jcc_online.png" />
+    <Resource Include="Images\Group\user.png" />
+    <Resource Include="Images\Group\user_offline.png" />
+    <Resource Include="Images\Group\user_online.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Area\location_point2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Area\location_img2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\win\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FunctionImages\WorkLog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Area\defaultPlace.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

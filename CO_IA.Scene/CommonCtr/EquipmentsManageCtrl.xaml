@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="CO_IA.Scene.CommonCtr.EquipmentsManageCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:client="clr-namespace:CO_IA.Client;assembly=CO_IA.Client"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CO_IA.Client;component/Converters/ConverterDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <commonControls:ModuleToolbar x:Name="_toolBar" Height="30" >
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar>
+                    <Button Content="新增单位" Click="AddOrg_Click" />
+                    <Button Content="删除单位" Click="DelOrg_Click" IsEnabled="False" x:Name="xDeleteButton"/>
+                    <Button Content="设备库导入" Click="EquipLibraryImportBtn_Click" />
+                    <Button Content="Excel导入" Click="ExcelImportBtn_Click" />
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+        <DataGrid x:Name="xTestDataGrid" Visibility="Collapsed"/>
+        <Border Margin="5" BorderBrush="LightGray" BorderThickness="1" Grid.Row="1">
+            
+            <DataGrid BorderThickness="0" x:Name="xDataGrid" SelectionChanged="DataGrid_SelectionChanged">
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate x:Name="xDataTemplate">
+                        <GroupBox Header="设备列表">
+                        <Grid  Height="150"  HorizontalAlignment="Left"  x:Name="grid" Margin="6,3,6,3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <commonControls:ModuleToolbar x:Name="_toolBar2" Height="30" Margin="0,0,15,0" Visibility="{Binding ElementName= _toolBar,Path=Visibility}">
+                                <commonControls:ModuleToolbar.ToolBar>
+                                    <ToolBar>
+                                        <Button Content="新增设备" Click="AddEquip_Click" Tag="{Binding ElementName=xEquipDataGrid}"/>
+                                        <Button Content="删除设备" Click="DelEquip_Click" Tag="{Binding ElementName=xEquipDataGrid,Path=SelectedItem}"/>
+                                    </ToolBar>
+                                </commonControls:ModuleToolbar.ToolBar>
+                            </commonControls:ModuleToolbar>
+                            <DataGrid Grid.Row="1" x:Name="xEquipDataGrid" ItemsSource="{Binding ElementName=xTestDataGrid,Path=ItemsSource,Mode=TwoWay}"
+                                          Loaded="xEquipDataGrid_Loaded" SelectionChanged="xEquipDataGrid_SelectionChanged" ><!--Width="{Binding ElementName=xDataGrid,Path=ActualWidth}"-->
+
+                                    <DataGrid.RowStyle>
+                                        <Style TargetType="{x:Type DataGridRow}">
+                                            <Setter Property="Height"
+                                            Value="Auto" />
+                                            <EventSetter Event="MouseDoubleClick"
+                                 Handler="EquipmentGrid_MouseDoubleClick" />
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <DataGrid.Columns>
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="设备名称"
+                                                                 Binding="{Binding Path=Name,Mode=TwoWay}"
+                                                                 Width="*" />
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="设备类型"
+                                                                 Binding="{Binding Path=EquipmentClassID,Mode=TwoWay,Converter={StaticResource IdentifiableDataConverter},
+                    ConverterParameter={x:Static client:Utility.EquipmentClasses}}"
+                                                                 Width="*" />
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="设备数量"
+                                                                 Binding="{Binding Path=EQUCount,Mode=TwoWay}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="发射频率(MHz)"
+                                                                 Binding="{Binding Path=SendFreq,Mode=TwoWay}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="接收频率(MHz)"
+                                                                 Binding="{Binding Path=ReceiveFreq,Mode=TwoWay}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="备用频率(MHz)"
+                                                                 Binding="{Binding Path=SpareFreq,Mode=TwoWay}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                                    <DataGridTemplateColumn Header="频率可调">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                    <CheckBox  IsChecked="{Binding Path=IsTunable}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       IsEnabled="False" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="带宽(kHz)"
+                                                                 Binding="{Binding Path=Band_kHz}"
+                                                                 Width="*"
+                                                                 TextHorizontalAlignment="Right" />
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="发射功率(W)"
+                                                                 Binding="{Binding Path=Power_W}"
+                                                                 Width="*"
+                                                                 TextHorizontalAlignment="Right" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                        </GroupBox>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=Name}"
+                                                        Header="单位名称"
+                                                        Width="*" />
+                    <DataGridTextColumn Binding="{Binding Path=Address}"
+                                                        Header="单位地址"
+                                                        Width="*" />
+                    <DataGridTextColumn Binding="{Binding Path=Contact}"
+                                                        Header="单位联系人"
+                                                        Width="*" />
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

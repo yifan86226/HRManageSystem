@@ -1,0 +1,11 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:StationPlan="clr-namespace:CO_IA.UI.StationPlan" x:Class="CO_IA.UI.StationPlan.LicenseTempleteDialog"
+        Title="许可证模板" Height="500" Width="1200">
+    <Grid>
+
+        <StationPlan:LicenseSend HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

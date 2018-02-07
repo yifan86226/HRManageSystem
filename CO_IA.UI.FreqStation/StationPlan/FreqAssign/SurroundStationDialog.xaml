@@ -1,0 +1,21 @@
+﻿<Window x:Class="CO_IA.UI.FreqStation.StationPlan.SurroundStationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:surstation="clr-namespace:CO_IA.UI.FreqStation.FreqPlan.SurroundStation"
+        xmlns:map="clr-namespace:CO_IA.UI.FreqStation"
+        WindowStartupLocation="CenterScreen"
+        Title="周围台站" Height="800" Width="1400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <surstation:SurroundStationListControl x:Name="surroundStationListControl" 
+                                               Grid.Row="0"/>
+        <GridSplitter VerticalAlignment="Bottom"
+                      HorizontalAlignment="Stretch"
+                      Height="2"
+                      Grid.Row="0" />
+        <map:MapControl x:Name="mapcontrol"   Grid.Row="1" />
+    </Grid>
+</Window>

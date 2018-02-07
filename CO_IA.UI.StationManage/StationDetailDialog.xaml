@@ -1,0 +1,49 @@
+﻿<Window xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+        xmlns:StationManage="clr-namespace:CO_IA.UI.StationManage"  x:Class="CO_IA.UI.StationManage.StationDetailDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="台站详细信息" Height="500" Width="700" FontFamily="Arial,SimSun" FontSize="12" Padding="0">
+    <Grid>
+        <!--<TabControl>
+            <TabItem Header="申请信息"
+                     x:Name="lg_Apply">
+
+            </TabItem>
+            <TabItem Header="台站信息"
+                     x:Name="lg_Station">
+
+            </TabItem>
+            <TabItem Header="设备信息"
+                     x:Name="lg_Equinfo">
+
+            </TabItem>
+            <TabItem Header="频率信息"
+                     x:Name="lg_Freq">
+
+            </TabItem>
+            <TabItem Header="天线信息"
+                     x:Name="lg_Antfeed">
+
+            </TabItem>
+        </TabControl>-->
+        <dxlc:LayoutControl Orientation="Vertical" StretchContentVertically="True" Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0">
+            <dxlc:LayoutGroup x:Name="groupContainer" Orientation="Vertical" View="Tabs">
+                <dxlc:LayoutGroup Header="申请信息" x:Name="lg_Apply" >
+
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="台站信息" x:Name="lg_Station" >
+
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="设备信息" x:Name="lg_Equinfo">
+
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="频率信息" x:Name="lg_Freq">
+
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="天线信息" x:Name="lg_Antfeed">
+
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</Window>

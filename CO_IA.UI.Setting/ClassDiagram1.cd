@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CO_IA.UI.Setting.SettingModule">
+    <Position X="0.75" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EAAAAACAAAAAAAAAACAAAAAAAAQEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SettingModule.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CO_IA.UI.Setting.SecurityClassManageModule" Collapsed="true">
+    <Position X="4.5" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAASABAABAAAAAAAAIAAAAEAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>SecurityClassManageModule.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CO_IA.UI.Setting.MonitorEQUTypeModule" Collapsed="true">
+    <Position X="4.5" Y="2.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MonitorEQUType\MonitorEQUTypeModule.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CO_IA.UI.Setting.EquipmentClassFreqPlanningControl" Collapsed="true">
+    <Position X="4.5" Y="3.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EquipmentClassFreqPlanningControl.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CO_IA.UI.Setting.DutyControl" Collapsed="true">
+    <Position X="4.5" Y="4.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAgA=</HashCode>
+      <FileName>DutyControl.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="CO_IA.UI.FreqPlan.FreqPlan.MapLoad_Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <toolkit:BusyIndicator x:Name="busyIndicator" BusyContent="正在绘制周围台站区域,请稍后..." IsBusy="False"  >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border x:Name="xControlContainer"/>
+        <GridSplitter  VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="1" />
+        <Border Grid.Row="2" x:Name="xMapContainer"/>
+        <!--<Button Content="测试" Grid.Row="3" Click="Test_Click"/>-->
+    </Grid>
+    </toolkit:BusyIndicator>
+</UserControl>

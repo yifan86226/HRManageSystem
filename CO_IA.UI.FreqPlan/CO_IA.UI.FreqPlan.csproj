@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9D82C7ED-D006-4307-BB63-A11486283C95}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CO_IA.UI.FreqPlan</RootNamespace>
+    <AssemblyName>CO_IA.UI.FreqPlan</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AT_BC.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Data.Portable">
+      <HintPath>..\Output\AT_BC.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.SystemPortal.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.SystemPortal.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Charts.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Printing.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Charts.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Charts.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Controls.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Controls.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="devexpress.xpf.core.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Docking.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Docking.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Grid.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Grid.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v13.2.Extensions, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Grid.v13.2.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Layout.v13.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.LayoutControl.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Mvvm.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.NavBar.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.NavBar.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2013.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\DevExpress.Xpf.Themes.Office2013.v13.2.dll</HintPath>
+    </Reference>
+    <Reference Include="EMCS.Types, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\EMCS.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="GS_MapBase, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\GS_MapBase.dll</HintPath>
+    </Reference>
+    <Reference Include="I_GS_MapBase.Portal, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\I_GS_MapBase.Portal.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PT_BS_Service.Client.Core.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.Client.Core.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.Client.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.Client.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_SV_PR.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_SV_PR.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolkit.Extended, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FreqPlan\Converter\ClearStateConverter.cs" />
+    <Compile Include="FreqPlan\Converter\NeedClearConverter.cs" />
+    <Compile Include="FreqPlan\EmeClearHandleQueryConditionDialog.xaml.cs">
+      <DependentUpon>EmeClearHandleQueryConditionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\Controls\DialogExtendDistance.xaml.cs">
+      <DependentUpon>DialogExtendDistance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\Converter\SecurityCodeToNameConverter.cs" />
+    <Compile Include="FreqPlan\Controls\StructClone.cs" />
+    <Compile Include="FreqPlan\Controls\ActivityFreqPlanList_Control.xaml.cs">
+      <DependentUpon>ActivityFreqPlanList_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\Converter\BandWidthConverter.cs" />
+    <Compile Include="FreqPlan\Data\EMEEnvironment.cs" />
+    <Compile Include="FreqPlan\DialogFreqPartPlan.xaml.cs">
+      <DependentUpon>DialogFreqPartPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\EmeClearHandle_Control.xaml.cs">
+      <DependentUpon>EmeClearHandle_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\EmeMonitorAnalyse_Control.xaml.cs">
+      <DependentUpon>EmeMonitorAnalyse_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlanModule.xaml.cs">
+      <DependentUpon>FreqPlanModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\Converter\FreqRangeConverter.cs" />
+    <Compile Include="FreqPlan\AssignFreqDataHelper.cs" />
+    <Compile Include="FreqPlan\Equipment\EquipmentDetailDialog.xaml.cs">
+      <DependentUpon>EquipmentDetailDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\Equipment\EquipmentListControl.xaml.cs">
+      <DependentUpon>EquipmentListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\Equipment\EquipmentQueryDialog.xaml.cs">
+      <DependentUpon>EquipmentQueryDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\Equipment\QueryEquipListDialog.xaml.cs">
+      <DependentUpon>QueryEquipListDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\Controls\FreqPartPlanList_Control.xaml.cs">
+      <DependentUpon>FreqPartPlanList_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\FreqPartPlan_Control.xaml.cs">
+      <DependentUpon>FreqPartPlan_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\MapLoad_Control.xaml.cs">
+      <DependentUpon>MapLoad_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\QueryFreqPartPlanDialog.xaml.cs">
+      <DependentUpon>QueryFreqPartPlanDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\RoundStatAnalyse_Control.xaml.cs">
+      <DependentUpon>RoundStatAnalyse_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\RoundStationListControl.xaml.cs">
+      <DependentUpon>RoundStationListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\StationListByActivity_Control.xaml.cs">
+      <DependentUpon>StationListByActivity_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FreqPlan\QueryEmeClear_Dialog.xaml.cs">
+      <DependentUpon>QueryEmeClear_Dialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqPlan\Equipment\SetProtectLevelDialog.xaml.cs">
+      <DependentUpon>SetProtectLevelDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingHelper.cs" />
+    <Compile Include="StationPlan\Converter\StationFreqConverter.cs" />
+    <Compile Include="StationPlan\ExtractFromEquipmentDBDialog.xaml.cs">
+      <DependentUpon>ExtractFromEquipmentDBDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StationPlan\ExtractFromStationDBDialog.xaml.cs">
+      <DependentUpon>ExtractFromStationDBDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StationPlan\CompanyDetailDialog.xaml.cs">
+      <DependentUpon>CompanyDetailDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StationPlan\Converter\FreqRangeConverter.cs" />
+    <Compile Include="StationPlan\PlaceListControl.xaml.cs">
+      <DependentUpon>PlaceListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StationPlan\QueryStationDBDialog.xaml.cs">
+      <DependentUpon>QueryStationDBDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StationPlan\QueryStationRiasDialog.xaml.cs">
+      <DependentUpon>QueryStationRiasDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StationPlan\SetProtectLevelControl.xaml.cs">
+      <DependentUpon>SetProtectLevelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StationPlan\StationListControl.xaml.cs">
+      <DependentUpon>StationListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StationPlan\StationPlanControl.xaml.cs">
+      <DependentUpon>StationPlanControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StationPlan\UpdateCompanyInfo.xaml.cs">
+      <DependentUpon>UpdateCompanyInfo.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="FreqPlan\EmeClearHandleQueryConditionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlan\Controls\ActivityFreqPlanList_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlan\Controls\DialogExtendDistance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlan\DialogFreqPartPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlan\EmeClearHandle_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlan\EmeMonitorAnalyse_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlanModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlan\Equipment\EquipmentDetailDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqPlan\Equipment\EquipmentListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqPlan\Equipment\EquipmentQueryDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqPlan\Equipment\QueryEquipListDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqPlan\Controls\FreqPartPlanList_Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqPlan\FreqPartPlan_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlan\MapLoad_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlan\QueryFreqPartPlanDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlan\RoundStatAnalyse_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlan\RoundStationListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqPlan\StationListByActivity_Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqPlan\QueryEmeClear_Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqPlan\Equipment\SetProtectLevelDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationPlan\ExtractFromEquipmentDBDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationPlan\ExtractFromStationDBDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationPlan\CompanyDetailDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationPlan\PlaceListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationPlan\QueryStationDBDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationPlan\QueryStationRiasDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationPlan\SetProtectLevelControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationPlan\StationListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationPlan\StationPlanControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationPlan\UpdateCompanyInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\place.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CO_IA.Client\CO_IA.Client.csproj">
+      <Project>{b48b653d-d7d2-43f9-806e-e7621e9fa27c}</Project>
+      <Name>CO_IA.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Data.Portable\CO_IA.Data.Portable.csproj">
+      <Project>{d52a57d6-99b0-4bcf-9998-68099e2edc78}</Project>
+      <Name>CO_IA.Data.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.Collection\CO_IA.UI.Collection.csproj">
+      <Project>{badb0783-9731-41c5-9569-c1b7cf158614}</Project>
+      <Name>CO_IA.UI.Collection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.MAP\CO_IA.UI.MAP.csproj">
+      <Project>{1c9be0cb-3fb2-481b-9be8-e7cb41b00bae}</Project>
+      <Name>CO_IA.UI.MAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.Setting\CO_IA.UI.Setting.csproj">
+      <Project>{bbffc08d-1716-4ecc-ad5b-f98685635d1c}</Project>
+      <Name>CO_IA.UI.Setting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.StationManage\CO_IA.UI.StationManage.csproj">
+      <Project>{47214448-3e49-402e-b3e1-dde99388a73a}</Project>
+      <Name>CO_IA.UI.StationManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA_Data.StationManage\CO_IA_Data.StationManage.csproj">
+      <Project>{a0dd0b1d-3c6d-495e-b481-1d2f2b0b8257}</Project>
+      <Name>CO_IA_Data.StationManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.ActivityManage\I_CO_IA.ActivityManage.csproj">
+      <Project>{fddc11eb-7155-4afc-9524-c95b52057d0b}</Project>
+      <Name>I_CO_IA.ActivityManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.FreqPlan\I_CO_IA.FreqPlan.csproj">
+      <Project>{84a04550-555d-4595-9893-90adafd0f66b}</Project>
+      <Name>I_CO_IA.FreqPlan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.Setting\I_CO_IA.Setting.csproj">
+      <Project>{0de625fd-f9b5-44e1-ba70-3b4a6a6ded54}</Project>
+      <Name>I_CO_IA.Setting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.StationManage\I_CO_IA.StationManage.csproj">
+      <Project>{4220961a-5459-43fd-9e07-b6385abcf1c6}</Project>
+      <Name>I_CO_IA.StationManage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FreqPlan\Images\EmeMonitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FreqPlan\Images\RoundStat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\License.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\license1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\license2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\textlicense.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\textlicense.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\textlicense11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\批量发放.png" />
+    <Resource Include="Images\许可证发放.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FreqPlan\Images\单位设备管理.png" />
+    <Resource Include="FreqPlan\Images\周围台站分析.png" />
+    <Resource Include="FreqPlan\Images\电磁环境分析.png" />
+    <Resource Include="FreqPlan\Images\电磁环境清理.png" />
+    <Resource Include="FreqPlan\Images\设备检测.png" />
+    <Resource Include="FreqPlan\Images\频段规划.png" />
+    <Resource Include="FreqPlan\Images\频率指配.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\单位设备管理.png" />
+    <Resource Include="Images\周围台站分析.png" />
+    <Resource Include="Images\电磁环境分析.png" />
+    <Resource Include="Images\电磁环境清理.png" />
+    <Resource Include="Images\设备检测.png" />
+    <Resource Include="Images\频段规划.png" />
+    <Resource Include="Images\频率指配.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CompleteButton.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CO_IA.UI.FreqStation.FreqPlan.ORGAndEquipmentManage">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <Members>
+      <Method Name="CreateActivityEquipment" Hidden="true" />
+      <Method Name="equipmentListControl_DoubleClick" Hidden="true" />
+      <Method Name="GetActivityEquipments" Hidden="true" />
+      <Method Name="GetActivityOrgs" Hidden="true" />
+      <Method Name="GetActivityOrgSources" Hidden="true" />
+      <Method Name="Import" Hidden="true" />
+      <Method Name="ImportActivityEquipment" Hidden="true" />
+      <Method Name="ImportActivityEquipmentEvent" Hidden="true" />
+      <Method Name="ImportFromRiasEvent" Hidden="true" />
+      <Method Name="InitEvent" Hidden="true" />
+      <Method Name="InitQueryCondition" Hidden="true" />
+      <Method Name="LoadActivityEquipments" Hidden="true" />
+      <Method Name="LoadActivityORGFromTable" Hidden="true" />
+      <Method Name="ORGAndEquipmentManage" Hidden="true" />
+      <Method Name="orgdatagrid_SelectionChanged" Hidden="true" />
+      <Method Name="ORGSourceToObject" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAgAAAigAAQAACSCMAACIIAgACgABAEkAABAA0ACAAE=</HashCode>
+      <FileName>FreqPlan\ORG\ORGAndEquipmentManage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ActivityOrgSource" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CO_IA.Data.ActivityOrganization">
+    <Position X="5.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CO_IA.Data.ActivityEquipment">
+    <Position X="5.25" Y="3" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CO_IA.UI.FreqStation.FreqPlan.SurroundStation.SurroundStationAnalyseManage">
+    <Position X="0.5" Y="7.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EAACAAFQAAAAIQQAgAAAgBAggAAAAAAAEAAAAAAACAA=</HashCode>
+      <FileName>FreqPlan\SurroundStation\SurroundStationAnalyseManage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ActivityStationItemsSource" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CO_IA_Data.ActivitySurroundStation">
+    <Position X="5.25" Y="7.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CO_IA.UI.FreqStation.FreqPlan.PLaceFreqPlanControl">
+    <Position X="2" Y="13.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAAABAAIAAQcAABQiAAEIAAAAACAAIgIQAAAAAIQA=</HashCode>
+      <FileName>FreqPlan\FreqSecurityPlan\PlaceFreqPlanControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="activityMap" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="freqRanges" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CO_IA.Data.EquipmentClassFreqRange">
+    <Position X="6.75" Y="16.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CO_IA.UI.MAP.ActivityPlaceMap">
+    <Position X="6.75" Y="13.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

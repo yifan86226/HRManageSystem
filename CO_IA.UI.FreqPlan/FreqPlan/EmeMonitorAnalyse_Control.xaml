@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="CO_IA.UI.FreqPlan.FreqPlan.EmeMonitorAnalyse_Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CO_IA.UI.FreqPlan.FreqPlan"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <TabControl Grid.Row="1">
+            <TabItem Header="周围电磁环境监测结果分析" x:Name="tbItem_DataAanalysis">
+                <!--<Image Source="/CO_IA.UI.FreqPlan;component/FreqPlan/Images/EmeMonitor.png"/>-->
+            </TabItem>
+            <TabItem Header="频谱占用分析图" Visibility="Collapsed">
+                <!--<local:FreqPlanList_Control/>-->
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

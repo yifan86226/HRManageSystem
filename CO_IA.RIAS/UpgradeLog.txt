@@ -1,0 +1,43 @@
+﻿记录起始日期:2017-08-03
+08-03  Lizk	
+-- Create table
+create table ACTIVITY_VIDEOSETTING
+(
+  guid          VARCHAR2(36) not null,
+  name          VARCHAR2(100) not null,
+  activity_guid VARCHAR2(36) not null,
+  ip            VARCHAR2(15) not null,
+  port          NUMBER(6) not null,
+  username      VARCHAR2(50) not null,
+  password      VARCHAR2(20) not null,
+  ownerguid     VARCHAR2(36) not null,
+  ownertype     VARCHAR2(50) not null
+)
+tablespace RIASDB
+  pctfree 10
+  initrans 1
+  maxtrans 255;
+-- Create/Recreate indexes 
+create index IDX_VIDEOSETTING_ACTIVITYGUID on ACTIVITY_VIDEOSETTING (ACTIVITY_GUID)
+  tablespace RIASDB
+  pctfree 10
+  initrans 2
+  maxtrans 255;
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table ACTIVITY_VIDEOSETTING
+  add constraint PK_ACTIVITY_VIDEOSETTING primary key (GUID)
+  using index 
+  tablespace RIASDB
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table ACTIVITY_VIDEOSETTING
+  add constraint FK_VIDEOSETTING_ACTIVITYGUID foreign key (ACTIVITY_GUID)
+  references RIAS_ACTIVITY (GUID) on delete cascade;

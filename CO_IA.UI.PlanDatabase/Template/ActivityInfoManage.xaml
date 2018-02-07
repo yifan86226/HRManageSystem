@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="CO_IA.UI.PlanDatabase.Template.ActivityInfoManage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:clientConverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+             xmlns:extClient="clr-namespace:AT_BC.Client.Extensions.Controls;assembly=AT_BC.Client.Extensions.v5.0"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:client="clr-namespace:CO_IA.Client;assembly=CO_IA.Client"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="1000">
+    <UserControl.Resources>
+        <clientConverter:ActivityTypeIDToIconConverter x:Key="ActivityTypeIDToIconConverter" />
+    </UserControl.Resources>
+    <Grid Margin="5,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="0,0,2,0"
+                BorderBrush="{DynamicResource ModuleToolBar.BorderBrush}">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32" />
+                    <RowDefinition Height="32" />
+                    <RowDefinition Height="32" />
+                    <RowDefinition Height="32" />
+                    <RowDefinition Height="32" />
+                    <RowDefinition Height="32" />
+                    <RowDefinition Height="32" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="32" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.RowSpan="2" x:Name="imageTest"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Source="{Binding ActivityType, Converter={StaticResource ActivityTypeIDToIconConverter}}"
+                       Stretch="None">
+                    <!--<Image.ToolTip>
+                        <ToolTip DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Self}}">
+                            <Image Source="{Binding Source}" />
+                        </ToolTip>
+                    </Image.ToolTip>-->
+                </Image>
+                <TextBlock Grid.Column="2" VerticalAlignment="Center"
+                           x:Name="textBlockActivityType" />
+                <TextBox x:Name="txtActivityName"
+                         Text="{Binding Path=Name,Mode=TwoWay}"
+                         Grid.Column="2"
+                         Grid.Row="1"
+                         HorizontalAlignment="Stretch"
+                         TextWrapping="Wrap"
+                         VerticalAlignment="Center" />
+                <TextBlock Text="活动简称："
+                           HorizontalAlignment="Center"
+                           Grid.Row="2"
+                           VerticalAlignment="Center" />
+                <TextBox x:Name="txtShortHand"
+                         Text="{Binding Path=ShortHand,Mode=TwoWay}"
+                         Grid.Row="2"
+                         Grid.Column="2"
+                         HorizontalAlignment="Stretch"
+                         TextWrapping="Wrap"
+                         VerticalAlignment="Center" />
+                <TextBlock Text="活动地区："
+                           Grid.Row="3"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                <dxe:ComboBoxEdit Grid.Row="3" x:Name="comboBoxEditArea"
+                            EditValue="{Binding AreaCode}"
+                            Grid.Column="2"
+                            DisplayMember="Value"
+                            ValueMember="Key"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center" />
+                
+                <TextBlock Text="创建人："
+                           Grid.Row="4"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                <TextBlock  Grid.Row="4"
+                            Text="{Binding Path=Creator,Mode=TwoWay}"
+                            Grid.Column="2"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center" />
+                <TextBlock Text="创建时间："
+                           Grid.Row="5"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                <TextBlock Text="{Binding CreateTime, StringFormat={x:Static client:Utility.DateFormatString}}"
+                           Grid.Row="5"
+                           Grid.Column="2"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Center" />
+                <TextBlock Text="活动简介："
+                           HorizontalAlignment="Center"
+                           Grid.Row="6"
+                           VerticalAlignment="Center" />
+                <TextBox  AcceptsReturn="True"
+                          AcceptsTab="True"
+                          Text="{Binding Path=Description,Mode=TwoWay}"
+                          Grid.Row="7"
+                          Grid.ColumnSpan="3"
+                          HorizontalAlignment="Stretch"
+                          TextWrapping="Wrap"
+                          VerticalAlignment="Stretch" />
+                <Button x:Name="buttonSaveActivity"
+                        Content="保存"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Width="60"
+                        Click="buttonSaveActivity_Click"
+                        Grid.Row="8"
+                        Grid.Column="2">
+                </Button>
+            </Grid>
+        </Border>
+        <Grid Margin="5"
+              Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="200" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+        </Grid>
+    </Grid>
+</UserControl>
+

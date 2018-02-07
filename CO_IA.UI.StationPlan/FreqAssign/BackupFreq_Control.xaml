@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="CO_IA.UI.StationPlan.BackupFreq_Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:converer="clr-namespace:CO_IA.UI.StationPlan.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.Resources>
+            <converer:FreqRangeConverter x:Key="keyfreqRangeConverter" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<StackPanel HorizontalAlignment="Left" Margin="5">
+            <Button Content="设定频点"/>
+        </StackPanel>-->
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="0"
+                          Margin="5" Name="xBackupFreqGrid" HorizontalGridLinesBrush="#FFB4B4B4" VerticalGridLinesBrush="#FFB4B4B4">
+            <DataGrid.Columns>
+                <commonControls:DataGridVerticalCenterTextColumn Header="业务类型" Binding="{Binding BusinessType}"  Width="*"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="频率范围(MHz)" Binding="{Binding SendPara ,Converter={StaticResource  keyfreqRangeConverter}}"  Width="*"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="带宽(kHz)" Binding="{Binding SendPara.BandWidth}"  Width="*"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="规划频点(个/对)" Binding="{Binding PlanFreqPointNum}"  Width="*"/>
+                <DataGridTemplateColumn x:Name="columnBackupFreq" 
+                                        Header="备用频率(MHz)">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox  Text="{Binding BackupFreqPoints}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>    
+    </Grid>
+</UserControl>

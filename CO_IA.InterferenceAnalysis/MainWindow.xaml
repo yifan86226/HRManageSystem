@@ -1,0 +1,49 @@
+﻿<Window x:Class="CO_IA.InterferenceAnalysis.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow"
+        WindowStartupLocation="CenterScreen"
+        Height="500" 
+        Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <DataGrid  x:Name="datagrid"  
+                   Grid.ColumnSpan="2"
+                   AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=FreqID}" Header="频率ID" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Path=Freq}" Header="频率" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Path=Band}" Header="带宽" Width="200"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Column="3" >
+            <TextBlock Text="接收参数:接收频率:30MHz,带宽：2MHz。 起始频率：8MHz,终止频率：32MHz,中频带宽:4MHz" 
+                   VerticalAlignment="Center" />
+            <TextBlock Text="发射参数:" />
+            <DataGrid x:Name="transdatagrid" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=EquipID}" Header="设备ID" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding Path=Freq}" Header="发射频率(MHz)" />
+                    <DataGridTextColumn Binding="{Binding Path=TransmitPowerW}" Header="发射功率(W)" />
+                    <DataGridTextColumn Binding="{Binding Path=TuningFreqFrom}" Header="起始频率(MHz)" />
+                    <DataGridTextColumn Binding="{Binding Path=TuningRangeTo}" Header="终止频率(MHz)" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <Button  Content="同频干扰" Click="BtnSameFreq_Click" Grid.Row="1" Grid.Column="0"/>
+        <TextBlock  x:Name="samefreqresult"  Text="同频干扰结果:" Grid.Row="2" Grid.Column="0"/>
+        <Button Content="领频干扰" Click="BtnAdjFreq_Click"  Grid.Row="1"  Grid.Column="1"/>
+        <TextBlock  x:Name="adjfreqresult"  Text="领频干扰结果:" Grid.Row="2" Grid.Column="1"/>
+        <Button Content="互调干扰" Click="BtnIM_Click"  Grid.Row="1" Grid.Column="2"/>
+        <TextBlock  x:Name="imresult"  Text="互调干扰结果:" Grid.Row="2" Grid.Column="2"/>
+    </Grid>
+</Window>

@@ -1,0 +1,26 @@
+﻿<Window x:Class="CO_IA.UI.StationPlan.PrintPreviewLicense"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+        WindowStartupLocation="CenterScreen"
+        Title="发放许可证" Width="850" Height="524" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="grpView" Header="许可证预览" Grid.Row="0" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10 0 5 0" >
+            <ScrollViewer x:Name="scrolls" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Height="400">
+                <WrapPanel x:Name="panelView" Margin="5" Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" >
+                </WrapPanel>
+            </ScrollViewer>
+            <!--<Border x:Name="borderView" Height="302" Width="402" HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderBrush="Gray" BorderThickness="1" Visibility="Collapsed" Margin="2"/>-->
+        </GroupBox>
+        <CheckBox x:Name="chkIsPrintBg" Content="是否打印背景图片" Grid.Row="1" Margin="2" HorizontalAlignment="Right" IsChecked="True" Click="chkIsPrintBg_Click" />
+        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button x:Name="btnPrint" Content="打印" Margin="2 2 10 10" Click="btnPrint_Click"/>
+            <Button x:Name="btnCancel" Content="取消" Margin="2 2 10 10" Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

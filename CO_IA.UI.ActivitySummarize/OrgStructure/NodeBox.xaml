@@ -1,0 +1,45 @@
+﻿<UserControl     
+    x:Class="CO_IA.UI.ActivitySummarize.NodeBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   Width="170" Height="120"  >
+
+    <Canvas x:Name="canvMain" MouseEnter="canvMain_MouseEnter" MouseLeave="canvMain_MouseLeave" >
+        <Rectangle x:Name="recBorder" RadiusX="5" RadiusY="5" Stroke="White"  StrokeThickness="2">
+            <Rectangle.Fill>
+                <SolidColorBrush Color='#f2f3fd' />               
+            </Rectangle.Fill>
+        </Rectangle>
+        <StackPanel>
+        <TextBlock Background="Green"  x:Name="tbEmployeeName" Width="170" TextAlignment="Center" HorizontalAlignment="Stretch"   Foreground="White"  FontWeight="Bold"></TextBlock>
+        <TextBlock TextAlignment="left" x:Name="tbTitle" Width="130" Height="20" Foreground="Black" Canvas.Left="5"></TextBlock>
+        <TextBlock TextAlignment="left" x:Name="tbSubLeader" Width="130" Height="20" Foreground="Black" Canvas.Left="5"></TextBlock>
+        <TextBlock TextAlignment="left" x:Name="tbDepartment" Width="130" Height="20" Foreground="Black" Canvas.Left="5"></TextBlock>
+        <TextBlock TextAlignment="left" x:Name="tbEquiplist" Width="130" Height="20" Foreground="Black" Canvas.Left="5" FontFamily="Portable User Interface"></TextBlock>
+        <TextBlock TextAlignment="left" x:Name="tbVehicle" Width="130" Height="20" Foreground="Black" Canvas.Left="5" FontFamily="Portable User Interface"></TextBlock>
+        </StackPanel>
+        <Canvas.Resources>
+            <!--<Storyboard x:Name="mouseEnter" >
+                <ColorAnimation 
+                Duration='00:00:01' 
+                To='#ffffcc' 
+                Storyboard.TargetName='recBorder'    
+                Storyboard.TargetProperty='(Shape.Fill).(SolidColorBrush.Color)' />
+            </Storyboard>
+            <Storyboard x:Name='mouseLeave'>
+                <ColorAnimation 
+                Duration='00:00:00' 
+                To='#f2f3fd' 
+                Storyboard.TargetName='recBorder'
+                Storyboard.TargetProperty='(Shape.Fill).(SolidColorBrush.Color)' />
+            </Storyboard>-->
+
+        </Canvas.Resources>
+        
+    </Canvas>
+
+        
+     
+
+</UserControl>

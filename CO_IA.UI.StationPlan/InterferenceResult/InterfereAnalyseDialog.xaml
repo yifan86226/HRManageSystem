@@ -1,0 +1,95 @@
+﻿<Window x:Class="CO_IA.UI.StationPlan.InterfereAnalyseDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+        xmlns:local="clr-namespace:CO_IA.UI.StationPlan"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" 
+        Title="干扰分析"
+        d:DesignHeight="300" d:DesignWidth="300">
+    <toolkit:BusyIndicator  x:Name="busyIndicator" BusyContent="正在计算,请稍后..." IsBusy="False">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="干扰设备" Grid.Column="0" Margin="2" Grid.ColumnSpan="2">
+                <DataGrid x:Name="InterferedResult" 
+                              AutoGenerateColumns="False" 
+                              IsReadOnly="True"
+                              Margin="5" 
+                              SelectionChanged="InterferedResult_SelectionChanged" >
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <EventSetter Event="MouseDoubleClick"
+                                 Handler="InterferedResult_MouseDoubleClick" />
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <commonControls:DataGridVerticalCenterTextColumn Header="设台单位" Binding="{Binding Path=ORG.Value}" Width="150"/>
+                        <commonControls:DataGridVerticalCenterTextColumn Header="设备名称" Binding="{Binding Path=Name}" Width="250" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="设备数量" Binding="{Binding Path=EQUCount}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="发射频率(MHz)" Binding="{Binding Path=SendFreq}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="接收频率(MHz)" Binding="{Binding Path=ReceiveFreq}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="带宽(kHz)" Binding="{Binding Path=Band}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="发射功率(W)" Binding="{Binding MaxPower}" Width="100" />
+                        <commonControls:DataGridVerticalCenterTextColumn Header="指配频率(MHz)" Binding="{Binding AssignFreq}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+            <GridSplitter   Grid.Row="1"  Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Background="#FFD5DFDB"  Height="2" />
+            <GroupBox Header="统计信息" Grid.Row="2" Grid.Column="0" Margin="2" >
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Margin" Value="5"/>
+                            <Setter Property="VerticalAlignment"  Value="Center" />
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"  Text="干扰总数: "/>
+                    <TextBlock Grid.Column="1" Text="{Binding Path=SelectedInterfResult.Total}"/>
+                    <TextBlock Grid.Row="1" Text="同频干扰:"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=SelectedInterfResult.SameFreqInterfResultCount}"/>
+                    <TextBlock Grid.Row="2" Text="邻频干扰:"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=SelectedInterfResult.ADJFreqInterfResultCount}"/>
+                    <TextBlock Grid.Row="3" Text="互调干扰: "/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=SelectedInterfResult.IMInterfResultCount}"/>
+                </Grid>
+            </GroupBox>
+            <Grid Grid.Row="2"  Grid.Column="1" Margin="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <GroupBox Header="同频、邻频干扰结果" Grid.Row="0"  Grid.Column="1" Margin="2">
+                    <local:BaseInterfereResultControl x:Name="_baseInterfereResultControl" />
+                </GroupBox>
+                <GridSplitter   Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                            Background="#FFD5DFDB" Height="2"/>
+                <GroupBox Header="互调干扰结果" Grid.Row="2"  Grid.Column="1" Margin="2">
+                    <local:IMInterfereResultControl x:Name="_iMInterfereResultControl" />
+                </GroupBox>
+            </Grid>
+        </Grid>
+    </toolkit:BusyIndicator>
+</Window>

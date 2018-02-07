@@ -1,0 +1,18 @@
+﻿<Window x:Class="CO_IA.UI.Screen.Dialog.RemoteWatch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="远程监控" Height="600" Width="800" Closing="Window_Closing">
+    <Grid>
+        <Image Name="img" Source="/CO_IA.UI.Screen;component/Images/video_64.png" Stretch="None"></Image>
+        <StackPanel Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,0,30,0">
+            <TextBlock Text="刷新"></TextBlock>
+            <ComboBox Name="cmb" SelectedIndex="0" VerticalAlignment="Center"  Width="60" Margin="5,0,0,0" SelectionChanged="cmb_SelectionChanged">
+                <ComboBoxItem Content="500"></ComboBoxItem>
+                <ComboBoxItem Content="800"></ComboBoxItem>
+                <ComboBoxItem Content="1000"></ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="毫秒" Margin="5,0,0,0"></TextBlock>
+        </StackPanel>
+        
+    </Grid>
+</Window>

@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="CO_IA.UI.FreqPlan.StationPlan.StationPlanControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <commonControls:ModuleToolbar>
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar>
+                    <Button Content="查询"  Click="StationQuery_Click" />
+                    <Button Content="已有设台" Click="ExtractFromStationDB_Click"/>
+                    <Button Content="设备库电台"  Click="ExtractFromEquipmentDB_Click"/>
+                    <Button Content="手工登记"  Click="ManualRegister_Click"/>
+                    <Button Content="XLS导入" Click="BtnImport_Click"/>
+                    <Button Content="移除" Click="BtnDelete_Click"/>
+                    <Button Content="单位信息更新" Click="UpdateCompany_Click"/>
+                    <Button  Content="保障级别设置" Click="BtnSetProtectLevel_Click"/>
+                    <Button Content="XLS导出" Click="BunExport_Click"/>
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+        <!--<equipment:EquipmentListControl Grid.Row="1" x:Name="equipmentListControl"/>-->
+        <Border x:Name="borderContent"  Grid.Row="1" Background="White" Visibility="Collapsed" />
+    </Grid>
+</UserControl>

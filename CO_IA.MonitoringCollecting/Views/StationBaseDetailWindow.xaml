@@ -1,0 +1,77 @@
+﻿<Window x:Class="CO_IA.MonitoringCollecting.Views.StationBaseDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="台站详细信息" Height="300" Width="300">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <TextBlock Text="{Binding RelativeSource={RelativeSource Self}, Path=Text}"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom">
+            <TextBlock Text="活动名称:"/>
+            <TextBlock Text="{Binding }" x:Name="_activityNameTBlock"/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom">
+            <TextBlock Text="活动区域:"/>
+            <TextBlock Text="" x:Name="_activityAddressTBlock"/>
+        </StackPanel>
+        <GroupBox Header="台站信息" Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid x:Name="_statInfoGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="台站名称：" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding STAT_NAME}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="台站地址：" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding STAT_ADDR}" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <TextBlock Text="台站经度：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding STAT_LG}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="台站纬度：" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding STAT_LA}" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <TextBlock Text="申请表编号：" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding APP_CODE}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="资料表编号：" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding STAT_TDI}" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <TextBlock Text="资料表类型：" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding STAT_APP_TYPE}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="通信系统：" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding NET_SVN}" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <TextBlock Text="单位名称：" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding ORG_NAME}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <TextBlock Text="联系人：" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding OrgLinkPerson}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="联系方式：" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding OrgPhone}" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

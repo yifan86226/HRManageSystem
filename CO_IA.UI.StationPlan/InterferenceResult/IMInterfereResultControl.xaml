@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="CO_IA.UI.StationPlan.IMInterfereResultControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             mc:Ignorable="d"  >
+    <Grid>
+        <DataGrid x:Name="InterferedResult" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True"
+                  Margin="2"
+                  ItemsSource="{Binding Path=IMInterfItemsSource}"
+                  LayoutUpdated="InterferedResult_LayoutUpdated"
+                  SelectionUnit="Cell">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="干扰类型" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2"  
+                                       Text="{Binding Path=InterfType}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="干扰阶数" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2"
+                                        Text="{Binding Path=InterfOrder}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="干扰公式" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2"
+                                       Text="{Binding Path=Formual}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="干扰台站/设备" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DataGrid ItemsSource="{Binding Path=InterfObject}" 
+                                      IsReadOnly="True" 
+                                      AutoGenerateColumns="False" 
+                                      CanUserResizeColumns="False" 
+                                      MouseDoubleClick="DataGrid_MouseDoubleClick"  >
+                                <!--MouseLeftButtonDown="DataGrid_MouseLeftButtonDown"-->
+                                <DataGrid.RowStyle>
+                                    <Style TargetType="{x:Type DataGridRow}">
+                                        <EventSetter Event="MouseDoubleClick"
+                                                     Handler="DataGrid_MouseDoubleClick" />
+                                    </Style>
+                                </DataGrid.RowStyle>
+                                <DataGrid.Columns>
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="干扰物" Width="150" Binding="{Binding Path=Type}"/>
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="名称" Binding="{Binding Path=Name}" Width="250" />
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="发射频率(MHz)" 
+                                                                             Binding="{Binding Path=Freq}" Width="100" />
+                                    <commonControls:DataGridVerticalCenterTextColumn Header="带宽(kHz)" Binding="{Binding Path=Band}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

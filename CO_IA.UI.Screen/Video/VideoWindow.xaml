@@ -1,0 +1,105 @@
+﻿<Window x:Class="CO_IA.UI.Screen.VideoWindow"
+        xmlns:Hikvision="clr-namespace:AT_BC.Video.Hikvision;assembly=AT_BC.Video.Hikvision"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:AT_BC.Client.Extensions.Controls;assembly=AT_BC.Client.Extensions.v5.0"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="查看视频"
+        Height="600"
+        Width="1000"
+        AllowsTransparency="False" Closed="Window_Closed">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="867*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            
+        </Grid.RowDefinitions>
+        <!--<ListBox Margin="1" BorderThickness="0" ItemsSource="{Binding}"   x:Name="listBox" SelectionMode="Extended" SelectionChanged="listBoxPlace_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Background="#FF10639A">
+            <ListBox.Resources>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="SnapsToDevicePixels" Value="True" />
+                    <Setter Property="Padding" Value="4,1" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+                    <Setter Property="Template" Value="{StaticResource ListBoxBlue}"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="FontFamily" Value="Microsoft YaHei" />
+                </Style>
+            </ListBox.Resources>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="1" Height="44">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="44"/>
+                            <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+                        <Image HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   Stretch="Uniform"          
+                                     Source="{Binding Path=ImageSource}"
+                                   Height="32" Width="32"/>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding  Path=VideoSet.NameName}" FontSize="{DynamicResource DefaultFontSizeH2}" Foreground="White" FontWeight="SemiBold" Margin="0,0,0,6">
+                            <TextBlock.DataContext>
+                                <MultiBinding Converter="{StaticResource indexConverter}">
+                                    <Binding/>
+                                    <Binding RelativeSource="{RelativeSource AncestorType={x:Type ListBox}}" Path="ItemsSource"/>
+                                </MultiBinding>
+                            </TextBlock.DataContext>
+                        </TextBlock>
+                        <TextBlock Text="{Binding  Path=VideoSet.Name}" 
+                                       Grid.Column="1" 
+                                       HorizontalAlignment="Left" 
+                                        Margin="2,2"  FontSize="{DynamicResource  DefaultFontSizeH2}" FontWeight="SemiBold"  VerticalAlignment="Center" Foreground="White" TextWrapping="Wrap"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>-->
+        <TreeView   x:Name="tv" ItemsSource="{Binding }"    Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Stretch"   HorizontalAlignment="Stretch"  AllowDrop="True"  Background="#FF10639A">
+            <TreeView.Resources>
+            </TreeView.Resources>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="True"></Setter>
+                </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.ItemTemplate >
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}"   >
+                    <StackPanel Orientation="Horizontal" >
+                        <Image VerticalAlignment="Center" Source="{Binding Path=ImageSource}"  Height="22" Width="22" />
+                        <StackPanel Orientation="Horizontal" >
+                            <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}" Click="CheckBoxGroups_Click" Visibility="{Binding IsChkVisible}"></CheckBox>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Width="Auto" Margin="3,0,0,0" Foreground="White" FontSize="14"/>
+                        </StackPanel>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <GridSplitter VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="4" Grid.RowSpan="2"/>
+        <Hikvision:VideoMonitor x:Name="videoMonitor" Grid.Column="1" />
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Grid.Column="1"
+                    Grid.Row="1">
+            <Button Content="存储目录"
+                    Click="buttonOpenDir_Click" />
+            <Button Content="预览" Visibility="Collapsed"
+                    Click="buttonPreview_Click" />
+            <Button Content="抓图"
+                    Click="buttonCapture_Click" />
+            <Button Content="录像"
+                    Click="buttonRecord_Click" />
+            <Button Content="停止" Visibility="Collapsed"
+                    Click="buttonClose_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

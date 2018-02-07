@@ -1,0 +1,71 @@
+﻿<Window x:Class="CO_IA.UI.Screen.Dialog.ExtentProgram"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CO_IA.UI.Screen.Dialog"
+        xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+        Title="管理外部程序" Height="350" Width="600" WindowStyle="ToolWindow" FontSize="{StaticResource DefaultFontSizeH2}">
+    <Window.Resources>
+        <local:StringToImageConverter x:Key="StringToImage"></local:StringToImageConverter>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="217*"/>
+            <RowDefinition Height="53"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="dglist" ItemsSource="{Binding}"
+                          AutoGenerateColumns="False"   
+                          IsReadOnly="True" RowHeight="32"
+                          >
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="FontSize" Value="{StaticResource DefaultFontSizeH2}"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <!--<DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="ChkAll"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Loaded="chkAll_Loaded"
+                                      Click="chkAll_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Path=IsChecked, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      Click="chkCell_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+                <commonControls:DataGridVerticalCenterTextColumn   Header="名称"   Width="Auto" FontSize="{DynamicResource DefaultFontSizeH2}"  Binding="{Binding Path=Name,Mode=OneWay}"  />
+                <commonControls:DataGridVerticalCenterTextColumn Header="路径" Binding="{Binding Path=Path,Mode=OneWay}" Width="*"  FontSize="{DynamicResource DefaultFontSizeH2}"/>
+                <DataGridTemplateColumn Header="图标">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Width="32" Height="32" Source="{Binding IconURL,Converter={StaticResource StringToImage}}"></Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnAdd" Grid.Row="1" HorizontalAlignment="Right" Content="添加" FontSize="{DynamicResource DefaultFontSizeH2}" Click="btnAdd_Click"></Button>
+            <Button Name="btnModify" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" FontSize="{DynamicResource DefaultFontSizeH2}" Content="修改" Click="btnModify_Click"></Button>
+            <Button Name="btnDelete" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" FontSize="{DynamicResource DefaultFontSizeH2}" Content="删除" Click="btnDelete_Click"></Button>
+            <Button Name="btnSave" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" FontSize="{DynamicResource DefaultFontSizeH2}" Content="保存" Click="btnSave_Click"></Button>
+        </Grid>
+        
+    </Grid>
+</Window>

@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{01D26AB5-E20C-4EF5-9CFD-EB0B6037C744}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CO_IA.UI.StationPlan</RootNamespace>
+    <AssemblyName>CO_IA.UI.StationPlan</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AT_BC.Common">
+      <HintPath>..\Output\AT_BC.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.Data.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="AT_BC.SystemPortal.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\AT_BC.SystemPortal.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="EMCS.Types">
+      <HintPath>..\Output\EMCS.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="GS_MapBase, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\GS_MapBase.dll</HintPath>
+    </Reference>
+    <Reference Include="I_GS_MapBase.Portal">
+      <HintPath>..\Output\I_GS_MapBase.Portal.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.Client.Core.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.Client.Core.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="PT_BS_Service.Client.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\PT_BS_Service.Client.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converter\FreqUseConverter.cs" />
+    <Compile Include="Converter\SendLicenseConverter.cs" />
+    <Compile Include="EquCheck\EquCheckQueryDialog.xaml.cs">
+      <DependentUpon>EquCheckQueryDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquFreqPlanSegmentHelper.cs" />
+    <Compile Include="FreqAssign\AroundStationQueryDialog.xaml.cs">
+      <DependentUpon>AroundStationQueryDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqAssign\FreqAssignDetailControl.xaml.cs">
+      <DependentUpon>FreqAssignDetailControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquCheck\CheckEquListControl.xaml.cs">
+      <DependentUpon>CheckEquListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquCheck\EquCheckControl.xaml.cs">
+      <DependentUpon>EquCheckControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converter\AssignFreqConverter.cs" />
+    <Compile Include="Converter\CheckResultConverter.cs" />
+    <Compile Include="Converter\CheckStateConvert.cs" />
+    <Compile Include="Converter\FreqRangeConverter.cs" />
+    <Compile Include="FreqAssign\FreqAssignDialog.xaml.cs">
+      <DependentUpon>FreqAssignDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqAssign\BackupFreq_Control.xaml.cs">
+      <DependentUpon>BackupFreq_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqAssign\FreqAssignHandleControl.xaml.cs">
+      <DependentUpon>FreqAssignHandleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqAssign\FreqAssignInfoListControl.xaml.cs">
+      <DependentUpon>FreqAssignInfoListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreqAssign\FreqAssignListControl.xaml.cs">
+      <DependentUpon>FreqAssignListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InterferenceResult\BaseInterfereResultControl.xaml.cs">
+      <DependentUpon>BaseInterfereResultControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InterferenceResult\IMInterfereResultControl.xaml.cs">
+      <DependentUpon>IMInterfereResultControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InterferenceResult\InterfereAnalyseDialog.xaml.cs">
+      <DependentUpon>InterfereAnalyseDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InterferenceResult\InterferedCalculateManage.cs" />
+    <Compile Include="InterferenceResult\InterfereResetDetailControl.xaml.cs">
+      <DependentUpon>InterfereResetDetailControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LicenseSend\BatchPrint.xaml.cs">
+      <DependentUpon>BatchPrint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LicenseSend\LicenseSend.xaml.cs">
+      <DependentUpon>LicenseSend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LicenseSend\LicenseTempleteDialog.xaml.cs">
+      <DependentUpon>LicenseTempleteDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LicenseSend\PrintPreviewLicense.xaml.cs">
+      <DependentUpon>PrintPreviewLicense.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="StationPlanModule.xaml.cs">
+      <DependentUpon>StationPlanModule.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="EquCheck\EquCheckQueryDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqAssign\AroundStationQueryDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqAssign\FreqAssignDetailControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquCheck\CheckEquListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquCheck\EquCheckControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqAssign\FreqAssignDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FreqAssign\BackupFreq_Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqAssign\FreqAssignHandleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqAssign\FreqAssignInfoListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FreqAssign\FreqAssignListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InterferenceResult\BaseInterfereResultControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InterferenceResult\IMInterfereResultControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InterferenceResult\InterfereAnalyseDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InterferenceResult\InterfereResetDetailControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LicenseSend\BatchPrint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LicenseSend\LicenseSend.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LicenseSend\LicenseTempleteDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LicenseSend\PrintPreviewLicense.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationPlanModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\设备检测.png" />
+    <Resource Include="Images\频率指配.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CO_IA.Client\CO_IA.Client.csproj">
+      <Project>{b48b653d-d7d2-43f9-806e-e7621e9fa27c}</Project>
+      <Name>CO_IA.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.Data.Portable\CO_IA.Data.Portable.csproj">
+      <Project>{d52a57d6-99b0-4bcf-9998-68099e2edc78}</Project>
+      <Name>CO_IA.Data.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.InterferenceAnalysis\CO_IA.InterferenceAnalysis.csproj">
+      <Project>{2c1bc6c7-d11a-4b39-9a14-270990a6746a}</Project>
+      <Name>CO_IA.InterferenceAnalysis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.FreqPlan\CO_IA.UI.FreqPlan.csproj">
+      <Project>{9d82c7ed-d006-4307-bb63-a11486283c95}</Project>
+      <Name>CO_IA.UI.FreqPlan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.MAP\CO_IA.UI.MAP.csproj">
+      <Project>{1c9be0cb-3fb2-481b-9be8-e7cb41b00bae}</Project>
+      <Name>CO_IA.UI.MAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.Setting\CO_IA.UI.Setting.csproj">
+      <Project>{bbffc08d-1716-4ecc-ad5b-f98685635d1c}</Project>
+      <Name>CO_IA.UI.Setting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA.UI.StationManage\CO_IA.UI.StationManage.csproj">
+      <Project>{47214448-3e49-402e-b3e1-dde99388a73a}</Project>
+      <Name>CO_IA.UI.StationManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CO_IA_Data.StationManage\CO_IA_Data.StationManage.csproj">
+      <Project>{a0dd0b1d-3c6d-495e-b481-1d2f2b0b8257}</Project>
+      <Name>CO_IA_Data.StationManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.ActivityManage\I_CO_IA.ActivityManage.csproj">
+      <Project>{fddc11eb-7155-4afc-9524-c95b52057d0b}</Project>
+      <Name>I_CO_IA.ActivityManage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.FreqPlan\I_CO_IA.FreqPlan.csproj">
+      <Project>{84a04550-555d-4595-9893-90adafd0f66b}</Project>
+      <Name>I_CO_IA.FreqPlan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\I_CO_IA.StationPlan\I_CO_IA.StationPlan.csproj">
+      <Project>{ea42943a-657b-42a0-bf0b-b6fdc7697a6d}</Project>
+      <Name>I_CO_IA.StationPlan</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\批量发放.png" />
+    <Resource Include="Images\许可证发放.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UnQualified.png" />
+    <Resource Include="Images\Qualified.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\textlicense.png" />
+    <Resource Include="Images\textlicense11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BarCodeTemplate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\station.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SendLicense.png" />
+    <Resource Include="Images\UnSendLicense.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UnCheck.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

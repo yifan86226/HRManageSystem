@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="CO_IA.UI.FreqStation.FreqPlan.ActivityEquipmentListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             xmlns:local="clr-namespace:CO_IA.UI.FreqStation.FreqPlan"
+             xmlns:client="clr-namespace:CO_IA.Client;assembly=CO_IA.Client"
+             mc:Ignorable="d"
+             d:DesignHeight="480"
+             d:DesignWidth="640">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CO_IA.Client;component/Converters/ConverterDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid x:Name="equdatagrid" ItemsSource="{Binding}"
+                  AutoGenerateColumns="False"
+                  HorizontalContentAlignment="Stretch"
+                  SelectedIndex="-1"
+                  Margin="5,2"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="MouseDoubleClick"
+                                 Handler="dataGridRowEquipment_MouseDoubleClick" />
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="ChkAll"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Loaded="chkAll_Loaded"
+                                      Click="chkAll_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Path=IsChecked, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      Click="chkCell_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <commonControls:DataGridVerticalCenterTextColumn x:Name="columnCompany"
+                                                                 Header="单位"
+                                                                 Binding="{Binding Path=OrgInfo.Name}"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备名称"
+                                                                 Binding="{Binding Path=Name,Mode=OneWay}"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备类型"
+                                                                 Binding="{Binding Path=EquipmentClassID,Converter={StaticResource IdentifiableDataConverter},Mode=OneWay,
+                    ConverterParameter={x:Static client:Utility.EquipmentClasses}}" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备编号"
+                                                                 Binding="{Binding Path=SeriesNumber,Mode=OneWay}"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="设备数量"
+                                                                 Binding="{Binding Path=EQUCount,Mode=OneWay}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" >
+                </commonControls:DataGridVerticalCenterTextColumn>
+                <commonControls:DataGridVerticalCenterTextColumn Header="发射频率(MHz)"
+                                                                 Binding="{Binding Path=SendFreq,Mode=OneWay}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="接收频率(MHz)"
+                                                                 Binding="{Binding Path=ReceiveFreq,Mode=OneWay}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="备用频率(MHz)"
+                                                                 Binding="{Binding Path=SpareFreq}"
+                                                                 TextHorizontalAlignment="Right"
+                                                                 Width="*" />
+                <DataGridTemplateColumn Header="频率可调">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox  IsChecked="{Binding Path=IsTunable,Mode=OneWay}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       IsEnabled="False" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <commonControls:DataGridVerticalCenterTextColumn Header="带宽(kHz)"
+                                                                 Binding="{Binding Path=Band_kHz,Mode=OneWay}"
+                                                                 Width="*"
+                                                                 TextHorizontalAlignment="Right" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="发射功率(W)"
+                                                                 Binding="{Binding Path=Power_W,Mode=OneWay}"
+                                                                 Width="*"
+                                                                 TextHorizontalAlignment="Right" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
+

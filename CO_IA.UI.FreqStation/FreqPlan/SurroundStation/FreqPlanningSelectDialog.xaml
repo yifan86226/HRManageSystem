@@ -1,0 +1,89 @@
+﻿<commonClient:CheckableWindow x:Class="CO_IA.UI.FreqStation.FreqPlan.SurroundStation.FreqPlanningSelectDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:commonClient="clr-namespace:AT_BC.Common;assembly=AT_BC.Common"
+        xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+        xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        xmlns:client="clr-namespace:CO_IA.Client;assembly=CO_IA.Client"
+        xmlns:clientConverters="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+        WindowStartupLocation="CenterScreen"
+        Title="频率保障方案" Height="800" Width="1200">
+    <commonClient:CheckableWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CO_IA.Client;component/Converters/ConverterDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <clientConverters:IdentifiableDataConverter x:Key="IdentifiableDataConverter" />
+        </ResourceDictionary>
+    </commonClient:CheckableWindow.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand}"
+                        Executed="CheckableDataCheckedCommandBinding_Executed" />
+    </Window.CommandBindings>
+    <toolkit:BusyIndicator x:Name="busyIndicator" BusyContent="正在查询周围台站,请稍后..." IsBusy="False"  >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <DataGrid AutoGenerateColumns="False"
+                  Margin="5"
+                  ItemsSource="{Binding}" x:Name="xFreqPartPlanGrid">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox x:Name="chkAll" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedAllCommand}"
+                                      CommandParameter="{Binding ElementName=xFreqPartPlanGrid, Path=ItemsSource}"
+                                      Loaded="checkBoxAll_Loaded" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Path=IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      Command="{x:Static commonClient:CommonCommand.CheckableDataCheckedCommand }"
+                                      CommandParameter="{Binding ElementName=xFreqPartPlanGrid, Path=ItemsSource}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <commonControls:DataGridVerticalCenterTextColumn Header="设备类别"
+                                                                 CanUserSort="False"
+                                                                 Width="*"
+                                                                 Binding="{Binding Path=EquipmentClassID,Converter={StaticResource IdentifiableDataConverter},
+                    ConverterParameter={x:Static client:Utility.EquipmentClasses}}" />
+                    <commonControls:DataGridVerticalCenterTextColumn Header="名称"
+                                                                 CanUserSort="False"
+                                                                 Width="*"
+                                                                 Binding="{Binding Name}" />
+                    <commonControls:DataGridVerticalCenterTextColumn Header="起始频率"
+                                                                 CanUserSort="False"
+                                                                 Width="*"
+                                                                 Binding="{Binding MHzFreqFrom}" />
+                    <commonControls:DataGridVerticalCenterTextColumn Header="终止频率"
+                                                                 CanUserSort="False"
+                                                                 Width="*"
+                                                                 Binding="{Binding MHzFreqTo}" />
+                    <commonControls:DataGridVerticalCenterTextColumn Header="台站查询距离"
+                                                                 CanUserSort="False"
+                                                                 Width="*"
+                                                                 Binding="{Binding mDistanceToActivityPlace}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+                <Button Content="查询"
+                    Click="xbtnQuery_Click" />
+                <Button Content="取消"
+                    Click="buttonCancel_Click" />
+            </StackPanel>
+        </Grid>
+    </toolkit:BusyIndicator>
+</commonClient:CheckableWindow>

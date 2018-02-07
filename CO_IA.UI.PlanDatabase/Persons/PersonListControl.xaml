@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="CO_IA.UI.PlanDatabase.PersonListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CO_IA.UI.PlanDatabase"
+             
+               xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition    />
+        </Grid.RowDefinitions>
+
+        <commonControls:ModuleToolbar>
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar>
+
+                    <Button Content="导入"
+                                Click="buttonImportClick" />
+                    
+                    
+                    <Button Content="新增"
+                                Click="buttonAdd_Click" />
+                    <Button Content="编辑"
+                                Click="buttonModify_Click" />
+                    <Button Content="删除"
+                                Click="buttonDelete_Click" />
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+        <DataGrid x:Name="dg_GrouperList" SelectionMode="Single"
+ 
+              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  
+                   ItemsSource="{Binding}"
+                  
+                  Grid.Row="1"
+                      BorderThickness="0"
+                      AutoGenerateColumns="False"
+                      HorizontalContentAlignment="Left"
+                    >
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="MouseDoubleClick"
+                                     Handler="dataGridTemplate_MouseDoubleClick" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                     Value="True">
+                            <Setter Property="Background"
+                                        Value="Red" />
+                            <Setter Property="Foreground"
+                                        Value="Yellow" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+
+
+                <DataGridTemplateColumn Header="选择" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding ISCHECKED,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Click="cb_SingleGrouper_Click" ></CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                
+                
+                <commonControls:DataGridVerticalCenterTextColumn   Header="姓名"
+                                                                       Binding="{Binding Path=NAME}"
+                                                                       Width="*" />
+                <commonControls:DataGridVerticalCenterTextColumn   Header="性别"
+                                                                       Binding="{Binding Path=SEX}"
+                                                                       Width="*" />
+    
+                
+                <commonControls:DataGridVerticalCenterTextColumn   Header="军衔"
+                                                                       Binding="{Binding Path=MILITARYRANK}"
+                                                                       Width="*" />
+
+                <commonControls:DataGridVerticalCenterTextColumn   Header="政治面貌"
+                                                                       Binding="{Binding Path=POLITICAL}"
+                                                                       Width="*" />
+
+
+                <commonControls:DataGridVerticalCenterTextColumn   Header="党团时间"
+                                                                       Binding="{Binding Path=PARTYTIME}"
+                                                                       Width="*" />
+
+
+
+                <commonControls:DataGridVerticalCenterTextColumn   Header="文化程度"
+                                                                       Binding="{Binding Path=EDUCATION}"
+                                                                       Width="*" />
+
+                
+                
+                <commonControls:DataGridVerticalCenterTextColumn   Header="专业"
+                                                                       Binding="{Binding Path=MAJOR}"
+                                                                       Width="*" />
+
+
+                <commonControls:DataGridVerticalCenterTextColumn   Header="入伍年月"
+                                                                       Binding="{Binding Path=ENLISTMENTDATE}"
+                                                                       Width="*" />
+
+
+
+                <commonControls:DataGridVerticalCenterTextColumn   Header="电话"
+                                                                       Binding="{Binding Path=PHONE}"
+                                                                       Width="*" />
+ 
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

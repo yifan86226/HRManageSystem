@@ -1,0 +1,10 @@
+﻿<Window x:Class="CO_IA.UI.Screen.Dialog.SurroundStationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:surroundStation="clr-namespace:CO_IA.UI.FreqStation.FreqPlan.SurroundStation;assembly=CO_IA.UI.FreqStation"
+        xmlns:client="clr-namespace:CO_IA.Client;assembly=CO_IA.Client"
+        Title="周围台站" Height="768" Width="1024" Closed="Window_Closed" WindowStyle="ToolWindow">
+    <Grid>
+        <surroundStation:SurroundStationListControl x:Name="surroundStationListControl"></surroundStation:SurroundStationListControl>
+    </Grid>
+</Window>

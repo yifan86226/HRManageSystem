@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="CO_IA.UI.Screen.MainPage.MainPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mainpage="clr-namespace:CO_IA.UI.Screen.MainPage"
+             mc:Ignorable="d" d:DesignHeight="150" d:DesignWidth="300"
+              Background="#2238A44B">
+    <!--<UserControl.Effect>
+        <DropShadowEffect/>
+    </UserControl.Effect>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="#FF0B588B" Background="#773B99D3" BorderThickness="1" CornerRadius="4" Grid.RowSpan="2"></Border>
+        <Image Width="18" Height="18" Tag="down" Margin="0,0,5,0" HorizontalAlignment="Right" Source="/CO_IA.UI.Screen;component/Images/MainPage/arrow_down.png" Cursor="Hand" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
+
+        <Grid Margin="5,0,5,5" Grid.Row="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+            <Border Grid.RowSpan="3" BorderBrush="#FF0B588B" Background="#CC0B588B" BorderThickness="1" CornerRadius="4"></Border>
+            <Border Background="#FF10639A" CornerRadius="4,4,0,0"></Border>
+            <TextBlock FontSize="{DynamicResource DefaultFontSizeTitle3}"  Text="{Binding Name}" Foreground="White" Cursor="Hand" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" x:Name="AreaName" MouseLeftButtonUp="AreaName_MouseLeftButtonUp"></TextBlock>
+            <Border Height="1" VerticalAlignment="Bottom">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
+                        <GradientStop Color="#FF0B588B" Offset="0"/>
+
+                        <GradientStop Color="White" Offset="0.477"/>
+                        <GradientStop Color="#FF0B588B" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            
+        <Grid Grid.Row="1" Margin="0" x:Name="g_state">
+            <!--<mainpage:StatePrepare ></mainpage:StatePrepare>-->
+        </Grid>
+       
+        <Grid Grid.Row="2" x:Name="ginfo" Height="420">
+            <Border BorderBrush="#FF10639A" BorderThickness="1" Height="1" Margin="5,0" VerticalAlignment="Top"></Border>
+            <mainpage:StateInfo x:Name="stateInfo"></mainpage:StateInfo>
+        </Grid>
+        
+    </Grid>
+    
+    </Grid>
+</UserControl>

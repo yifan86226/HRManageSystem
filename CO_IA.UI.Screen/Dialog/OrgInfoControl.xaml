@@ -1,0 +1,77 @@
+﻿<commonExtension:EditableUserControl x:Class="CO_IA.UI.Screen.Dialog.OrgInfoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+            xmlns:commonExtension="clr-namespace:AT_BC.Client.Extensions;assembly=AT_BC.Client.Extensions.v5.0"
+             mc:Ignorable="d" >
+    <Grid>
+        <GroupBox Header="单位详细信息" Grid.Row="1"  x:Name="groupBoxOrg">
+            <Grid x:Name="orggrid" 
+				DataContext="{Binding ORGDataContent}" >
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Margin" Value="5" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter  Property="HorizontalAlignment" Value="Right"/>
+                    </Style>
+                    <Style TargetType="{x:Type dxe:TextEdit}">
+                        <Setter Property="Margin" Value="5" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="0"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="单位名称:" />
+                <dxe:TextEdit  x:Name="txtFocus" Grid.Row="0" Grid.Column="1" Height="2" />
+                <dxe:TextEdit x:Name="txtName" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"   MaxLength="50"
+					EditValue="{Binding Name}" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="单位简称:" />
+                <dxe:TextEdit x:Name="txtShortName" Grid.Row="1" Grid.Column="1"   MaxLength="20"
+					EditValue="{Binding ShortName}"  />
+
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="保障类别:"  />
+                <ComboBox x:Name="combClass" 
+					Grid.Row="1" 
+					Grid.Column="3" 
+					Margin="5"
+					DisplayMemberPath="Name"
+					SelectedValuePath="Guid"					
+					SelectedValue="{Binding SecurityClass.Guid}" />
+
+                <!--EditValue="{Binding                 
+                    Path=SecurityClass ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"-->
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="联系人:" />
+                <dxe:TextEdit x:Name="txtContact" Grid.Row="2" Grid.Column="1" MaxLength="10"
+					EditValue="{Binding Contact}"   />
+
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="联系电话:" />
+                <dxe:TextEdit x:Name="txtPhone" Grid.Row="2"  Grid.Column="3"   
+					MaxLength="20"
+					EditValue="{Binding Phone}"  />
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="单位地址:" />
+                <dxe:TextEdit x:Name="txtAddress" Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="3"
+					Margin="5" Height="50" MaxLength="50"
+					VerticalContentAlignment="Top"
+					EditValue="{Binding Address}"  />
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</commonExtension:EditableUserControl>

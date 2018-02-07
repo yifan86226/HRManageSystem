@@ -1,0 +1,59 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             x:Class="CO_IA.UI.MonitorPlan.MonitorCtrl.ActivityList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+                xmlns:converter="clr-namespace:CO_IA.UI.MonitorPlan.Converters"
+             d:DesignHeight="350" d:DesignWidth="300">
+    <Grid>
+        <Grid.Resources>
+            <converter:TaskTypeConverter x:Key="KeyTaskTypeConverter"/>
+            <converter:WorkerGroupConverter x:Key="KeyWorkerGroupConverter"/>
+            <converter:GetPlaceInfoConverter x:Key="KeyPlaceInfo"/>
+            <converter:PositionsConverter x:Key="KeyLocationInfo"/>
+            <Style TargetType="DatePicker" x:Key="_dpStyle"/>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" x:Name="dates">
+            <TextBlock Text="任务起始日期：" Margin="2"/>
+            <DatePicker  Grid.Column="1" HorizontalAlignment="Left" x:Name="_beginDate" Width="200" Margin="2" Text="{Binding BeginTime,Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Text="任务结束日期：" Margin="2" />
+            <DatePicker  Grid.Column="1" HorizontalAlignment="Left" x:Name="_endDate" Width="200" Margin="2" Text="{Binding EndTime,Mode=TwoWay}" />
+        </StackPanel>
+        <Grid Grid.Row="2" x:Name="_groupGrid" HorizontalAlignment="Center" VerticalAlignment="Top" >
+            <ListBox x:Name="_freqPlaceLBox" Width="300" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" x:Name="placeSp" Margin="5">
+                            <CheckBox Tag="{Binding DataContext, ElementName=placeSp}" IsChecked="True" Loaded="PLaceCheckBox_Loaded" Checked="PlaceCheckBox_Checked" Unchecked="PlaceCheckBox_UnChecked"/>
+                            <TextBlock Text="{Binding GroupName}" Margin="5"/>
+                            <TextBlock Text="位置:" Margin="5"/>
+                            <ComboBox x:Name="_locaName"  Width="120"
+                                    ItemsSource="{Binding Locations}"
+                                    VerticalAlignment="Center" 
+                                    DisplayMemberPath="LocationName"
+                                    SelectedValuePath="GUID"
+                                     SelectionChanged="_locaName_SelectionChanged_1"
+                                    SelectedItem="{Binding GUID,Converter={StaticResource KeyPlaceInfo},Mode=TwoWay}"/>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <StackPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Visibility="Collapsed">
+            <Button  Content="确定" Click="Button_Click_1" Margin="0 0 15 0"></Button>
+            <Button Content="重置" Click="Button_Click_2"></Button>
+        </StackPanel>
+        
+    </Grid>
+</UserControl>

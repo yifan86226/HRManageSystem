@@ -1,0 +1,106 @@
+﻿<Window x:Class="CO_IA.UI.ActivityManage.SelectExamPlaceDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+        xmlns:converter ="clr-namespace:CO_IA.UI.ActivityManage"
+        xmlns:clientConverter="clr-namespace:CO_IA.Client.Converters;assembly=CO_IA.Client"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        Title="选择添加考点信息" Height="700" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <clientConverter:DistrictNameConverter x:Key="KeyAreaCodeConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <commonControls:ModuleToolbar Grid.Column="0" >
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar HorizontalAlignment="Left">
+                    <TextBlock Text="结果集过滤:" VerticalAlignment="Center" Margin="2,0"/>
+                    <TextBlock Text="地区 " VerticalAlignment="Center" Margin="2,0"/>
+                    <dxe:ComboBoxEdit Grid.Row="1"
+                                          x:Name="cbarea" 
+                                          Margin="2,0"
+                                          DisplayMember="Value"
+                                          ValueMember="Key"
+                                          ShowCustomItems="True"
+                                          VerticalAlignment="Center"
+                                          SelectedIndexChanged="cbarea_SelectedIndexChanged"
+                                         
+                                          Width="100" >
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:CheckedComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
+                    </dxe:ComboBoxEdit>
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+
+        <commonControls:ModuleToolbar Grid.Row="0" Grid.Column="1" >
+            <commonControls:ModuleToolbar.ToolBar>
+                <ToolBar>
+                    <Button Content="选择添加" Click="Button_Click"></Button>
+                </ToolBar>
+            </commonControls:ModuleToolbar.ToolBar>
+        </commonControls:ModuleToolbar>
+        <DataGrid x:Name="dataGridExamPlace"
+                  Grid.Row="1" 
+                  Grid.ColumnSpan="2" 
+                  BorderThickness="0"  
+                  AutoGenerateColumns="False" 
+                  HorizontalContentAlignment="Left"
+                  RowHeight="40"
+                  ItemsSource="{Binding Path=ExamPlaceItemsSource}">
+            <DataGrid.Columns>
+                <!--选择-->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="chkAll" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" 
+                                      Loaded="chkAll_Loaded"
+                                      Click="chkAll_Click"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                      IsChecked="{Binding Path=IsChecked,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      Click="chkCell_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--图片-->
+                <DataGridTemplateColumn Width="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Path=Picture }" Height="40" Width="40" Margin="2" >
+                                <Image.ToolTip>
+                                    <Image Width="200" Height="200" Source="{Binding Path=Picture}"/>
+                                </Image.ToolTip>
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!--<commonControls:DataGridVerticalCenterTextColumn Header="编号" Binding="{Binding Path=SecurityNO}" Width="*"/>-->
+                <commonControls:DataGridVerticalCenterTextColumn Header="地区" Binding="{Binding Path=Areacode,Converter={StaticResource KeyAreaCodeConverter}}" Width="100" />
+                <commonControls:DataGridVerticalCenterTextColumn Header="考点名称" Binding="{Binding Path=Name}" Width="100"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="地点" Binding="{Binding Path=Address}" Width="100"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="联系人" Binding="{Binding Path=Contact}" Width="100"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="联系电话" Binding="{Binding Path=Phone}" Width="100"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="经度" Binding="{Binding Path=Location_lg}" Width="50"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="纬度" Binding="{Binding Path=Location_la}" Width="50"/>
+                <commonControls:DataGridVerticalCenterTextColumn Header="备注" Binding="{Binding Path=Remark}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,242 @@
+﻿<UserControl x:Class="CO_IA.UI.Collection.DataAanalysis"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+             xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
+             xmlns:best="clr-namespace:CO_IA.UI.Collection.DataAnalysis"
+             xmlns:localChartUc="clr-namespace:CO_IA.UI.Collection.Chart"
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+             xmlns:wfi ="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+             xmlns:wf ="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:zedgraph="clr-namespace:ZedGraph;assembly=ZedGraph"
+             xmlns:converter="clr-namespace:CO_IA.UI.Collection.Converter"
+             xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+             xmlns:analy="clr-namespace:CO_IA.UI.Collection.DataAnalysis"
+             mc:Ignorable="d" dx:ThemeManager.ThemeName="Office2013"
+             d:DesignHeight="300" d:DesignWidth="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CO_IA.UI.Collection;component/Themes/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <dxmvvm:BooleanNegationConverter x:Key="InvertedBoolConverter" />
+            <converter:BackGroundConverter x:Key="BackGroundConverter"/>
+            <converter:RowShowConverter x:Key="RowShowConverter"/>
+            <converter:NeedClearConverter x:Key="NeedClearConverter"/>
+            <Style x:Key="RowStyle" BasedOn="{StaticResource {dxgt:GridRowThemeKey ResourceKey=RowStyle}}" TargetType="{x:Type dxg:GridRowContent}">
+                <Setter Property="Background" Value="{Binding Row, Converter={StaticResource BackGroundConverter}}"/>
+                <Setter Property="Visibility" Value="{Binding Row,Converter={StaticResource RowShowConverter}}"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <toolkit:BusyIndicator x:Name="busyIndicator" BusyContent="正在加载，请稍后......" DisplayAfter="0" IsBusy="False">
+            <dxdo:DockLayoutManager>
+                <dxdo:LayoutGroup>
+                    <dxdo:LayoutGroup ItemWidth="380" ShowCaption="False">
+                        <dxdo:LayoutPanel ShowCloseButton="False" AllowFloat="False" ShowPinButton="False" ShowCaption="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+
+                                <Border BorderThickness="0,1,0,1" Grid.Row="0" BorderBrush="LightGray">
+                                    <StackPanel  Orientation="Horizontal">
+                                        <Label x:Name="lab_source" Content="采集来源:" VerticalAlignment="Center" Foreground="RoyalBlue"></Label>
+                                        <Label x:Name="lab_collectIndex" Content="" VerticalAlignment="Center" Foreground="RoyalBlue"></Label>
+                                        <Image x:Name="img_select" Source="/CO_IA.UI.Collection;component/Images/selectList.png" Width="28" Height="28" Margin="5,0,5,0" MouseLeftButtonUp="Image_MouseLeftButtonUp" ToolTip="采集数据选择"></Image>
+                                        <!--<dxe:ComboBoxEdit Margin="5,10,5,10"  x:Name="defaultComboBox" Grid.Row="0" ShowSizeGrip="False" SelectedIndex="0"
+                                            ValueMember="MeasureID" DisplayMember="DisplayMem">
+                                        <dxe:ComboBoxEdit.StyleSettings>
+                                            <dxe:ComboBoxStyleSettings />
+                                        </dxe:ComboBoxEdit.StyleSettings>
+                                    </dxe:ComboBoxEdit>-->
+                                        <Button x:Name="btn_ImportFreq" ToolTip="导入频率规划" Margin="5,10,5,10" Click="btn_ImportFreq_Click">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Image Name="btnbg" Source="/CO_IA.UI.Collection;component/Images/importFreq.png" />
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter Property="Source"  Value="/CO_IA.UI.Collection;component/Images/importFreq.png" TargetName="btnbg" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsPressed" Value="True">
+                                                                        <Setter Property="Source" Value="/CO_IA.UI.Collection;component/Images/importFreq.png" TargetName="btnbg" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsEnabled" Value="false">
+                                                                        <Setter Property="Source" Value="/CO_IA.UI.Collection;component/Images/importFreq.png" TargetName="btnbg" />
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                        <Button x:Name="btn_freqRange" ToolTip="添加频段" Margin="5,10,5,10" Click="btn_freqRange_Click">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Image Name="btnbg" Source="/CO_IA.UI.Collection;component/Images/addFreq.png" />
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter Property="Source"  Value="/CO_IA.UI.Collection;component/Images/addFreq.png" TargetName="btnbg" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsPressed" Value="True">
+                                                                        <Setter Property="Source" Value="/CO_IA.UI.Collection;component/Images/addFreq.png" TargetName="btnbg" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsEnabled" Value="false">
+                                                                        <Setter Property="Source" Value="/CO_IA.UI.Collection;component/Images/addFreq.png" TargetName="btnbg" />
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </StackPanel>
+                                </Border>
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                                    <dxn:NavBarControl Name="navBar">
+                                    </dxn:NavBarControl>
+                                </ScrollViewer>
+                                <Border x:Name="border_button" BorderThickness="0,1,0,1" Grid.Row="2" BorderBrush="LightGray" >
+                                    <Grid Margin="0,0,0,5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <TextBlock VerticalAlignment="Center" Margin="0,0,13,0">显示结果:</TextBlock>
+                                            <CheckBox Tag="空闲" IsChecked="True" Margin="0,0,15,0" Name="cbxFree" Checked="cbxUsing_Checked" Unchecked="cbxUsing_Checked" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center">空闲</CheckBox>
+                                            <CheckBox Tag="已占" IsChecked="True" Margin="0,0,15,0" Name="cbxUsing" Checked="cbxUsing_Checked" Unchecked="cbxUsing_Checked" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center">已占</CheckBox>
+                                            <CheckBox Tag="清理" IsChecked="True" Margin="0,0,5,0" Name="cbxUnUsing" Checked="cbxUsing_Checked" Unchecked="cbxUsing_Checked" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center">清理</CheckBox>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <Button x:Name="btn_reAnalysis" Content="全部重新分析" Margin="20,0,5,0" Click="btn_reAnalysis_Click"></Button>
+                                            <Button x:Name="btn_saveResult" Content="保存分析结果" Margin="20,0,5,0" Click="btn_saveResult_Click"></Button>
+                                        </StackPanel>
+                                    </Grid>                                   
+                                </Border>
+                            </Grid>
+                        </dxdo:LayoutPanel>
+                    </dxdo:LayoutGroup>
+                    <dxdo:LayoutGroup AllowClose="False" AllowFloat="False" Orientation="Vertical">
+                        <dxdo:LayoutPanel x:Name="lp_spectrum" ShowCaption="False" ShowCloseButton="False" AllowDock="False" AllowMove="False" AllowFloat="False" ShowPinButton="False" MinHeight="150">
+                            <Grid Background="Black">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="24"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="谱图"
+                                           Foreground="Orange"
+                                           FontSize="16"
+                                           VerticalAlignment="Center"
+                                           Margin="10,0,0,0"></TextBlock>
+                                <d3:ChartPlotter x:Name="plotter" Background="Transparent" BorderBrush="Orange" Foreground="Orange" Grid.Row="1">
+                                    <d3:VerticalAxisTitle Content="(dBμV)"></d3:VerticalAxisTitle>
+                                    <d3:HorizontalAxisTitle Content="频率"></d3:HorizontalAxisTitle>
+                                </d3:ChartPlotter >
+                            </Grid>
+                        </dxdo:LayoutPanel>
+                        <dxdo:LayoutPanel x:Name="lp_Occupy" ShowCaption="False" Background="Black" ShowCloseButton="False" AllowDock="False" AllowMove="False" AllowFloat="False" ShowPinButton="False" MinHeight="150">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="24"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="信道占用情况"
+                                           Foreground="Orange"
+                                           FontSize="16"
+                                           VerticalAlignment="Center"
+                                           Margin="10,0,0,0"></TextBlock>
+                                <d3:ChartPlotter x:Name="BarPlotter" Background="Transparent" BorderBrush="Orange" Foreground="Orange" Grid.Row="1">
+                                    <d3:VerticalAxisTitle Content="占用度"></d3:VerticalAxisTitle>
+                                    <d3:HorizontalAxisTitle Content="频率"></d3:HorizontalAxisTitle>
+                                </d3:ChartPlotter>
+                            </Grid>
+                        </dxdo:LayoutPanel>
+                        <dxdo:LayoutPanel ShowCloseButton="False" AllowFloat="False" AllowDock="False" AllowMove="False" ShowPinButton="False" ShowCaption="False">
+                            <dxg:GridControl x:Name="gridControl_freqInfo" Grid.Row="2"  >
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="tbView" RowStyle="{DynamicResource RowStyle}" 
+                                                   ShowGroupPanel="False" 
+                                                   ShowIndicator="False" 
+                                                   MultiSelectMode="Row"
+                                                   HorizontalContentAlignment="Center"  
+                                                   
+                                                   AllowColumnFiltering="False" 
+                                                   AllowEditing="False" 
+                                                   AutoWidth="True"></dxg:TableView>
+                                </dxg:GridControl.View>
+                                
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="已占" Click="ViewMenuItem_Click"/>
+                                        <MenuItem Header="空闲" Click="ViewMenuItem_Click"/>
+                                        <MenuItem Header="清理" Click="ViewMenuItem_Click"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridControl.Columns>
+                                    <!--<dxg:GridColumn  Header="选择" HorizontalHeaderContentAlignment="Center" AllowEditing="True" FieldName="IsCheck"></dxg:GridColumn>-->
+                                    <dxg:GridColumn  Header="信号频率(MHz)" HorizontalHeaderContentAlignment="Center" FieldName="Frequency"></dxg:GridColumn>
+                                    <dxg:GridColumn  Header="带宽(kHz)" HorizontalHeaderContentAlignment="Center" FieldName="BandWidth"></dxg:GridColumn>
+                                    <dxg:GridColumn  Header="幅度中值" HorizontalHeaderContentAlignment="Center" FieldName="AmplitudeMidValue"></dxg:GridColumn>
+                                    <dxg:GridColumn  Header="幅度最大值" HorizontalHeaderContentAlignment="Center" FieldName="AmplitudeMaxValue"></dxg:GridColumn>
+                                    <dxg:GridColumn  Header="占用度(%)" HorizontalHeaderContentAlignment="Center" FieldName="Occupy"></dxg:GridColumn>
+
+                                    <dxg:GridColumn Header="台站名称" FieldName="StationName" HorizontalHeaderContentAlignment="Center" >
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxe:TextEditSettings HorizontalContentAlignment="Center" />
+                                        </dxg:GridColumn.EditSettings>
+                                        <dxg:GridColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock  HorizontalAlignment="Center"  TextWrapping="Wrap" Tag="{Binding RowData.Row}" ToolTipService.ToolTip="点击查看周围台站信息" >
+                                                    <Hyperlink Click="HyperlinkRoundStation_Click" >
+                                                    <Run Text="{Binding RowData.Row.StationName, Mode=TwoWay}" />
+                                                </Hyperlink>
+                                                    </TextBlock>
+                                            </DataTemplate>
+                                        </dxg:GridColumn.CellTemplate>
+                                    </dxg:GridColumn>  
+                                    
+                                    
+                                    <!--<dxg:GridColumn   Header="台站名称" HorizontalHeaderContentAlignment="Center" FieldName="StationName"></dxg:GridColumn>-->
+                                    <dxg:GridColumn  Header="是否需要清理" HorizontalHeaderContentAlignment="Center" Binding="{Binding Path=NeedClear, Converter={StaticResource ResourceKey=NeedClearConverter}}" ></dxg:GridColumn>
+                                    <dxg:GridColumn  Header="信号类型" HorizontalHeaderContentAlignment="Center" AllowEditing="True" FieldName="FreqType">
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxe:ComboBoxEditSettings>
+                                                <dxe:ComboBoxEditSettings.Items>
+                                                    <dxe:ComboBoxEditItem Selected="ComboBoxEditItem_Selected" Content="已占"/>
+                                                    <dxe:ComboBoxEditItem Selected="ComboBoxEditItem_Selected" Content="空闲"/>
+                                                    <dxe:ComboBoxEditItem Selected="ComboBoxEditItem_Selected" Content="清理"/>
+                                                </dxe:ComboBoxEditSettings.Items>
+                                            </dxe:ComboBoxEditSettings>
+                                        </dxg:GridColumn.EditSettings>
+                                    </dxg:GridColumn>
+                                </dxg:GridControl.Columns>
+                                
+                            </dxg:GridControl>
+                        </dxdo:LayoutPanel>
+                    </dxdo:LayoutGroup>
+                </dxdo:LayoutGroup>
+            </dxdo:DockLayoutManager>
+        </toolkit:BusyIndicator>
+    </Grid>
+</UserControl>

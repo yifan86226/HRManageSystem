@@ -1,0 +1,332 @@
+﻿<Window x:Class="CO_IA.MonitoringCollecting.LoadActivity"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:commonControls="clr-namespace:AT_BC.Common.Controls;assembly=AT_BC.Common"
+        xmlns:client="clr-namespace:CO_IA.Client;assembly=CO_IA.Client"
+        Title="{Binding Source={x:Static client:Utility.RiasSystemName}, StringFormat='\{0\}-环境分析'}"
+        Height="480"
+        Width="640"
+        WindowStyle="None"
+        Background="{x:Null}"
+        Foreground="White"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="false"
+        ResizeMode="NoResize" Icon="Images/TaskBarIcon.png"      
+        Loaded="Window_Loaded" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Background"
+                        Value="{DynamicResource BackgroudBrush}" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource ForegroundBrush}" />
+                <Setter Property="FontSize"
+                        Value="14" />
+                <Setter Property="Margin"
+                        Value="3" />
+                <Setter Property="Padding"
+                        Value="3,0" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Margin="2">
+        <Rectangle Fill="{DynamicResource PageBackgroudBrush}"
+                   Margin="0,1,0,0">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="15"
+                                  ShadowDepth="0" />
+            </Rectangle.Effect>
+        </Rectangle>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Rectangle Fill="{DynamicResource BackgroudBrush}"
+                       x:Name="rectangleTitle"
+                       Margin="-1"
+                       MouseMove="rectangleContainer_MouseMove"
+                       Grid.RowSpan="2" />
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="4,0">
+                <Button Click="buttonMinimize_Click"
+                        Style="{StaticResource controlButton}"
+                        Margin="2"
+                        Visibility="Collapsed">
+                    <Image Source="/CO_IA.MonitoringCollecting;component/Images/Min.png"
+                           VerticalAlignment="Center"
+                           Height="12"
+                           Width="12" />
+                </Button>
+                <Button Click="buttonClose_Click"
+                        Style="{StaticResource controlButton}"
+                        Margin="2">
+                    <Image Source="/CO_IA.MonitoringCollecting;component/Images/Close.png"
+                           VerticalAlignment="Center"
+                           Height="12"
+                           Width="12" />
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left">
+                <Image Source="/CO_IA.MonitoringCollecting;component/Images/defaultActivity.png"
+                       Margin="15,0,10,0"
+                       Width="48"
+                       Height="48"
+                       Stretch="Uniform"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
+                <!--<commonControls:AppImageButton Height="60" Width="60" ImageSource="/CO_IA.RIAS;component/Images/schedule.png" HorizontalContentAlignment="Center" BorderThickness="2" Margin="2,0" Foreground="White" HorizontalAlignment="Left" Grid.RowSpan="2"/>-->
+                <TextBlock VerticalAlignment="Center"
+                           Text="{x:Static client:Utility.RiasSystemName}"
+                           FontSize="24"
+                           FontWeight="Black">
+                    <Run Text="-环境分析" />
+                </TextBlock>
+            </StackPanel>
+
+            <Grid Grid.Row="2"
+                    Margin="10"
+                    
+                    VerticalAlignment="Stretch">
+                <Border BorderBrush="{DynamicResource ModuleToolBar.BorderBrush}"
+                        BorderThickness="1" />
+                <Grid Margin="1"
+                      Visibility="{Binding ElementName=gridDownloadAcitivities, Path=Visibility, Converter={StaticResource reverseVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="24" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border BorderThickness="0,0,0,1"
+                            BorderBrush="{DynamicResource ModuleToolBar.BorderBrush}"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Stretch" />
+                    <TextBlock Text="本地活动"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               Margin="15,0"
+                               FontWeight="SemiBold"
+                               Foreground="Black" />
+                    <TextBlock  VerticalAlignment="Center"
+                                x:Name="textBlockDownload"
+                                FontSize="14"
+                                Margin="15,0"
+                                FontWeight="SemiBold"
+                                Foreground="Black"
+                                HorizontalAlignment="Right">
+                        <Hyperlink Click="hyperlinkDownload_Click"
+                                   x:Name="hyperlinkDownload">
+                            <Run  Text="下载活动" />
+                        </Hyperlink>
+                    </TextBlock>
+                    <ListBox Grid.Row="1"
+                             Margin="1"
+                             BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             SelectionMode="Single" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             x:Name="listBoxActivities">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="commonControls:ListBoxImageItem">
+                                <!--<Setter Property="SelectedBorderColor" Value="Red"/>-->
+                                <Setter Property="Height"
+                                        Value="86" />
+                                <Setter Property="Width"
+                                        Value="64" />
+                                <Setter Property="Margin"
+                                        Value="10,3" />
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                                <Setter Property="Padding"
+                                        Value="3" />
+                                <EventSetter Event="MouseDoubleClick"
+                                             Handler="ListBoxItem_MouseDoubleClick" />
+                                <Setter Property="ContextMenu">
+                                    <Setter.Value>
+                                        <ContextMenu>
+                                            <MenuItem Header="打开活动">
+                                                <MenuItem.Style>
+                                                    <Style TargetType="MenuItem">
+                                                        <EventSetter Event="Click"
+                                                                     Handler="OpenActivity_Click" />
+                                                    </Style>
+                                                </MenuItem.Style>
+                                            </MenuItem>
+                                        </ContextMenu>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Resources>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Width"
+                                                Value="58" />
+                                        <Setter Property="Height"
+                                                Value="58" />
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <!--<ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <commonControls:AppImageButton Header="{Binding Name}" ImageSource="/CO_IA.MonitoringCollecting;component/Images/defaultActivity.png" HorizontalContentAlignment="Center" BorderThickness="2" Margin="2" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>-->
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"
+                                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </Grid>
+
+                <Grid Margin="1" Visibility="Collapsed" x:Name="gridDownloadAcitivities">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="24" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border BorderThickness="0,0,0,1"
+                            BorderBrush="{DynamicResource ModuleToolBar.BorderBrush}"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Stretch" />
+                    <TextBlock Text="可下载活动"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               Margin="15,0"
+                               FontWeight="SemiBold"
+                               Foreground="Black" />
+                    <TextBlock  VerticalAlignment="Center"
+                                FontSize="14"
+                                Margin="15,0"
+                                FontWeight="SemiBold"
+                                Foreground="Black"
+                                HorizontalAlignment="Right">
+                        <Hyperlink Click="hyperlinkReturn_Click">
+                            <Run  Text="返回" />
+                        </Hyperlink>
+                    </TextBlock>
+                    <ListBox Grid.Row="1" x:Name="listBoxRunnableActivities" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             Margin="1"
+                             BorderThickness="0"
+                             SelectionMode="Single">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="commonControls:ListBoxImageItem">
+                                <!--<Setter Property="SelectedBorderColor" Value="Red"/>-->
+                                <Setter Property="Height"
+                                        Value="86" />
+                                <Setter Property="Width"
+                                        Value="64" />
+                                <Setter Property="Margin"
+                                        Value="10,3" />
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Center" />
+                                <Setter Property="Padding"
+                                        Value="3" />
+                                <EventSetter Event="MouseDoubleClick"
+                                             Handler="ListBoxRunnableActivityItem_MouseDoubleClick" />
+                                <!--<Setter Property="Opacity"
+                                        Value="0.35" />-->
+                                <!--<Setter Property="ContextMenu">
+                                    <Setter.Value>
+                                        <ContextMenu>
+                                            <MenuItem Header="打开活动">
+                                                <MenuItem.Style>
+                                                    <Style TargetType="MenuItem">
+                                                        <EventSetter Event="Click"
+                                                                     Handler="OpenActivity_Click" />
+                                                    </Style>
+                                                </MenuItem.Style>
+                                            </MenuItem>
+                                        </ContextMenu>
+                                    </Setter.Value>
+                                </Setter>-->
+                                <Style.Resources>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Width"
+                                                Value="58" />
+                                        <Setter Property="Height"
+                                                Value="58" />
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"
+                                           VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </Grid>
+            </Grid>
+            <Grid  Grid.Row="2"
+                   x:Name="gridLogin"
+                   Visibility="Visible">
+                <Rectangle Fill="White"
+                           Opacity="0.6" />
+                <Grid Height="150"
+                      Width="300"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+                    <Rectangle Fill="#FF4CB7FF"
+                               RadiusX="10"
+                               RadiusY="10" />
+                    <Grid Height="100"
+                          Width="100"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
+                          Margin="20,0,0,0">
+                        <Image Source="/CO_IA.MonitoringCollecting;component/Images/LoginHint.png"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Height="60"
+                               Width="60" />
+                        <Path Stroke="{DynamicResource ForegroundBrush}"
+                              StrokeThickness="6">
+                            <Path.Data>
+                                <EllipseGeometry Center="50,50"
+                                                 RadiusX="45"
+                                                 RadiusY="45" />
+                            </Path.Data>
+                        </Path>
+                        <Path Data="M 5,50 A 45,45 0 0 1 50,5"
+                              Stroke="#FFC9E9FF"
+                              StrokeThickness="6">
+                            <Path.Triggers>
+                                <EventTrigger RoutedEvent="Path.Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="myTransform"
+                                                             Storyboard.TargetProperty="Angle"
+                                                             From="0"
+                                                             To="360"
+                                                             Duration="0:0:3"
+                                                             RepeatBehavior="Forever" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Path.Triggers>
+                            <Path.RenderTransform>
+                                <RotateTransform x:Name="myTransform"
+                                                 Angle="90"
+                                                 CenterX="50"
+                                                 CenterY="50" />
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+                    <TextBlock x:Name="textBlockHint"
+                               Foreground="White"
+                               Text="系统正在初始化..."
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               Margin="130,0,0,0"
+                               TextWrapping="Wrap" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</Window>

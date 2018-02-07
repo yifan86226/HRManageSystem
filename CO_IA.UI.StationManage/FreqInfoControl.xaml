@@ -1,0 +1,54 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             x:Class="CO_IA.UI.StationManage.FreqInfoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CO_IA.UI.StationManage"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400" FontFamily="Arial,SimSun" FontSize="12">
+    <UserControl.Resources>
+        <local:FreqInfoConverter x:Key="FI_Converter"></local:FreqInfoConverter>
+        <local:FreqTypeConverter x:Key="FT_Converter"></local:FreqTypeConverter>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White">
+
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <dxg:GridControl x:Name="Dg_FreqInfoList"  Grid.ColumnSpan="2" ItemsSource="{Binding  FreqInfo }" AutoPopulateColumns="True" Height="300">
+                <dxg:GridControl.View>
+                    <dxg:TableView  ShowGroupPanel="False" />
+                </dxg:GridControl.View>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Binding="{Binding FREQ_TYPE, Converter={StaticResource FT_Converter}}"  AllowEditing="False" Visible="True"  Header="频率类型"/>
+
+                    <dxg:GridColumn Binding="{Binding FREQ_UC}"   AllowEditing="False" Visible="True"  Header="频点"/>
+
+                    <dxg:GridColumn  Binding="{Binding FREQ_EFB}"   AllowEditing="False" Visible="True"  Header="发射频率起"/>
+                    <dxg:GridColumn  Binding="{Binding FREQ_EFE}"   AllowEditing="False" Visible="True"  Header="发射频率止"/>
+                    <dxg:GridColumn  Binding="{Binding FREQ_RFB}"   AllowEditing="False" Visible="True"  Header="接收频率起"/>
+                    <dxg:GridColumn  Binding="{Binding FREQ_RFE}"    AllowEditing="False" Visible="True"  Header="接收频率止"/>
+
+                    <dxg:GridColumn Binding="{Binding FREQ_E_BAND}"   AllowEditing="False" Visible="True"  Header="发射带宽"/>
+                    <dxg:GridColumn Binding="{Binding FREQ_R_BAND}"  AllowEditing="False" Visible="True"  Header="接收带宽"/>
+
+                    <!--<dxg:GridColumn  FieldName="FT_FREQ_TimeB"   AllowEditing="False" Visibility="Visible" Header="工作时段起"/>
+                            <dxg:GridColumn  FieldName="FT_FREQ_TimeE"   AllowEditing="False" Visibility="Visible" Header="工作时段止"/>-->
+                    <!--<dxg:GridColumn  FieldName="FT_FREQ_INFO_Type"  AllowEditing="False" Visibility="Visible" Header="发送信息类型"/>-->
+                    <!--<dxg:GridColumn   FieldName="FT_FREQ_HCL"  AllowEditing="False" Visibility="Visible" Header="呼号"/>-->
+                    <dxg:GridColumn Binding="{Binding FREQ_MOD, Converter={StaticResource FI_Converter}}"  AllowEditing="False" Visible="True"  Header="调制方式"/>
+
+                </dxg:GridControl.Columns>
+
+
+            </dxg:GridControl>
+            <dxe:DataPager x:Name="dataPager" Source="{Binding ItemsSource,ElementName=Dg_FreqInfoList}" Grid.Row="1" PageSize="20" Height="20"  NumericButtonCount="10" DisplayMode="FirstLastPreviousNextNumeric" HorizontalAlignment="Right" VerticalAlignment="Top" IsTotalItemCountFixed="True" ShowTotalPageCount="True"  Margin="0,2,0,0" />
+
+        </Grid>
+
+    </Grid>
+</UserControl>

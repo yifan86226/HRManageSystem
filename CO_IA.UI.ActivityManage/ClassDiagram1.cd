@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CO_IA.UI.ActivityManage.FileManage.FileManageModule">
+    <Position X="0.5" Y="0.5" Width="3.25" />
+    <Members>
+      <Method Name="chkAll_Click" Hidden="true" />
+      <Method Name="chkAll_Loaded" Hidden="true" />
+      <Method Name="chkCell_Click" Hidden="true" />
+      <Method Name="dgList_MouseDoubleClick" Hidden="true" />
+      <Method Name="item_Selected" Hidden="true" />
+      <Method Name="renametextbox_KeyDown" Hidden="true" />
+      <Method Name="renametextbox_LostFocus" Hidden="true" />
+      <Method Name="treeCatalog_MouseLeftButtonUp" Hidden="true" />
+      <Method Name="treeCatalog_SelectedItemChanged" Hidden="true" />
+      <Method Name="txtQuery_EditValueChanging" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>FAAABQgRMQEgBIAAAAAEEAEAgACZAEQISgEAACCAQQI=</HashCode>
+      <FileName>FileManage\FileManageModule.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SelectedCatalogItem" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="WorkFileItemsSource" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AT_BC.Common.TreeNode&lt;T&gt;">
+    <Position X="5.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CO_IA.Data.FileManage.WorkFileInfo">
+    <Position X="5.75" Y="3.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

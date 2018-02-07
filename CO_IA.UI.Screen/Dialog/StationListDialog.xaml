@@ -1,0 +1,9 @@
+﻿<Window x:Class="CO_IA.UI.Screen.Dialog.StationListDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:surroundStation="clr-namespace:CO_IA.UI.FreqStation.FreqPlan.SurroundStation;assembly=CO_IA.UI.FreqStation"
+        Title="台站列表 - 最多显示100条记录" Height="600" Width="1000" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <surroundStation:SurroundStationListControl x:Name="surroundStationListControl"></surroundStation:SurroundStationListControl>
+    </Grid>
+</Window>
